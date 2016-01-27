@@ -12,7 +12,7 @@ request = Net::HTTP::Post.new(uri.request_uri)
 request["user_key"] = ARGV[0]  # your api key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
-entities_linked_text_data = "Sample"
+entities_linked_text_data = "Last month director Paul Feig announced the movie will have an all-star female cast including Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon."
 content = {
 	content: entities_linked_text_data
 }

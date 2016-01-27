@@ -12,7 +12,7 @@ request = Net::HTTP::Post.new(uri.request_uri)
 request["user_key"] = ARGV[0] # your api key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
-morphology_han_readings_data = "Sample"
+morphology_han_readings_data = "北京大学生物系主任办公室内部会议"
 content = {
     content: morphology_han_readings_data
 }

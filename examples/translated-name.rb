@@ -12,7 +12,7 @@ request = Net::HTTP::Post.new(uri.request_uri)
 request["user_key"] = ARGV[0] # your api key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
-translated_name_data = "Sample"
+translated_name_data = "معمر محمد أبو منيار القذاف"
 content = {
     name: translated_name_data,
     targetLanguage: "eng"

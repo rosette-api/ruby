@@ -12,7 +12,7 @@ request = Net::HTTP::Post.new(uri.request_uri)
 request["user_key"] = ARGV[0] # your api key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
-categories_url_data = "Sample"
+categories_url_data = "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
 content = {
     contentUri: categories_url_data
 }

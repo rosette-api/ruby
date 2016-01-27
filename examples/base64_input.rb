@@ -15,7 +15,8 @@ request["Content-Type"] = "text/html"
 request["Accept"] = "application/json"
 entities_text_data = "Sample"
 content = {
-	content: Base64.encode64(entities_text_data)
+	content: Base64.urlsafe_encode64(entities_text_data),
+    contentType: "application/octet-stream"
 }
 JSONbody = content.to_json
 

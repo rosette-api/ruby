@@ -2,7 +2,7 @@
 
 #Gets called when the user doesn't provide any args
 function HELP {
-	echo -e "\nusage: source_file.rb API_KEY [ALT_URL]"
+    echo -e "\nusage: source_file.rb API_KEY [ALT_URL]"
     echo "  API_KEY      - Rosette API key (required)"
     echo "  FILENAME     - Ruby source file (optional)"
     echo "  ALT_URL      - Alternate service URL (optional)"
@@ -27,25 +27,33 @@ while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
     esac
 done
 
-# reference the API 
-curl "https://api.rosette.com/rest/v1/ping" -H "user_key: $1"
+#Checks if Rosette API key is valid
+function checkAPI {
+    match=$(curl "https://api.rosette.com/rest/v1/ping" -H "user_key: ${API_KEY}" |  grep -o "forbidden")
+    if [ ! -z $match ]; then
+        echo -e "\nInvalid Rosette API Key"
+        exit 1
+    fi  
+}
+
 
 #Copy the mounted content in /source to current WORKDIR
 cp /source/*.* .
 
 #Run the examples
 if [ ! -z ${API_KEY} ]; then
-	if [ ! -z ${FILENAME} ]; then
-		if [ ! -z ${ALT_URL} ]; then
-			ruby ${FILENAME} ${API_KEY} ${ALT_URL} 
-		else
-			ruby ${FILENAME} ${API_KEY} 
-   		fi
-	elif [ ! -z ${ALT_URL} ]; then
-    	find -maxdepth 1  -name '*.rb' -print -exec ruby {} ${API_KEY} ${ALT_URL} \;
+    checkAPI
+    if [ ! -z ${FILENAME} ]; then
+        if [ ! -z ${ALT_URL} ]; then
+	    ruby ${FILENAME} ${API_KEY} ${ALT_URL} 
 	else
-		find -maxdepth 1  -name '*.rb' -print -exec ruby {} ${API_KEY} \;
+	    ruby ${FILENAME} ${API_KEY} 
+   	fi
+    elif [ ! -z ${ALT_URL} ]; then
+    	find -maxdepth 1  -name '*.rb' -print -exec ruby {} ${API_KEY} ${ALT_URL} \;
+    else
+	find -maxdepth 1  -name '*.rb' -print -exec ruby {} ${API_KEY} \;
     fi
 else 
-	HELP
+    HELP
 fi

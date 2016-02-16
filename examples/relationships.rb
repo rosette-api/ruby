@@ -21,7 +21,7 @@ request = Net::HTTP::Post.new(uri.request_uri)
 request["user_key"] = api_key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
-relationships_text_data = "The Ghostbusters movie was filmed in Boston."
+relationships_text_data = "Bill Murray is in the new Ghostbusters film!"
 content = {
     content: relationships_text_data
 }

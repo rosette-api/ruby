@@ -26,8 +26,7 @@ translated_name_data = "معمر محمد أبو منيار القذاف"
 content = {
     name: translated_name_data,
     targetLanguage: "eng",
-    targetScript: "Latn",
-    targetScheme: "IC"
+    targetScript: "Latn"
 }
 JSONbody = content.to_json
 

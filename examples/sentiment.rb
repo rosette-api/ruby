@@ -49,4 +49,7 @@ request.body = post_body.join
 
 # Send the request
 response = http.request(request)
-puts JSON.pretty_generate(JSON.parse(response.body))
+response_headers = {}
+response.header.each_header {|key,value| response_headers[key] = value}
+response_headers = {"responseHeaders" => response_headers}
+puts JSON.pretty_generate(JSON.parse(response.body).merge(response_headers))

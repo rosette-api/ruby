@@ -1,5 +1,5 @@
 ---
-# Ruby Binding for Rosette API
+# Ruby Examples for Rosette API
 ---
 
 ### Summary

@@ -1,9 +1,9 @@
 ---
-# Ruby Binding for Rosette API
+# Ruby Examples for Rosette API
 ---
 
 ### Summary
-Ruby binding for the Rosette API may be in the works.  In the meantime, this repository provides Ruby script examples for each of the supported Rosette API endpoints.
+This repository provides Ruby script examples for each of the supported Rosette API endpoints.
 
 ### Basic Usage
 

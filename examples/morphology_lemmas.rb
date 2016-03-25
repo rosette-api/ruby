@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 require "net/http"
 require "net/https"
@@ -18,7 +19,7 @@ http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true if uri.scheme == 'https'
 
 request = Net::HTTP::Post.new(uri.request_uri)
-request["user_key"] = api_key
+request["X-RosetteAPI-Key"] = api_key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
 morphology_lemmas_data = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"

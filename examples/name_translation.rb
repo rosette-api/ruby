@@ -1,17 +1,17 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 require "net/http"
 require "net/https"
 require "json"
-require "base64"
 
 api_key, url = ARGV
 raise "API Key required" unless api_key
 
 if !url
-    url = "https://api.rosette.com/rest/v1/entities"
+    url = "https://api.rosette.com/rest/v1/name-translation"
 else
-    url = url + "/entities"
+    url = url + "/name-translation"
 end
 
 uri = URI.parse(url)
@@ -19,13 +19,14 @@ http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true if uri.scheme == 'https'
 
 request = Net::HTTP::Post.new(uri.request_uri)
-request["user_key"] = api_key
+request["X-RosetteAPI-Key"] = api_key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
-entities_text_data = "Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS"
+translated_name_data = "معمر محمد أبو منيار القذاف"
 content = {
-	content: Base64.urlsafe_encode64(entities_text_data),
-    contentType: "application/octet-stream"
+    name: translated_name_data,
+    targetLanguage: "eng",
+    targetScript: "Latn"
 }
 JSONbody = content.to_json
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 require "net/http"
 require "net/https"
@@ -18,10 +19,10 @@ http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true if uri.scheme == 'https'
 
 request = Net::HTTP::Post.new(uri.request_uri)
-request["user_key"] = api_key
+request["X-RosetteAPI-Key"] = api_key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
-relationships_text_data = "Bill Murray is in the new Ghostbusters film!"
+relationships_text_data = "The Ghostbusters movie was filmed in Boston."
 content = {
     content: relationships_text_data
 }

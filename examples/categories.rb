@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 require "net/http"
 require "net/https"
@@ -18,7 +19,7 @@ http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true if uri.scheme == 'https'
 
 request = Net::HTTP::Post.new(uri.request_uri)
-request["user_key"] = api_key
+request["X-RosetteAPI-Key"] = api_key
 request["Content-Type"] = "application/json"
 request["Accept"] = "application/json"
 categories_url_data = "http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"

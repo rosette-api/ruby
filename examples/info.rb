@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: utf-8
 
 require "net/http"
 require "net/https"
@@ -18,7 +19,7 @@ http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true if uri.scheme == 'https'
 
 request = Net::HTTP::Get.new(uri.request_uri)
-request["user_key"] = api_key
+request["X-RosetteAPI-Key"] = api_key
 
 response = http.request(request)
 

@@ -17,8 +17,8 @@ else
 end
 
 file = Tempfile.new(['foo', '.html'])
-sentiment_text_data ="<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.</p></body></html>"
-file.write(sentiment_text_data)
+sentiment_file_data ="<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new all-female Ghostbusters cast, telling The Hollywood Reporter, The Aykroyd family is delighted by this inheritance of the Ghostbusters torch by these most magnificent women in comedy.</p></body></html>"
+file.write(sentiment_file_data)
 file.open
 request_file = {:language => "eng"}
 

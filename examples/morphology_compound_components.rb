@@ -10,6 +10,6 @@ else
 end
 
 params = Parameters.new
-params.content = 'The quick brown fox jumped over the lazy dog. Yes he did.'
-response = rosette_api.get_morphology_complete(params)
+params.content = 'Rechtsschutzversicherungsgesellschaften'
+response = rosette_api.get_compound_components(params)
 puts JSON.pretty_generate(response)

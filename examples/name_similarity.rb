@@ -1,37 +1,16 @@
-#!/usr/bin/env ruby
-# encoding: utf-8
-
-require "net/http"
-require "net/https"
-require "json"
+require '../rosette_api'
+require '../parameters'
 
 api_key, url = ARGV
-raise "API Key required" unless api_key
 
 if !url
-    url = "https://api.rosette.com/rest/v1/name-similarity"
+  rosette_api = RosetteAPI.new(api_key)
 else
-    url = url + "/name-similarity"
+  rosette_api = RosetteAPI.new(api_key, url)
 end
 
-uri = URI.parse(url)
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true if uri.scheme == 'https'
-
-request = Net::HTTP::Post.new(uri.request_uri)
-request["X-RosetteAPI-Key"] = api_key
-request["Content-Type"] = "application/json"
-request["Accept"] = "application/json"
-matched_name_data1 = "Michael Jackson"
-matched_name_data2 = "迈克尔·杰克逊"
-names = {
-    name1: { text: matched_name_data1 },
-    name2: { text: matched_name_data2 }
-}
-JSONbody = names.to_json
-
-request.body = JSONbody
-
-response = http.request(request)
-
-puts JSON.pretty_generate(JSON.parse(response.body))
+params = Parameters.new
+params.name1 = 'Michael Jackson'
+params.name2 = '迈克尔·杰克逊'
+response = rosette_api.name_similarity(params)
+puts JSON.pretty_generate(response)

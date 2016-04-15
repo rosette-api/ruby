@@ -1,35 +1,18 @@
-#!/usr/bin/env ruby
-# encoding: utf-8
-
-require "net/http"
-require "net/https"
-require "json"
+require '../rosette_api'
+require '../parameters'
 
 api_key, url = ARGV
-raise "API Key required" unless api_key
 
 if !url
-    url = "https://api.rosette.com/rest/v1/sentences"
+  rosette_api = RosetteAPI.new(api_key)
 else
-    url = url + "/sentences"
+  rosette_api = RosetteAPI.new(api_key, url)
 end
 
-uri = URI.parse(url)
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true if uri.scheme == 'https'
-
-request = Net::HTTP::Post.new(uri.request_uri)
-request["X-RosetteAPI-Key"] = api_key
-request["Content-Type"] = "application/json"
-request["Accept"] = "application/json"
-sentences_data = "This land is your land. This land is my land\nFrom California to the New York island;\nFrom the red wood forest to the Gulf Stream waters\n\nThis land was made for you and Me.\n\nAs I was walking that ribbon of highway,\nI saw above me that endless skyway:\nI saw below me that golden valley:\nThis land was made for you and me."
-content = {
-    content: sentences_data
-}
-JSONbody = content.to_json
-
-request.body = JSONbody
-
-response = http.request(request)
-
-puts JSON.pretty_generate(JSON.parse(response.body))
+params = Parameters.new
+params.content = 'This land is your land. This land is my land\nFrom California to the New York island;\nFrom the' \
+                 ' wood forest to the Gulf Stream waters\n\nThis land was made for you and Me.\n\nAs I was walking' \
+                 ' that ribbon of highway,\nI saw above me that endless skyway:\nI saw below me that' \
+                 ' golden valley:\nThis land was made for you and me.'
+response = rosette_api.get_sentences(params)
+puts JSON.pretty_generate(response)

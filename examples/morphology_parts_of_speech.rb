@@ -10,6 +10,6 @@ else
 end
 
 params = Parameters.new
-params.content = '北京大学生物系主任办公室内部会议'
-response = rosette_api.get_tokens(params)
+params.content = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+response = rosette_api.get_parts_of_speech(params)
 puts JSON.pretty_generate(response)

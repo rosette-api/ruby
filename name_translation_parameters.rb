@@ -1,3 +1,5 @@
+require_relative 'rosette_api_error'
+
 class NameTranslationParameters
   attr_accessor :entity_type, :name, :source_language_of_origin, :source_language_of_use, :source_script,
                 :target_language, :target_scheme, :target_script

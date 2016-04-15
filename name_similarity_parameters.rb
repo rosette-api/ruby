@@ -1,3 +1,5 @@
+require_relative 'rosette_api_error'
+
 class NameSimilarityParameters
   attr_accessor :name1, :name2
 

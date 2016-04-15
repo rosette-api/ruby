@@ -1,4 +1,5 @@
 require_relative 'rosette_api_error'
+
 class DocumentParameters
   attr_accessor :content, :content_uri, :file_path, :language
 

@@ -1,5 +1,5 @@
 require '../rosette_api'
-require '../parameters'
+require '../document_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
+params = DocumentParameters.new
 params.content = 'Por favor Señorita, says the man.?'
 response = rosette_api.get_language(params)
 puts JSON.pretty_generate(response)

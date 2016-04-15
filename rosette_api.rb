@@ -1,4 +1,8 @@
 require_relative 'request_builder'
+require_relative 'document_parameters'
+require_relative 'name_translation_parameters'
+require_relative 'name_similarity_parameters'
+require_relative 'rosette_api_error'
 
 class RosetteAPI
   BINDING_VERSION = '1.0.2'
@@ -37,79 +41,139 @@ class RosetteAPI
   end
 
   def get_language(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + LANGUAGE_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + LANGUAGE_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_morphology_complete(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/complete', params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/complete', params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_compound_components(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url +MORPHOLOGY_ENDPOINT + '/compound-components', params)
-        .send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url +MORPHOLOGY_ENDPOINT + '/compound-components', params)
+          .send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_han_readings(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/han-readings', params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/han-readings', params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_lemmas(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/lemmas', params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/lemmas', params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_parts_of_speech(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/parts-of-speech', params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/parts-of-speech', params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_entities(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + ENTITIES_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + ENTITIES_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_entities_linked(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + ENTITIES_LINKED_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + ENTITIES_LINKED_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_categories(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + CATEGORIES_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + CATEGORIES_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_relationships(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + RELATIONSHIPS_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + RELATIONSHIPS_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_sentiment(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def name_translation(params)
-    params = params.validate_name_translation_params
-    RequestBuilder.new(@user_key, @alternate_url + NAME_TRANSLATION_ENDPOINT, params).send_post_request
+    if params.instance_of? NameTranslationParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + NAME_TRANSLATION_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a NameTranslationParameters type as an argument')
+    end
   end
 
   def name_similarity(params)
-    params = params.validate_name_similarity_params
-    RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT, params).send_post_request
+    if params.instance_of? NameSimilarityParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a NameSimilarityParameters type as an argument')
+    end
   end
 
   def get_tokens(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + TOKENS_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + TOKENS_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def get_sentences(params)
-    params = params.validate_params
-    RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT, params).send_post_request
+    if params.instance_of? DocumentParameters
+      params = params.load_params
+      RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT, params).send_post_request
+    else
+      raise RosetteAPIError.new('badRequest', 'Expects a DocumentParameters type as an argument')
+    end
   end
 
   def info

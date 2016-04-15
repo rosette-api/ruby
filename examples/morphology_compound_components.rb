@@ -1,5 +1,5 @@
 require '../rosette_api'
-require '../parameters'
+require '../document_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
+params = DocumentParameters.new
 params.content = 'Rechtsschutzversicherungsgesellschaften'
 response = rosette_api.get_compound_components(params)
 puts JSON.pretty_generate(response)

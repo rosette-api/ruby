@@ -1,5 +1,5 @@
 require '../rosette_api'
-require '../parameters'
+require '../document_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
+params = DocumentParameters.new
 params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including ' \
                  'Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
 response = rosette_api.get_entities_linked(params)

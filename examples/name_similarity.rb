@@ -1,5 +1,5 @@
 require '../rosette_api'
-require '../parameters'
+require '../name_similarity_parameters'
 
 api_key, url = ARGV
 
@@ -9,8 +9,8 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
-params.name1 = 'Michael Jackson'
-params.name2 = '迈克尔·杰克逊'
+params = NameSimilarityParameters.new
+params.name1 = {:text => 'Michael Jackson', :language => 'eng', :entityType => 'PERSON'}
+params.name2 = {:text => '迈克尔·杰克逊', :entityType => 'PERSON'}
 response = rosette_api.name_similarity(params)
 puts JSON.pretty_generate(response)

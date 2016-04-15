@@ -1,5 +1,5 @@
 require '../rosette_api'
-require '../parameters'
+require '../name_translation_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
+params = NameTranslationParameters.new
 params.name = 'معمر محمد أبو منيار القذاف'
 params.target_language = 'eng'
 params.target_script = 'Latn'

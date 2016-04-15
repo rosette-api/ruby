@@ -1,5 +1,5 @@
 require '../rosette_api'
-require '../parameters'
+require '../document_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,7 @@ else
     rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
+params = DocumentParameters.new
 params.content = '北京大学生物系主任办公室内部会议'
 response = rosette_api.get_han_readings(params)
 puts JSON.pretty_generate(response)

@@ -1,6 +1,6 @@
 require 'tempfile'
 require '../rosette_api'
-require '../parameters'
+require '../document_parameters'
 
 api_key, url = ARGV
 
@@ -10,7 +10,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
+params = DocumentParameters.new
 file = Tempfile.new(%w(foo .html))
 sentiment_text_data = '<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan ' \
                       'Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new ' \

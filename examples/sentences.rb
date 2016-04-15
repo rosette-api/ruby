@@ -1,5 +1,5 @@
 require '../rosette_api'
-require '../parameters'
+require '../document_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = Parameters.new
+params = DocumentParameters.new
 params.content = 'This land is your land. This land is my land\nFrom California to the New York island;\nFrom the' \
                  ' wood forest to the Gulf Stream waters\n\nThis land was made for you and Me.\n\nAs I was walking' \
                  ' that ribbon of highway,\nI saw above me that endless skyway:\nI saw below me that' \

@@ -47,7 +47,7 @@ class Parameters
   def validate_name_similarity_params
     if @name1.nil?
       raise RosetteAPIError.new(400, 'The format of the request is invalid: invalid options: name1 may not be null')
-    elsif name2.nil?
+    elsif @name2.nil?
       raise RosetteAPIError.new(400, 'The format of the request is invalid: invalid options: name2 may not be null')
     else
       load_params

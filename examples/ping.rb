@@ -1,5 +1,4 @@
 require '../rosette_api'
-require '../parameters'
 
 api_key, url = ARGV
 

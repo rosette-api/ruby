@@ -3,7 +3,6 @@ require 'net/https'
 require 'json'
 require 'securerandom'
 require_relative 'rosette_api_error'
-require_relative 'parameters'
 
 class RequestBuilder
   attr_reader :user_key, :alternate_url, :params

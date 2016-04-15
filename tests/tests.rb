@@ -42,7 +42,7 @@ describe RosetteAPI do
     end
 
     it 'badRequestFormat: the format of the request is invalid: no content provided;' do
-      params = Parameters.new
+      params = DocumentParameters.new
       expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error(RosetteAPIError)
     end
   end

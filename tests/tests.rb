@@ -377,6 +377,13 @@ describe RosetteAPI do
       params.name1 = 'Michael Jackson'
       expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(RosetteAPIError)
     end
+
+    it 'badRequestFormat: name2 option can only be an instance of a String or NameParameter' do
+      params = NameSimilarityParameters.new
+      params.name1 = 'Michael Jackson'
+      params.name2 = 1234
+      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(RosetteAPIError)
+    end
   end
 
   describe '.get_tokens' do

@@ -10,7 +10,10 @@ else
 end
 
 params = NameSimilarityParameters.new
-params.name1 = {:text => 'Michael Jackson', :language => 'eng', :entityType => 'PERSON'}
-params.name2 = {:text => '迈克尔·杰克逊', :entityType => 'PERSON'}
+name1 = NameParameter.new('Michael Jackson')
+name1.entity_type = 'PERSON'
+name1.language = 'eng'
+params.name1 = name1
+params.name2 = '迈克尔·杰克逊'
 response = rosette_api.name_similarity(params)
 puts JSON.pretty_generate(response)

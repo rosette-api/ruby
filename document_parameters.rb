@@ -3,11 +3,11 @@ require_relative 'rosette_api_error'
 class DocumentParameters
   attr_accessor :content, :content_uri, :file_path, :language
 
-  def initialize
-    @content = nil
-    @content_uri = nil
-    @file_path = nil
-    @language = nil
+  def initialize(content=nil, content_uri=nil, file_path=nil, language=nil)
+    @content = content
+    @content_uri = content_uri
+    @file_path = file_path
+    @language = language
   end
 
   def validate_params

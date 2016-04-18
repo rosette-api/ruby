@@ -322,19 +322,11 @@ describe RosetteAPI do
           to_return(:status => 200, :body => {'test': 'name-translation'}.to_json, :headers => {})
     end
     it 'test name translation' do
-      params = NameTranslationParameters.new
-      params.name = 'معمر محمد أبو منيار القذاف'.encode('UTF-8')
+      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'))
       params.target_language = 'eng'
       params.target_script = 'Latn'
       response = RosetteAPI.new('0123456789').name_translation(params)
       expect(response).instance_of? Hash
-    end
-
-    it 'badRequestFormat: needs to provide name option' do
-      params = NameTranslationParameters.new
-      params.target_language = 'eng'
-      params.target_script = 'Latn'
-      expect { RosetteAPI.new('0123456789').name_translation(params) }.to raise_error(RosetteAPIError)
     end
   end
 
@@ -359,29 +351,13 @@ describe RosetteAPI do
           to_return(:status => 200, :body => {'test': 'name-similarity'}.to_json, :headers => {})
     end
     it 'test name similarity' do
-      params = NameSimilarityParameters.new
-      params.name1 = 'Michael Jackson'
-      params.name2 = '迈克尔·杰克逊'
+      params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
       response = RosetteAPI.new('0123456789').name_similarity(params)
       expect(response).instance_of? Hash
     end
 
-    it 'badRequestFormat: needs to provide name1 option' do
-      params = NameSimilarityParameters.new
-      params.name2 = 'Michael Jackson'
-      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(RosetteAPIError)
-    end
-
-    it 'badRequestFormat: needs to provide name2 option' do
-      params = NameSimilarityParameters.new
-      params.name1 = 'Michael Jackson'
-      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(RosetteAPIError)
-    end
-
     it 'badRequestFormat: name2 option can only be an instance of a String or NameParameter' do
-      params = NameSimilarityParameters.new
-      params.name1 = 'Michael Jackson'
-      params.name2 = 1234
+      params = NameSimilarityParameters.new('Michael Jackson', 123)
       expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(RosetteAPIError)
     end
   end

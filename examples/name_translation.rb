@@ -9,8 +9,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = NameTranslationParameters.new
-params.name = 'معمر محمد أبو منيار القذاف'
+params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف')
 params.target_language = 'eng'
 params.target_script = 'Latn'
 response = rosette_api.name_translation(params)

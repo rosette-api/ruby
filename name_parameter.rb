@@ -1,11 +1,11 @@
 class NameParameter
   attr_accessor :text, :entity_type, :language, :script
 
-  def initialize(text)
+  def initialize(text, entity_type=nil, language=nil, script=nil)
     @text = text
-    @entity_type = nil
-    @language = nil
-    @script = nil
+    @entity_type = entity_type
+    @language = language
+    @script = script
   end
 
   def load_param

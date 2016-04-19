@@ -24,19 +24,6 @@ function checkAPI {
     fi  
 }
 
-
-# strip the trailing slash off of the alt_url if necessary
-function cleanURL() {
-    if [ ! -z "${ALT_URL}" ]; then
-        case ${ALT_URL} in
-            */) ALT_URL=${ALT_URL::-1}
-                echo "Slash detected"
-                ;;
-        esac
-        ping_url=${ALT_URL}
-    fi
-}
-
 #Checks for valid url
 function validateURL() {
     match=$(curl "${ping_url}/ping" -H "X-RosetteAPI-Key: ${API_KEY}" |  grep -o "Rosette API")
@@ -83,8 +70,6 @@ while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
     esac
 done
 
-cleanURL
-
 validateURL
 
 #Copy the mounted content in /source to current WORKDIR
@@ -93,7 +78,9 @@ cp -r -n /source/. .
 #Run the examples
 if [ ! -z ${API_KEY} ]; then
     checkAPI
-    cd examples
+    cd tests
+    rspec tests.rb
+    cd ../examples
     if [ ! -z ${FILENAME} ]; then
         runExample ${FILENAME}
     else

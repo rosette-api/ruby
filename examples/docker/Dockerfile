@@ -1,8 +1,15 @@
-FROM ruby:2.2.0
+FROM ruby
 MAINTAINER Fiona Hasanaj
 
 # install necessary software
-RUN apt-get -y update && apt-get install -y vim  && apt-get install -y git && gem install rubysl-securerandom
+RUN apt-get -y update && apt-get install -y \
+    vim  \
+    git
+
+RUN gem install rubysl-securerandom \
+    rspec \
+    webmock \
+    simplecov
 
 RUN mkdir /ruby
 WORKDIR /ruby

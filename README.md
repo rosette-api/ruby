@@ -1,5 +1,5 @@
 ---
-# Ruby Binding for Rosette API
+# Ruby Binding for Rosette API (Beta)
 ---
 
 ### Summary

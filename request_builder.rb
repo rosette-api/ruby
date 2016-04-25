@@ -5,20 +5,20 @@ require 'securerandom'
 require_relative 'rosette_api_error'
 
 class RequestBuilder
-  attr_reader :user_key, :alternate_url, :params
+  attr_reader :alternate_url, :params, :user_key
 
-  def initialize(user_key, alternate_url, params={})
+  def initialize(user_key, alternate_url, params = {})
     @user_key = user_key
     @alternate_url = alternate_url
     @params = params
   end
 
   def prepare_plain_request(params)
-    uri = URI.parse(@alternate_url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true if uri.scheme == 'https'
+    uri = URI.parse @alternate_url
+    http = Net::HTTP.new uri.host, uri.port
+    http.use_ssl = uri.scheme == 'https'
 
-    request = Net::HTTP::Post.new(uri.request_uri)
+    request = Net::HTTP::Post.new uri.request_uri
     request['X-RosetteAPI-Key'] = @user_key
     request['Content-Type'] = 'application/json'
     request['Accept'] = 'application/json'
@@ -29,7 +29,7 @@ class RequestBuilder
 
   def prepare_multipart_request(params)
     begin
-      file = File.open(params['filePath'], 'r')
+      file = File.open params['filePath'], 'r'
       text = file.read
     rescue => err
       raise err
@@ -53,26 +53,26 @@ class RequestBuilder
     post_body << "\r\n\r\n--#{boundary}--\r\n"
 
     # Create the HTTP objects
-    uri = URI.parse(@alternate_url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true if uri.scheme == 'https'
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request.add_field('Content-Type', "multipart/form-data; boundary=#{boundary}")
-    request.add_field('X-RosetteAPI-Key', @user_key)
+    uri = URI.parse @alternate_url
+    http = Net::HTTP.new uri.host, uri.port
+    http.use_ssl = uri.scheme == 'https'
+    request = Net::HTTP::Post.new uri.request_uri
+    request.add_field 'Content-Type', "multipart/form-data; boundary=#{boundary}"
+    request.add_field 'X-RosetteAPI-Key', @user_key
     request.body = post_body.join
 
     [http, request]
   end
 
   def send_get_request
-    uri = URI.parse(@alternate_url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true if uri.scheme == 'https'
+    uri = URI.parse @alternate_url
+    http = Net::HTTP.new uri.host, uri.port
+    http.use_ssl = uri.scheme == 'https'
 
-    request = Net::HTTP::Get.new(uri.request_uri)
+    request = Net::HTTP::Get.new uri.request_uri
     request['X-RosetteAPI-Key'] = @user_key
 
-    get_response(http, request)
+    self.get_response http, request
   end
 
   def send_post_request
@@ -83,16 +83,17 @@ class RequestBuilder
     end
 
     if !params['filePath'].nil?
-      http, request = prepare_multipart_request(params)
+      http, request = self.prepare_multipart_request params
     else
-      http, request = prepare_plain_request(params)
+      http, request = self.prepare_plain_request params
     end
 
-    get_response(http, request)
+    self.get_response http, request
   end
 
   def get_response(http, request)
-    response = http.request(request)
+    response = http.request request
+
     if response.code != '200'
       message =
           if JSON.parse(response.body)['message'].nil?
@@ -100,11 +101,13 @@ class RequestBuilder
           else
             JSON.parse(response.body)['message']
           end
-      raise RosetteAPIError.new(response.code, message)
+
+      raise RosetteAPIError.new response.code, message
     else
       response_headers = {}
       response.header.each_header { |key, value| response_headers[key] = value }
-      response_headers = {:responseHeaders => response_headers}
+      response_headers = { responseHeaders: response_headers }
+
       JSON.parse(response.body).merge(response_headers)
     end
   end

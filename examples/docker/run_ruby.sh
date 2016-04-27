@@ -79,7 +79,7 @@ cp -r -n /source/. .
 if [ ! -z ${API_KEY} ]; then
     checkAPI
     cd tests
-    rspec tests.rb
+    rspec tests_spec.rb
     cd ../examples
     if [ ! -z ${FILENAME} ]; then
         runExample ${FILENAME}
@@ -90,6 +90,25 @@ if [ ! -z ${API_KEY} ]; then
     fi
 else 
     HELP
+fi
+
+#Generate gh-pages and push them to git account (if git username is provided)
+if [ ! -z ${GIT_USERNAME} ] && [ ! -z ${VERSION} ]; then
+    #clone ruby git repo
+    cd /
+    git clone git@github.com:${GIT_USERNAME}/ruby.git
+    cd ruby
+    git checkout origin/gh-pages -b gh-pages
+    git branch -d develop
+    #generate gh-pages and set ouput dir to git repo (gh-pages branch)
+    cd /ruby-dev
+    for file in *.rb; do
+        tomdoc -f html ${file}
+    done
+    cd /ruby
+    git add .
+    git commit -a -m "publish ruby apidocs ${VERSION}"
+    git push
 fi
 
 exit ${retcode}

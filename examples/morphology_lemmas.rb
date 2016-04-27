@@ -1,5 +1,5 @@
-require '../rosette_api'
-require '../document_parameters'
+require '../rosette_api/rosette_api'
+require '../rosette_api/document_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,6 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = DocumentParameters.new
-params.content = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+params = DocumentParameters.new(content: "The fact is that the geese just went back to get a rest and I'm not banking on their return soon")
 response = rosette_api.get_lemmas(params)
 puts JSON.pretty_generate(response)

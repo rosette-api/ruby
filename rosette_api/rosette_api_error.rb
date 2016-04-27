@@ -1,3 +1,5 @@
+# This class encapsulates all Rosette API server errors encountered during
+# requests.
 class RosetteAPIError < StandardError
   attr_accessor :status_code, :message
 

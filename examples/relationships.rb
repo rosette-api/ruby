@@ -1,5 +1,5 @@
-require '../rosette_api'
-require '../document_parameters'
+require '../rosette_api/rosette_api'
+require '../rosette_api/document_parameters'
 
 api_key, url = ARGV
 
@@ -9,7 +9,6 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = DocumentParameters.new
-params.content = 'The Ghostbusters movie was filmed in Boston.'
+params = DocumentParameters.new(content: 'The Ghostbusters movie was filmed in Boston.')
 response = rosette_api.get_relationships(params)
 puts JSON.pretty_generate(response)

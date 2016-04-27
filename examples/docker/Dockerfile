@@ -9,10 +9,11 @@ RUN apt-get -y update && apt-get install -y \
 RUN gem install rubysl-securerandom \
     rspec \
     webmock \
-    simplecov
+    simplecov \
+    tomdoc
 
-RUN mkdir /ruby
-WORKDIR /ruby
+RUN mkdir /ruby-dev
+WORKDIR /ruby-dev
 COPY run_ruby.sh run_ruby.sh
 RUN chmod 0755 run_ruby.sh
 

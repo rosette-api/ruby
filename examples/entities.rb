@@ -1,5 +1,5 @@
-require '../rosette_api'
-require '../document_parameters'
+require '../rosette_api/rosette_api'
+require '../rosette_api/document_parameters'
 
 api_key, url = ARGV
 
@@ -9,8 +9,6 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = DocumentParameters.new
-params.content =  'Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo ' \
-                  'in Boston this… http://dlvr.it/BnsFfS'
+params = DocumentParameters.new(content: 'Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS')
 response = rosette_api.get_entities(params)
 puts JSON.pretty_generate(response)

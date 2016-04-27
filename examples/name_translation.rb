@@ -1,5 +1,5 @@
-require '../rosette_api'
-require '../name_translation_parameters'
+require '../rosette_api/rosette_api'
+require '../rosette_api/name_translation_parameters'
 
 api_key, url = ARGV
 
@@ -9,8 +9,6 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف')
-params.target_language = 'eng'
-params.target_script = 'Latn'
+params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف', target_language: 'eng', target_script: 'Latn')
 response = rosette_api.name_translation(params)
 puts JSON.pretty_generate(response)

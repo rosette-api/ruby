@@ -4,6 +4,7 @@ require 'json'
 require 'securerandom'
 require_relative 'rosette_api_error'
 
+# This class handles all Rosette API requests.
 class RequestBuilder
   attr_reader :alternate_url, :params, :user_key
 
@@ -13,6 +14,11 @@ class RequestBuilder
     @params = params
   end
 
+  # Prepares a plain POST request for Rosette API.
+  #
+  # params - Parameters to build the body of the request.
+  #
+  # Returns a HTTP connection and the built POST request.
   def prepare_plain_request(params)
     uri = URI.parse @alternate_url
     http = Net::HTTP.new uri.host, uri.port
@@ -27,6 +33,11 @@ class RequestBuilder
     [http, request]
   end
 
+  # Prepares a multipart/form-data POST request for Rosette API.
+  #
+  # params - Parameters to build the body of the request.
+  #
+  # Returns a HTTP connection and the built POST request.
   def prepare_multipart_request(params)
     begin
       file = File.open params['filePath'], 'r'
@@ -64,6 +75,9 @@ class RequestBuilder
     [http, request]
   end
 
+  # Sends a GET request to Rosette API.
+  #
+  # Returns JSON response or raises RosetteAPIError if encountered.
   def send_get_request
     uri = URI.parse @alternate_url
     http = Net::HTTP.new uri.host, uri.port
@@ -75,6 +89,9 @@ class RequestBuilder
     self.get_response http, request
   end
 
+  # Sends a POST request to Rosette API.
+  #
+  # Returns JSON response or raises RosetteAPIError if encountered.
   def send_post_request
     if @alternate_url.to_s.include? '/info?clientVersion='
       params = '{"body": "version check"}'
@@ -91,6 +108,13 @@ class RequestBuilder
     self.get_response http, request
   end
 
+  # Gets response from HTTP connection.
+  #
+  # http    - HTTP connection.
+  #
+  # request - Prepared Rosette API request.
+  #
+  # Returns JSON response or raises RosetteAPIError if encountered.
   def get_response(http, request)
     response = http.request request
 
@@ -101,8 +125,14 @@ class RequestBuilder
           else
             JSON.parse(response.body)['message']
           end
+      code =
+          if JSON.parse(response.body)['code'].nil?
+            response.code
+          else
+            JSON.parse(response.body)['code']
+          end
 
-      raise RosetteAPIError.new response.code, message
+      raise RosetteAPIError.new code, message
     else
       response_headers = {}
       response.header.each_header { |key, value| response_headers[key] = value }

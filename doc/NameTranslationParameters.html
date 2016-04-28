@@ -70,7 +70,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-initialize">#initialize</a>
     
     <li ><a href="#method-i-load_params">#load_params</a>
     
@@ -91,6 +91,11 @@
     
 <p>This class encapsulates parameters that are needed for name-translation in
 Rosette API.</p>
+
+<h4 id="class-NameTranslationParameters-label-Attributes">Attributes<span><a href="#class-NameTranslationParameters-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>entity_type</code> -  entity type (person, location, or organization)</p>
+</li></ul>
 
   </section>
 
@@ -219,63 +224,6 @@ Rosette API.</p>
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(name, options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">options</span> = {
-    <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">source_language_of_origin</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">source_language_of_use</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">source_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">target_language</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">target_scheme</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">target_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
-  }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
-  <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
-  <span class="ruby-ivar">@source_language_of_origin</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_origin</span>]
-  <span class="ruby-ivar">@source_language_of_use</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_use</span>]
-  <span class="ruby-ivar">@source_script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_script</span>]
-  <span class="ruby-ivar">@target_language</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_language</span>]
-  <span class="ruby-ivar">@target_scheme</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_scheme</span>]
-  <span class="ruby-ivar">@target_script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_script</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
@@ -303,7 +251,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 38</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
               .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
@@ -340,7 +288,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 47</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@entity_type</span>,
@@ -352,6 +300,63 @@ Rosette API.</p>
     <span class="ruby-identifier">target_scheme</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@target_scheme</span>,
     <span class="ruby-identifier">target_script</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@target_script</span>
   }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-initialize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize</span><span
+            class="method-args">(name, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize-source">
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
+  <span class="ruby-identifier">options</span> = {
+    <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">source_language_of_origin</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">source_language_of_use</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">source_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">target_language</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">target_scheme</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">target_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
+  <span class="ruby-ivar">@source_language_of_origin</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_origin</span>]
+  <span class="ruby-ivar">@source_language_of_use</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_use</span>]
+  <span class="ruby-ivar">@source_script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_script</span>]
+  <span class="ruby-ivar">@target_language</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_language</span>]
+  <span class="ruby-ivar">@target_scheme</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_scheme</span>]
+  <span class="ruby-ivar">@target_script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_script</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

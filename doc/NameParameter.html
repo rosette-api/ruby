@@ -70,7 +70,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-initialize">#initialize</a>
     
     <li ><a href="#method-i-load_param">#load_param</a>
     
@@ -166,55 +166,6 @@
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(text, options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File name_parameter.rb, line 8</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">options</span> = {
-    <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">language</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
-  }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
-  <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">text</span>
-  <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
-  <span class="ruby-ivar">@language</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:language</span>]
-  <span class="ruby-ivar">@script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:script</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
@@ -287,6 +238,55 @@
     <span class="ruby-identifier">script</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@script</span>,
     <span class="ruby-identifier">text</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@text</span>
   }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Protected Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-initialize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize</span><span
+            class="method-args">(text, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize-source">
+            <pre><span class="ruby-comment"># File name_parameter.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
+  <span class="ruby-identifier">options</span> = {
+    <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">language</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
+  <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">text</span>
+  <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
+  <span class="ruby-ivar">@language</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:language</span>]
+  <span class="ruby-ivar">@script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:script</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

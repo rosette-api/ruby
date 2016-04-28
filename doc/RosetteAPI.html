@@ -234,7 +234,7 @@
 
         <div class="method-description">
         
-        
+        <p>Alternate Rosette API URL</p>
         
         </div>
       </div>
@@ -247,7 +247,7 @@
 
         <div class="method-description">
         
-        
+        <p>Rosette API key</p>
         
         </div>
       </div>
@@ -281,7 +281,7 @@
 
           
           <div class="method-source-code" id="check_version_compatibility-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 56</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_version_compatibility</span>
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">VERSION_CHECK</span>)
                            .<span class="ruby-identifier">send_post_request</span>
@@ -330,7 +330,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_categories-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 208</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_categories</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -378,7 +378,7 @@ supported languages.</p>
 
           
           <div class="method-source-code" id="get_compound_components-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 109</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_compound_components</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -425,7 +425,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_entities-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 175</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_entities</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -473,7 +473,7 @@ base.</p>
 
           
           <div class="method-source-code" id="get_entities_linked-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 192</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 195</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_entities_linked</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -521,7 +521,7 @@ Han script, in both Chinese and Japanese input text.</p>
 
           
           <div class="method-source-code" id="get_han_readings-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 126</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_han_readings</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -568,7 +568,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_language-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 74</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_language</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -615,7 +615,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_lemmas-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 142</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_lemmas</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -664,7 +664,7 @@ tags of the input for supported languages.</p>
 
           
           <div class="method-source-code" id="get_morphology_complete-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 92</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_morphology_complete</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -712,7 +712,7 @@ input, depending on the context of how it is used.</p>
 
           
           <div class="method-source-code" id="get_parts_of_speech-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 159</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_parts_of_speech</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -759,7 +759,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_relationships-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 224</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 227</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_relationships</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -806,7 +806,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentences-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 305</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 308</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_sentences</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -853,7 +853,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentiment-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 240</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 243</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_sentiment</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -900,7 +900,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_tokens-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 289</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 292</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tokens</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -939,7 +939,7 @@ and build time.</p>
 
           
           <div class="method-source-code" id="info-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 316</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 319</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">info</span>
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">INFO</span>)
                 .<span class="ruby-identifier">send_get_request</span>
@@ -983,7 +983,7 @@ build the request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="name_similarity-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 273</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 276</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">name_similarity</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameSimilarityParameters type as an argument&#39;</span>, <span class="ruby-constant">NameSimilarityParameters</span>
 
@@ -1031,7 +1031,7 @@ href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="name_translation-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 256</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 259</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">name_translation</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameTranslationParameters type as an argument&#39;</span>, <span class="ruby-constant">NameTranslationParameters</span>
 
@@ -1070,7 +1070,7 @@ available.</p>
 
           
           <div class="method-source-code" id="ping-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 323</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 326</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ping</span>
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">PING</span>)
                 .<span class="ruby-identifier">send_get_request</span>
@@ -1112,7 +1112,7 @@ available.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 44</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span> = <span class="ruby-string">&#39;https://api.rosette.com/rest/v1&#39;</span>) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>

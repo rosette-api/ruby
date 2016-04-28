@@ -121,7 +121,9 @@ endpoints with exclusion of name-similarity and name-translation.</p>
 
         <div class="method-description">
         
-        <p>content to be analyzed</p>
+        <p>Content to be analyzed (required if no <a
+href="DocumentParameters.html#attribute-i-content_uri">#content_uri</a> and
+<a href="DocumentParameters.html#attribute-i-file_path">#file_path</a>)</p>
         
         </div>
       </div>
@@ -134,7 +136,8 @@ endpoints with exclusion of name-similarity and name-translation.</p>
 
         <div class="method-description">
         
-        <p>URL to retrieve content from and analyze</p>
+        <p>URL to retrieve content from and analyze (required if no content and <a
+href="DocumentParameters.html#attribute-i-file_path">#file_path</a>)</p>
         
         </div>
       </div>
@@ -147,7 +150,8 @@ endpoints with exclusion of name-similarity and name-translation.</p>
 
         <div class="method-description">
         
-        <p>file path of the file to be analyzed</p>
+        <p>File path of the file to be analyzed (required if no content and <a
+href="DocumentParameters.html#attribute-i-content_uri">#content_uri</a>)</p>
         
         </div>
       </div>
@@ -160,7 +164,7 @@ endpoints with exclusion of name-similarity and name-translation.</p>
 
         <div class="method-description">
         
-        <p>ISO 639-3 language code of the provided content</p>
+        <p>ISO 639-3 language code of the provided content (optional)</p>
         
         </div>
       </div>
@@ -196,7 +200,7 @@ endpoints with exclusion of name-similarity and name-translation.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 44</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
@@ -234,7 +238,7 @@ endpoints with exclusion of name-similarity and name-translation.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 54</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@content</span>,
@@ -267,13 +271,13 @@ endpoints with exclusion of name-similarity and name-translation.</p>
         <div class="method-description">
           
           <p>Validates the parameters by checking if there are multiple content sources
-set or no content provided at all. @return [void]</p>
+set or no content provided at all.</p>
           
           
 
           
           <div class="method-source-code" id="validate_params-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 31</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@content</span>, <span class="ruby-ivar">@content_uri</span>, <span class="ruby-ivar">@file_path</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestFormatError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;The format of the request is invalid: multiple content sources;&#39;</span>                                        <span class="ruby-string">&#39; must be one of an attachment, an inline &quot;content&quot; field, or an external &quot;contentUri&quot;&#39;</span>

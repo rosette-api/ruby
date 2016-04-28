@@ -118,7 +118,7 @@
 
         <div class="method-description">
         
-        
+        <p>Name&#39;s entity type (PERSON, LOCATION, ORGANIZATION) (optional)</p>
         
         </div>
       </div>
@@ -131,7 +131,7 @@
 
         <div class="method-description">
         
-        
+        <p>ISO 639-3 code of the name&#39;s language (optional)</p>
         
         </div>
       </div>
@@ -144,7 +144,7 @@
 
         <div class="method-description">
         
-        
+        <p>ISO 15924 code of the name&#39;s script (optional)</p>
         
         </div>
       </div>
@@ -157,7 +157,7 @@
 
         <div class="method-description">
         
-        
+        <p>Name to be analyzed</p>
         
         </div>
       </div>
@@ -193,7 +193,7 @@
 
           
           <div class="method-source-code" id="load_param-source">
-            <pre><span class="ruby-comment"># File name_parameter.rb, line 23</span>
+            <pre><span class="ruby-comment"># File name_parameter.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_param</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
               .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
@@ -230,7 +230,7 @@
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_parameter.rb, line 32</span>
+            <pre><span class="ruby-comment"># File name_parameter.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@entity_type</span>,
@@ -276,7 +276,7 @@
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_parameter.rb, line 8</span>
+            <pre><span class="ruby-comment"># File name_parameter.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,

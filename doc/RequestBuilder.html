@@ -223,9 +223,12 @@
           
           <p>Gets response from HTTP connection.</p>
 
-<p>http    - HTTP connection.</p>
-
-<p>request - Prepared Rosette API request.</p>
+<h4 id="method-i-get_response-label-Attributes">Attributes<span><a href="#method-i-get_response-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>http</code> - HTTP connection.</p>
+</li><li>
+<p><code>request</code> - Prepared Rosette API request.</p>
+</li></ul>
 
 <p>Returns JSON response or raises <a
 href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
@@ -234,7 +237,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="get_response-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 118</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_response</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">request</span>
 
@@ -286,7 +289,10 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
           
           <p>Prepares a multipart/form-data POST request for Rosette API.</p>
 
-<p>params - Parameters to build the body of the request.</p>
+<h4 id="method-i-prepare_multipart_request-label-Attributes">Attributes<span><a href="#method-i-prepare_multipart_request-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - Parameters to build the body of the request.</p>
+</li></ul>
 
 <p>Returns a HTTP connection and the built POST request.</p>
           
@@ -294,7 +300,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_multipart_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 41</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_multipart_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>], <span class="ruby-string">&#39;r&#39;</span>
@@ -356,7 +362,10 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
           
           <p>Prepares a plain POST request for Rosette API.</p>
 
-<p>params - Parameters to build the body of the request.</p>
+<h4 id="method-i-prepare_plain_request-label-Attributes">Attributes<span><a href="#method-i-prepare_plain_request-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - Parameters to build the body of the request.</p>
+</li></ul>
 
 <p>Returns a HTTP connection and the built POST request.</p>
           
@@ -364,7 +373,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_plain_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 22</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
   <span class="ruby-identifier">http</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span>
@@ -410,7 +419,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="send_get_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 81</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_get_request</span>
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
   <span class="ruby-identifier">http</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span>
@@ -453,7 +462,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="send_post_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 95</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_post_request</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@alternate_url</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;/info?clientVersion=&#39;</span>
     <span class="ruby-identifier">params</span> = <span class="ruby-string">&#39;{&quot;body&quot;: &quot;version check&quot;}&#39;</span>

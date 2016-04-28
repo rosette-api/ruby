@@ -8,25 +8,40 @@ require_relative 'bad_request_format_error'
 
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
+  # Version of Ruby binding
   BINDING_VERSION = '1.0.2'
+  # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'
+  # Rosette API morphology endpoint
   MORPHOLOGY_ENDPOINT = '/morphology'
+  # Rosette API entities endpoint
   ENTITIES_ENDPOINT = '/entities'
+  # Rosette API entities/linked endpoint
   ENTITIES_LINKED_ENDPOINT= '/entities/linked'
+  # Rosette API categories endpoint
   CATEGORIES_ENDPOINT = '/categories'
+  # Rosette API relationships endpoint
   RELATIONSHIPS_ENDPOINT = '/relationships'
+  # Rosette API sentiment endpoint
   SENTIMENT_ENDPOINT = '/sentiment'
+  # Rosette API name-translation endpoint
   NAME_TRANSLATION_ENDPOINT = '/name-translation'
+  # Rosette API name-similarity endpoint
   NAME_SIMILARITY_ENDPOINT = '/name-similarity'
+  # Rosette API tokens endpoint
   TOKENS_ENDPOINT = '/tokens'
+  # Rosette API sentences endpoint
   SENTENCES_ENDPOINT = '/sentences'
+  # Rosette API info endpoint
   INFO = '/info'
+  # Rosette API version check endpoint
   VERSION_CHECK = '/info?clientVersion=' + BINDING_VERSION
+  # Rosette API ping endpoint
   PING = '/ping'
 
   attr_accessor :user_key, :alternate_url
 
-  def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1')
+  def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1') #:notnew:
     @user_key = user_key
     @alternate_url = alternate_url
 
@@ -51,7 +66,9 @@ class RosetteAPI
 
   # Identifies in which language(s) the input is written.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of candidate languages in order of descending confidence.
   def get_language(params)
@@ -66,7 +83,9 @@ class RosetteAPI
   # Extracts parts-of-speech, lemmas (dictionary form), compound components,
   # and Han-readings for each token in the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns the lemmas, compound components, Han-readings, and parts-of-speech
   # tags of the input for supported languages.
@@ -81,7 +100,9 @@ class RosetteAPI
 
   # Extracts compound-components from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of components for each compound word of the input for supported
   # languages.
@@ -96,7 +117,9 @@ class RosetteAPI
 
   # Extracts Han-readings from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of Han-readings which provide pronunciation information for
   # Han script, in both Chinese and Japanese input text.
@@ -111,7 +134,9 @@ class RosetteAPI
 
   # Extracts lemmas from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of lemmas for each token of the input for supported languages.
   def get_lemmas(params)
@@ -125,7 +150,9 @@ class RosetteAPI
 
   # Extracts parts-of-speech from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of part-of-speech (POS) tags for each of the words of the
   # input, depending on the context of how it is used.
@@ -140,7 +167,9 @@ class RosetteAPI
 
   # Extracts entities from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns each entity extracted from the input.
   def get_entities(params)
@@ -154,7 +183,9 @@ class RosetteAPI
 
   # Extracts entities from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of entities that have been linked to entities in the knowledge
   # base.
@@ -169,7 +200,9 @@ class RosetteAPI
 
   # Extracts Tier 1 contextual categories from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns the contextual categories identified in the input.
   def get_categories(params)
@@ -183,7 +216,9 @@ class RosetteAPI
 
   # Extracts relationships from the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns each relationship extracted from the input.
   def get_relationships(params)
@@ -197,7 +232,9 @@ class RosetteAPI
 
   # Analyzes the positive and negative sentiment expressed by the input.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns sentiment analysis results.
   def get_sentiment(params)
@@ -211,7 +248,9 @@ class RosetteAPI
 
   # Translates a given name to a supported specified language.
   #
-  # params - NameTranslationParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - NameTranslationParameters helps to build the request body in RequestBuilder.
   #
   # Returns the translation of a name.
   def name_translation(params)
@@ -226,7 +265,9 @@ class RosetteAPI
   # Compares two entity names (person, location, or organization) and returns a
   # match score from 0 to 1.
   #
-  # params - NameSimilarityParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - NameSimilarityParameters helps to build the request body in RequestBuilder.
   #
   # Returns the confidence score of matching 2 names.
   def name_similarity(params)
@@ -240,7 +281,9 @@ class RosetteAPI
 
   # Divides the input into tokens.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of tokens of the input.
   def get_tokens(params)
@@ -254,7 +297,9 @@ class RosetteAPI
 
   # Divides the input into sentences.
   #
-  # params - DocumentParameters help build the request body in RequestBuilder
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns list of linguistic sentences of the input.
   def get_sentences(params)

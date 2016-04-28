@@ -8,7 +8,7 @@ require_relative 'rosette_api_error'
 class RequestBuilder
   attr_reader :alternate_url, :params, :user_key
 
-  def initialize(user_key, alternate_url, params = {})
+  def initialize(user_key, alternate_url, params = {}) #:notnew:
     @user_key = user_key
     @alternate_url = alternate_url
     @params = params
@@ -16,7 +16,9 @@ class RequestBuilder
 
   # Prepares a plain POST request for Rosette API.
   #
-  # params - Parameters to build the body of the request.
+  # ==== Attributes
+  #
+  # * +params+ - Parameters to build the body of the request.
   #
   # Returns a HTTP connection and the built POST request.
   def prepare_plain_request(params)
@@ -35,7 +37,9 @@ class RequestBuilder
 
   # Prepares a multipart/form-data POST request for Rosette API.
   #
-  # params - Parameters to build the body of the request.
+  # ==== Attributes
+  #
+  # * +params+ - Parameters to build the body of the request.
   #
   # Returns a HTTP connection and the built POST request.
   def prepare_multipart_request(params)
@@ -110,9 +114,11 @@ class RequestBuilder
 
   # Gets response from HTTP connection.
   #
-  # http    - HTTP connection.
+  # ==== Attributes
   #
-  # request - Prepared Rosette API request.
+  # * +http+ - HTTP connection.
+  #
+  # * +request+ - Prepared Rosette API request.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def get_response(http, request)

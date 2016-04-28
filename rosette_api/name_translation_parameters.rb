@@ -3,16 +3,24 @@ require_relative 'rosette_api_error'
 # This class encapsulates parameters that are needed for name-translation in
 # Rosette API.
 class NameTranslationParameters
-  attr_accessor :entity_type,
-                :name,
-                :source_language_of_origin,
-                :source_language_of_use,
-                :source_script,
-                :target_language,
-                :target_scheme,
-                :target_script
+  # name's entity type (PERSON, LOCATION, ORGANIZATION)
+  attr_accessor :entity_type
+  # name to translate
+  attr_accessor :name
+  # ISO 693-3 code for name's language of use (optional)
+  attr_accessor :source_language_of_origin
+  # ISO 15924 code for name's script (optional)
+  attr_accessor :source_language_of_use
+  # ISO 15924 code for name's script (optional)
+  attr_accessor :source_script
+  # ISO 639-3 code for the translation language
+  attr_accessor :target_language
+  # transliteration scheme for the translation (optional)
+  attr_accessor :target_scheme
+  # ISO 15924 code for name's script (optional)
+  attr_accessor :target_script
 
-  def initialize(name, options = {})
+  def initialize(name, options = {}) #:notnew:
     options = {
       entity_type: nil,
       source_language_of_origin: nil,
@@ -22,7 +30,7 @@ class NameTranslationParameters
       target_scheme: nil,
       target_script: nil
     }.update options
-    @name = name
+    @name = name # name to be translated
     @entity_type = options[:entity_type]
     @source_language_of_origin = options[:source_language_of_origin]
     @source_language_of_use = options[:source_language_of_use]

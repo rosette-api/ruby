@@ -6,7 +6,7 @@ require_relative 'name_parameter'
 class NameSimilarityParameters
   attr_accessor :name1, :name2
 
-  def initialize(name1, name2)
+  def initialize(name1, name2) #:notnew:
     @name1 = name1
     @name2 = name2
   end

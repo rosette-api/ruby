@@ -5,7 +5,7 @@ class NameParameter
                 :script,
                 :text
 
-  def initialize(text, options = {})
+  def initialize(text, options = {}) #:notnew:
     options = {
       entity_type: nil,
       language: nil,

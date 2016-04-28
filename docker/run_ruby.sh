@@ -12,6 +12,8 @@ function HELP {
     echo "  API_KEY      - Rosette API key (required)"
     echo "  FILENAME     - Ruby source file (optional)"
     echo "  ALT_URL      - Alternate service URL (optional)"
+    echo "  GIT_USERNAME - Git username where you would like to push regenerated gh-pages (optional)"
+    echo "  VERSION      - Build version (optional)"
     exit 1
 }
 
@@ -53,7 +55,7 @@ function runExample() {
 #------------ End Functions ----------------------------
 
 #Gets API_KEY, FILENAME and ALT_URL if present
-while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
+while getopts ":API_KEY:FILENAME:ALT_URL:GIT_USERNAME:VERSION" arg; do
     case "${arg}" in
         API_KEY)
             API_KEY=${OPTARG}
@@ -65,6 +67,14 @@ while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
             ;;
         FILENAME)
             FILENAME=${OPTARG}
+            usage
+            ;;
+        GIT_USERNAME)
+            GIT_USERNAME=${OPTARG}
+            usage
+            ;;
+        VERSION)
+            VERSION={OPTARG}
             usage
             ;;
     esac
@@ -101,10 +111,8 @@ if [ ! -z ${GIT_USERNAME} ] && [ ! -z ${VERSION} ]; then
     git checkout origin/gh-pages -b gh-pages
     git branch -d develop
     #generate gh-pages and set ouput dir to git repo (gh-pages branch)
-    cd /ruby-dev
-    for file in *.rb; do
-        tomdoc -f html ${file}
-    done
+    cd /ruby-dev/rosette_api
+    rdoc -o /ruby/doc
     cd /ruby
     git add .
     git commit -a -m "publish ruby apidocs ${VERSION}"

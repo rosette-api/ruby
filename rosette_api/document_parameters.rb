@@ -5,7 +5,7 @@ require_relative 'bad_request_format_error'
 class DocumentParameters
   attr_accessor :content, :content_uri, :file_path, :language
 
-  def initialize(options = {})
+  def initialize(options = {}) #:notnew:
     options = {
       content: nil,
       content_uri: nil,

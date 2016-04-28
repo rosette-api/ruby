@@ -10,7 +10,7 @@ RUN gem install rubysl-securerandom \
     rspec \
     webmock \
     simplecov \
-    tomdoc
+    rdoc
 
 RUN mkdir /ruby-dev
 WORKDIR /ruby-dev

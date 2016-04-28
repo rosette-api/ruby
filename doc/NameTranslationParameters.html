@@ -92,11 +92,6 @@
 <p>This class encapsulates parameters that are needed for name-translation in
 Rosette API.</p>
 
-<h4 id="class-NameTranslationParameters-label-Attributes">Attributes<span><a href="#class-NameTranslationParameters-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
-<ul><li>
-<p><code>entity_type</code> -  entity type (person, location, or organization)</p>
-</li></ul>
-
   </section>
 
   
@@ -124,7 +119,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -137,7 +132,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -150,7 +145,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -163,7 +158,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -176,7 +171,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -189,7 +184,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -202,7 +197,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -215,7 +210,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        
+        <p>entity type (person, location, or organization)</p>
         
         </div>
       </div>
@@ -251,7 +246,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 42</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
               .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
@@ -288,7 +283,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 51</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@entity_type</span>,
@@ -338,7 +333,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 19</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,

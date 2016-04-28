@@ -119,13 +119,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>entity type of the name (PERSON, LOCATION, ORGANIZATION)</p>
         
         </div>
       </div>
@@ -138,13 +132,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>name to translate</p>
         
         </div>
       </div>
@@ -157,13 +145,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>ISO 693-3 code for name&#39;s language of use (optional)</p>
         
         </div>
       </div>
@@ -176,13 +158,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>ISO 15924 code for name&#39;s script (optional)</p>
         
         </div>
       </div>
@@ -195,13 +171,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>ISO 15924 code for name&#39;s script (optional)</p>
         
         </div>
       </div>
@@ -214,13 +184,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>ISO 639-3 code for the translation language</p>
         
         </div>
       </div>
@@ -233,13 +197,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>transliteration scheme for the translation (optional)</p>
         
         </div>
       </div>
@@ -252,13 +210,7 @@ Rosette API.</p>
 
         <div class="method-description">
         
-        <ul><li>
-<p>entity type (person, location, or organization)</p>
-</li><li>
-<p>name to be translated</p>
-</li><li>
-<p>ISO 693-3 code for name&#39;s language of origin (optional)</p>
-</li></ul>
+        <p>ISO 15924 code for name&#39;s script (optional)</p>
         
         </div>
       </div>
@@ -294,7 +246,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 41</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
               .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
@@ -331,7 +283,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 50</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@entity_type</span>,
@@ -381,7 +333,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 18</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
@@ -392,7 +344,7 @@ Rosette API.</p>
     <span class="ruby-identifier">target_scheme</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">target_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span> <span class="ruby-comment"># name to be translated</span>
   <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
   <span class="ruby-ivar">@source_language_of_origin</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_origin</span>]
   <span class="ruby-ivar">@source_language_of_use</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_use</span>]

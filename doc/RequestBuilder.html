@@ -221,6 +221,8 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
         <span class="ruby-keyword">else</span>
           <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;code&#39;</span>]
         <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">code</span>, <span class="ruby-identifier">message</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">response_headers</span> = {}
     <span class="ruby-identifier">response</span>.<span class="ruby-identifier">header</span>.<span class="ruby-identifier">each_header</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">response_headers</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span> }

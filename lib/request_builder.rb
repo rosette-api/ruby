@@ -6,7 +6,13 @@ require_relative 'rosette_api_error'
 
 # This class handles all Rosette API requests.
 class RequestBuilder
-  attr_reader :alternate_url, :params, :user_key
+  @@retries = 5
+  # Alternate Rosette API URL
+  attr_reader :alternate_url
+  # Parameters to build the body of the request from
+  attr_accessor :params
+  # Rosette API key
+  attr_accessor :user_key
 
   def initialize(user_key, alternate_url, params = {}) #:notnew:
     @user_key = user_key
@@ -125,20 +131,19 @@ class RequestBuilder
     response = http.request request
 
     if response.code != '200'
-      message =
-          if JSON.parse(response.body)['message'].nil?
-            response.body
-          else
-            JSON.parse(response.body)['message']
-          end
-      code =
-          if JSON.parse(response.body)['code'].nil?
-            response.code
-          else
-            JSON.parse(response.body)['code']
-          end
-
-      raise RosetteAPIError.new code, message
+      message = JSON.parse(response.body)['message']
+      code = JSON.parse(response.body)['code']
+      if response.code == '429'
+        if @@retries != 0
+          @@retries = @@retries - 1
+          sleep 15
+          self.get_response(http, request)
+        else
+          raise RosetteAPIError.new code, message
+        end
+      else
+        raise RosetteAPIError.new code, message
+      end
     else
       response_headers = {}
       response.header.each_header { |key, value| response_headers[key] = value }

@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require_relative '../rosette_api/rosette_api'
+require_relative '../lib/rosette_api'
 require 'rspec'
 require 'webmock/rspec'
 require 'json'
@@ -324,8 +324,7 @@ describe RosetteAPI do
           to_return(status: 200, body: {'test': 'name-translation'}.to_json, headers: {})
     end
     it 'test name translation' do
-      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'))
-      params.target_language = 'eng'
+      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
       params.target_script = 'Latn'
       response = RosetteAPI.new('0123456789').name_translation(params)
       expect(response).instance_of? Hash

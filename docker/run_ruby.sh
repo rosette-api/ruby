@@ -111,8 +111,9 @@ if [ ! -z ${GIT_USERNAME} ] && [ ! -z ${VERSION} ]; then
     git checkout origin/gh-pages -b gh-pages
     git branch -d develop
     #generate gh-pages and set ouput dir to git repo (gh-pages branch)
-    cd /ruby-dev/rosette_api
-    rdoc -o /ruby/doc
+    cd /ruby-dev/lib
+    rdoc -o /doc
+    cp -r -n /doc/. /ruby
     cd /ruby
     git add .
     git commit -a -m "publish ruby apidocs ${VERSION}"

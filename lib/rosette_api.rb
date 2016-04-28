@@ -39,7 +39,10 @@ class RosetteAPI
   # Rosette API ping endpoint
   PING = '/ping'
 
-  attr_accessor :user_key, :alternate_url
+  # Rosette API key
+  attr_accessor :user_key
+  # Alternate Rosette API URL
+  attr_accessor :alternate_url
 
   def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1') #:notnew:
     @user_key = user_key
@@ -327,7 +330,7 @@ class RosetteAPI
 
   private
 
-    # Checks that the right parameter type is being passed in
+    # Checks that the right parameter type is being passed in.
     def check_params(params, message = 'Expects a DocumentParameters type as an argument', type = DocumentParameters)
       raise BadRequest.new message unless params.is_a? type
     end

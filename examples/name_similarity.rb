@@ -1,5 +1,5 @@
-require '../rosette_api/rosette_api'
-require '../rosette_api/name_similarity_parameters'
+require '../lib/rosette_api'
+require '../lib/name_similarity_parameters'
 
 api_key, url = ARGV
 

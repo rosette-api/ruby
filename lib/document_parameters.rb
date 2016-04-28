@@ -3,18 +3,29 @@ require_relative 'bad_request_format_error'
 # This class encapsulates parameters that will be used by most of the endpoints
 # with exclusion of name-similarity and name-translation.
 class DocumentParameters
-  attr_accessor :content, :content_uri, :file_path, :language
+  # Content to be analyzed (required if no content_uri and file_path)
+  attr_accessor :content
+  # URL to retrieve content from and analyze (required if no content and file_path)
+  attr_accessor :content_uri
+  # File path of the file to be analyzed (required if no content and content_uri)
+  attr_accessor :file_path
+  # genre to categorize the input data
+  attr_accessor :genre
+  # ISO 639-3 language code of the provided content (optional)
+  attr_accessor :language
 
   def initialize(options = {}) #:notnew:
     options = {
       content: nil,
       content_uri: nil,
       file_path: nil,
+      genre: nil,
       language: nil
     }.update options
     @content = options[:content]
     @content_uri = options[:content_uri]
     @file_path = options[:file_path]
+    @genre = options[:genre]
     @language = options[:language]
   end
 
@@ -30,9 +41,9 @@ class DocumentParameters
     end
   end
 
-  # Converts this class to Hash with its keys in lower CamelCase
+  # Converts this class to Hash with its keys in lower CamelCase.
   #
-  # Returns the new Hash
+  # Returns the new Hash.
   def load_params
     self.validate_params
     self.to_hash.select { |key, value| !value.nil? }
@@ -42,7 +53,7 @@ class DocumentParameters
 
   # Converts this class to Hash.
   #
-  # Returns the new Hash
+  # Returns the new Hash.
   def to_hash
     {
       content: @content,

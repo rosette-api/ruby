@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
 
   s.authors = ['Basis Technology Corp']
-  s.email = %q{fiona@basistech.com}
+  s.email = %q{support@rosette.com}
   s.homepage = %q{https://github.com/rosette-api/ruby}
   s.date = %q{2016-04-29}
 

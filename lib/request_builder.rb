@@ -34,7 +34,7 @@ class RequestBuilder
       http.use_ssl = uri.scheme == 'https'
       request = Net::HTTP::Post.new uri.request_uri
     rescue
-      raise RosetteAPIError.new 'ConnectionError', 'Failed to establish connection with Rosette API server.'
+      raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
 
     request['X-RosetteAPI-Key'] = @user_key

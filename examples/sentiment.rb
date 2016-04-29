@@ -1,6 +1,5 @@
 require 'tempfile'
-require '../lib/rosette_api'
-require '../lib/document_parameters'
+require 'rosette_api'
 
 api_key, url = ARGV
 

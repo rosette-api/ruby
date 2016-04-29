@@ -1,5 +1,5 @@
 # encoding: UTF-8
-require_relative '../lib/rosette_api'
+require 'rosette_api'
 require 'rspec'
 require 'webmock/rspec'
 require 'json'

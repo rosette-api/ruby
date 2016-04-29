@@ -1,4 +1,4 @@
-require '../lib/rosette_api'
+require 'rosette_api'
 
 api_key, url = ARGV
 

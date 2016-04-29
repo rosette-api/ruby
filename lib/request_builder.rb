@@ -28,11 +28,15 @@ class RequestBuilder
   #
   # Returns a HTTP connection and the built POST request.
   def prepare_plain_request(params)
-    uri = URI.parse @alternate_url
-    http = Net::HTTP.new uri.host, uri.port
-    http.use_ssl = uri.scheme == 'https'
+    begin
+      uri = URI.parse @alternate_url
+      http = Net::HTTP.new uri.host, uri.port
+      http.use_ssl = uri.scheme == 'https'
+      request = Net::HTTP::Post.new uri.request_uri
+    rescue => err
+      raise RosetteAPIError.new 'ConnectionError', 'Failed to establish connection with Rosette API server.'
+    end
 
-    request = Net::HTTP::Post.new uri.request_uri
     request['X-RosetteAPI-Key'] = @user_key
     request['Content-Type'] = 'application/json'
     request['Accept'] = 'application/json'

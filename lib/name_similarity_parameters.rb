@@ -13,12 +13,11 @@ class NameSimilarityParameters
 
   def initialize(name1, name2, options = {}) #:notnew:
     options = {
-      genre: nil,
+      genre: nil
     }.update options
     @genre = options[:genre]
     @name1 = name1
     @name2 = name2
-
   end
 
   # Validates the parameters by checking if name1 and name2 are instances of
@@ -36,9 +35,9 @@ class NameSimilarityParameters
   # Returns the new Hash.
   def load_params
     self.validate_params
-    self.to_hash.select { |key, value| !value.nil? }
-                .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-                .to_h
+    self.to_hash.select { |_key, value| !value.nil? }
+        .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+        .to_h
   end
 
   # Converts this class to Hash.

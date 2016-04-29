@@ -47,9 +47,9 @@ class NameTranslationParameters
   #
   # Returns the new Hash.
   def load_params
-    self.to_hash.select { |key, value| !value.nil? }
-                .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-                .to_h
+    self.to_hash.select { |_key, value| !value.nil? }
+        .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+        .to_h
   end
 
   # Converts this class to Hash.

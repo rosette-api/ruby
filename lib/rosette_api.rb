@@ -17,7 +17,7 @@ class RosetteAPI
   # Rosette API entities endpoint
   ENTITIES_ENDPOINT = '/entities'
   # Rosette API entities/linked endpoint
-  ENTITIES_LINKED_ENDPOINT= '/entities/linked'
+  ENTITIES_LINKED_ENDPOINT = '/entities/linked'
   # Rosette API categories endpoint
   CATEGORIES_ENDPOINT = '/categories'
   # Rosette API relationships endpoint
@@ -114,7 +114,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url +MORPHOLOGY_ENDPOINT + '/compound-components', params)
+    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/compound-components', params)
                   .send_post_request
   end
 
@@ -335,3 +335,4 @@ class RosetteAPI
       raise BadRequest.new message unless params.is_a? type
     end
 end
+

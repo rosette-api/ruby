@@ -34,7 +34,8 @@ class DocumentParameters
   def validate_params
     if [@content, @content_uri, @file_path].compact.length > 1
       raise BadRequestFormatError.new 'The format of the request is invalid: multiple content sources;' \
-                                      ' must be one of an attachment, an inline "content" field, or an external "contentUri"'
+                                      ' must be one of an attachment, an inline "content" field, or an external' \
+                                      '"contentUri"'
     elsif [@content, @content_uri, @file_path].all?(&:nil?)
       raise BadRequestFormatError.new 'The format of the request is invalid: no content provided; must' \
                                       ' be one of an attachment, an inline "content" field, or an external "contentUri"'
@@ -46,9 +47,9 @@ class DocumentParameters
   # Returns the new Hash.
   def load_params
     self.validate_params
-    self.to_hash.select { |key, value| !value.nil? }
-                .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-                .to_h
+    self.to_hash.select { |_key, value| !value.nil? }
+        .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+        .to_h
   end
 
   # Converts this class to Hash.

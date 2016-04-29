@@ -6,7 +6,7 @@ require_relative 'rosette_api_error'
 
 # This class handles all Rosette API requests.
 class RequestBuilder
-  @@retries = 5
+  @retries = 5
   # Alternate Rosette API URL
   attr_reader :alternate_url
   # Parameters to build the body of the request from
@@ -33,7 +33,7 @@ class RequestBuilder
       http = Net::HTTP.new uri.host, uri.port
       http.use_ssl = uri.scheme == 'https'
       request = Net::HTTP::Post.new uri.request_uri
-    rescue => err
+    rescue
       raise RosetteAPIError.new 'ConnectionError', 'Failed to establish connection with Rosette API server.'
     end
 
@@ -107,11 +107,7 @@ class RequestBuilder
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_post_request
-    if @alternate_url.to_s.include? '/info?clientVersion='
-      params = '{"body": "version check"}'
-    else
-      params = @params
-    end
+    params = (@alternate_url.to_s.include? '/info?clientVersion=') ? '{"body": "version check"}' : @params
 
     if !params['filePath'].nil?
       http, request = self.prepare_multipart_request params
@@ -138,8 +134,8 @@ class RequestBuilder
       message = JSON.parse(response.body)['message']
       code = JSON.parse(response.body)['code']
       if response.code == '429'
-        if @@retries != 0
-          @@retries = @@retries - 1
+        if @retries != 0
+          @retries = @retries - 1
           sleep 15
           self.get_response(http, request)
         else

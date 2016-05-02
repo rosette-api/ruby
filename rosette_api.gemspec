@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
 
   all_files       = `git ls-files -z`.split("\x0")
   s.files         = all_files.grep(%r{^(bin|lib)/|^.rubocop.yml$})
-  s.test_files = ['tests/tests_spec.rb']
+  s.test_files = ['test/tests_spec.rb']
   s.require_paths = ['lib']
   s.default_executable = 'rosette_api'
 

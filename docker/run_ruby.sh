@@ -92,7 +92,7 @@ gem install ./rosette_api-1.0.1.gem
 #Run the examples
 if [ ! -z ${API_KEY} ]; then
     checkAPI
-    cd tests
+    cd test
     rspec tests_spec.rb
     cd ../examples
     if [ ! -z ${FILENAME} ]; then

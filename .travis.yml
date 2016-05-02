@@ -1,7 +1,7 @@
 language: ruby
 rvm:
-  - 2.0.0-p247
-script: rspec spec
+  - 2.3.0
+script: bundle exec rspec spec
 
 notifications:
   slack:

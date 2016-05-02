@@ -19,6 +19,13 @@ API Documentation
 
 See [documentation](http://rosette-api.github.io/ruby)
 
+Testing
+-----------------
+Unit tests are based on RSpec.
+1. Launch the docker image interactively, `sudo docker run --rm -it -e API_KEY=valid_api_key -v `pwd`:/source ruby-docker /bin/bash`
+2. `cd tests`
+3. `rspec tests_spec.rb`
+
 Additional Information
 ----------------------
 

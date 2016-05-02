@@ -1,5 +1,4 @@
-require '../rosette_api'
-require '../document_parameters'
+require 'rosette_api'
 
 api_key, url = ARGV
 
@@ -9,7 +8,6 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = DocumentParameters.new
-params.content = 'The quick brown fox jumped over the lazy dog. Yes he did.'
+params = DocumentParameters.new(content: 'The quick brown fox jumped over the lazy dog. Yes he did.')
 response = rosette_api.get_morphology_complete(params)
 puts JSON.pretty_generate(response)

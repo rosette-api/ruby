@@ -1,34 +1,25 @@
----
-# Ruby Binding for Rosette API (Beta)
----
+[![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=master)](https://travis-ci.org/rosette-api/ruby)
 
-### Summary
-This repository provides a Ruby binding and examples for each of the supported Rosette API endpoints.
+Ruby client binding for Rosette API
+==================================
+See the wiki for more information.
 
-### Basic Usage
+Installation
+------------
 
-Install Ruby if you haven't already.  Instructions can be found [here](https://www.ruby-lang.org/en/documentation/installation/).
+`gem install rosette_api`
 
-Once Ruby is installed simply run the example as: `ruby examplefile.rb your_api_key` to see the results.
+Basic Usage
+-----------
 
-### Docker
+See [examples](examples)
 
-A Dockerfile may be built (examples/docker) to run the examples and unit tests
+API Documentation
+-----------------
 
-1. `sudo docker build --rm -t ruby-docker .`
-1. `cd ruby_root_direcory`
-1. `sudo docker run --rm -e API_KEY=valid_api_key -v `pwd`:/source ruby-docker`
+See [documentation](http://rosette-api.github.io/ruby)
 
-### Testing
+Additional Information
+----------------------
 
-Unit tests are based on RSpec.
-
-1. Launch the docker image interactively, `sudo docker run --rm -it -e API_KEY=valid_api_key -v `pwd`:/source ruby-docker /bin/bash`
-1. `cd tests`
-1. `rspec tests.rb`
-
-### Gem Package
-
-Coming soon
-
-
+Visit [Rosette API site](https://developer.rosette.com)

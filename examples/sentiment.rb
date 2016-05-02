@@ -1,6 +1,5 @@
 require 'tempfile'
-require '../rosette_api'
-require '../document_parameters'
+require 'rosette_api'
 
 api_key, url = ARGV
 
@@ -10,7 +9,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = DocumentParameters.new
+
 file = Tempfile.new(%w(foo .html))
 sentiment_text_data = '<html><head><title>New Ghostbusters Film</title></head><body><p>Original Ghostbuster Dan ' \
                       'Aykroyd, who also co-wrote the 1984 Ghostbusters film, couldn’t be more pleased with the new ' \
@@ -19,7 +18,6 @@ sentiment_text_data = '<html><head><title>New Ghostbusters Film</title></head><b
                       '.</p></body></html>'
 file.write(sentiment_text_data)
 file.close
-params.file_path = file.path
-params.language = 'eng'
+params = DocumentParameters.new(file_path: file.path, language: 'eng')
 response = rosette_api.get_sentiment(params)
 puts JSON.pretty_generate(response)

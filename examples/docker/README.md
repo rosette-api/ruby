@@ -2,7 +2,7 @@
 # Docker Image for Ruby Examples
 ---
 ### Summary
-To simplify the running of the Ruby examples, the Dockerfile will build an image.
+To simplify the running of the Ruby examples, the Dockerfile will build an image and install the latest rosette_api gem.
 
 ### Basic Usage
 Build the docker image, e.g. `docker build -t basistech/ruby:1.1 .`

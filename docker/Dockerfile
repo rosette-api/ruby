@@ -6,14 +6,17 @@ RUN apt-get -y update && apt-get install -y \
     vim  \
     git
 
-RUN gem install rosette_api
+RUN gem install rubysl-securerandom \
+    rspec \
+    webmock \
+    rdoc
 
-RUN mkdir /ruby
-WORKDIR /ruby
+RUN mkdir /ruby-dev
+WORKDIR /ruby-dev
 COPY run_ruby.sh run_ruby.sh
 RUN chmod 0755 run_ruby.sh
 
 # allow interactive bash inside docker container
-CMD ./run_ruby.sh $API_KEY $FILENAME $ALT_URL
+CMD ./run_ruby.sh $API_KEY $FILENAME $ALT_URL 
 
 VOLUME ["/source"]

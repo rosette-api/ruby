@@ -73,7 +73,7 @@ done
 validateURL
 
 #Copy the mounted content in /source to current WORKDIR
-cp -r -n /source/. .
+cp /source/examples/*.* .
 
 #Run the examples
 if [ ! -z ${API_KEY} ]; then

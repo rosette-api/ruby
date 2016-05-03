@@ -87,7 +87,7 @@ cp -r -n /source/. .
 
 #Build rosette_api gem
 gem build rosette_api.gemspec
-gem install ./rosette_api-1.0.1.gem
+gem install ./rosette_api-1.0.2.gem
 
 #Run the examples
 if [ ! -z ${API_KEY} ]; then

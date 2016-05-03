@@ -213,12 +213,12 @@ href="DocumentParameters.html#attribute-i-content_uri">#content_uri</a>)</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 47</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">validate_params</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
-              .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
-              .<span class="ruby-identifier">to_h</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
+      .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
+      .<span class="ruby-identifier">to_h</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -251,7 +251,7 @@ href="DocumentParameters.html#attribute-i-content_uri">#content_uri</a>)</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 57</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@content</span>,
@@ -293,7 +293,7 @@ set or no content provided at all.</p>
             <pre><span class="ruby-comment"># File document_parameters.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@content</span>, <span class="ruby-ivar">@content_uri</span>, <span class="ruby-ivar">@file_path</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestFormatError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;The format of the request is invalid: multiple content sources;&#39;</span>                                        <span class="ruby-string">&#39; must be one of an attachment, an inline &quot;content&quot; field, or an external &quot;contentUri&quot;&#39;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestFormatError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;The format of the request is invalid: multiple content sources;&#39;</span>                                        <span class="ruby-string">&#39; must be one of an attachment, an inline &quot;content&quot; field, or an external&#39;</span>                                        <span class="ruby-string">&#39;&quot;contentUri&quot;&#39;</span>
   <span class="ruby-keyword">elsif</span> [<span class="ruby-ivar">@content</span>, <span class="ruby-ivar">@content_uri</span>, <span class="ruby-ivar">@file_path</span>].<span class="ruby-identifier">all?</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:nil?</span>)
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestFormatError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;The format of the request is invalid: no content provided; must&#39;</span>                                        <span class="ruby-string">&#39; be one of an attachment, an inline &quot;content&quot; field, or an external &quot;contentUri&quot;&#39;</span>
   <span class="ruby-keyword">end</span>

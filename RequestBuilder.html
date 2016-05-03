@@ -202,8 +202,8 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
     <span class="ruby-identifier">message</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;message&#39;</span>]
     <span class="ruby-identifier">code</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;code&#39;</span>]
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;429&#39;</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">@@retries</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
-        <span class="ruby-identifier">@@retries</span> = <span class="ruby-identifier">@@retries</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@retries</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@retries</span> = <span class="ruby-ivar">@retries</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
         <span class="ruby-identifier">sleep</span> <span class="ruby-value">15</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_response</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>)
       <span class="ruby-keyword">else</span>
@@ -256,7 +256,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_multipart_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 51</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_multipart_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>], <span class="ruby-string">&#39;r&#39;</span>
@@ -331,11 +331,15 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
           <div class="method-source-code" id="prepare_plain_request-source">
             <pre><span class="ruby-comment"># File request_builder.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
-  <span class="ruby-identifier">http</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span>
-  <span class="ruby-identifier">http</span>.<span class="ruby-identifier">use_ssl</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;https&#39;</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
+    <span class="ruby-identifier">http</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span>
+    <span class="ruby-identifier">http</span>.<span class="ruby-identifier">use_ssl</span> = <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">scheme</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;https&#39;</span>
+    <span class="ruby-identifier">request</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Post</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;connectionError&#39;</span>, <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+  <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">request</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Post</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
   <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;X-RosetteAPI-Key&#39;</span>] = <span class="ruby-ivar">@user_key</span>
   <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;Content-Type&#39;</span>] = <span class="ruby-string">&#39;application/json&#39;</span>
   <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;Accept&#39;</span>] = <span class="ruby-string">&#39;application/json&#39;</span>
@@ -375,7 +379,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="send_get_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 91</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_get_request</span>
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
   <span class="ruby-identifier">http</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span>
@@ -418,13 +422,9 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="send_post_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 105</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_post_request</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@alternate_url</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;/info?clientVersion=&#39;</span>
-    <span class="ruby-identifier">params</span> = <span class="ruby-string">&#39;{&quot;body&quot;: &quot;version check&quot;}&#39;</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">params</span> = <span class="ruby-ivar">@params</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">params</span> = (<span class="ruby-ivar">@alternate_url</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">include?</span> <span class="ruby-string">&#39;/info?clientVersion=&#39;</span>) <span class="ruby-operator">?</span> <span class="ruby-string">&#39;{&quot;body&quot;: &quot;version check&quot;}&#39;</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@params</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>].<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prepare_multipart_request</span> <span class="ruby-identifier">params</span>
@@ -471,11 +471,12 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 17</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">params</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
+  <span class="ruby-ivar">@retries</span> = <span class="ruby-value">5</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

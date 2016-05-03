@@ -177,6 +177,8 @@ class RosetteAPI
   def get_entities(params, resolve_entities = false)
     check_params params
 
+    raise BadRequestError.new('Expects boolean for resolve_entities') unless !!resolve_entities == resolve_entities
+
     params = params.load_params
 
     endpoint = resolve_entities ? (ENTITIES_ENDPOINT + '/linked') : ENTITIES_ENDPOINT
@@ -330,7 +332,7 @@ class RosetteAPI
 
     # Checks that the right parameter type is being passed in.
     def check_params(params, message = 'Expects a DocumentParameters type as an argument', type = DocumentParameters)
-      raise BadRequest.new message unless params.is_a? type
+      raise BadRequestError.new message unless params.is_a? type
     end
 end
 

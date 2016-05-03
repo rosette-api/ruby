@@ -242,7 +242,7 @@ describe RosetteAPI do
       params = DocumentParameters.new
       params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including' \
                        ' Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
-      response = RosetteAPI.new('0123456789').get_entities_linked(params)
+      response = RosetteAPI.new('0123456789').get_entities(params, true)
       expect(response).instance_of? Hash
     end
   end

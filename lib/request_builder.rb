@@ -6,7 +6,6 @@ require_relative 'rosette_api_error'
 
 # This class handles all Rosette API requests.
 class RequestBuilder
-  @retries = 5
   # Alternate Rosette API URL
   attr_reader :alternate_url
   # Parameters to build the body of the request from
@@ -18,6 +17,7 @@ class RequestBuilder
     @user_key = user_key
     @alternate_url = alternate_url
     @params = params
+    @retries = 5
   end
 
   # Prepares a plain POST request for Rosette API.

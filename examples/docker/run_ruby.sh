@@ -72,6 +72,9 @@ done
 
 validateURL
 
+#Intall rosette_api from RubyGems
+gem install rosette_api
+
 #Copy the mounted content in /source to current WORKDIR
 cp /source/examples/*.* .
 

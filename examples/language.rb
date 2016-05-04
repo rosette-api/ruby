@@ -8,6 +8,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = DocumentParameters.new(content: 'Por favor Señorita, says the man.?')
+language_data = 'Por favor Señorita, says the man.?'
+params = DocumentParameters.new(content: language_data)
 response = rosette_api.get_language(params)
 puts JSON.pretty_generate(response)

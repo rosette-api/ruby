@@ -8,6 +8,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-params = DocumentParameters.new(content: 'The Ghostbusters movie was filmed in Boston.')
+relationships_text_data = 'The Ghostbusters movie was filmed in Boston.'
+params = DocumentParameters.new(content: relationships_text_data)
 response = rosette_api.get_relationships(params)
 puts JSON.pretty_generate(response)

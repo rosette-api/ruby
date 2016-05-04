@@ -6,8 +6,6 @@ RUN apt-get -y update && apt-get install -y \
     vim  \
     git
 
-RUN gem install rosette_api
-
 RUN mkdir /ruby
 WORKDIR /ruby
 COPY run_ruby.sh run_ruby.sh

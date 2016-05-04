@@ -87,7 +87,7 @@ cp -r -n /source/. .
 
 #Build rosette_api gem
 gem build rosette_api.gemspec
-gem install ./rosette_api-1.0.1.gem
+gem install ./rosette_api-1.0.3.gem
 
 #Run the examples
 if [ ! -z ${API_KEY} ]; then
@@ -117,7 +117,7 @@ if [ ! -z ${GIT_USERNAME} ] && [ ! -z ${VERSION} ]; then
     #generate gh-pages and set ouput dir to git repo (gh-pages branch)
     cd /ruby-dev/lib
     rdoc -o /doc
-    cp -r -n /doc/. /ruby
+    cp -r /doc/. /ruby
     cd /ruby
     git add .
     git commit -a -m "publish ruby apidocs ${VERSION}"

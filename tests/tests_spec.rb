@@ -242,8 +242,15 @@ describe RosetteAPI do
       params = DocumentParameters.new
       params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including' \
                        ' Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
-      response = RosetteAPI.new('0123456789').get_entities_linked(params)
+      response = RosetteAPI.new('0123456789').get_entities(params, true)
       expect(response).instance_of? Hash
+    end
+
+    it 'test entities linked for resolve_entities is not a boolean' do
+      params = DocumentParameters.new
+      params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including' \
+                       ' Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
+      expect { RosetteAPI.new('0123456789').get_entities(params, 'smth') }.to raise_error(BadRequestError)
     end
   end
 
@@ -329,6 +336,11 @@ describe RosetteAPI do
       response = RosetteAPI.new('0123456789').name_translation(params)
       expect(response).instance_of? Hash
     end
+
+    it 'badRequest: Expects NameTransaltionParameters type as an argument' do
+      params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
+      expect { RosetteAPI.new('0123456789').name_translation(params) }.to raise_error(BadRequestError)
+    end
   end
 
   describe '.name_similarity' do
@@ -357,8 +369,18 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
 
+    it 'badRequestFormat: name1 option can only be an instance of a String or NameParameter' do
+      params = NameSimilarityParameters.new(123, 'Michael Jackson')
+      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
+    end
+
     it 'badRequestFormat: name2 option can only be an instance of a String or NameParameter' do
       params = NameSimilarityParameters.new('Michael Jackson', 123)
+      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: Expects NameSimilarityParameters type as an argument' do
+      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
       expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
     end
   end

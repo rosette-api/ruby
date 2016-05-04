@@ -16,8 +16,6 @@ class RosetteAPI
   MORPHOLOGY_ENDPOINT = '/morphology'
   # Rosette API entities endpoint
   ENTITIES_ENDPOINT = '/entities'
-  # Rosette API entities/linked endpoint
-  ENTITIES_LINKED_ENDPOINT = '/entities/linked'
   # Rosette API categories endpoint
   CATEGORIES_ENDPOINT = '/categories'
   # Rosette API relationships endpoint
@@ -173,14 +171,19 @@ class RosetteAPI
   # ==== Attributes
   #
   # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +resolve_entities+ - Enables entities to be linked in application endpoints.
   #
   # Returns each entity extracted from the input.
-  def get_entities(params)
+  def get_entities(params, resolve_entities = false)
     check_params params
+
+    raise BadRequestError.new('Expects boolean for resolve_entities') unless !!resolve_entities == resolve_entities
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + ENTITIES_ENDPOINT, params)
+    endpoint = resolve_entities ? (ENTITIES_ENDPOINT + '/linked') : ENTITIES_ENDPOINT
+
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, params)
                   .send_post_request
   end
 
@@ -193,12 +196,9 @@ class RosetteAPI
   # Returns list of entities that have been linked to entities in the knowledge
   # base.
   def get_entities_linked(params)
-    check_params params
-
-    params = params.load_params
-
-    RequestBuilder.new(@user_key, @alternate_url + ENTITIES_LINKED_ENDPOINT, params)
-                  .send_post_request
+    warn '[DEPRECATION] `get_entities_linked` is deprecated. Please use ' \
+         '`get_entities` instead with `resolve_entities` param set to true.'
+    get_entities(params, true)
   end
 
   # Extracts Tier 1 contextual categories from the input.
@@ -332,7 +332,7 @@ class RosetteAPI
 
     # Checks that the right parameter type is being passed in.
     def check_params(params, message = 'Expects a DocumentParameters type as an argument', type = DocumentParameters)
-      raise BadRequest.new message unless params.is_a? type
+      raise BadRequestError.new message unless params.is_a? type
     end
 end
 

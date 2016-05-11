@@ -10,21 +10,15 @@ describe RosetteAPI do
   describe '.get_language' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/language.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/language').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'language'}.to_json, headers: {})
     end
     it 'test language' do
@@ -47,26 +41,21 @@ describe RosetteAPI do
                          .get_language(params) }
                          .to raise_error(BadRequestFormatError)
     end
+
   end
 
   describe '.get_morphology_complete' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_complete.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/complete').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'morphology/complete'}.to_json, headers: {})
     end
     it 'test morphology complete' do
@@ -80,21 +69,15 @@ describe RosetteAPI do
   describe '.get_compound_components' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_compound_components.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/compound-components').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'morphology/compound-components'}.to_json, headers: {})
     end
     it 'test morphology compound components' do
@@ -108,21 +91,15 @@ describe RosetteAPI do
   describe '.get_han_readings' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_han_readings.json')), encoding: 'utf-8'
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/han-readings').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'morphology/han-readings'}.to_json, headers: {})
     end
     it 'test morphology han readings' do
@@ -136,21 +113,15 @@ describe RosetteAPI do
   describe '.get_parts_of_speech' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_parts_of_speech.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/parts-of-speech').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'morphology/parts-of-speech'}.to_json, headers: {})
     end
     it 'test morphology parts of speech' do
@@ -164,21 +135,15 @@ describe RosetteAPI do
   describe '.get_lemmas' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_lemmas.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/lemmas').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'morphology/lemmas'}.to_json, headers: {})
     end
     it 'test morphology lemmas' do
@@ -192,21 +157,15 @@ describe RosetteAPI do
   describe '.get_entities' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/entities.json')), encoding: 'utf-8'
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/entities').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'entities'}.to_json, headers: {})
     end
     it 'test entities' do
@@ -221,21 +180,15 @@ describe RosetteAPI do
   describe '.get_entities_linked' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/entities_linked.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/entities/linked').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'entities/linked'}.to_json, headers: {})
     end
     it 'test entities linked' do
@@ -257,21 +210,15 @@ describe RosetteAPI do
   describe '.get_categories' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/categories.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/categories').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'categories'}.to_json, headers: {})
     end
     it 'test categories' do
@@ -285,21 +232,15 @@ describe RosetteAPI do
   describe '.get_relationships' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/relationships.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/relationships').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'relationships'}.to_json, headers: {})
     end
     it 'test relationships' do
@@ -313,21 +254,15 @@ describe RosetteAPI do
   describe '.name_translation' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/name_translation.json')), encoding: 'utf-8'
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-translation').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'name-translation'}.to_json, headers: {})
     end
     it 'test name translation' do
@@ -346,21 +281,15 @@ describe RosetteAPI do
   describe '.name_similarity' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/name_similarity.json')), encoding: 'utf-8'
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'name-similarity'}.to_json, headers: {})
     end
     it 'test name similarity' do
@@ -388,21 +317,15 @@ describe RosetteAPI do
   describe '.get_tokens' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/tokens.json')), encoding: 'utf-8'
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/tokens').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'tokens'}.to_json, headers: {})
     end
     it 'test tokens' do
@@ -416,21 +339,15 @@ describe RosetteAPI do
   describe '.get_sentences' do
     request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/sentences.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:post, 'https://api.rosette.com/rest/v1/sentences').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.0.2'}).
           to_return(status: 200, body: {'test': 'sentences'}.to_json, headers: {})
     end
     it 'test sentences' do
@@ -446,14 +363,6 @@ describe RosetteAPI do
 
   describe '.info' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:get, 'https://api.rosette.com/rest/v1/info').
           with(headers: {'Accept' => '*/*',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -469,14 +378,6 @@ describe RosetteAPI do
 
   describe '.ping' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/info?clientVersion=1.0.2').
-          with(body: "\"{\\\"body\\\": \\\"version check\\\"}\"",
-               headers: {'Accept' => 'application/json',
-                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                            'Content-Type' => 'application/json',
-                            'User-Agent' => 'Ruby',
-                            'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'versionChecked': true}.to_json, headers: {})
       stub_request(:get, 'https://api.rosette.com/rest/v1/ping').
           with(headers: {'Accept' => '*/*',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -489,4 +390,6 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
   end
+
+
 end

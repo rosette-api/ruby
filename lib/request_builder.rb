@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'net/http'
 require 'net/https'
 require 'json'
@@ -12,12 +13,15 @@ class RequestBuilder
   attr_accessor :params
   # Rosette API key
   attr_accessor :user_key
+  # Rosette API binding version
+  attr_accessor :binding_version
 
-  def initialize(user_key, alternate_url, params = {}) #:notnew:
+  def initialize(user_key, alternate_url, params = {}, binding_version) #:notnew:
     @user_key = user_key
     @alternate_url = alternate_url
     @params = params
     @retries = 5
+    @binding_version = binding_version
   end
 
   # Prepares a plain POST request for Rosette API.
@@ -40,6 +44,8 @@ class RequestBuilder
     request['X-RosetteAPI-Key'] = @user_key
     request['Content-Type'] = 'application/json'
     request['Accept'] = 'application/json'
+    request['X-RosetteAPI-Binding'] = 'ruby'
+    request['X-RosetteAPI-Binding-Version'] = @binding_version
     request.body = params.to_json
 
     [http, request]
@@ -84,6 +90,8 @@ class RequestBuilder
     request = Net::HTTP::Post.new uri.request_uri
     request.add_field 'Content-Type', "multipart/form-data; boundary=#{boundary}"
     request.add_field 'X-RosetteAPI-Key', @user_key
+    request.add_field 'X-RosetteAPI-Binding', 'ruby'
+    request.add_field 'X-RosetteAPI-Binding-Version', @binding_version
     request.body = post_body.join
 
     [http, request]
@@ -107,8 +115,6 @@ class RequestBuilder
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_post_request
-    params = (@alternate_url.to_s.include? '/info?clientVersion=') ? '{"body": "version check"}' : @params
-
     if !params['filePath'].nil?
       http, request = self.prepare_multipart_request params
     else

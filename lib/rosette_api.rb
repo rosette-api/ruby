@@ -32,8 +32,6 @@ class RosetteAPI
   SENTENCES_ENDPOINT = '/sentences'
   # Rosette API info endpoint
   INFO = '/info'
-  # Rosette API version check endpoint
-  VERSION_CHECK = '/info?clientVersion=' + BINDING_VERSION
   # Rosette API ping endpoint
   PING = '/ping'
 
@@ -49,20 +47,6 @@ class RosetteAPI
     if @alternate_url.to_s.end_with?('/')
       @alternate_url = alternate_url.to_s.slice(0..-2)
     end
-
-    self.check_version_compatibility
-  end
-
-  # Checks binding version compatibility against the Rosette API server.
-  def check_version_compatibility
-    response = RequestBuilder.new(@user_key, @alternate_url + VERSION_CHECK)
-                             .send_post_request
-
-    unless response['versionChecked']
-      puts JSON.pretty_generate(response)
-
-      exit
-    end
   end
 
   # Identifies in which language(s) the input is written.
@@ -77,7 +61,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + LANGUAGE_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + LANGUAGE_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -95,7 +79,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/complete', params)
+    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/complete', params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -112,7 +96,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/compound-components', params)
+    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/compound-components', params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -129,7 +113,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/han-readings', params)
+    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/han-readings', params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -145,7 +129,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/lemmas', params)
+    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/lemmas', params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -162,7 +146,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/parts-of-speech', params)
+    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/parts-of-speech', params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -183,7 +167,7 @@ class RosetteAPI
 
     endpoint = resolve_entities ? (ENTITIES_ENDPOINT + '/linked') : ENTITIES_ENDPOINT
 
-    RequestBuilder.new(@user_key, @alternate_url + endpoint, params)
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -213,7 +197,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + CATEGORIES_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + CATEGORIES_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -229,7 +213,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + RELATIONSHIPS_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + RELATIONSHIPS_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -245,7 +229,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -261,7 +245,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + NAME_TRANSLATION_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + NAME_TRANSLATION_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -278,7 +262,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -294,7 +278,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + TOKENS_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + TOKENS_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -310,21 +294,21 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT, params)
+    RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT, params, BINDING_VERSION)
                   .send_post_request
   end
 
-  # Gets information about the Rosette API, returns name, version, build number
+  # Gets information about the Rosette API, returns name, build number
   # and build time.
   def info
-    RequestBuilder.new(@user_key, @alternate_url + INFO)
+    RequestBuilder.new(@user_key, @alternate_url + INFO, BINDING_VERSION)
                   .send_get_request
   end
 
   # Pings the Rosette API for a response indicting that the service is
   # available.
   def ping
-    RequestBuilder.new(@user_key, @alternate_url + PING)
+    RequestBuilder.new(@user_key, @alternate_url + PING, BINDING_VERSION)
                   .send_get_request
   end
 

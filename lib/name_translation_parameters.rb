@@ -9,6 +9,8 @@ class NameTranslationParameters
   attr_accessor :genre
   # Name to translate
   attr_accessor :name
+  # Rosette API options (optional, should be a hash)
+  attr_accessor :rosette_options
   # ISO 693-3 code of the name's native language the name originates in (optional)
   attr_accessor :source_language_of_origin
   # ISO 693-3 code of the name's language of use (optional)
@@ -26,6 +28,7 @@ class NameTranslationParameters
     options = {
       entity_type: nil,
       genre: nil,
+      rosette_options: nil,
       source_language_of_origin: nil,
       source_language_of_use: nil,
       source_script: nil,
@@ -35,6 +38,7 @@ class NameTranslationParameters
     @name = name
     @entity_type = options[:entity_type]
     @genre = options[:genre]
+    @rosette_options = options[:rosette_options]
     @source_language_of_origin = options[:source_language_of_origin]
     @source_language_of_use = options[:source_language_of_use]
     @source_script = options[:source_script]
@@ -58,7 +62,9 @@ class NameTranslationParameters
   def to_hash
     {
       entity_type: @entity_type,
+      genre: @genre,
       name: @name,
+      options: @rosette_options,
       source_language_of_origin: @source_language_of_origin,
       source_language_of_use: @source_language_of_use,
       source_script: @source_script,

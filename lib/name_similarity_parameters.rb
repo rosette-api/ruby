@@ -6,6 +6,8 @@ require_relative 'name_parameter'
 class NameSimilarityParameters
   # genre to categorize the input data
   attr_accessor :genre
+  # Rosette API options (optional, should be a hash)
+  attr_accessor :rosette_options
   # Name to be compared to name2
   attr_accessor :name1
   # Name to be compared to name1
@@ -13,7 +15,8 @@ class NameSimilarityParameters
 
   def initialize(name1, name2, options = {}) #:notnew:
     options = {
-      genre: nil
+      genre: nil,
+      rosette_options: nil
     }.update options
     @genre = options[:genre]
     @name1 = name1
@@ -45,8 +48,10 @@ class NameSimilarityParameters
   # Returns the new Hash.
   def to_hash
     {
+      genre: @genre,
       name1: @name1.is_a?(NameParameter) ? @name1.load_param : @name1,
-      name2: @name2.is_a?(NameParameter) ? @name2.load_param : @name2
+      name2: @name2.is_a?(NameParameter) ? @name2.load_param : @name2,
+      options: @rosette_options
     }
   end
 end

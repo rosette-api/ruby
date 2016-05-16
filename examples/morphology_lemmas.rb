@@ -1,35 +1,14 @@
-#!/usr/bin/env ruby
-# encoding: utf-8
-
-require "net/http"
-require "net/https"
-require "json"
+require 'rosette_api'
 
 api_key, url = ARGV
-raise "API Key required" unless api_key
 
 if !url
-    url = "https://api.rosette.com/rest/v1/morphology/lemmas"
+  rosette_api = RosetteAPI.new(api_key)
 else
-    url = url + "/morphology/lemmas"
+  rosette_api = RosetteAPI.new(api_key, url)
 end
 
-uri = URI.parse(url)
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true if uri.scheme == 'https'
-
-request = Net::HTTP::Post.new(uri.request_uri)
-request["X-RosetteAPI-Key"] = api_key
-request["Content-Type"] = "application/json"
-request["Accept"] = "application/json"
 morphology_lemmas_data = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
-content = {
-    content: morphology_lemmas_data
-}
-JSONbody = content.to_json
-
-request.body = JSONbody
-
-response = http.request(request)
-
-puts JSON.pretty_generate(JSON.parse(response.body))
+params = DocumentParameters.new(content: morphology_lemmas_data)
+response = rosette_api.get_lemmas(params)
+puts JSON.pretty_generate(response)

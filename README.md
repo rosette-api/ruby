@@ -1,12 +1,25 @@
----
-# Ruby Examples for Rosette API
----
+[![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=develop)](https://travis-ci.org/rosette-api/ruby)
 
-### Summary
-This repository provides Ruby script examples for each of the supported Rosette API endpoints.
+Ruby client binding for Rosette API
+==================================
+See the wiki for more information.
 
-### Basic Usage
+Installation
+------------
 
-Install Ruby if you haven't already.  Instructions can be found [here](https://www.ruby-lang.org/en/documentation/installation/).
+`gem install rosette_api`
 
-Once Ruby is installed simply run the example as: `ruby examplefile.rb your_api_key` to see the results.
+Basic Usage
+-----------
+
+See [examples](examples)
+
+API Documentation
+-----------------
+
+See [documentation](http://rosette-api.github.io/ruby)
+
+Additional Information
+----------------------
+
+Visit [Rosette API site](https://developer.rosette.com)

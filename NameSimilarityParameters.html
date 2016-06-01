@@ -152,6 +152,19 @@ Rosette API.</p>
         </div>
       </div>
       
+      <div id="attribute-i-rosette_options" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">rosette_options</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Rosette API options (optional, should be a hash)</p>
+        
+        </div>
+      </div>
+      
     </section>
     
 
@@ -183,7 +196,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 36</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
@@ -221,11 +234,13 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 46</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
+    <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@genre</span>,
     <span class="ruby-identifier">name1</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@name1</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">NameParameter</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@name1</span>.<span class="ruby-identifier">load_param</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@name1</span>,
-    <span class="ruby-identifier">name2</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@name2</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">NameParameter</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@name2</span>.<span class="ruby-identifier">load_param</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@name2</span>
+    <span class="ruby-identifier">name2</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@name2</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">NameParameter</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@name2</span>.<span class="ruby-identifier">load_param</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@name2</span>,
+    <span class="ruby-identifier">options</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rosette_options</span>
   }
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -258,7 +273,7 @@ String or <a href="NameParameter.html">NameParameter</a>.</p>
 
           
           <div class="method-source-code" id="validate_params-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 25</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-constant">String</span>, <span class="ruby-constant">NameParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@name1</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;name1 option can only be an instance of a String or NameParameter&#39;</span>)
@@ -303,10 +318,11 @@ String or <a href="NameParameter.html">NameParameter</a>.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 14</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name1</span>, <span class="ruby-identifier">name2</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
-    <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">rosette_options</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
   <span class="ruby-ivar">@genre</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:genre</span>]
   <span class="ruby-ivar">@name1</span> = <span class="ruby-identifier">name1</span>

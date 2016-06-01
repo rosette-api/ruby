@@ -150,6 +150,19 @@ Rosette API.</p>
         </div>
       </div>
       
+      <div id="attribute-i-rosette_options" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">rosette_options</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Rosette API options (optional, should be a hash)</p>
+        
+        </div>
+      </div>
+      
       <div id="attribute-i-source_language_of_origin" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">source_language_of_origin</span><span
@@ -260,7 +273,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 49</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
       .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
@@ -297,11 +310,13 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 58</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@entity_type</span>,
+    <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@genre</span>,
     <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@name</span>,
+    <span class="ruby-identifier">options</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rosette_options</span>,
     <span class="ruby-identifier">source_language_of_origin</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@source_language_of_origin</span>,
     <span class="ruby-identifier">source_language_of_use</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@source_language_of_use</span>,
     <span class="ruby-identifier">source_script</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@source_script</span>,
@@ -347,11 +362,12 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 25</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">target_language</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">rosette_options</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">source_language_of_origin</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">source_language_of_use</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">source_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
@@ -361,6 +377,7 @@ Rosette API.</p>
   <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
   <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
   <span class="ruby-ivar">@genre</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:genre</span>]
+  <span class="ruby-ivar">@rosette_options</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rosette_options</span>]
   <span class="ruby-ivar">@source_language_of_origin</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_origin</span>]
   <span class="ruby-ivar">@source_language_of_use</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_use</span>]
   <span class="ruby-ivar">@source_script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_script</span>]

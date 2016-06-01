@@ -182,6 +182,19 @@ href="DocumentParameters.html#attribute-i-content_uri">#content_uri</a>)</p>
         </div>
       </div>
       
+      <div id="attribute-i-rosette_options" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">rosette_options</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Rosette API options (optional, should be a hash)</p>
+        
+        </div>
+      </div>
+      
     </section>
     
 
@@ -213,7 +226,7 @@ href="DocumentParameters.html#attribute-i-content_uri">#content_uri</a>)</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 48</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
@@ -251,13 +264,15 @@ href="DocumentParameters.html#attribute-i-content_uri">#content_uri</a>)</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 58</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@content</span>,
     <span class="ruby-identifier">content_uri</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@content_uri</span>,
     <span class="ruby-identifier">file_path</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@file_path</span>,
-    <span class="ruby-identifier">language</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@language</span>
+    <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@genre</span>,
+    <span class="ruby-identifier">language</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@language</span>,
+    <span class="ruby-identifier">options</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rosette_options</span>
   }
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -290,7 +305,7 @@ set or no content provided at all.</p>
 
           
           <div class="method-source-code" id="validate_params-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 34</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@content</span>, <span class="ruby-ivar">@content_uri</span>, <span class="ruby-ivar">@file_path</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestFormatError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;The format of the request is invalid: multiple content sources;&#39;</span>                                        <span class="ruby-string">&#39; must be one of an attachment, an inline &quot;content&quot; field, or an external&#39;</span>                                        <span class="ruby-string">&#39;&quot;contentUri&quot;&#39;</span>
@@ -335,20 +350,22 @@ set or no content provided at all.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 17</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
     <span class="ruby-identifier">content</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">content_uri</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">file_path</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">language</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">language</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-identifier">rosette_options</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
   <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:content</span>]
   <span class="ruby-ivar">@content_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:content_uri</span>]
   <span class="ruby-ivar">@file_path</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file_path</span>]
   <span class="ruby-ivar">@genre</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:genre</span>]
   <span class="ruby-ivar">@language</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:language</span>]
+  <span class="ruby-ivar">@rosette_options</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rosette_options</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

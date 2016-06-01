@@ -70,8 +70,6 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-check_version_compatibility">#check_version_compatibility</a>
-    
     <li ><a href="#method-i-get_categories">#get_categories</a>
     
     <li ><a href="#method-i-get_compound_components">#get_compound_components</a>
@@ -205,11 +203,6 @@
         <dd><p>Rosette API tokens endpoint</p>
         
       
-        <dt id="VERSION_CHECK">VERSION_CHECK
-        
-        <dd><p>Rosette API version check endpoint</p>
-        
-      
       </dl>
     </section>
     
@@ -257,46 +250,6 @@
        </header>
 
     
-      <div id="method-i-check_version_compatibility" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">check_version_compatibility</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Checks binding version compatibility against the Rosette API server.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="check_version_compatibility-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 57</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_version_compatibility</span>
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">VERSION_CHECK</span>)
-                           .<span class="ruby-identifier">send_post_request</span>
-
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">response</span>[<span class="ruby-string">&#39;versionChecked&#39;</span>]
-    <span class="ruby-identifier">puts</span> <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">pretty_generate</span>(<span class="ruby-identifier">response</span>)
-
-    <span class="ruby-identifier">exit</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-get_categories" class="method-detail ">
         
         <div class="method-heading">
@@ -325,13 +278,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_categories-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 209</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 195</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_categories</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">CATEGORIES_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">CATEGORIES_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -373,13 +326,13 @@ supported languages.</p>
 
           
           <div class="method-source-code" id="get_compound_components-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 110</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_compound_components</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/compound-components&#39;</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/compound-components&#39;</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -423,15 +376,17 @@ application endpoints.</p>
 
           
           <div class="method-source-code" id="get_entities-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 177</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_entities</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">resolve_entities</span> = <span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;Expects boolean for resolve_entities&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">resolve_entities</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">resolve_entities</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
   <span class="ruby-identifier">endpoint</span> = <span class="ruby-identifier">resolve_entities</span> <span class="ruby-operator">?</span> (<span class="ruby-constant">ENTITIES_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/linked&#39;</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">ENTITIES_ENDPOINT</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">endpoint</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">endpoint</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -473,7 +428,7 @@ base.</p>
 
           
           <div class="method-source-code" id="get_entities_linked-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 196</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 182</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_entities_linked</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">warn</span> <span class="ruby-string">&#39;[DEPRECATION] `get_entities_linked` is deprecated. Please use &#39;</span>           <span class="ruby-string">&#39;`get_entities` instead with `resolve_entities` param set to true.&#39;</span>
   <span class="ruby-identifier">get_entities</span>(<span class="ruby-identifier">params</span>, <span class="ruby-keyword">true</span>)
@@ -517,13 +472,13 @@ Han script, in both Chinese and Japanese input text.</p>
 
           
           <div class="method-source-code" id="get_han_readings-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 127</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_han_readings</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/han-readings&#39;</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/han-readings&#39;</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -564,13 +519,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_language-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 75</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_language</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">LANGUAGE_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">LANGUAGE_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -611,13 +566,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_lemmas-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 143</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_lemmas</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/lemmas&#39;</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/lemmas&#39;</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -660,13 +615,13 @@ tags of the input for supported languages.</p>
 
           
           <div class="method-source-code" id="get_morphology_complete-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 93</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_morphology_complete</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/complete&#39;</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/complete&#39;</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -708,13 +663,13 @@ input, depending on the context of how it is used.</p>
 
           
           <div class="method-source-code" id="get_parts_of_speech-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 160</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_parts_of_speech</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/parts-of-speech&#39;</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/parts-of-speech&#39;</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -755,13 +710,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_relationships-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 225</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_relationships</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RELATIONSHIPS_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RELATIONSHIPS_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -802,13 +757,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentences-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 306</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 292</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_sentences</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SENTENCES_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SENTENCES_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -849,13 +804,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentiment-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 241</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 227</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_sentiment</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SENTIMENT_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SENTIMENT_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -896,13 +851,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_tokens-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 290</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 276</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tokens</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">TOKENS_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">TOKENS_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -928,16 +883,16 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
         <div class="method-description">
           
-          <p>Gets information about the Rosette API, returns name, version, build number
-and build time.</p>
+          <p>Gets information about the Rosette API, returns name, build number and
+build time.</p>
           
           
 
           
           <div class="method-source-code" id="info-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 317</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 303</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">info</span>
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">INFO</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">INFO</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_get_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -979,13 +934,13 @@ build the request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="name_similarity-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 274</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 260</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">name_similarity</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameSimilarityParameters type as an argument&#39;</span>, <span class="ruby-constant">NameSimilarityParameters</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_SIMILARITY_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_SIMILARITY_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -1027,13 +982,13 @@ href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="name_translation-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 257</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 243</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">name_translation</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameTranslationParameters type as an argument&#39;</span>, <span class="ruby-constant">NameTranslationParameters</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_TRANSLATION_ENDPOINT</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_TRANSLATION_ENDPOINT</span>, <span class="ruby-identifier">params</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -1066,9 +1021,9 @@ available.</p>
 
           
           <div class="method-source-code" id="ping-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 324</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 310</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ping</span>
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">PING</span>)
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">PING</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_get_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -1108,7 +1063,7 @@ available.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 45</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span> = <span class="ruby-string">&#39;https://api.rosette.com/rest/v1&#39;</span>) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
@@ -1116,8 +1071,6 @@ available.</p>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@alternate_url</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&#39;/&#39;</span>)
     <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>)
   <span class="ruby-keyword">end</span>
-
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">check_version_compatibility</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

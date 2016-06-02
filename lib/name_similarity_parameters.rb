@@ -21,6 +21,7 @@ class NameSimilarityParameters
     @genre = options[:genre]
     @name1 = name1
     @name2 = name2
+    @rosette_options = options[:rosette_options]
   end
 
   # Validates the parameters by checking if name1 and name2 are instances of
@@ -30,6 +31,8 @@ class NameSimilarityParameters
       raise BadRequestError.new('name1 option can only be an instance of a String or NameParameter')
     elsif [String, NameParameter].none? { |clazz| @name2.is_a? clazz }
       raise BadRequestError.new('name2 option can only be an instance of a String or NameParameter')
+    elsif !@rosette_options.nil?
+      raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
     end
   end
 

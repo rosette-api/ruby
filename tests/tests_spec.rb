@@ -177,10 +177,10 @@ describe RosetteAPI do
     end
   end
 
-  describe '.get_entities_linked' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/entities_linked.json'))
+  describe '.get_entities_no_qids' do
+    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/entities_no_qids.json'))
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/entities/linked').
+      stub_request(:post, 'https://api.rosette.com/rest/v1/entities').
           with(body: request_file,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -189,21 +189,23 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.1.1'}).
-          to_return(status: 200, body: {'test': 'entities/linked'}.to_json, headers: {})
+          to_return(status: 200, body: {'test': 'entities'}.to_json, headers: {})
     end
-    it 'test entities linked' do
+    it 'test entities without qids' do
       params = DocumentParameters.new
       params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including' \
                        ' Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
-      response = RosetteAPI.new('0123456789').get_entities(params, true)
+      params.rosette_options = { linkEntities: false}
+      response = RosetteAPI.new('0123456789').get_entities(params)
       expect(response).instance_of? Hash
     end
 
-    it 'test entities linked for resolve_entities is not a boolean' do
+    it 'test rosette_options is not a Hash' do
       params = DocumentParameters.new
       params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including' \
                        ' Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
-      expect { RosetteAPI.new('0123456789').get_entities(params, 'smth') }.to raise_error(BadRequestError)
+      params.rosette_options = 1
+      expect { RosetteAPI.new('0123456789').get_entities(params) }.to raise_error(BadRequestError)
     end
   end
 

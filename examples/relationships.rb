@@ -10,6 +10,6 @@ end
 
 relationships_text_data = 'The Ghostbusters movie was filmed in Boston.'
 params = DocumentParameters.new(content: relationships_text_data)
-params.rosette_options = { "accuracyMode" => "PRECISION" }
+params.rosette_options = { accuracyMode: 'PRECISION' }
 response = rosette_api.get_relationships(params)
 puts JSON.pretty_generate(response)

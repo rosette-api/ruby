@@ -43,6 +43,8 @@ class DocumentParameters
     elsif [@content, @content_uri, @file_path].all?(&:nil?)
       raise BadRequestFormatError.new 'The format of the request is invalid: no content provided; must' \
                                       ' be one of an attachment, an inline "content" field, or an external "contentUri"'
+    elsif !@rosette_options.nil?
+      raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
     end
   end
 

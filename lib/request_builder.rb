@@ -84,10 +84,15 @@ class RequestBuilder
     post_body << "\r\n\r\n--#{boundary}--\r\n"
 
     # Create the HTTP objects
-    uri = URI.parse @alternate_url
-    http = Net::HTTP.new uri.host, uri.port
-    http.use_ssl = uri.scheme == 'https'
-    request = Net::HTTP::Post.new uri.request_uri
+    begin
+      uri = URI.parse @alternate_url
+      http = Net::HTTP.new uri.host, uri.port
+      http.use_ssl = uri.scheme == 'https'
+      request = Net::HTTP::Post.new uri.request_uri
+    rescue
+      raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
+    end
+
     request.add_field 'Content-Type', "multipart/form-data; boundary=#{boundary}"
     request.add_field 'X-RosetteAPI-Key', @user_key
     request.add_field 'X-RosetteAPI-Binding', 'ruby'
@@ -101,11 +106,15 @@ class RequestBuilder
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_get_request
-    uri = URI.parse @alternate_url
-    http = Net::HTTP.new uri.host, uri.port
-    http.use_ssl = uri.scheme == 'https'
+    begin
+      uri = URI.parse @alternate_url
+      http = Net::HTTP.new uri.host, uri.port
+      http.use_ssl = uri.scheme == 'https'
 
-    request = Net::HTTP::Get.new uri.request_uri
+      request = Net::HTTP::Get.new uri.request_uri
+    rescue
+      raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
+    end
     request['X-RosetteAPI-Key'] = @user_key
 
     self.get_response http, request

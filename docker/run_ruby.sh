@@ -57,23 +57,18 @@ while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
     case "${arg}" in
         API_KEY)
             API_KEY=${OPTARG}
-            usage
             ;;
         ALT_URL)
             ALT_URL=${OPTARG}
-            usage
             ;;
         FILENAME)
             FILENAME=${OPTARG}
-            usage
             ;;
         GIT_USERNAME)
             GIT_USERNAME=${OPTARG}
-            usage
             ;;
         VERSION)
             VERSION=${OPTARG}
-            usage
             ;;
     esac
 done

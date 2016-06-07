@@ -64,12 +64,6 @@ while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
         FILENAME)
             FILENAME=${OPTARG}
             ;;
-        GIT_USERNAME)
-            GIT_USERNAME=${OPTARG}
-            ;;
-        VERSION)
-            VERSION=${OPTARG}
-            ;;
     esac
 done
 

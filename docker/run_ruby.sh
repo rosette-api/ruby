@@ -2,7 +2,7 @@
 
 ping_url="https://api.rosette.com/rest/v1"
 retcode=0
-errors=( "Exception" "processingFailure" )
+errors=( "Exception" "processingFailure" "badRequest" "ParseError" "ValueError" "SyntaxError" "AttributeError" "ImportError" )
 
 #------------ Start Functions --------------------------
 
@@ -12,10 +12,12 @@ function HELP {
     echo "  API_KEY      - Rosette API key (required)"
     echo "  FILENAME     - Ruby source file (optional)"
     echo "  ALT_URL      - Alternate service URL (optional)"
-    echo "  GIT_USERNAME - Git username where you would like to push regenerated gh-pages (optional)"
-    echo "  VERSION      - Build version (optional)"
     exit 1
 }
+
+if [ ! -z ${ALT_URL} ]; then
+    ping_url=${ALT_URL}
+fi
 
 #Checks if Rosette API key is valid
 function checkAPI {
@@ -55,27 +57,16 @@ function runExample() {
 #------------ End Functions ----------------------------
 
 #Gets API_KEY, FILENAME and ALT_URL if present
-while getopts ":API_KEY:FILENAME:ALT_URL:GIT_USERNAME:VERSION" arg; do
+while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
     case "${arg}" in
         API_KEY)
             API_KEY=${OPTARG}
-            usage
             ;;
         ALT_URL)
             ALT_URL=${OPTARG}
-            usage
             ;;
         FILENAME)
             FILENAME=${OPTARG}
-            usage
-            ;;
-        GIT_USERNAME)
-            GIT_USERNAME=${OPTARG}
-            usage
-            ;;
-        VERSION)
-            VERSION={OPTARG}
-            usage
             ;;
     esac
 done
@@ -96,32 +87,16 @@ if [ ! -z ${API_KEY} ]; then
     rspec tests_spec.rb
     cd ../examples
     if [ ! -z ${FILENAME} ]; then
+        echo -e "\nRunning example against: ${ping_url}\n"
         runExample ${FILENAME}
     else
+        echo -e "\nRunning examples against: ${ping_url}\n"
         for file in *.rb; do
             runExample ${file}
         done
     fi
 else 
     HELP
-fi
-
-#Generate gh-pages and push them to git account (if git username is provided)
-if [ ! -z ${GIT_USERNAME} ] && [ ! -z ${VERSION} ]; then
-    #clone ruby git repo
-    cd /
-    git clone git@github.com:${GIT_USERNAME}/ruby.git
-    cd ruby
-    git checkout origin/gh-pages -b gh-pages
-    git branch -d develop
-    #generate gh-pages and set ouput dir to git repo (gh-pages branch)
-    cd /ruby-dev/lib
-    rdoc -o /doc
-    cp -r /doc/. /ruby
-    cd /ruby
-    git add .
-    git commit -a -m "publish ruby apidocs ${VERSION}"
-    git push
 fi
 
 exit ${retcode}

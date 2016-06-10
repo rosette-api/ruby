@@ -47,10 +47,18 @@ class NameTranslationParameters
     @target_script = options[:target_script]
   end
 
+  # Validates the parameters by checking if rosette_options is an instance of a Hash.
+  def validate_params
+    if !@rosette_options.nil?
+      raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
+    end
+  end
+
   # Converts this class to Hash with its keys in lower CamelCase.
   #
   # Returns the new Hash.
   def load_params
+    self.validate_params
     self.to_hash.select { |_key, value| !value.nil? }
         .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
         .to_h

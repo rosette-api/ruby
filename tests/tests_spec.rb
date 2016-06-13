@@ -405,7 +405,7 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.1.1',
-                            'X-Rosetteapi-App' => 'ruby-app'}).
+                            'X-RosetteApi-App' => 'ruby-app'}).
           to_return(status: 200, body: {'test': 'language'}.to_json, headers: {})
     end
 
@@ -413,7 +413,7 @@ describe RosetteAPI do
       params = DocumentParameters.new
       params.content = 'Por favor Senorita, says the man.?'
       params.custom_headers = { 'test': 'ruby-app'}
-      expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error("invalidHeader")
+      expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error(RosetteAPIError)
     end
   end
 

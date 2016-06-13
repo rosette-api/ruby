@@ -15,6 +15,8 @@ class DocumentParameters
   attr_accessor :language
   # Rosette API options (optional, should be a hash)
   attr_accessor :rosette_options
+  # custom Rosette API headers
+  attr_accessor :custom_headers
 
   def initialize(options = {}) #:notnew:
     options = {
@@ -23,7 +25,8 @@ class DocumentParameters
       file_path: nil,
       genre: nil,
       language: nil,
-      rosette_options: nil
+      rosette_options: nil,
+      custom_headers: nil
     }.update options
     @content = options[:content]
     @content_uri = options[:content_uri]
@@ -31,6 +34,7 @@ class DocumentParameters
     @genre = options[:genre]
     @language = options[:language]
     @rosette_options = options[:rosette_options]
+    @custom_headers = options[:custom_headers]
   end
 
   # Validates the parameters by checking if there are multiple content sources
@@ -68,7 +72,8 @@ class DocumentParameters
       file_path: @file_path,
       genre: @genre,
       language: @language,
-      options: @rosette_options
+      options: @rosette_options,
+      custom_headers: @custom_headers
     }
   end
 end

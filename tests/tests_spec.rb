@@ -413,7 +413,7 @@ describe RosetteAPI do
       params = DocumentParameters.new
       params.content = 'Por favor Senorita, says the man.?'
       params.custom_headers = { 'test': 'ruby-app'}
-      expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error(invalidHeader)
+      expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error("invalidHeader")
     end
   end
 

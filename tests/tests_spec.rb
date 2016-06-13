@@ -393,5 +393,28 @@ describe RosetteAPI do
     end
   end
 
+  describe '.get_language_custom_header' do
+    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/language.json'))
+    before do
+      stub_request(:post, 'https://api.rosette.com/rest/v1/language').
+          with(body: request_file,
+               headers: {'Accept' => 'application/json',
+                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                            'Content-Type' => 'application/json',
+                            'User-Agent' => 'Ruby',
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.1.1',
+                            'X-Rosetteapi-App' => 'ruby-app'}).
+          to_return(status: 200, body: {'test': 'language'}.to_json, headers: {})
+    end
+
+    it 'test custom_headers is invalid' do
+      params = DocumentParameters.new
+      params.content = 'Por favor Senorita, says the man.?'
+      params.custom_headers = { 'test': 'ruby-app'}
+      expect { RosetteAPI.new('0123456789').get_entities(params) }.to raise_error(BadRequestError)
+    end
+  end
 
 end

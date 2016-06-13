@@ -46,6 +46,8 @@ class RequestBuilder
       for k in keys_array
         if k.to_s =~ /^X-RosetteAPI-/
           request[k] = params['customHeaders'][k]
+        else
+            raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
         end
       end
       params.delete "customHeaders"
@@ -109,6 +111,8 @@ class RequestBuilder
       for k in keys_array
         if k.to_s =~ /^X-RosetteAPI-/
           request.add_field k, params['customHeaders'][k]
+        else
+            raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
         end
       end
       params.delete "customHeaders"

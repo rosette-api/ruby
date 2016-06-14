@@ -41,6 +41,18 @@ class RequestBuilder
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
 
+    if params["customHeaders"] != nil
+      keys_array = params["customHeaders"].keys
+      for k in keys_array
+        if k.to_s =~ /^X-RosetteAPI-/
+          request[k] = params['customHeaders'][k]
+        else
+            raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
+        end
+      end
+      params.delete "customHeaders"
+    end
+
     request['X-RosetteAPI-Key'] = @user_key
     request['Content-Type'] = 'application/json'
     request['Accept'] = 'application/json'
@@ -91,6 +103,19 @@ class RequestBuilder
       request = Net::HTTP::Post.new uri.request_uri
     rescue
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
+    end
+    
+    # add any custom headers from the user
+    if params["customHeaders"] != nil
+      keys_array = params["customHeaders"].keys
+      for k in keys_array
+        if k.to_s =~ /^X-RosetteAPI-/
+          request.add_field k, params['customHeaders'][k]
+        else
+            raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
+        end
+      end
+      params.delete "customHeaders"
     end
 
     request.add_field 'Content-Type', "multipart/form-data; boundary=#{boundary}"

@@ -39,6 +39,8 @@ class RosetteAPI
   attr_accessor :user_key
   # Alternate Rosette API URL
   attr_accessor :alternate_url
+  # custom Rosette API headers
+  attr_accessor :custom_headers
 
   def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1') #:notnew:
     @user_key = user_key

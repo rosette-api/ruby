@@ -84,7 +84,7 @@ gem install ./rosette_api-*.gem
 if [ ! -z ${API_KEY} ]; then
     checkAPI
     cd tests
-    rspec tests_spec.rb
+    rspec tests_spec.rb --format documentation
     cd ../examples
     if [ ! -z ${FILENAME} ]; then
         echo -e "\nRunning example against: ${ping_url}\n"

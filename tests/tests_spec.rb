@@ -417,4 +417,19 @@ describe RosetteAPI do
     end
   end
 
+  describe '.error_409_incompatible_client_version' do
+    before do
+      stub_request(:get, 'https://api.rosette.com/rest/v1/info').
+          with(headers: {'Accept' => '*/*',
+                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                            'User-Agent' => 'Ruby',
+                            'X-Rosetteapi-Key' => '0123456789'}).
+          to_return(status: 409, body: {'code': 'incompatibleClientVersion'}.to_json, headers: {})
+    end
+    it 'test error 409 properly handled' do
+      expect { RosetteAPI.new('0123456789').info }.to raise_error(RosetteAPIError)
+    end
+  end
+
+
 end

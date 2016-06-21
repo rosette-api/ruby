@@ -80,6 +80,7 @@ class RequestBuilder
 
     boundary = SecureRandom.hex
     post_body = []
+    params.delete 'filePath'
     request_file = params.to_json
 
     # Add the content data

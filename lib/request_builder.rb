@@ -41,8 +41,8 @@ class RequestBuilder
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
 
-    if params["customHeaders"] != nil
-      keys_array = params["customHeaders"].keys
+    if params['customHeaders'] != nil
+      keys_array = params['customHeaders'].keys
       for k in keys_array
         if k.to_s =~ /^X-RosetteAPI-/
           request[k] = params['customHeaders'][k]
@@ -50,7 +50,7 @@ class RequestBuilder
             raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
         end
       end
-      params.delete "customHeaders"
+      params.delete 'customHeaders'
     end
 
     request['X-RosetteAPI-Key'] = @user_key
@@ -80,6 +80,7 @@ class RequestBuilder
 
     boundary = SecureRandom.hex
     post_body = []
+    params.delete 'filePath'
     request_file = params.to_json
 
     # Add the content data
@@ -106,8 +107,8 @@ class RequestBuilder
     end
     
     # add any custom headers from the user
-    if params["customHeaders"] != nil
-      keys_array = params["customHeaders"].keys
+    if params['customHeaders'] != nil
+      keys_array = params['customHeaders'].keys
       for k in keys_array
         if k.to_s =~ /^X-RosetteAPI-/
           request.add_field k, params['customHeaders'][k]
@@ -115,7 +116,7 @@ class RequestBuilder
             raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
         end
       end
-      params.delete "customHeaders"
+      params.delete 'customHeaders'
     end
 
     request.add_field 'Content-Type', "multipart/form-data; boundary=#{boundary}"

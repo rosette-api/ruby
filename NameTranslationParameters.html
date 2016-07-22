@@ -76,6 +76,8 @@
     
     <li ><a href="#method-i-to_hash">#to_hash</a>
     
+    <li ><a href="#method-i-validate_params">#validate_params</a>
+    
   </ul>
 </div>
 
@@ -273,8 +275,9 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 53</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
       .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
       .<span class="ruby-identifier">to_h</span>
@@ -310,7 +313,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 62</span>
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@entity_type</span>,
@@ -324,6 +327,43 @@ Rosette API.</p>
     <span class="ruby-identifier">target_scheme</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@target_scheme</span>,
     <span class="ruby-identifier">target_script</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@target_script</span>
   }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-validate_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates the parameters by checking if <a
+href="NameTranslationParameters.html#attribute-i-rosette_options">#rosette_options</a>
+is an instance of a Hash.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="validate_params-source">
+            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_params</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@rosette_options</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;rosette_options can only be an instance of a Hash&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@rosette_options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

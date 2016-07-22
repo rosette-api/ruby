@@ -196,7 +196,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 39</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
@@ -234,7 +234,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 49</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
     <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@genre</span>,
@@ -273,12 +273,14 @@ String or <a href="NameParameter.html">NameParameter</a>.</p>
 
           
           <div class="method-source-code" id="validate_params-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 28</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_params</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-constant">String</span>, <span class="ruby-constant">NameParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@name1</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;name1 option can only be an instance of a String or NameParameter&#39;</span>)
   <span class="ruby-keyword">elsif</span> [<span class="ruby-constant">String</span>, <span class="ruby-constant">NameParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@name2</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;name2 option can only be an instance of a String or NameParameter&#39;</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@rosette_options</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;rosette_options can only be an instance of a Hash&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@rosette_options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -327,6 +329,7 @@ String or <a href="NameParameter.html">NameParameter</a>.</p>
   <span class="ruby-ivar">@genre</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:genre</span>]
   <span class="ruby-ivar">@name1</span> = <span class="ruby-identifier">name1</span>
   <span class="ruby-ivar">@name2</span> = <span class="ruby-identifier">name2</span>
+  <span class="ruby-ivar">@rosette_options</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rosette_options</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -1,10 +1,10 @@
-Mon, 06 Jun 2016 22:32:34 +0000
-./name_similarity_parameters.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./name_parameter.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./rosette_api.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./bad_request_format_error.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./rosette_api_error.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./bad_request_error.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./request_builder.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./document_parameters.rb	Mon, 06 Jun 2016 22:32:34 +0000
-./name_translation_parameters.rb	Mon, 06 Jun 2016 22:32:34 +0000
+Fri, 22 Jul 2016 14:25:32 +0000
+./document_parameters.rb	Fri, 22 Jul 2016 14:25:30 +0000
+./bad_request_format_error.rb	Fri, 22 Jul 2016 14:25:29 +0000
+./rosette_api.rb	Fri, 22 Jul 2016 14:25:30 +0000
+./bad_request_error.rb	Fri, 22 Jul 2016 14:25:29 +0000
+./rosette_api_error.rb	Fri, 22 Jul 2016 14:25:29 +0000
+./request_builder.rb	Fri, 22 Jul 2016 14:25:30 +0000
+./name_translation_parameters.rb	Fri, 22 Jul 2016 14:25:30 +0000
+./name_parameter.rb	Fri, 22 Jul 2016 14:25:29 +0000
+./name_similarity_parameters.rb	Fri, 22 Jul 2016 14:25:30 +0000

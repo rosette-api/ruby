@@ -9,6 +9,6 @@ else
 end
 
 entities_text_data = 'Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a cameo in Boston this… http://dlvr.it/BnsFfS'
-params = DocumentParameters.new(content: entities_text_data)
+params = DocumentParameters.new(content: entities_text_data, genre: 'social-media')
 response = rosette_api.get_entities(params)
 puts JSON.pretty_generate(response)

@@ -2,7 +2,7 @@
 
 ping_url="https://api.rosette.com/rest/v1"
 retcode=0
-errors=( "Exception" "processingFailure" )
+errors=( "Exception" "processingFailure" "badRequest" "ParseError" "ValueError" "SyntaxError" "AttributeError" "ImportError" )
 
 #------------ Start Functions --------------------------
 
@@ -14,6 +14,10 @@ function HELP {
     echo "  ALT_URL      - Alternate service URL (optional)"
     exit 1
 }
+
+if [ ! -z ${ALT_URL} ]; then
+    ping_url=${ALT_URL}
+fi
 
 #Checks if Rosette API key is valid
 function checkAPI {
@@ -53,19 +57,16 @@ function runExample() {
 #------------ End Functions ----------------------------
 
 #Gets API_KEY, FILENAME and ALT_URL if present
-while getopts ":API_KEY:FILENAME:ALT_URL:GIT_USERNAME:VERSION" arg; do
+while getopts ":API_KEY:FILENAME:ALT_URL" arg; do
     case "${arg}" in
         API_KEY)
             API_KEY=${OPTARG}
-            usage
             ;;
         ALT_URL)
             ALT_URL=${OPTARG}
-            usage
             ;;
         FILENAME)
             FILENAME=${OPTARG}
-            usage
             ;;
     esac
 done
@@ -82,8 +83,10 @@ cp /source/examples/*.* .
 if [ ! -z ${API_KEY} ]; then
     checkAPI
     if [ ! -z ${FILENAME} ]; then
+        echo -e "\nRunning example against: ${ping_url}\n"
         runExample ${FILENAME}
     else
+        echo -e "\nRunning examples against: ${ping_url}\n"
         for file in *.rb; do
             runExample ${file}
         done

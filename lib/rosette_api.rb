@@ -9,7 +9,7 @@ require_relative 'bad_request_format_error'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.1.1'
+  BINDING_VERSION = '1.2.0'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'
   # Rosette API morphology endpoint
@@ -39,6 +39,8 @@ class RosetteAPI
   attr_accessor :user_key
   # Alternate Rosette API URL
   attr_accessor :alternate_url
+  # custom Rosette API headers
+  attr_accessor :custom_headers
 
   def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1') #:notnew:
     @user_key = user_key
@@ -166,7 +168,6 @@ class RosetteAPI
     params = params.load_params
 
     endpoint = resolve_entities ? (ENTITIES_ENDPOINT + '/linked') : ENTITIES_ENDPOINT
-
     RequestBuilder.new(@user_key, @alternate_url + endpoint, params, BINDING_VERSION)
                   .send_post_request
   end
@@ -181,9 +182,11 @@ class RosetteAPI
   # base.
   def get_entities_linked(params)
     warn '[DEPRECATION] `get_entities_linked` is deprecated. Please use ' \
-         '`get_entities` instead with `resolve_entities` param set to true.'
+         '`get_entities` instead.'
     get_entities(params, true)
   end
+
+
 
   # Extracts Tier 1 contextual categories from the input.
   #

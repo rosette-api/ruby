@@ -157,16 +157,36 @@ class RosetteAPI
   # ==== Attributes
   #
   # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +resolve_entities+ - Enables entities to be linked in application endpoints.
   #
   # Returns each entity extracted from the input.
-  def get_entities(params)
+  def get_entities(params, resolve_entities = false)
     check_params params
+
+    raise BadRequestError.new('Expects boolean for resolve_entities') unless !!resolve_entities == resolve_entities
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + ENTITIES_ENDPOINT, params, BINDING_VERSION)
+    endpoint = resolve_entities ? (ENTITIES_ENDPOINT + '/linked') : ENTITIES_ENDPOINT
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, params, BINDING_VERSION)
                   .send_post_request
   end
+
+  # Extracts entities from the input.
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns list of entities that have been linked to entities in the knowledge
+  # base.
+  def get_entities_linked(params)
+    warn '[DEPRECATION] `get_entities_linked` is deprecated. Please use ' \
+         '`get_entities` instead.'
+    get_entities(params, true)
+  end
+
+
 
   # Extracts Tier 1 contextual categories from the input.
   #

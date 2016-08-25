@@ -9,6 +9,8 @@ require_relative 'rosette_api_error'
 class RequestBuilder
   # Alternate Rosette API URL
   attr_reader :alternate_url
+  # Rosette API HTTP client
+  attr_reader :http_client
   # Parameters to build the body of the request from
   attr_accessor :params
   # Rosette API key
@@ -16,12 +18,15 @@ class RequestBuilder
   # Rosette API binding version
   attr_accessor :binding_version
 
-  def initialize(user_key, alternate_url, params = {}, binding_version) #:notnew:
+
+  def initialize(user_key, alternate_url, http_client, params = {}, binding_version) #:notnew:
     @user_key = user_key
     @alternate_url = alternate_url
+    @http_client = http_client
     @params = params
     @retries = 5
     @binding_version = binding_version
+
   end
 
   # Prepares a plain POST request for Rosette API.
@@ -34,8 +39,6 @@ class RequestBuilder
   def prepare_plain_request(params)
     begin
       uri = URI.parse @alternate_url
-      http = Net::HTTP.new uri.host, uri.port
-      http.use_ssl = uri.scheme == 'https'
       request = Net::HTTP::Post.new uri.request_uri
     rescue
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
@@ -60,7 +63,7 @@ class RequestBuilder
     request['X-RosetteAPI-Binding-Version'] = @binding_version
     request.body = params.to_json
 
-    [http, request]
+    [@http_client, request]
   end
 
   # Prepares a multipart/form-data POST request for Rosette API.
@@ -99,8 +102,6 @@ class RequestBuilder
     # Create the HTTP objects
     begin
       uri = URI.parse @alternate_url
-      http = Net::HTTP.new uri.host, uri.port
-      http.use_ssl = uri.scheme == 'https'
       request = Net::HTTP::Post.new uri.request_uri
     rescue
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
@@ -125,7 +126,7 @@ class RequestBuilder
     request.add_field 'X-RosetteAPI-Binding-Version', @binding_version
     request.body = post_body.join
 
-    [http, request]
+    [@http_client, request]
   end
 
   # Sends a GET request to Rosette API.
@@ -134,8 +135,6 @@ class RequestBuilder
   def send_get_request
     begin
       uri = URI.parse @alternate_url
-      http = Net::HTTP.new uri.host, uri.port
-      http.use_ssl = uri.scheme == 'https'
 
       request = Net::HTTP::Get.new uri.request_uri
     rescue
@@ -143,7 +142,7 @@ class RequestBuilder
     end
     request['X-RosetteAPI-Key'] = @user_key
 
-    self.get_response http, request
+    self.get_response @http_client, request
   end
 
   # Sends a POST request to Rosette API.

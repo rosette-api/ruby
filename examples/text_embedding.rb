@@ -9,6 +9,6 @@ else
 end
 
 embeddings_data = 'Cambridge, Massachusetts'
-params = DocumentParameters.new(content: embeddings_data, genre: 'social-media')
+params = DocumentParameters.new(content: embeddings_data)
 response = rosette_api.get_text_embedding(params)
 puts JSON.pretty_generate(response)

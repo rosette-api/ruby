@@ -6,24 +6,27 @@ require 'json'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 describe RosetteAPI do
+  RSpec.configure do |config|
+      config.before(:example) { @content = 'Sample Content' }
+      config.before(:example) { @json = {:content => "Sample Content"}.to_json }
+  end
 
   describe '.get_language' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/language.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/language').
-          with(body: request_file,
-               headers: {'Accept' => 'application/json',
+          with(:body => @json,
+               :headers => {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'language'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
     end
     it 'test language' do
       params = DocumentParameters.new
-      params.content = 'Por favor Senorita, says the man.?'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_language(params)
       expect(response).instance_of? Hash
     end
@@ -45,10 +48,9 @@ describe RosetteAPI do
   end
 
   describe '.get_morphology_complete' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_complete.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/complete').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -56,21 +58,20 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'morphology/complete'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"morphology/complete\"}", :headers => {})
     end
     it 'test morphology complete' do
       params = DocumentParameters.new
-      params.content = 'The quick brown fox jumped over the lazy dog. Yes he did.'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_morphology_complete(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_compound_components' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_compound_components.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/compound-components').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -78,21 +79,20 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'morphology/compound-components'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"morphology/compound-components\"}", :headers => {})
     end
     it 'test morphology compound components' do
       params = DocumentParameters.new
-      params.content = 'Rechtsschutzversicherungsgesellschaften'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_compound_components(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_han_readings' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_han_readings.json')), encoding: 'utf-8'
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/han-readings').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -100,21 +100,20 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'morphology/han-readings'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"morphology/han-readings\"}", :headers => {})
     end
     it 'test morphology han readings' do
       params = DocumentParameters.new
-      params.content = '北京大学生物系主任办公室内部会议'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_han_readings(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_parts_of_speech' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_parts_of_speech.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/parts-of-speech').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -122,21 +121,20 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'morphology/parts-of-speech'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"morphology/parts-of-speech\"}", :headers => {})
     end
     it 'test morphology parts of speech' do
       params = DocumentParameters.new
-      params.content = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_parts_of_speech(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_lemmas' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/morphology_lemmas.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/lemmas').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -144,21 +142,20 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'morphology/lemmas'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"morphology/lemmas\"}", :headers => {})
     end
     it 'test morphology lemmas' do
       params = DocumentParameters.new
-      params.content = "The fact is that the geese just went back to get a rest and I'm not banking on their return soon"
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_lemmas(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_entities' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/entities.json')), encoding: 'utf-8'
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/entities').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -166,22 +163,21 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'entities'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"entities\"}", :headers => {})
     end
     it 'test entities' do
       params = DocumentParameters.new
-      params.content = 'Bill Murray will appear in new Ghostbusters film: Dr. Peter Venkman was spotted filming a' \
-                       ' cameo in Boston this… http://dlvr.it/BnsFfS'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_entities(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_entities_no_qids' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/entities_no_qids.json'))
     before do
+      no_qids_json = {:content => "Sample Content", :options => {:linkEntities => false}}.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/entities').
-          with(body: request_file,
+          with(:body => no_qids_json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -189,12 +185,11 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'entities'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"entities\"}", :headers => {})
     end
     it 'test entities without qids' do
       params = DocumentParameters.new
-      params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including' \
-                       ' Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
+      params.content = @content
       params.rosette_options = { linkEntities: false}
       response = RosetteAPI.new('0123456789').get_entities(params)
       expect(response).instance_of? Hash
@@ -210,10 +205,10 @@ describe RosetteAPI do
   end
 
   describe '.get_categories' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/categories.json'))
     before do
+      categories_json = {:contentUri => "http://google.com"}.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/categories').
-          with(body: request_file,
+          with(:body => categories_json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -221,21 +216,20 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'categories'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"categories\"}", :headers => {})
     end
     it 'test categories' do
       params = DocumentParameters.new
-      params.content_uri = 'http://www.onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/'
+      params.content_uri = "http://google.com"
       response = RosetteAPI.new('0123456789').get_categories(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_relationships' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/relationships.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/relationships').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -243,21 +237,21 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'relationships'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"relationships\"}", :headers => {})
     end
     it 'test relationships' do
       params = DocumentParameters.new
-      params.content = 'The Ghostbusters movie was filmed in Boston.'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_relationships(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.name_translation' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/name_translation.json')), encoding: 'utf-8'
     before do
+      name_translation_json = {:name => "معمر محمد أبو منيار القذاف", :targetLanguage => "eng", :targetScript => "Latn"}.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-translation').
-          with(body: request_file,
+          with(:body => name_translation_json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -265,7 +259,7 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'name-translation'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"name-translation\"}", :headers => {})
     end
     it 'test name translation' do
       params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
@@ -281,10 +275,10 @@ describe RosetteAPI do
   end
 
   describe '.name_similarity' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/name_similarity.json')), encoding: 'utf-8'
     before do
+      name_similarity_json = {:name1 => "Michael Jackson", :name2 => "迈克尔·杰克逊"}.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity').
-          with(body: request_file,
+          with(:body => name_similarity_json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -292,7 +286,7 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'name-similarity'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"name-similarity\"}", :headers => {})
     end
     it 'test name similarity' do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
@@ -317,10 +311,9 @@ describe RosetteAPI do
   end
 
   describe '.get_tokens' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/tokens.json')), encoding: 'utf-8'
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/tokens').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -328,21 +321,20 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'tokens'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"tokens\"}", :headers => {})
     end
     it 'test tokens' do
       params = DocumentParameters.new
-      params.content = '北京大学生物系主任办公室内部会议'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_tokens(params)
       expect(response).instance_of? Hash
     end
   end
 
   describe '.get_sentences' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/sentences.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/sentences').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -350,14 +342,11 @@ describe RosetteAPI do
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0'}).
-          to_return(status: 200, body: {'test': 'sentences'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"sentences\"}", :headers => {})
     end
     it 'test sentences' do
       params = DocumentParameters.new
-      params.content = 'This land is your land. This land is my land\nFrom California to the New York island;\nFrom' \
-                       ' the wood forest to the Gulf Stream waters\n\nThis land was made for you and Me.\n\nAs I was' \
-                       ' walking that ribbon of highway,\nI saw above me that endless skyway:\nI saw below me that' \
-                       ' golden valley:\nThis land was made for you and me.'
+      params.content = @content
       response = RosetteAPI.new('0123456789').get_sentences(params)
       expect(response).instance_of? Hash
     end
@@ -370,7 +359,7 @@ describe RosetteAPI do
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'test': 'info'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"info\"}", :headers => {})
     end
     it 'test info' do
       response = RosetteAPI.new('0123456789').info
@@ -385,7 +374,7 @@ describe RosetteAPI do
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 200, body: {'test': 'ping'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"ping\"}", :headers => {})
     end
     it 'test ping' do
       response = RosetteAPI.new('0123456789').ping
@@ -394,10 +383,9 @@ describe RosetteAPI do
   end
 
   describe '.get_language_custom_header' do
-    request_file = File.read File.expand_path(File.join(File.dirname(__FILE__), '../mock-data/request/language.json'))
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/language').
-          with(body: request_file,
+          with(:body => @json,
                headers: {'Accept' => 'application/json',
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'Content-Type' => 'application/json',
@@ -406,13 +394,13 @@ describe RosetteAPI do
                             'X-Rosetteapi-Binding' => 'ruby',
                             'X-Rosetteapi-Binding-Version' => '1.2.0',
                             'X-RosetteApi-App' => 'ruby-app'}).
-          to_return(status: 200, body: {'test': 'language'}.to_json, headers: {})
+          to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
     end
 
     it 'test custom_headers is invalid' do
       params = DocumentParameters.new
       params.content = 'Por favor Senorita, says the man.?'
-      params.custom_headers = { 'test': 'ruby-app'}
+      params.custom_headers = {"test" => "ruby-app"}
       expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error(RosetteAPIError)
     end
   end
@@ -424,10 +412,31 @@ describe RosetteAPI do
                             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789'}).
-          to_return(status: 409, body: {'code': 'incompatibleClientVersion'}.to_json, headers: {})
+          to_return(:status => 409, :body => "{\"code\": \"incompatibleClientVersion\"}", :headers => {})
     end
     it 'test error 409 properly handled' do
       expect { RosetteAPI.new('0123456789').info }.to raise_error(RosetteAPIError)
+    end
+  end
+
+  describe '.get_text_embedding' do
+    before do
+      stub_request(:post, 'https://api.rosette.com/rest/v1/text-embedding').
+          with(:body => @json,
+               :headers => {'Accept' => 'application/json',
+                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                            'Content-Type' => 'application/json',
+                            'User-Agent' => 'Ruby',
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.2.0'}).
+          to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
+    end
+    it 'test text_embedding' do
+      params = DocumentParameters.new
+      params.content = @content
+      response = RosetteAPI.new('0123456789').get_text_embedding(params)
+      expect(response).instance_of? Hash
     end
   end
 

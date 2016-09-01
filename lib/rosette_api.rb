@@ -34,6 +34,8 @@ class RosetteAPI
   INFO = '/info'
   # Rosette API ping endpoint
   PING = '/ping'
+  # Text Embedding endpoint
+  TEXT_EMBEDDING = '/text-embedding'
 
   # Rosette API key
   attr_accessor :user_key
@@ -302,6 +304,22 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT, @http_client, params, BINDING_VERSION)
+                  .send_post_request
+  end
+  #
+  # Returns the vectors associated with the text
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns list of linguistic sentences of the input.
+  def get_text_embedding(params)
+    check_params params
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client, params, BINDING_VERSION)
                   .send_post_request
   end
 

@@ -1,25 +1,29 @@
 [![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=develop)](https://travis-ci.org/rosette-api/ruby)
 
-Ruby client binding for Rosette API
-==================================
+# Ruby client binding for Rosette API #
 See the wiki for more information.
 
-Installation
-------------
+## Installation ##
 
 `gem install rosette_api`
 
-Basic Usage
------------
+## Docker ##
+A Docker image for running the examples against the compiled source library is available on Docker Hub.
+
+Command: `docker run -e API_KEY=api-key -v "<binding root directory>:/source" rosetteapi/docker-ruby`
+
+Additional environment settings:
+`-e ALT_URL=<alternative URL>`
+`-e FILENAME=<single filename>`
+
+## Basic Usage ##
 
 See [examples](examples)
 
-API Documentation
------------------
+## API Documentation ##
 
 See [documentation](http://rosette-api.github.io/ruby)
 
-Additional Information
-----------------------
+## Additional Information ##
 
 Visit [Rosette API site](https://developer.rosette.com)

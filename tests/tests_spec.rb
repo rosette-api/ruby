@@ -453,7 +453,7 @@ describe RosetteAPI do
                             'X-Rosetteapi-Binding-Version' => '1.3.0'}).
           to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
     end
-    it 'test text_embedding' do
+    it 'test syntax_dependencies' do
       params = DocumentParameters.new
       params.content = @content
       response = RosetteAPI.new('0123456789').get_syntax_dependencies(params)

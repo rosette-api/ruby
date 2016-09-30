@@ -440,5 +440,25 @@ describe RosetteAPI do
     end
   end
 
+  describe '.get_syntax_dependencies' do
+    before do
+      stub_request(:post, 'https://api.rosette.com/rest/v1/syntax/dependencies').
+          with(:body => @json,
+               :headers => {'Accept' => 'application/json',
+                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                            'Content-Type' => 'application/json',
+                            'User-Agent' => 'Ruby',
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+          to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
+    end
+    it 'test syntax_dependencies' do
+      params = DocumentParameters.new
+      params.content = @content
+      response = RosetteAPI.new('0123456789').get_syntax_dependencies(params)
+      expect(response).instance_of? Hash
+    end
+  end
 
 end

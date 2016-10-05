@@ -8,7 +8,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-relationships_text_data = 'The Ghostbusters movie was filmed in Boston.'
+relationships_text_data = "Bill Gates, Microsoft's former CEO, is a philanthropist."
 params = DocumentParameters.new(content: relationships_text_data)
 params.rosette_options = { accuracyMode: 'PRECISION' }
 response = rosette_api.get_relationships(params)

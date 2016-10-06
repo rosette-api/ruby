@@ -21,7 +21,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
     end
     it 'test language' do
@@ -57,7 +57,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"morphology/complete\"}", :headers => {})
     end
     it 'test morphology complete' do
@@ -78,7 +78,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"morphology/compound-components\"}", :headers => {})
     end
     it 'test morphology compound components' do
@@ -99,7 +99,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"morphology/han-readings\"}", :headers => {})
     end
     it 'test morphology han readings' do
@@ -120,7 +120,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"morphology/parts-of-speech\"}", :headers => {})
     end
     it 'test morphology parts of speech' do
@@ -141,7 +141,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"morphology/lemmas\"}", :headers => {})
     end
     it 'test morphology lemmas' do
@@ -162,7 +162,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"entities\"}", :headers => {})
     end
     it 'test entities' do
@@ -184,7 +184,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"entities\"}", :headers => {})
     end
     it 'test entities without qids' do
@@ -215,7 +215,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"categories\"}", :headers => {})
     end
     it 'test categories' do
@@ -236,7 +236,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"relationships\"}", :headers => {})
     end
     it 'test relationships' do
@@ -258,7 +258,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"name-translation\"}", :headers => {})
     end
     it 'test name translation' do
@@ -285,7 +285,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"name-similarity\"}", :headers => {})
     end
     it 'test name similarity' do
@@ -320,7 +320,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"tokens\"}", :headers => {})
     end
     it 'test tokens' do
@@ -341,7 +341,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"sentences\"}", :headers => {})
     end
     it 'test sentences' do
@@ -392,7 +392,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0',
+                            'X-Rosetteapi-Binding-Version' => '1.4.0',
                             'X-RosetteApi-App' => 'ruby-app'}).
           to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
     end
@@ -429,7 +429,7 @@ describe RosetteAPI do
                             'User-Agent' => 'Ruby',
                             'X-Rosetteapi-Key' => '0123456789',
                             'X-Rosetteapi-Binding' => 'ruby',
-                            'X-Rosetteapi-Binding-Version' => '1.3.0'}).
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
           to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
     end
     it 'test text_embedding' do
@@ -440,5 +440,25 @@ describe RosetteAPI do
     end
   end
 
+  describe '.get_syntax_dependencies' do
+    before do
+      stub_request(:post, 'https://api.rosette.com/rest/v1/syntax/dependencies').
+          with(:body => @json,
+               :headers => {'Accept' => 'application/json',
+                            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                            'Content-Type' => 'application/json',
+                            'User-Agent' => 'Ruby',
+                            'X-Rosetteapi-Key' => '0123456789',
+                            'X-Rosetteapi-Binding' => 'ruby',
+                            'X-Rosetteapi-Binding-Version' => '1.4.0'}).
+          to_return(:status => 200, :body => "{\"test\": \"language\"}", :headers => {})
+    end
+    it 'test syntax_dependencies' do
+      params = DocumentParameters.new
+      params.content = @content
+      response = RosetteAPI.new('0123456789').get_syntax_dependencies(params)
+      expect(response).instance_of? Hash
+    end
+  end
 
 end

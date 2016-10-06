@@ -9,7 +9,7 @@ require_relative 'bad_request_format_error'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.3.0'
+  BINDING_VERSION = '1.4.0'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'
   # Rosette API morphology endpoint
@@ -36,6 +36,8 @@ class RosetteAPI
   PING = '/ping'
   # Text Embedding endpoint
   TEXT_EMBEDDING = '/text-embedding'
+  # Syntactic Dependencies endpoint
+  SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'
 
   # Rosette API key
   attr_accessor :user_key
@@ -320,6 +322,23 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client, params, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  #
+  # Returns the vectors associated with the text
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns list of linguistic sentences of the input.
+  def get_syntax_dependencies(params)
+    check_params params
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + SYNTACTIC_DEPENDENCIES_ENDPOINT, @http_client, params, BINDING_VERSION)
                   .send_post_request
   end
 

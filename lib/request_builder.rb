@@ -24,7 +24,6 @@ class RequestBuilder
     @alternate_url = alternate_url
     @http_client = http_client
     @params = params
-    @retries = 5
     @binding_version = binding_version
 
   end
@@ -173,17 +172,7 @@ class RequestBuilder
     if response.code != '200'
       message = JSON.parse(response.body)['message']
       code = JSON.parse(response.body)['code']
-      if response.code == '429'
-        if @retries != 0
-          @retries = @retries - 1
-          sleep 15
-          self.get_response(http, request)
-        else
-          raise RosetteAPIError.new code, message
-        end
-      else
-        raise RosetteAPIError.new code, message
-      end
+      raise RosetteAPIError.new code, message
     else
       response_headers = {}
       response.header.each_header { |key, value| response_headers[key] = value }

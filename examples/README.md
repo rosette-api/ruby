@@ -22,7 +22,6 @@ Each example, when run, prints its output to the console.
 | -------------                 |-------------                                        |
 | categories.rb                    | Gets the category of a document at a URL              | 
 | entities.rb                      | Gets the entities from a piece of text                | 
-| entities_linked.rb               | Gets the linked (to Wikipedia) entities from a piece of text |
 | info.rb                          | Gets information about Rosette API                    | 
 | language.rb                      | Gets the language of a piece of text                  | 
 | name_similarity.rb                  | Gets the similarity score of two names                |

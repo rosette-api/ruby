@@ -18,6 +18,10 @@ sentiment_file_data = "<html><head><title>New Ghostbusters Film</title></head><b
                       '.</p></body></html>'
 file.write(sentiment_file_data)
 file.close
-params = DocumentParameters.new(file_path: file.path, language: 'eng')
-response = rosette_api.get_sentiment(params)
-puts JSON.pretty_generate(response)
+begin
+    params = DocumentParameters.new(file_path: file.path, language: 'eng')
+    response = rosette_api.get_sentiment(params)
+    puts JSON.pretty_generate(response)
+rescue RosetteAPIError => rosette_api_error
+    printf("Rosette API Error (%s): %s", rosette_api_error.status_code, rosette_api_error.message)
+end

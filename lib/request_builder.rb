@@ -19,12 +19,15 @@ class RequestBuilder
   attr_accessor :binding_version
 
 
-  def initialize(user_key, alternate_url, http_client, params = {}, binding_version) #:notnew:
+  def initialize(user_key, alternate_url, http_client, params = {}, url_parameters = nil, binding_version)
     @user_key = user_key
     @alternate_url = alternate_url
     @http_client = http_client
     @params = params
     @binding_version = binding_version
+
+    return unless url_parameters
+    @alternate_url = @alternate_url + '?' + URI.encode_www_form(url_parameters)
 
   end
 
@@ -43,7 +46,7 @@ class RequestBuilder
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
 
-    if params['customHeaders'] != nil
+    if params['customHeaders']
       keys_array = params['customHeaders'].keys
       for k in keys_array
         if k.to_s =~ /^X-RosetteAPI-/
@@ -141,20 +144,20 @@ class RequestBuilder
     end
     request['X-RosetteAPI-Key'] = @user_key
 
-    self.get_response @http_client, request
+    get_response @http_client, request
   end
 
   # Sends a POST request to Rosette API.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_post_request
-    if !params['filePath'].nil?
-      http, request = self.prepare_multipart_request params
+    if params['filePath']
+      http, request = prepare_multipart_request params
     else
-      http, request = self.prepare_plain_request params
+      http, request = prepare_plain_request params
     end
 
-    self.get_response http, request
+    get_response http, request
   end
 
   # Gets response from HTTP connection.

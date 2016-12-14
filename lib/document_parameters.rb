@@ -56,10 +56,10 @@ class DocumentParameters
   #
   # Returns the new Hash.
   def load_params
-    self.validate_params
-    self.to_hash.select { |_key, value| !value.nil? }
-        .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-        .to_h
+    validate_params
+    to_hash.select { |_key, value| !value.nil? }
+           .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+           .to_h
   end
 
   # Converts this class to Hash.

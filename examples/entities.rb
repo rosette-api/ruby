@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'rosette_api'
 
 api_key, url = ARGV

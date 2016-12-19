@@ -9,7 +9,7 @@ require_relative 'bad_request_format_error'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.4.0'.freeze
+  BINDING_VERSION = '1.5.0'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'.freeze
   # Rosette API morphology endpoint

@@ -1,10 +1,10 @@
-Thu, 06 Oct 2016 13:13:19 +0000
-./document_parameters.rb	Thu, 06 Oct 2016 13:13:13 +0000
-./rosette_api_error.rb	Thu, 06 Oct 2016 13:13:13 +0000
-./bad_request_format_error.rb	Thu, 06 Oct 2016 13:13:13 +0000
-./bad_request_error.rb	Thu, 06 Oct 2016 13:13:13 +0000
-./request_builder.rb	Thu, 06 Oct 2016 13:13:15 +0000
-./rosette_api.rb	Thu, 06 Oct 2016 13:13:15 +0000
-./name_parameter.rb	Thu, 06 Oct 2016 13:13:13 +0000
-./name_similarity_parameters.rb	Thu, 06 Oct 2016 13:13:13 +0000
-./name_translation_parameters.rb	Thu, 06 Oct 2016 13:13:13 +0000
+Mon, 19 Dec 2016 15:24:12 +0000
+./document_parameters.rb	Mon, 19 Dec 2016 15:24:04 +0000
+./rosette_api_error.rb	Mon, 19 Dec 2016 15:23:59 +0000
+./bad_request_format_error.rb	Mon, 19 Dec 2016 15:23:59 +0000
+./bad_request_error.rb	Mon, 19 Dec 2016 15:23:59 +0000
+./request_builder.rb	Mon, 19 Dec 2016 15:24:04 +0000
+./rosette_api.rb	Mon, 19 Dec 2016 15:24:04 +0000
+./name_parameter.rb	Mon, 19 Dec 2016 15:23:59 +0000
+./name_similarity_parameters.rb	Mon, 19 Dec 2016 15:23:59 +0000
+./name_translation_parameters.rb	Mon, 19 Dec 2016 15:23:59 +0000

@@ -70,9 +70,9 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-get_response">#get_response</a>
+    <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-initialize">#initialize</a>
+    <li ><a href="#method-i-get_response">#get_response</a>
     
     <li ><a href="#method-i-prepare_multipart_request">#prepare_multipart_request</a>
     
@@ -185,6 +185,55 @@
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(user_key, alternate_url, http_client, params = {}, url_parameters = nil, binding_version)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File request_builder.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">url_parameters</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">binding_version</span>)
+  <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
+  <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
+  <span class="ruby-ivar">@http_client</span> = <span class="ruby-identifier">http_client</span>
+  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
+  <span class="ruby-ivar">@binding_version</span> = <span class="ruby-identifier">binding_version</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url_parameters</span>
+  <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;?&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">encode_www_form</span>(<span class="ruby-identifier">url_parameters</span>)
+
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
@@ -220,7 +269,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="get_response-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 168</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_response</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">request</span>
 
@@ -272,7 +321,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_multipart_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 74</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_multipart_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>], <span class="ruby-string">&#39;r&#39;</span>
@@ -364,7 +413,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_plain_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 37</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
@@ -373,7 +422,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;connectionError&#39;</span>, <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>]
     <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">keys</span>
     <span class="ruby-keyword">for</span> <span class="ruby-identifier">k</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">keys_array</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
@@ -426,7 +475,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="send_get_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 133</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_get_request</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
@@ -437,7 +486,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;X-RosetteAPI-Key&#39;</span>] = <span class="ruby-ivar">@user_key</span>
 
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_response</span> <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>
+  <span class="ruby-identifier">get_response</span> <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -471,61 +520,15 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="send_post_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 149</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">send_post_request</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>].<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prepare_multipart_request</span> <span class="ruby-identifier">params</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>]
+    <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-identifier">prepare_multipart_request</span> <span class="ruby-identifier">params</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">prepare_plain_request</span> <span class="ruby-identifier">params</span>
+    <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-identifier">prepare_plain_request</span> <span class="ruby-identifier">params</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_response</span> <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
-     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Protected Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-initialize" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">initialize</span><span
-            class="method-args">(user_key, alternate_url, http_client, params = {}, binding_version)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 21</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">binding_version</span>) <span class="ruby-comment">#:notnew:</span>
-  <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
-  <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
-  <span class="ruby-ivar">@http_client</span> = <span class="ruby-identifier">http_client</span>
-  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
-  <span class="ruby-ivar">@binding_version</span> = <span class="ruby-identifier">binding_version</span>
-
+  <span class="ruby-identifier">get_response</span> <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

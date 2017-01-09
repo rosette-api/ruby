@@ -10,7 +10,7 @@ end
 
 syntax_dependencies_data = "Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize in Physiology or Medicine on Monday."
 begin
-    params = DocumentParameters.new(content: syntax_dependencies_data, genre: 'social-media')
+    params = DocumentParameters.new(content: syntax_dependencies_data)
     response = rosette_api.get_syntax_dependencies(params)
     puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error

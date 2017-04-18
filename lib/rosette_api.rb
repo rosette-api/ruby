@@ -22,6 +22,8 @@ class RosetteAPI
   RELATIONSHIPS_ENDPOINT = '/relationships'.freeze
   # Rosette API sentiment endpoint
   SENTIMENT_ENDPOINT = '/sentiment'.freeze
+  # Name Deduplication endpoint
+  NAME_DEDUPLICATION_ENDPOINT = 'name-deduplication'.freeze
   # Rosette API name-translation endpoint
   NAME_TRANSLATION_ENDPOINT = '/name-translation'.freeze
   # Rosette API name-similarity endpoint
@@ -38,6 +40,8 @@ class RosetteAPI
   TEXT_EMBEDDING = '/text-embedding'.freeze
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
+  # Transliteration endpoint
+  TRANSLITERATION_ENDPOINT = 'transliteration'.freeze
 
   # Rosette API key
   attr_accessor :user_key
@@ -225,6 +229,22 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  # De-duplicates a list of names.
+  #
+  # ==== Attributes
+  #
+  # * +params+ - NameDeduplicationParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns the list of deduplicated names.
+  def name_deduplication(params)
+    check_params params, 'Expects a NameDeduplicationParameters type as an argument', NameDeduplicationParameters
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + NAME_DEDUPLICATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 

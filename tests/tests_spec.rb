@@ -305,8 +305,54 @@ describe RosetteAPI do
     end
 
     it 'badRequest: Expects NameSimilarityParameters type as an argument' do
-      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
+      params = NameSimilarityParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
       expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
+    end
+  end
+
+  describe '.name_deduplication' do
+    before do
+      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
+
+      stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
+        .with(body: names.to_json,
+              headers: {'Accept' => 'application/json',
+                        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                        'Content-Type' => 'application/json',
+                        'User-Agent' => 'Ruby',
+                        'X-Rosetteapi-Key' => '0123456789',
+                        'X-Rosetteapi-Binding' => 'ruby',
+                        'X-Rosetteapi-Binding-Version' => '1.5.0' })
+        .to_return(status: 200, body: '{\"test\": \"name-deduplication\"}', headers: {})
+    end
+    it 'test name deduplication' do
+      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
+      params = NameDeduplicationParameters.new(names, 0.75)
+      response = RosetteAPI.new('0123456789').name_deduplication(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'badRequestFormat: names must be an array of name_parameter' do
+      params = NameDeduplicationParameters.new('Michael Jackson', 0.75)
+      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
+    end
+
+    it 'badRequestFormat: threshold must be a float' do
+      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
+      params = NameDeduplicationParameters.new(names, 123)
+      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: threshold must be in the range of 0 to 1' do
+      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
+      params = NameDeduplicationParameters.new(names, 1.5)
+      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: rosette_options can only be an instance of a Hash' do
+      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
+      params = NameDeduplicationParameters.new(names, 0.5, 'options')
+      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
     end
   end
 

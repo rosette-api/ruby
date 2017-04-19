@@ -1,5 +1,6 @@
 require_relative 'request_builder'
 require_relative 'document_parameters'
+require_relative 'name_deduplication_parameters'
 require_relative 'name_translation_parameters'
 require_relative 'name_similarity_parameters'
 require_relative 'rosette_api_error'
@@ -23,7 +24,7 @@ class RosetteAPI
   # Rosette API sentiment endpoint
   SENTIMENT_ENDPOINT = '/sentiment'.freeze
   # Name Deduplication endpoint
-  NAME_DEDUPLICATION_ENDPOINT = 'name-deduplication'.freeze
+  NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'.freeze
   # Rosette API name-translation endpoint
   NAME_TRANSLATION_ENDPOINT = '/name-translation'.freeze
   # Rosette API name-similarity endpoint

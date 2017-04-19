@@ -47,7 +47,7 @@ class DocumentParameters
     elsif [@content, @content_uri, @file_path].all?(&:nil?)
       raise BadRequestFormatError.new 'The format of the request is invalid: no content provided; must' \
                                       ' be one of an attachment, an inline "content" field, or an external "contentUri"'
-    elsif !@rosette_options
+    elsif @rosette_options
       raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
     end
   end
@@ -57,7 +57,7 @@ class DocumentParameters
   # Returns the new Hash.
   def load_params
     validate_params
-    to_hash.select { |_key, value| !value }
+    to_hash.select { |_key, value| value }
            .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
            .to_h
   end

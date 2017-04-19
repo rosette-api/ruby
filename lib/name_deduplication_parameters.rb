@@ -25,8 +25,10 @@ class NameDeduplicationParameters
   def validate_params
     raise BadRequestError.new('names must be an array of name_parameter') unless @names.instance_of? Array
     raise BadRequestError.new('threshold must be a float') unless @threshold.is_a?(Float)
-    raise BadRequestError.new('threshold must be in the range of 0 to 1') if @threshold < 0 || @threshold > 1
-    raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
+    raise BadRequestError.new('threshold must be in the range of 0 to 1') if @threshold.negative? || @threshold > 1
+    if @rosette_options
+      raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
+    end
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -44,8 +46,8 @@ class NameDeduplicationParameters
   # Returns the new Hash.
   def to_hash
     {
-      name1: @names,
-      name2: @threshold,
+      names: @names,
+      threshold: @threshold,
       options: @rosette_options
     }
   end

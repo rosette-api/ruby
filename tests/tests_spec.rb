@@ -22,7 +22,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"language\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test language' do
       params = DocumentParameters.new
@@ -56,7 +56,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"morphology/complete\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "morphology/complete"}', headers: {})
     end
     it 'test morphology complete' do
       params = DocumentParameters.new
@@ -77,7 +77,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"morphology/compound-components\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "morphology/compound-components"}', headers: {})
     end
     it 'test morphology compound components' do
       params = DocumentParameters.new
@@ -98,7 +98,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"morphology/han-readings\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "morphology/han-readings"}', headers: {})
     end
     it 'test morphology han readings' do
       params = DocumentParameters.new
@@ -119,7 +119,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"morphology/parts-of-speech\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "morphology/parts-of-speech"}', headers: {})
     end
     it 'test morphology parts of speech' do
       params = DocumentParameters.new
@@ -140,7 +140,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"morphology/lemmas\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "morphology/lemmas"}', headers: {})
     end
     it 'test morphology lemmas' do
       params = DocumentParameters.new
@@ -161,7 +161,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"entities\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "entities"}', headers: {})
     end
     it 'test entities' do
       params = DocumentParameters.new
@@ -183,7 +183,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"entities\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "entities"}', headers: {})
     end
     it 'test entities without qids' do
       params = DocumentParameters.new
@@ -214,7 +214,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"categories\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "categories"}', headers: {})
     end
     it 'test categories' do
       params = DocumentParameters.new
@@ -235,7 +235,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"relationships\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "relationships"}', headers: {})
     end
     it 'test relationships' do
       params = DocumentParameters.new
@@ -257,7 +257,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-          .to_return(status: 200, body: '{\"test\": \"name-translation\"}', headers: {})
+          .to_return(status: 200, body: '{"test": "name-translation"}', headers: {})
     end
     it 'test name translation' do
       params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
@@ -266,7 +266,7 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
 
-    it 'badRequest: Expects NameTransaltionParameters type as an argument' do
+    it 'badRequest: Expects NameTranslationParameters type as an argument' do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
       expect { RosetteAPI.new('0123456789').name_translation(params) }.to raise_error(BadRequestError)
     end
@@ -284,7 +284,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"name-similarity\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "name-similarity"}', headers: {})
     end
     it 'test name similarity' do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
@@ -303,17 +303,18 @@ describe RosetteAPI do
     end
 
     it 'badRequest: Expects NameSimilarityParameters type as an argument' do
-      params = NameSimilarityParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
+      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
       expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
     end
   end
 
   describe '.name_deduplication' do
+    names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| NameParameter.new(n) }
     before do
-      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
+      names_json = { names: names, threshold: 0.75 }.to_json
 
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
-        .with(body: names.to_json,
+      stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
+        .with(body: names_json,
               headers: {'Accept' => 'application/json',
                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                         'Content-Type' => 'application/json',
@@ -321,10 +322,9 @@ describe RosetteAPI do
                         'X-Rosetteapi-Key' => '0123456789',
                         'X-Rosetteapi-Binding' => 'ruby',
                         'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"name-deduplication\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "name-deduplication"}', headers: {})
     end
     it 'test name deduplication' do
-      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
       params = NameDeduplicationParameters.new(names, 0.75)
       response = RosetteAPI.new('0123456789').name_deduplication(params)
       expect(response).instance_of? Hash
@@ -336,20 +336,18 @@ describe RosetteAPI do
     end
 
     it 'badRequestFormat: threshold must be a float' do
-      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
       params = NameDeduplicationParameters.new(names, 123)
       expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: threshold must be in the range of 0 to 1' do
-      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
       params = NameDeduplicationParameters.new(names, 1.5)
       expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: rosette_options can only be an instance of a Hash' do
-      names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| new NameParameter(n) }
-      params = NameDeduplicationParameters.new(names, 0.5, 'options')
+      params = NameDeduplicationParameters.new(names, 0.5)
+      params.rosette_options = 1
       expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
     end
   end
@@ -365,7 +363,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"tokens\"}', header: {})
+        .to_return(status: 200, body: '{"test": "tokens"}', headers: {})
     end
     it 'test tokens' do
       params = DocumentParameters.new
@@ -386,7 +384,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"sentences\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "sentences"}', headers: {})
     end
     it 'test sentences' do
       params = DocumentParameters.new
@@ -403,7 +401,7 @@ describe RosetteAPI do
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'User-Agent' => 'Ruby',
                          'X-Rosetteapi-Key' => '0123456789' })
-        .to_return(status: 200, body: '{\"test\": \"info\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "info"}', headers: {})
     end
     it 'test info' do
       response = RosetteAPI.new('0123456789').info
@@ -418,7 +416,7 @@ describe RosetteAPI do
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'User-Agent' => 'Ruby',
                          'X-Rosetteapi-Key' => '0123456789' })
-        .to_return(status: 200, body: '{\"test\": \"ping\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "ping"}', headers: {})
     end
     it 'test ping' do
       response = RosetteAPI.new('0123456789').ping
@@ -438,7 +436,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0',
                          'X-RosetteApi-App' => 'ruby-app' })
-        .to_return(status: 200, body: '{\"test\": \"language\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
 
     it 'test custom_headers is invalid' do
@@ -456,7 +454,7 @@ describe RosetteAPI do
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'User-Agent' => 'Ruby',
                          'X-Rosetteapi-Key' => '0123456789' })
-        .to_return(status: 409, body: '{\"code\": \"incompatibleClientVersion\"}', headers: {})
+        .to_return(status: 409, body: '{"code": "incompatibleClientVersion"}', headers: {})
     end
     it 'test error 409 properly handled' do
       expect { RosetteAPI.new('0123456789').info }.to raise_error(RosetteAPIError)
@@ -474,7 +472,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"language\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test text_embedding' do
       params = DocumentParameters.new
@@ -495,7 +493,7 @@ describe RosetteAPI do
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.5.0' })
-        .to_return(status: 200, body: '{\"test\": \"language\"}', headers: {})
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test syntax_dependencies' do
       params = DocumentParameters.new

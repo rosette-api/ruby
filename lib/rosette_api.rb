@@ -3,6 +3,7 @@ require_relative 'document_parameters'
 require_relative 'name_deduplication_parameters'
 require_relative 'name_translation_parameters'
 require_relative 'name_similarity_parameters'
+require_relative 'transliteration_parameters'
 require_relative 'rosette_api_error'
 require_relative 'bad_request_error'
 require_relative 'bad_request_format_error'
@@ -42,7 +43,7 @@ class RosetteAPI
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
   # Transliteration endpoint
-  TRANSLITERATION_ENDPOINT = 'transliteration'.freeze
+  TRANSLITERATION_ENDPOINT = '/transliteration'.freeze
 
   # Rosette API key
   attr_accessor :user_key
@@ -345,6 +346,23 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SYNTACTIC_DEPENDENCIES_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  #
+  # Returns the transliteration of the content
+  #
+  # ==== Attributes
+  #
+  # * +params+ - TransliterationParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns the transliteration of the input.
+  def get_transliteration(params)
+    check_params params, 'Expects a TransliterationParameters type as an argument', TransliterationParameters
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + TRANSLITERATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 

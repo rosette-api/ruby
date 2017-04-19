@@ -262,13 +262,13 @@ describe RosetteAPI do
     it 'test name translation' do
       params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
       params.target_script = 'Latn'
-      response = RosetteAPI.new('0123456789').name_translation(params)
+      response = RosetteAPI.new('0123456789').get_name_translation(params)
       expect(response).instance_of? Hash
     end
 
     it 'badRequest: Expects NameTranslationParameters type as an argument' do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
-      expect { RosetteAPI.new('0123456789').name_translation(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_translation(params) }.to raise_error(BadRequestError)
     end
   end
 
@@ -288,23 +288,23 @@ describe RosetteAPI do
     end
     it 'test name similarity' do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
-      response = RosetteAPI.new('0123456789').name_similarity(params)
+      response = RosetteAPI.new('0123456789').get_name_similarity(params)
       expect(response).instance_of? Hash
     end
 
     it 'badRequestFormat: name1 option can only be an instance of a String or NameParameter' do
       params = NameSimilarityParameters.new(123, 'Michael Jackson')
-      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequestFormat: name2 option can only be an instance of a String or NameParameter' do
       params = NameSimilarityParameters.new('Michael Jackson', 123)
-      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: Expects NameSimilarityParameters type as an argument' do
       params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
-      expect { RosetteAPI.new('0123456789').name_similarity(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }.to raise_error(BadRequestError)
     end
   end
 
@@ -326,29 +326,29 @@ describe RosetteAPI do
     end
     it 'test name deduplication' do
       params = NameDeduplicationParameters.new(names, 0.75)
-      response = RosetteAPI.new('0123456789').name_deduplication(params)
+      response = RosetteAPI.new('0123456789').get_name_deduplication(params)
       expect(response).instance_of? Hash
     end
 
     it 'badRequestFormat: names must be an array of name_parameter' do
       params = NameDeduplicationParameters.new('Michael Jackson', 0.75)
-      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequestFormat: threshold must be a float' do
       params = NameDeduplicationParameters.new(names, 123)
-      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: threshold must be in the range of 0 to 1' do
       params = NameDeduplicationParameters.new(names, 1.5)
-      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: rosette_options can only be an instance of a Hash' do
       params = NameDeduplicationParameters.new(names, 0.5)
       params.rosette_options = 1
-      expect { RosetteAPI.new('0123456789').name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
     end
   end
 
@@ -360,10 +360,10 @@ describe RosetteAPI do
     source_script = 'Latn'
     before do
       transliteration_json = { content: content,
-                               target_language: target_language,
-                               target_script: target_script,
-                               source_language: source_language,
-                               source_script: source_script }.to_json
+                               targetLanguage: target_language,
+                               targetScript: target_script,
+                               sourceLanguage: source_language,
+                               sourceScript: source_script }.to_json
 
       stub_request(:post, 'https://api.rosette.com/rest/v1/transliteration')
         .with(body: transliteration_json,
@@ -378,39 +378,39 @@ describe RosetteAPI do
     end
     it 'test transliteration' do
       params = TransliterationParameters.new(content, target_language, target_script, source_language, source_script)
-      response = RosetteAPI.new('0123456789').name_deduplication(params)
+      response = RosetteAPI.new('0123456789').get_transliteration(params)
       expect(response).instance_of? Hash
     end
 
     it 'badRequest: content must be provided' do
       params = TransliterationParameters.new(nil, target_language, target_script, source_language, source_script)
-      expect { RosetteAPI.new('0123456789').transliteration(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: source_language must be provided' do
       params = TransliterationParameters.new(content, nil, target_script, source_language, source_script)
-      expect { RosetteAPI.new('0123456789').transliteration(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: source_script must be provided' do
       params = TransliterationParameters.new(content, target_language, nil, source_language, source_script)
-      expect { RosetteAPI.new('0123456789').transliteration(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: target_language must be provided' do
       params = TransliterationParameters.new(content, target_language, target_script, nil, source_script)
-      expect { RosetteAPI.new('0123456789').transliteration(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: source_language must be provided' do
       params = TransliterationParameters.new(content, target_language, target_script, source_language, nil)
-      expect { RosetteAPI.new('0123456789').transliteration(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: rosette_options can only be an instance of a Hash' do
       params = TransliterationParameters.new(content, target_language, target_script, source_language, source_script)
       params.rosette_options = 1
-      expect { RosetteAPI.new('0123456789').transliteration(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end
   end
 

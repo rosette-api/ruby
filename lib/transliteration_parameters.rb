@@ -32,7 +32,7 @@ class TransliterationParameters
   # a String or NameParameter.
   def validate_params
     raise BadRequestError.new('content must be provided') unless @content
-    raise BadRequestError.new('target_language must be provided') unless @target_anguage
+    raise BadRequestError.new('target_language must be provided') unless @target_language
     raise BadRequestError.new('target_script must be provided') unless @target_script
     raise BadRequestError.new('source_language must be provided') unless @source_language
     raise BadRequestError.new('source_script must be provided') unless @source_script
@@ -57,10 +57,10 @@ class TransliterationParameters
   def to_hash
     {
       content: @content,
-      targetLanguage: @target_language,
-      targetScript: @target_script,
-      sourceLanguage: @source_language,
-      sourceScript: @source_script,
+      target_language: @target_language,
+      target_script: @target_script,
+      source_language: @source_language,
+      source_script: @source_script,
       options: @rosette_options
     }
   end

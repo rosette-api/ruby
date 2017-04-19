@@ -19,7 +19,7 @@ begin
                                          transliteration_target_script,
                                          transliteration_source_language,
                                          transliteration_source_script)
-  response = rosette_api.transliteration(params)
+  response = rosette_api.get_transliteration(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
   printf('Rosette API Error (%s): %s', rosette_api_error.status_code, rosette_api_error.message)

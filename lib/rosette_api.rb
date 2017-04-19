@@ -241,7 +241,7 @@ class RosetteAPI
   # * +params+ - NameDeduplicationParameters helps to build the request body in RequestBuilder.
   #
   # Returns the list of deduplicated names.
-  def name_deduplication(params)
+  def get_name_deduplication(params)
     check_params params, 'Expects a NameDeduplicationParameters type as an argument', NameDeduplicationParameters
 
     params = params.load_params
@@ -257,7 +257,7 @@ class RosetteAPI
   # * +params+ - NameTranslationParameters helps to build the request body in RequestBuilder.
   #
   # Returns the translation of a name.
-  def name_translation(params)
+  def get_name_translation(params)
     check_params params, 'Expects a NameTranslationParameters type as an argument', NameTranslationParameters
 
     params = params.load_params
@@ -274,7 +274,7 @@ class RosetteAPI
   # * +params+ - NameSimilarityParameters helps to build the request body in RequestBuilder.
   #
   # Returns the confidence score of matching 2 names.
-  def name_similarity(params)
+  def get_name_similarity(params)
     check_params params, 'Expects a NameSimilarityParameters type as an argument', NameSimilarityParameters
 
     params = params.load_params

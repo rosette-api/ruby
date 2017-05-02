@@ -9,16 +9,9 @@ else
 end
 
 transliteration_content_data = 'Kareem Abdul Jabbar holds the records for most points in the NBA'
-transliteration_target_language = 'eng'
-transliteration_target_script = 'Latn'
-transliteration_source_language = 'ara'
-transliteration_source_script = 'Latn'
+
 begin
-  params = TransliterationParameters.new(transliteration_content_data,
-                                         transliteration_target_language,
-                                         transliteration_target_script,
-                                         transliteration_source_language,
-                                         transliteration_source_script)
+  params = DocumentParameters.new(transliteration_content_data)
   response = rosette_api.get_transliteration(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error

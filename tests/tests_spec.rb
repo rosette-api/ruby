@@ -354,16 +354,9 @@ describe RosetteAPI do
 
   describe '.transliteration' do
     content = 'Kareem Abdul Jabbar holds the record for most points in the NBA'
-    target_language = 'eng'
-    target_script = 'Latn'
-    source_language = 'ara'
-    source_script = 'Latn'
+
     before do
-      transliteration_json = { content: content,
-                               targetLanguage: target_language,
-                               targetScript: target_script,
-                               sourceLanguage: source_language,
-                               sourceScript: source_script }.to_json
+      transliteration_json = { content: content }.to_json
 
       stub_request(:post, 'https://api.rosette.com/rest/v1/transliteration')
         .with(body: transliteration_json,
@@ -377,38 +370,18 @@ describe RosetteAPI do
         .to_return(status: 200, body: '{"test": "transliteration"}', headers: {})
     end
     it 'test transliteration' do
-      params = TransliterationParameters.new(content, target_language, target_script, source_language, source_script)
+      params = DocumentParameters.new(content)
       response = RosetteAPI.new('0123456789').get_transliteration(params)
       expect(response).instance_of? Hash
     end
 
     it 'badRequest: content must be provided' do
-      params = TransliterationParameters.new(nil, target_language, target_script, source_language, source_script)
-      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
-    end
-
-    it 'badRequest: source_language must be provided' do
-      params = TransliterationParameters.new(content, nil, target_script, source_language, source_script)
-      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
-    end
-
-    it 'badRequest: source_script must be provided' do
-      params = TransliterationParameters.new(content, target_language, nil, source_language, source_script)
-      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
-    end
-
-    it 'badRequest: target_language must be provided' do
-      params = TransliterationParameters.new(content, target_language, target_script, nil, source_script)
-      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
-    end
-
-    it 'badRequest: source_language must be provided' do
-      params = TransliterationParameters.new(content, target_language, target_script, source_language, nil)
+      params = DocumentParameters.new(nil)
       expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end
 
     it 'badRequest: rosette_options can only be an instance of a Hash' do
-      params = TransliterationParameters.new(content, target_language, target_script, source_language, source_script)
+      params = DocumentParameters.new(content)
       params.rosette_options = 1
       expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end

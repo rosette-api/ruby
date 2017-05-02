@@ -43,7 +43,7 @@ class DocumentParameters
     if [@content, @content_uri, @file_path].compact.length > 1
       raise BadRequestFormatError.new 'The format of the request is invalid: multiple content sources;' \
                                       ' must be one of an attachment, an inline "content" field, or an external' \
-                                      '"contentUri"' unless [@content, @content_uri, @file_path].compact.length > 1
+                                      '"contentUri"'
     elsif [@content, @content_uri, @file_path].all?(&:nil?)
       raise BadRequestFormatError.new 'The format of the request is invalid: no content provided; must' \
                                       ' be one of an attachment, an inline "content" field, or an external "contentUri"'

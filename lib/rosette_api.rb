@@ -353,11 +353,11 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - TransliterationParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
   # Returns the transliteration of the input.
   def get_transliteration(params)
-    check_params params, 'Expects a TransliterationParameters type as an argument', TransliterationParameters
+    check_params params, 'Expects a DocumentParameters type as an argument', DocumentParameters
 
     params = params.load_params
 

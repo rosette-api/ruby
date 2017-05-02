@@ -370,18 +370,20 @@ describe RosetteAPI do
         .to_return(status: 200, body: '{"test": "transliteration"}', headers: {})
     end
     it 'test transliteration' do
-      params = DocumentParameters.new(content)
+      params = DocumentParameters.new
+      params.content = content
       response = RosetteAPI.new('0123456789').get_transliteration(params)
       expect(response).instance_of? Hash
     end
 
     it 'badRequest: content must be provided' do
-      params = DocumentParameters.new(nil)
-      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
+      params = DocumentParameters.new
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestFormatError)
     end
 
     it 'badRequest: rosette_options can only be an instance of a Hash' do
-      params = DocumentParameters.new(content)
+      params = DocumentParameters.new
+      params.content = content
       params.rosette_options = 1
       expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
     end

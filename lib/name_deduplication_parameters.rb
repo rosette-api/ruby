@@ -46,7 +46,7 @@ class NameDeduplicationParameters
   # Returns the new Hash.
   def to_hash
     {
-      names: @names,
+      names: @names.map(&:load_param),
       threshold: @threshold,
       options: @rosette_options
     }

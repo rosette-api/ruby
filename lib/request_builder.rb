@@ -62,6 +62,7 @@ class RequestBuilder
     request['X-RosetteAPI-Binding'] = 'ruby'
     request['X-RosetteAPI-Binding-Version'] = @binding_version
     request.body = params.to_json
+    print(request.body)
 
     [@http_client, request]
   end

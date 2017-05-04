@@ -44,11 +44,13 @@ class RequestBuilder
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
 
-    if params['customHeaders']
-      keys_array = params['customHeaders'].keys
-      for k in keys_array
-        if k.to_s =~ /^X-RosetteAPI-/
-          request[k] = params['customHeaders'][k]
+    custom_headers = params['customHeaders']
+
+    if custom_headers
+      keys_array = custom_headers.keys
+      for key in keys_array
+        if key.to_s =~ /^X-RosetteAPI-/
+          request[key] = custom_headers[key]
         else
           raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
         end
@@ -62,7 +64,6 @@ class RequestBuilder
     request['X-RosetteAPI-Binding'] = 'ruby'
     request['X-RosetteAPI-Binding-Version'] = @binding_version
     request.body = params.to_json
-    print(request.body)
 
     [@http_client, request]
   end

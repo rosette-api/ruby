@@ -311,7 +311,7 @@ describe RosetteAPI do
   describe '.name_deduplication' do
     names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| NameParameter.new(n) }
     before do
-      names_json = { names: names, threshold: 0.75 }.to_json
+      names_json = { names: names.map(&:load_param), threshold: 0.75 }.to_json
 
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
         .with(body: names_json,

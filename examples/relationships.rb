@@ -10,10 +10,10 @@ end
 
 relationships_text_data = "Bill Gates, Microsoft's former CEO, is a philanthropist."
 begin
-    params = DocumentParameters.new(content: relationships_text_data)
-    params.rosette_options = { accuracyMode: 'PRECISION' }
-    response = rosette_api.get_relationships(params)
-    puts JSON.pretty_generate(response)
+  params = DocumentParameters.new(content: relationships_text_data)
+  params.rosette_options = { accuracyMode: 'PRECISION' }
+  response = rosette_api.get_relationships(params)
+  puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
-    printf("Rosette API Error (%s): %s", rosette_api_error.status_code, rosette_api_error.message)
+  printf('Rosette API Error (%s): %s', rosette_api_error.status_code, rosette_api_error.message)
 end

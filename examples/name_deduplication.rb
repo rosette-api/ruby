@@ -8,10 +8,12 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-translated_name_data = 'معمر محمد أبو منيار القذاف'
+dedup_list = ['John Smith', 'Johnathon Smith', 'Fred Jones']
+threshold = 0.75
+names = dedup_list.map { |n| NameParameter.new(n) }
 begin
-  params = NameTranslationParameters.new(translated_name_data, 'eng', target_script: 'Latn')
-  response = rosette_api.get_name_translation(params)
+  params = NameDeduplicationParameters.new(names, threshold)
+  response = rosette_api.get_name_deduplication(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
   printf('Rosette API Error (%s): %s', rosette_api_error.status_code, rosette_api_error.message)

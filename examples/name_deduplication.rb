@@ -11,7 +11,7 @@ end
 name_dedupe_data = 'John Smith,Johnathon Smith,Fred Jones'
 
 threshold = 0.75
-names = name_dedupe_data.Split(',').map { |n| NameParameter.new(n) }
+names = name_dedupe_data.split(',').map { |n| NameParameter.new(n) }
 begin
   params = NameDeduplicationParameters.new(names, threshold)
   response = rosette_api.get_name_deduplication(params)

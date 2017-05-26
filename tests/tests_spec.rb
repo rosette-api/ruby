@@ -323,9 +323,28 @@ describe RosetteAPI do
                         'X-Rosetteapi-Binding' => 'ruby',
                         'X-Rosetteapi-Binding-Version' => '1.5.0' })
         .to_return(status: 200, body: '{"test": "name-deduplication"}', headers: {})
+
+      nothresh_json = { names: names.map(&:load_param) }.to_json
+
+      stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
+        .with(body: nothresh_json,
+              headers: {'Accept' => 'application/json',
+                        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                        'Content-Type' => 'application/json',
+                        'User-Agent' => 'Ruby',
+                        'X-Rosetteapi-Key' => '0123456789',
+                        'X-Rosetteapi-Binding' => 'ruby',
+                        'X-Rosetteapi-Binding-Version' => '1.5.0' })
+        .to_return(status: 200, body: '{"test": "name-deduplication"}', headers: {})
     end
     it 'test name deduplication' do
       params = NameDeduplicationParameters.new(names, 0.75)
+      response = RosetteAPI.new('0123456789').get_name_deduplication(params)
+      expect(response).instance_of? Hash
+    end
+    
+    it 'test null threshold' do
+      params = NameDeduplicationParameters.new(names, nil)
       response = RosetteAPI.new('0123456789').get_name_deduplication(params)
       expect(response).instance_of? Hash
     end

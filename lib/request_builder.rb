@@ -18,7 +18,6 @@ class RequestBuilder
   # Rosette API binding version
   attr_accessor :binding_version
 
-
   def initialize(user_key, alternate_url, http_client, params = {}, url_parameters = nil, binding_version)
     @user_key = user_key
     @alternate_url = alternate_url
@@ -28,7 +27,6 @@ class RequestBuilder
 
     return unless url_parameters
     @alternate_url = @alternate_url + '?' + URI.encode_www_form(url_parameters)
-
   end
 
   # Prepares a plain POST request for Rosette API.
@@ -46,13 +44,15 @@ class RequestBuilder
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
 
-    if params['customHeaders']
-      keys_array = params['customHeaders'].keys
-      for k in keys_array
-        if k.to_s =~ /^X-RosetteAPI-/
-          request[k] = params['customHeaders'][k]
+    custom_headers = params['customHeaders']
+
+    if custom_headers
+      keys_array = custom_headers.keys
+      for key in keys_array
+        if key.to_s =~ /^X-RosetteAPI-/
+          request[key] = custom_headers[key]
         else
-            raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
+          raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
         end
       end
       params.delete 'customHeaders'
@@ -108,15 +108,15 @@ class RequestBuilder
     rescue
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
-    
+
     # add any custom headers from the user
-    if params['customHeaders'] != nil
+    unless params['customHeaders'].nil?
       keys_array = params['customHeaders'].keys
       for k in keys_array
         if k.to_s =~ /^X-RosetteAPI-/
           request.add_field k, params['customHeaders'][k]
         else
-            raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
+          raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
         end
       end
       params.delete 'customHeaders'

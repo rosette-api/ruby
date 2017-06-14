@@ -1,5 +1,6 @@
 require_relative 'request_builder'
 require_relative 'document_parameters'
+require_relative 'name_deduplication_parameters'
 require_relative 'name_translation_parameters'
 require_relative 'name_similarity_parameters'
 require_relative 'rosette_api_error'
@@ -9,7 +10,7 @@ require_relative 'bad_request_format_error'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.5.0'
+  BINDING_VERSION = '1.7.0'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'.freeze
   # Rosette API morphology endpoint
@@ -22,6 +23,8 @@ class RosetteAPI
   RELATIONSHIPS_ENDPOINT = '/relationships'.freeze
   # Rosette API sentiment endpoint
   SENTIMENT_ENDPOINT = '/sentiment'.freeze
+  # Name Deduplication endpoint
+  NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'.freeze
   # Rosette API name-translation endpoint
   NAME_TRANSLATION_ENDPOINT = '/name-translation'.freeze
   # Rosette API name-similarity endpoint
@@ -38,6 +41,8 @@ class RosetteAPI
   TEXT_EMBEDDING = '/text-embedding'.freeze
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
+  # Transliteration endpoint
+  TRANSLITERATION_ENDPOINT = '/transliteration'.freeze
 
   # Rosette API key
   attr_accessor :user_key
@@ -228,6 +233,22 @@ class RosetteAPI
                   .send_post_request
   end
 
+  # De-duplicates a list of names.
+  #
+  # ==== Attributes
+  #
+  # * +params+ - NameDeduplicationParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns the list of deduplicated names.
+  def get_name_deduplication(params)
+    check_params params, 'Expects a NameDeduplicationParameters type as an argument', NameDeduplicationParameters
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + NAME_DEDUPLICATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
   # Translates a given name to a supported specified language.
   #
   # ==== Attributes
@@ -235,7 +256,7 @@ class RosetteAPI
   # * +params+ - NameTranslationParameters helps to build the request body in RequestBuilder.
   #
   # Returns the translation of a name.
-  def name_translation(params)
+  def get_name_translation(params)
     check_params params, 'Expects a NameTranslationParameters type as an argument', NameTranslationParameters
 
     params = params.load_params
@@ -252,7 +273,7 @@ class RosetteAPI
   # * +params+ - NameSimilarityParameters helps to build the request body in RequestBuilder.
   #
   # Returns the confidence score of matching 2 names.
-  def name_similarity(params)
+  def get_name_similarity(params)
     check_params params, 'Expects a NameSimilarityParameters type as an argument', NameSimilarityParameters
 
     params = params.load_params
@@ -324,6 +345,23 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SYNTACTIC_DEPENDENCIES_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  #
+  # Returns the transliteration of the content
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns the transliteration of the input.
+  def get_transliteration(params)
+    check_params params, 'Expects a DocumentParameters type as an argument', DocumentParameters
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + TRANSLITERATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 

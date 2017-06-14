@@ -8,6 +8,7 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
@@ -86,6 +87,12 @@
     
     <li ><a href="#method-i-get_morphology_complete">#get_morphology_complete</a>
     
+    <li ><a href="#method-i-get_name_deduplication">#get_name_deduplication</a>
+    
+    <li ><a href="#method-i-get_name_similarity">#get_name_similarity</a>
+    
+    <li ><a href="#method-i-get_name_translation">#get_name_translation</a>
+    
     <li ><a href="#method-i-get_parts_of_speech">#get_parts_of_speech</a>
     
     <li ><a href="#method-i-get_relationships">#get_relationships</a>
@@ -100,11 +107,9 @@
     
     <li ><a href="#method-i-get_tokens">#get_tokens</a>
     
+    <li ><a href="#method-i-get_transliteration">#get_transliteration</a>
+    
     <li ><a href="#method-i-info">#info</a>
-    
-    <li ><a href="#method-i-name_similarity">#name_similarity</a>
-    
-    <li ><a href="#method-i-name_translation">#name_translation</a>
     
     <li ><a href="#method-i-ping">#ping</a>
     
@@ -170,6 +175,11 @@
         <dd><p>Rosette API morphology endpoint</p>
         
       
+        <dt id="NAME_DEDUPLICATION_ENDPOINT">NAME_DEDUPLICATION_ENDPOINT
+        
+        <dd><p>Name Deduplication endpoint</p>
+        
+      
         <dt id="NAME_SIMILARITY_ENDPOINT">NAME_SIMILARITY_ENDPOINT
         
         <dd><p>Rosette API name-similarity endpoint</p>
@@ -213,6 +223,11 @@
         <dt id="TOKENS_ENDPOINT">TOKENS_ENDPOINT
         
         <dd><p>Rosette API tokens endpoint</p>
+        
+      
+        <dt id="TRANSLITERATION_ENDPOINT">TRANSLITERATION_ENDPOINT
+        
+        <dd><p>Transliteration endpoint</p>
         
       
       </dl>
@@ -307,7 +322,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 51</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span> = <span class="ruby-string">&#39;https://api.rosette.com/rest/v1&#39;</span>)
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
@@ -367,7 +382,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_categories-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 190</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 195</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_categories</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -415,7 +430,7 @@ supported languages.</p>
 
           
           <div class="method-source-code" id="get_compound_components-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 107</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_compound_components</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -462,7 +477,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_entities-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 173</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_entities</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -511,7 +526,7 @@ Han script, in both Chinese and Japanese input text.</p>
 
           
           <div class="method-source-code" id="get_han_readings-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 124</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_han_readings</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -558,7 +573,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_language-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 72</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_language</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -605,7 +620,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_lemmas-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 140</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_lemmas</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -654,13 +669,157 @@ tags of the input for supported languages.</p>
 
           
           <div class="method-source-code" id="get_morphology_complete-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 90</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_morphology_complete</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">MORPHOLOGY_ENDPOINT</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/complete&#39;</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
+                .<span class="ruby-identifier">send_post_request</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_name_deduplication" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_name_deduplication</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>De-duplicates a list of names.</p>
+
+<h4 id="method-i-get_name_deduplication-label-Attributes">Attributes<span><a href="#method-i-get_name_deduplication-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - <a
+href="NameDeduplicationParameters.html">NameDeduplicationParameters</a>
+helps to build the request body in <a
+href="RequestBuilder.html">RequestBuilder</a>.</p>
+</li></ul>
+
+<p>Returns the list of deduplicated names.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_name_deduplication-source">
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 243</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_name_deduplication</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameDeduplicationParameters type as an argument&#39;</span>, <span class="ruby-constant">NameDeduplicationParameters</span>
+
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
+
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_DEDUPLICATION_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
+                .<span class="ruby-identifier">send_post_request</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_name_similarity" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_name_similarity</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compares two entity names (person, location, or organization) and returns a
+match score from 0 to 1.</p>
+
+<h4 id="method-i-get_name_similarity-label-Attributes">Attributes<span><a href="#method-i-get_name_similarity-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - <a
+href="NameSimilarityParameters.html">NameSimilarityParameters</a> helps to
+build the request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+</li></ul>
+
+<p>Returns the confidence score of matching 2 names.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_name_similarity-source">
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 276</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_name_similarity</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameSimilarityParameters type as an argument&#39;</span>, <span class="ruby-constant">NameSimilarityParameters</span>
+
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
+
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_SIMILARITY_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
+                .<span class="ruby-identifier">send_post_request</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_name_translation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_name_translation</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Translates a given name to a supported specified language.</p>
+
+<h4 id="method-i-get_name_translation-label-Attributes">Attributes<span><a href="#method-i-get_name_translation-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - <a
+href="NameTranslationParameters.html">NameTranslationParameters</a> helps
+to build the request body in <a
+href="RequestBuilder.html">RequestBuilder</a>.</p>
+</li></ul>
+
+<p>Returns the translation of a name.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_name_translation-source">
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_name_translation</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameTranslationParameters type as an argument&#39;</span>, <span class="ruby-constant">NameTranslationParameters</span>
+
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
+
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_TRANSLATION_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -702,7 +861,7 @@ input, depending on the context of how it is used.</p>
 
           
           <div class="method-source-code" id="get_parts_of_speech-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 157</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_parts_of_speech</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -749,7 +908,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_relationships-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 206</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_relationships</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -796,7 +955,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentences-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 287</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 308</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_sentences</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -843,7 +1002,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentiment-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 222</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 227</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_sentiment</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -890,7 +1049,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_syntax_dependencies-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 321</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 342</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_syntax_dependencies</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -937,7 +1096,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_text_embedding-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 304</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 325</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_text_embedding</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -984,13 +1143,60 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_tokens-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 271</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 292</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_tokens</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">TOKENS_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
+                .<span class="ruby-identifier">send_post_request</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_transliteration" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_transliteration</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the transliteration of the content</p>
+
+<h4 id="method-i-get_transliteration-label-Attributes">Attributes<span><a href="#method-i-get_transliteration-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - <a
+href="DocumentParameters.html">DocumentParameters</a> helps to build the
+request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+</li></ul>
+
+<p>Returns the transliteration of the input.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_transliteration-source">
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 359</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_transliteration</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a DocumentParameters type as an argument&#39;</span>, <span class="ruby-constant">DocumentParameters</span>
+
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
+
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">TRANSLITERATION_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -1023,106 +1229,10 @@ build time.</p>
 
           
           <div class="method-source-code" id="info-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 332</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 370</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">info</span>
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">INFO</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_get_request</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-name_similarity" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">name_similarity</span><span
-            class="method-args">(params)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Compares two entity names (person, location, or organization) and returns a
-match score from 0 to 1.</p>
-
-<h4 id="method-i-name_similarity-label-Attributes">Attributes<span><a href="#method-i-name_similarity-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
-<ul><li>
-<p><code>params</code> - <a
-href="NameSimilarityParameters.html">NameSimilarityParameters</a> helps to
-build the request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
-</li></ul>
-
-<p>Returns the confidence score of matching 2 names.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="name_similarity-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 255</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">name_similarity</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameSimilarityParameters type as an argument&#39;</span>, <span class="ruby-constant">NameSimilarityParameters</span>
-
-  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
-
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_SIMILARITY_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
-                .<span class="ruby-identifier">send_post_request</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-name_translation" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">name_translation</span><span
-            class="method-args">(params)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Translates a given name to a supported specified language.</p>
-
-<h4 id="method-i-name_translation-label-Attributes">Attributes<span><a href="#method-i-name_translation-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
-<ul><li>
-<p><code>params</code> - <a
-href="NameTranslationParameters.html">NameTranslationParameters</a> helps
-to build the request body in <a
-href="RequestBuilder.html">RequestBuilder</a>.</p>
-</li></ul>
-
-<p>Returns the translation of a name.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="name_translation-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 238</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">name_translation</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameTranslationParameters type as an argument&#39;</span>, <span class="ruby-constant">NameTranslationParameters</span>
-
-  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
-
-  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">NAME_TRANSLATION_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
-                .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -1154,7 +1264,7 @@ available.</p>
 
           
           <div class="method-source-code" id="ping-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 339</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 377</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ping</span>
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">PING</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_get_request</span>
@@ -1177,7 +1287,7 @@ available.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.1.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

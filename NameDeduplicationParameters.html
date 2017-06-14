@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class NameTranslationParameters - RDoc Documentation</title>
+<title>class NameDeduplicationParameters - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -85,15 +85,15 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-NameTranslationParameters">
-  <h1 id="class-NameTranslationParameters" class="class">
-    class NameTranslationParameters
+<main role="main" aria-labelledby="class-NameDeduplicationParameters">
+  <h1 id="class-NameDeduplicationParameters" class="class">
+    class NameDeduplicationParameters
   </h1>
 
   <section class="description">
     
-<p>This class encapsulates parameters that are needed for name-translation in
-Rosette API.</p>
+<p>This class encapsulates parameters that are needed for name-deduplication
+in Rosette API.</p>
 
   </section>
 
@@ -114,41 +114,15 @@ Rosette API.</p>
       </header>
 
       
-      <div id="attribute-i-entity_type" class="method-detail">
+      <div id="attribute-i-names" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">entity_type</span><span
+          <span class="method-name">names</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
         <div class="method-description">
         
-        <p>Name&#39;s entity type (PERSON, LOCATION, ORGANIZATION) (optional)</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-genre" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">genre</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>genre to categorize the input data</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-name" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">name</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>Name to translate</p>
+        <p>List of Name objects to be de-duplicated</p>
         
         </div>
       </div>
@@ -166,81 +140,15 @@ Rosette API.</p>
         </div>
       </div>
       
-      <div id="attribute-i-source_language_of_origin" class="method-detail">
+      <div id="attribute-i-threshold" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">source_language_of_origin</span><span
+          <span class="method-name">threshold</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
         <div class="method-description">
         
-        <p>ISO 693-3 code of the name&#39;s native language the name originates in
-(optional)</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-source_language_of_use" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">source_language_of_use</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>ISO 693-3 code of the name&#39;s language of use (optional)</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-source_script" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">source_script</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>ISO 15924 code of the name&#39;s script (optional)</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-target_language" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">target_language</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>ISO 639-3 code of the translation language</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-target_scheme" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">target_scheme</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>Transliteration scheme for the translation (optional)</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-target_script" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">target_script</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>ISO 15924 code of name&#39;s script (optional)</p>
+        <p>Threshold for determining cluster size</p>
         
         </div>
       </div>
@@ -276,7 +184,7 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 60</span>
+            <pre><span class="ruby-comment"># File name_deduplication_parameters.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_params</span>
   <span class="ruby-identifier">validate_params</span>
   <span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span> }
@@ -314,19 +222,12 @@ Rosette API.</p>
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 70</span>
+            <pre><span class="ruby-comment"># File name_deduplication_parameters.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_hash</span>
   {
-    <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@entity_type</span>,
-    <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@genre</span>,
-    <span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@name</span>,
-    <span class="ruby-identifier">options</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rosette_options</span>,
-    <span class="ruby-identifier">source_language_of_origin</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@source_language_of_origin</span>,
-    <span class="ruby-identifier">source_language_of_use</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@source_language_of_use</span>,
-    <span class="ruby-identifier">source_script</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@source_script</span>,
-    <span class="ruby-identifier">target_language</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@target_language</span>,
-    <span class="ruby-identifier">target_scheme</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@target_scheme</span>,
-    <span class="ruby-identifier">target_script</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@target_script</span>
+    <span class="ruby-identifier">names</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@names</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:load_param</span>),
+    <span class="ruby-identifier">threshold</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@threshold</span>,
+    <span class="ruby-identifier">options</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rosette_options</span>
   }
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -352,16 +253,20 @@ Rosette API.</p>
 
         <div class="method-description">
           
-          <p>Validates the parameters by checking if <a
-href="NameTranslationParameters.html#attribute-i-rosette_options">#rosette_options</a>
-is an instance of a Hash.</p>
+          <p>Validates the parameters by checking if name1 and name2 are instances of a
+String or <a href="NameParameter.html">NameParameter</a>.</p>
           
           
 
           
           <div class="method-source-code" id="validate_params-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 51</span>
+            <pre><span class="ruby-comment"># File name_deduplication_parameters.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_params</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;names must be an array of name_parameter&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@names</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">Array</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@threshold</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;threshold must be a float&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@threshold</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Float</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;threshold must be in the range of 0 to 1&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@threshold</span>.<span class="ruby-identifier">negative?</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@threshold</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+  <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@rosette_options</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;rosette_options can only be an instance of a Hash&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@rosette_options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
   <span class="ruby-keyword">end</span>
@@ -388,7 +293,7 @@ is an instance of a Hash.</p>
         
         <div class="method-heading">
           <span class="method-name">initialize</span><span
-            class="method-args">(name, target_language, options = {})</span>
+            class="method-args">(names, threshold, options = {})</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -403,28 +308,14 @@ is an instance of a Hash.</p>
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_translation_parameters.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">target_language</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
+            <pre><span class="ruby-comment"># File name_deduplication_parameters.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">names</span>, <span class="ruby-identifier">threshold</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
-    <span class="ruby-identifier">entity_type</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">genre</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">rosette_options</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">source_language_of_origin</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">source_language_of_use</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">source_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">target_scheme</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-identifier">target_script</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">rosette_options</span><span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
   }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
-  <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
-  <span class="ruby-ivar">@genre</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:genre</span>]
+  <span class="ruby-ivar">@names</span> = <span class="ruby-identifier">names</span>
+  <span class="ruby-ivar">@threshold</span> = <span class="ruby-identifier">threshold</span>
   <span class="ruby-ivar">@rosette_options</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rosette_options</span>]
-  <span class="ruby-ivar">@source_language_of_origin</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_origin</span>]
-  <span class="ruby-ivar">@source_language_of_use</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_language_of_use</span>]
-  <span class="ruby-ivar">@source_script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_script</span>]
-  <span class="ruby-ivar">@target_language</span> = <span class="ruby-identifier">target_language</span>
-  <span class="ruby-ivar">@target_scheme</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_scheme</span>]
-  <span class="ruby-ivar">@target_script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:target_script</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

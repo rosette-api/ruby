@@ -8,6 +8,7 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
@@ -210,7 +211,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 21</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">url_parameters</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">binding_version</span>)
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
@@ -220,7 +221,6 @@
 
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url_parameters</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;?&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">encode_www_form</span>(<span class="ruby-identifier">url_parameters</span>)
-
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -355,15 +355,15 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
   <span class="ruby-keyword">rescue</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;connectionError&#39;</span>, <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
   <span class="ruby-keyword">end</span>
-  
+
   <span class="ruby-comment"># add any custom headers from the user</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">keys</span>
     <span class="ruby-keyword">for</span> <span class="ruby-identifier">k</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">keys_array</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-identifier">k</span>, <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>][<span class="ruby-identifier">k</span>]
       <span class="ruby-keyword">else</span>
-          <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;invalidHeader&#39;</span>, <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;invalidHeader&#39;</span>, <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;customHeaders&#39;</span>
@@ -413,7 +413,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_plain_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 40</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
@@ -422,13 +422,15 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;connectionError&#39;</span>, <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>]
-    <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">keys</span>
-    <span class="ruby-keyword">for</span> <span class="ruby-identifier">k</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">keys_array</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
-        <span class="ruby-identifier">request</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>][<span class="ruby-identifier">k</span>]
+  <span class="ruby-identifier">custom_headers</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">custom_headers</span>
+    <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">custom_headers</span>.<span class="ruby-identifier">keys</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">keys_array</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
+        <span class="ruby-identifier">request</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">custom_headers</span>[<span class="ruby-identifier">key</span>]
       <span class="ruby-keyword">else</span>
-          <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;invalidHeader&#39;</span>, <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;invalidHeader&#39;</span>, <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;customHeaders&#39;</span>
@@ -548,7 +550,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.1.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

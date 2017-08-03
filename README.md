@@ -7,6 +7,15 @@ See the wiki for more information.
 
 `gem install rosette_api`
 
+If the version you are using is not [the latest from RubyGems](https://rubygems.org/gems/rosette_api),
+please check for its [**compatibilty with api.rosette.com**](https://developer.rosette.com/features-and-functions?ruby).
+If you have an on-premise version of Rosette API server, please contact support for
+binding compatibility with your installation.
+
+To check your installed version:
+
+`gem list rosette_api`
+
 ## Docker ##
 A Docker image for running the examples against the compiled source library is available on Docker Hub.
 

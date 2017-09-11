@@ -342,7 +342,7 @@ describe RosetteAPI do
       response = RosetteAPI.new('0123456789').get_name_deduplication(params)
       expect(response).instance_of? Hash
     end
-    
+
     it 'test null threshold' do
       params = NameDeduplicationParameters.new(names, nil)
       response = RosetteAPI.new('0123456789').get_name_deduplication(params)
@@ -425,6 +425,27 @@ describe RosetteAPI do
       params = DocumentParameters.new
       params.content = @content
       response = RosetteAPI.new('0123456789').get_tokens(params)
+      expect(response).instance_of? Hash
+    end
+  end
+
+  describe '.get_topics' do
+    before do
+      stub_request(:post, 'https://api.rosette.com/rest/v1/topics')
+        .with(body: @json,
+              headers: { 'Accept' => 'application/json',
+                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                         'Content-Type' => 'application/json',
+                         'User-Agent' => 'Ruby',
+                         'X-Rosetteapi-Key' => '0123456789',
+                         'X-Rosetteapi-Binding' => 'ruby',
+                         'X-Rosetteapi-Binding-Version' => '1.7.0' })
+        .to_return(status: 200, body: '{"test": "topics"}', headers: {})
+    end
+    it 'test topics' do
+      params = DocumentParameters.new
+      params.content = @content
+      response = RosetteAPI.new('0123456789').get_topics(params)
       expect(response).instance_of? Hash
     end
   end

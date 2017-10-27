@@ -10,7 +10,7 @@ require_relative 'bad_request_format_error'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.7.0'
+  BINDING_VERSION = '1.8.0'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'.freeze
   # Rosette API morphology endpoint
@@ -43,6 +43,9 @@ class RosetteAPI
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
   # Transliteration endpoint
   TRANSLITERATION_ENDPOINT = '/transliteration'.freeze
+  # Topics endpoint
+  TOPICS_ENDPOINT = '/topics'.freeze
+
 
   # Rosette API key
   attr_accessor :user_key
@@ -362,6 +365,22 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TRANSLITERATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  # Divides the input into topics (key phrases and concepts).
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns list of topics of the input.
+  def get_topics(params)
+    check_params params
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + TOPICS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 

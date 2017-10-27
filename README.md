@@ -30,9 +30,10 @@ Additional environment settings:
 See [examples](examples)
 
 ## API Documentation ##
-
 See [documentation](http://rosette-api.github.io/ruby)
 
-## Additional Information ##
+## Release Notes
+See the [wiki](https://github.com/rosette-api/ruby/wiki/Release-Notes)
 
+## Additional Information ##
 Visit [Rosette API site](https://developer.rosette.com)

@@ -9,6 +9,14 @@ describe RosetteAPI do
   RSpec.configure do |config|
     config.before(:example) { @content = 'Sample Content' }
     config.before(:example) { @json = {content: 'Sample Content'}.to_json }
+    config.before(:example) { @user_agent = 'Ruby/' + RosetteAPI::BINDING_VERSION + '/' + RUBY_VERSION }
+  end
+
+  describe '.user_agent' do
+    it 'check User-Agent string' do
+      result = RosetteAPI.new('0123456789').user_agent
+      expect(result).to eq @user_agent
+    end
   end
 
   describe '.get_language' do
@@ -18,7 +26,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -52,7 +60,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -73,7 +81,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -94,7 +102,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -115,7 +123,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -136,7 +144,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -157,7 +165,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -179,7 +187,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -210,7 +218,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -231,7 +239,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -253,7 +261,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -280,7 +288,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -318,7 +326,7 @@ describe RosetteAPI do
               headers: {'Accept' => 'application/json',
                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                         'Content-Type' => 'application/json',
-                        'User-Agent' => 'Ruby',
+                        'User-Agent' => @user_agent,
                         'X-Rosetteapi-Key' => '0123456789',
                         'X-Rosetteapi-Binding' => 'ruby',
                         'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -331,7 +339,7 @@ describe RosetteAPI do
               headers: {'Accept' => 'application/json',
                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                         'Content-Type' => 'application/json',
-                        'User-Agent' => 'Ruby',
+                        'User-Agent' => @user_agent,
                         'X-Rosetteapi-Key' => '0123456789',
                         'X-Rosetteapi-Binding' => 'ruby',
                         'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -382,7 +390,7 @@ describe RosetteAPI do
               headers: {'Accept' => 'application/json',
                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                         'Content-Type' => 'application/json',
-                        'User-Agent' => 'Ruby',
+                        'User-Agent' => @user_agent,
                         'X-Rosetteapi-Key' => '0123456789',
                         'X-Rosetteapi-Binding' => 'ruby',
                         'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -415,7 +423,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -436,7 +444,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -457,7 +465,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -476,7 +484,7 @@ describe RosetteAPI do
       stub_request(:get, 'https://api.rosette.com/rest/v1/info')
         .with(headers: { 'Accept' => '*/*',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789' })
         .to_return(status: 200, body: '{"test": "info"}', headers: {})
     end
@@ -491,7 +499,7 @@ describe RosetteAPI do
       stub_request(:get, 'https://api.rosette.com/rest/v1/ping')
         .with(headers: { 'Accept' => '*/*',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789' })
         .to_return(status: 200, body: '{"test": "ping"}', headers: {})
     end
@@ -508,7 +516,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0',
@@ -529,7 +537,7 @@ describe RosetteAPI do
       stub_request(:get, 'https://api.rosette.com/rest/v1/info')
         .with(headers: { 'Accept' => '*/*',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789' })
         .to_return(status: 409, body: '{"code": "incompatibleClientVersion"}', headers: {})
     end
@@ -545,7 +553,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })
@@ -566,7 +574,7 @@ describe RosetteAPI do
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                          'Content-Type' => 'application/json',
-                         'User-Agent' => 'Ruby',
+                         'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
                          'X-Rosetteapi-Binding-Version' => '1.8.0' })

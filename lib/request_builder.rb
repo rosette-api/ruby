@@ -17,6 +17,8 @@ class RequestBuilder
   attr_accessor :user_key
   # Rosette API binding version
   attr_accessor :binding_version
+  # User-Agent string
+  attr_reader :user_agent
 
   def initialize(user_key, alternate_url, http_client, params = {}, url_parameters = nil, binding_version)
     @user_key = user_key
@@ -24,6 +26,7 @@ class RequestBuilder
     @http_client = http_client
     @params = params
     @binding_version = binding_version
+    @user_agent = 'Ruby/' + binding_version + '/' + RUBY_VERSION
 
     return unless url_parameters
     @alternate_url = @alternate_url + '?' + URI.encode_www_form(url_parameters)
@@ -61,6 +64,7 @@ class RequestBuilder
     request['X-RosetteAPI-Key'] = @user_key
     request['Content-Type'] = 'application/json'
     request['Accept'] = 'application/json'
+    request['User-Agent'] = @user_agent
     request['X-RosetteAPI-Binding'] = 'ruby'
     request['X-RosetteAPI-Binding-Version'] = @binding_version
     request.body = params.to_json
@@ -123,6 +127,7 @@ class RequestBuilder
     end
 
     request.add_field 'Content-Type', "multipart/form-data; boundary=#{boundary}"
+    request.add_field 'User-Agent', @user_agent
     request.add_field 'X-RosetteAPI-Key', @user_key
     request.add_field 'X-RosetteAPI-Binding', 'ruby'
     request.add_field 'X-RosetteAPI-Binding-Version', @binding_version
@@ -143,6 +148,7 @@ class RequestBuilder
       raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
     end
     request['X-RosetteAPI-Key'] = @user_key
+    request['User-Agent'] = @user_agent
 
     get_response @http_client, request
   end

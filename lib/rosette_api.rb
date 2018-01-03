@@ -398,6 +398,11 @@ class RosetteAPI
                   .send_get_request
   end
 
+  # Gets the User-Agent string
+  def user_agent
+    RequestBuilder.new(@user_key, @alternate_url + PING, @http_client, @url_parameters, BINDING_VERSION).user_agent
+  end
+
   private
 
   # Checks that the right parameter type is being passed in.

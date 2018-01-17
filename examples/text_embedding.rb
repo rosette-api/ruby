@@ -8,7 +8,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-embeddings_data = 'Cambridge, Massachusetts'
+embeddings_data = "Cambridge, Massachusetts"
 begin
   params = DocumentParameters.new(content: embeddings_data)
   response = rosette_api.get_text_embedding(params)

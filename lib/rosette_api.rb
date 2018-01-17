@@ -10,7 +10,7 @@ require_relative 'bad_request_format_error'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.8.0'
+  BINDING_VERSION = '1.9.0'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'.freeze
   # Rosette API morphology endpoint
@@ -396,6 +396,11 @@ class RosetteAPI
   def ping
     RequestBuilder.new(@user_key, @alternate_url + PING, @http_client, @url_parameters, BINDING_VERSION)
                   .send_get_request
+  end
+
+  # Gets the User-Agent string
+  def user_agent
+    RequestBuilder.new(@user_key, @alternate_url + PING, @http_client, @url_parameters, BINDING_VERSION).user_agent
   end
 
   private

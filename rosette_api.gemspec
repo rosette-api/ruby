@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.authors = ['Basis Technology Corp']
   s.email = %q{support@rosette.com}
   s.homepage = %q{https://developer.rosette.com/}
-  s.date = %q{2018-01-17}
+  s.date = %q{2018-02-14}
 
   all_files       = `git ls-files -z`.split("\x0")
   s.files         = all_files.grep(%r{^(bin|lib)/|^.rubocop.yml$})

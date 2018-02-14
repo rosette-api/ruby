@@ -29,7 +29,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test language' do
@@ -63,7 +63,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "morphology/complete"}', headers: {})
     end
     it 'test morphology complete' do
@@ -84,7 +84,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "morphology/compound-components"}', headers: {})
     end
     it 'test morphology compound components' do
@@ -105,7 +105,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "morphology/han-readings"}', headers: {})
     end
     it 'test morphology han readings' do
@@ -126,7 +126,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "morphology/parts-of-speech"}', headers: {})
     end
     it 'test morphology parts of speech' do
@@ -147,7 +147,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "morphology/lemmas"}', headers: {})
     end
     it 'test morphology lemmas' do
@@ -168,7 +168,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
     end
     it 'test entities' do
@@ -190,7 +190,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
     end
     it 'test entities without qids' do
@@ -221,7 +221,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "categories"}', headers: {})
     end
     it 'test categories' do
@@ -242,7 +242,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "relationships"}', headers: {})
     end
     it 'test relationships' do
@@ -264,7 +264,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
           .to_return(status: 200, body: '{"test": "name-translation"}', headers: {})
     end
     it 'test name translation' do
@@ -291,7 +291,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "name-similarity"}', headers: {})
     end
     it 'test name similarity' do
@@ -329,7 +329,7 @@ describe RosetteAPI do
                         'User-Agent' => @user_agent,
                         'X-Rosetteapi-Key' => '0123456789',
                         'X-Rosetteapi-Binding' => 'ruby',
-                        'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                        'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "name-deduplication"}', headers: {})
 
       nothresh_json = { names: names.map(&:load_param) }.to_json
@@ -342,7 +342,7 @@ describe RosetteAPI do
                         'User-Agent' => @user_agent,
                         'X-Rosetteapi-Key' => '0123456789',
                         'X-Rosetteapi-Binding' => 'ruby',
-                        'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                        'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "name-deduplication"}', headers: {})
     end
     it 'test name deduplication' do
@@ -393,7 +393,7 @@ describe RosetteAPI do
                         'User-Agent' => @user_agent,
                         'X-Rosetteapi-Key' => '0123456789',
                         'X-Rosetteapi-Binding' => 'ruby',
-                        'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                        'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "transliteration"}', headers: {})
     end
     it 'test transliteration' do
@@ -426,7 +426,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "tokens"}', headers: {})
     end
     it 'test tokens' do
@@ -447,7 +447,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "topics"}', headers: {})
     end
     it 'test topics' do
@@ -468,7 +468,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "sentences"}', headers: {})
     end
     it 'test sentences' do
@@ -519,7 +519,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0',
+                         'X-Rosetteapi-Binding-Version' => '1.9.1',
                          'X-RosetteApi-App' => 'ruby-app' })
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
@@ -556,7 +556,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test text_embedding' do
@@ -577,7 +577,7 @@ describe RosetteAPI do
                          'User-Agent' => @user_agent,
                          'X-Rosetteapi-Key' => '0123456789',
                          'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.9.0' })
+                         'X-Rosetteapi-Binding-Version' => '1.9.1' })
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test syntax_dependencies' do

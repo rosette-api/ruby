@@ -546,7 +546,7 @@ describe RosetteAPI do
     end
   end
 
-  describt '.get_related_terms' do
+  describe '.get_related_terms' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/similar')
         .with(body: @json,

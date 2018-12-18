@@ -560,9 +560,7 @@ describe RosetteAPI do
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test related_terms' do
-      params = DocumentParameters.new
-      params.content = @content
-      params.options = { "resultLanguages" => [ "spa", "deu", "jpn" ] }
+      params = DocumentParameters.new(content: @content, options: { "resultLanguages" => [ "spa", "deu", "jpn" ] })
       response = RosetteAPI.new('0123456789').get_related_terms(params)
       expect(response).instance_of? Hash
     end

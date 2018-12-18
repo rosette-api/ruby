@@ -46,7 +46,7 @@ class RosetteAPI
   # Topics endpoint
   TOPICS_ENDPOINT = '/topics'.freeze
   # Related terms endpoint
-  RELATED_TERMS_ENDPOINT = '/semantics/related'.freeze
+  RELATED_TERMS_ENDPOINT = '/semantics/similar'.freeze
 
 
   # Rosette API key

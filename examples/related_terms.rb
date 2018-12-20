@@ -8,7 +8,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-data = "dog"
+data = "spy"
 begin
   params = DocumentParameters.new(content: data, options: { "resultLanguages" => ["spa", "deu", "jpn"] })
   response = rosette_api.get_related_terms(params)

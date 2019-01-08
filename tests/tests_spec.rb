@@ -546,9 +546,29 @@ describe RosetteAPI do
     end
   end
 
+  describe '.get_related_terms' do
+    before do
+      stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/similar')
+        .with(body: @json,
+              headers: { 'Accept' => 'application/json',
+                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                         'Content-Type' => 'application/json',
+                         'User-Agent' => @user_agent,
+                         'X-Rosetteapi-Key' => '0123456789',
+                         'X-Rosetteapi-Binding' => 'ruby',
+                         'X-Rosetteapi-Binding-Version' => '1.9.2' })
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
+    end
+    it 'test related_terms' do
+      params = DocumentParameters.new(content: @content, options: { "resultLanguages" => [ "spa", "deu", "jpn" ] })
+      response = RosetteAPI.new('0123456789').get_related_terms(params)
+      expect(response).instance_of? Hash
+    end
+  end
+
   describe '.get_text_embedding' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/text-embedding')
+      stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/vector')
         .with(body: @json,
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',

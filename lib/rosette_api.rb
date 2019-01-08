@@ -38,13 +38,15 @@ class RosetteAPI
   # Rosette API ping endpoint
   PING = '/ping'.freeze
   # Text Embedding endpoint
-  TEXT_EMBEDDING = '/text-embedding'.freeze
+  TEXT_EMBEDDING = '/semantics/vector'.freeze
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
   # Transliteration endpoint
   TRANSLITERATION_ENDPOINT = '/transliteration'.freeze
   # Topics endpoint
   TOPICS_ENDPOINT = '/topics'.freeze
+  # Related Terms endpoint
+  RELATED_TERMS = '/semantics/similar'.freeze
 
 
   # Rosette API key
@@ -335,7 +337,7 @@ class RosetteAPI
   end
 
   #
-  # Returns the vectors associated with the text
+  # Returns the syntactic structure associated with the text
   #
   # ==== Attributes
   #
@@ -381,6 +383,22 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TOPICS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  # Returns the terms related to the input
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns a mapping of languageCode to related terms
+  def get_related_terms(params)
+    check_params params
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + RELATED_TERMS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 

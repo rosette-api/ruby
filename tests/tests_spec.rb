@@ -568,7 +568,7 @@ describe RosetteAPI do
 
   describe '.get_text_embedding' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/semantic/vector')
+      stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/vector')
         .with(body: @json,
               headers: { 'Accept' => 'application/json',
                          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',

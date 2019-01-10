@@ -40,7 +40,7 @@ class RosetteAPI
   # Text Embedding endpoint
   TEXT_EMBEDDING = '/semantics/vector'.freeze
   # Related Terms endpoint
-  RELATED_TERMS = '/semantics/similar'.freeze
+  RELATED_TERMS_ENDPOINT = '/semantics/similar'.freeze
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
   # Transliteration endpoint

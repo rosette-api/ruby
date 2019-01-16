@@ -546,7 +546,7 @@ describe RosetteAPI do
     end
   end
 
-  describe '.get_related_terms' do
+  describe '.get_similar_terms' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/similar')
         .with(body: @json,
@@ -559,14 +559,14 @@ describe RosetteAPI do
                          'X-Rosetteapi-Binding-Version' => '1.9.2' })
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
-    it 'test related_terms' do
+    it 'test similar_terms' do
       params = DocumentParameters.new(content: @content, options: { "resultLanguages" => [ "spa", "deu", "jpn" ] })
-      response = RosetteAPI.new('0123456789').get_related_terms(params)
+      response = RosetteAPI.new('0123456789').get_similar_terms(params)
       expect(response).instance_of? Hash
     end
   end
 
-  describe '.get_text_embedding' do
+  describe '.get_semantic_vectors' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/vector')
         .with(body: @json,
@@ -579,10 +579,10 @@ describe RosetteAPI do
                          'X-Rosetteapi-Binding-Version' => '1.9.2' })
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
-    it 'test text_embedding' do
+    it 'test semantic_vectors' do
       params = DocumentParameters.new
       params.content = @content
-      response = RosetteAPI.new('0123456789').get_text_embedding(params)
+      response = RosetteAPI.new('0123456789').get_semantic_vectors(params)
       expect(response).instance_of? Hash
     end
   end

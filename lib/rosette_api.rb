@@ -37,10 +37,12 @@ class RosetteAPI
   INFO = '/info'.freeze
   # Rosette API ping endpoint
   PING = '/ping'.freeze
-  # Text Embedding endpoint
-  TEXT_EMBEDDING = '/semantics/vector'.freeze
-  # Related Terms endpoint
-  RELATED_TERMS_ENDPOINT = '/semantics/similar'.freeze
+  # Text Embedding endpoint (deprecated)
+  TEXT_EMBEDDING = '/text-embedding'.freeze
+  # Semantic Vectors endpoint (replaces /text-embedding)
+  SEMANTIC_VECTORS = '/semantic/vector'.freeze
+  # Similar Terms endpoint
+  SIMILAR_TERMS_ENDPOINT = '/semantics/similar'.freeze
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
   # Transliteration endpoint
@@ -322,17 +324,34 @@ class RosetteAPI
   #
   # Returns the vectors associated with the text
   #
+  # Deprecated.  Please use `get_semantic_vectors` instead
+  #
   # ==== Attributes
   #
   # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
-  # Returns list of linguistic sentences of the input.
+  # Returns the text embedding representation of the input.
   def get_text_embedding(params)
     check_params params
 
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  #
+  # Returns the vectors associated with the text
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns the text embedding representation of the input.
+  def get_semantic_vectors(params)
+    check_params params
+    params = params.load_params
+    RequestBuilder.new(@user_key, @alternate_url + SEMANTIC_VECTORS, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -386,19 +405,19 @@ class RosetteAPI
                   .send_post_request
   end
 
-  # Returns the terms related to the input
+  # Returns the terms similar to the input
   #
   # ==== Attributes
   #
   # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
   #
-  # Returns a mapping of languageCode to related terms
-  def get_related_terms(params)
+  # Returns a mapping of languageCode to similar terms
+  def get_similar_terms(params)
     check_params params
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + RELATED_TERMS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + SIMILAR_TERMS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 

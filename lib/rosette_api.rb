@@ -40,7 +40,7 @@ class RosetteAPI
   # Text Embedding endpoint (deprecated)
   TEXT_EMBEDDING = '/text-embedding'.freeze
   # Semantic Vectors endpoint (replaces /text-embedding)
-  SEMANTIC_VECTORS = '/semantic/vector'.freeze
+  SEMANTIC_VECTORS = '/semantics/vector'.freeze
   # Similar Terms endpoint
   SIMILAR_TERMS_ENDPOINT = '/semantics/similar'.freeze
   # Syntactic Dependencies endpoint

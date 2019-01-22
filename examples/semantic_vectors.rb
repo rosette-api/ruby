@@ -10,7 +10,7 @@ end
 
 semantic_vectors_data = "Cambridge, Massachusetts"
 begin
-  params = DocumentParameters.new(content: embeddings_data)
+  params = DocumentParameters.new(content: semantic_vectors_data)
   response = rosette_api.get_semantic_vectors(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error

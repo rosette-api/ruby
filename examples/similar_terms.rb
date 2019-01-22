@@ -11,7 +11,7 @@ end
 similar_terms_data = "spy"
 begin
   params = DocumentParameters.new(content: similar_terms_data)
-  params.rosette_options = { resultLanguages => ["spa", "deu", "jpn"] }
+  params.rosette_options = { "resultLanguages" => ["spa", "deu", "jpn"] }
   response = rosette_api.get_similar_terms(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error

@@ -8,9 +8,10 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-data = "spy"
+similar_terms_data = "spy"
 begin
-  params = DocumentParameters.new(content: data, options: { "resultLanguages" => ["spa", "deu", "jpn"] })
+  params = DocumentParameters.new(content: similar_terms_data)
+  params.rosette_options = { "resultLanguages" => ["spa", "deu", "jpn"] }
   response = rosette_api.get_similar_terms(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0.0'
 
   s.name               = 'rosette_api'
-  s.version            = '1.9.2'
+  s.version            = '1.12.1'
   s.license            = 'MIT'
 
   s.summary       = 'Rosette API gem that supports multilingual text-analytics.'
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.authors = ['Basis Technology Corp']
   s.email = %q{support@rosette.com}
   s.homepage = %q{https://developer.rosette.com/}
-  s.date = %q{2018-02-14}
+  s.date = %q{2019-02-08}
 
   all_files       = `git ls-files -z`.split("\x0")
   s.files         = all_files.grep(%r{^(bin|lib)/|^.rubocop.yml$})

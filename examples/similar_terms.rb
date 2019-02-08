@@ -8,10 +8,11 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-embeddings_data = "Cambridge, Massachusetts"
+similar_terms_data = "spy"
 begin
-  params = DocumentParameters.new(content: embeddings_data)
-  response = rosette_api.get_text_embedding(params)
+  params = DocumentParameters.new(content: similar_terms_data)
+  params.rosette_options = { "resultLanguages" => ["spa", "deu", "jpn"] }
+  response = rosette_api.get_similar_terms(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
   printf('Rosette API Error (%s): %s', rosette_api_error.status_code, rosette_api_error.message)

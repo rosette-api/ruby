@@ -8,10 +8,10 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-categories_url_data = "https://onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-begins-filming-in-boston-in-june/"
+semantic_vectors_data = "Cambridge, Massachusetts"
 begin
-  params = DocumentParameters.new(content_uri: categories_url_data)
-  response = rosette_api.get_categories(params)
+  params = DocumentParameters.new(content: semantic_vectors_data)
+  response = rosette_api.get_semantic_vectors(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
   printf('Rosette API Error (%s): %s', rosette_api_error.status_code, rosette_api_error.message)

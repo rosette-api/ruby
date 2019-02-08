@@ -19,6 +19,7 @@
 
 
 
+
 <body id="top" role="document" class="class">
 <nav role="navigation">
   <div id="project-navigation">
@@ -222,7 +223,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 22</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">url_parameters</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">binding_version</span>)
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
@@ -274,14 +275,13 @@
 <p><code>request</code> - Prepared Rosette API request.</p>
 </li></ul>
 
-<p>Returns JSON response or raises <a
-href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
+<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
           
           
 
           
           <div class="method-source-code" id="get_response-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 177</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_response</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">request</span>
 
@@ -333,7 +333,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_multipart_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 81</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_multipart_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>], <span class="ruby-string">&#39;r&#39;</span>
@@ -426,7 +426,7 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
 
           
           <div class="method-source-code" id="prepare_plain_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 41</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
@@ -484,14 +484,13 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
           
           <p>Sends a GET request to Rosette API.</p>
 
-<p>Returns JSON response or raises <a
-href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
+<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
           
           
 
           
           <div class="method-source-code" id="send_get_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 141</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 142</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_get_request</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
@@ -530,14 +529,13 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
           
           <p>Sends a POST request to Rosette API.</p>
 
-<p>Returns JSON response or raises <a
-href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
+<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
           
           
 
           
           <div class="method-source-code" id="send_post_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 158</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 159</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_post_request</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>]
     <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-identifier">prepare_multipart_request</span> <span class="ruby-identifier">params</span>
@@ -560,12 +558,13 @@ href="RosetteAPIError.html">RosetteAPIError</a> if encountered.</p>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.0.0.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

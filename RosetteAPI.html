@@ -19,6 +19,7 @@
 
 
 
+
 <body id="top" role="document" class="class">
 <nav role="navigation">
   <div id="project-navigation">
@@ -97,9 +98,13 @@
     
     <li ><a href="#method-i-get_relationships">#get_relationships</a>
     
+    <li ><a href="#method-i-get_semantic_vectors">#get_semantic_vectors</a>
+    
     <li ><a href="#method-i-get_sentences">#get_sentences</a>
     
     <li ><a href="#method-i-get_sentiment">#get_sentiment</a>
+    
+    <li ><a href="#method-i-get_similar_terms">#get_similar_terms</a>
     
     <li ><a href="#method-i-get_syntax_dependencies">#get_syntax_dependencies</a>
     
@@ -202,6 +207,11 @@
         <dd><p>Rosette API relationships endpoint</p>
         
       
+        <dt id="SEMANTIC_VECTORS">SEMANTIC_VECTORS
+        
+        <dd><p>Semantic Vectors endpoint (replaces /text-embedding)</p>
+        
+      
         <dt id="SENTENCES_ENDPOINT">SENTENCES_ENDPOINT
         
         <dd><p>Rosette API sentences endpoint</p>
@@ -212,6 +222,11 @@
         <dd><p>Rosette API sentiment endpoint</p>
         
       
+        <dt id="SIMILAR_TERMS_ENDPOINT">SIMILAR_TERMS_ENDPOINT
+        
+        <dd><p>Similar Terms endpoint</p>
+        
+      
         <dt id="SYNTACTIC_DEPENDENCIES_ENDPOINT">SYNTACTIC_DEPENDENCIES_ENDPOINT
         
         <dd><p>Syntactic Dependencies endpoint</p>
@@ -219,7 +234,7 @@
       
         <dt id="TEXT_EMBEDDING">TEXT_EMBEDDING
         
-        <dd><p>Text Embedding endpoint</p>
+        <dd><p>Text Embedding endpoint (deprecated)</p>
         
       
         <dt id="TOKENS_ENDPOINT">TOKENS_ENDPOINT
@@ -329,7 +344,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 59</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span> = <span class="ruby-string">&#39;https://api.rosette.com/rest/v1&#39;</span>)
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
@@ -378,9 +393,7 @@
 
 <h4 id="method-i-get_categories-label-Attributes">Attributes<span><a href="#method-i-get_categories-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns the contextual categories identified in the input.</p>
@@ -389,7 +402,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_categories-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 198</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_categories</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -425,19 +438,16 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_compound_components-label-Attributes">Attributes<span><a href="#method-i-get_compound_components-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
-<p>Returns list of components for each compound word of the input for
-supported languages.</p>
+<p>Returns list of components for each compound word of the input for supported languages.</p>
           
           
 
           
           <div class="method-source-code" id="get_compound_components-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 115</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_compound_components</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -473,9 +483,7 @@ supported languages.</p>
 
 <h4 id="method-i-get_entities-label-Attributes">Attributes<span><a href="#method-i-get_entities-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns each entity extracted from the input.</p>
@@ -484,7 +492,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_entities-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 181</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_entities</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -521,19 +529,16 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_han_readings-label-Attributes">Attributes<span><a href="#method-i-get_han_readings-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
-<p>Returns list of Han-readings which provide pronunciation information for
-Han script, in both Chinese and Japanese input text.</p>
+<p>Returns list of Han-readings which provide pronunciation information for Han script, in both Chinese and Japanese input text.</p>
           
           
 
           
           <div class="method-source-code" id="get_han_readings-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 132</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_han_readings</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -569,9 +574,7 @@ Han script, in both Chinese and Japanese input text.</p>
 
 <h4 id="method-i-get_language-label-Attributes">Attributes<span><a href="#method-i-get_language-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns list of candidate languages in order of descending confidence.</p>
@@ -580,7 +583,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_language-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 80</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_language</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -616,9 +619,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_lemmas-label-Attributes">Attributes<span><a href="#method-i-get_lemmas-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns list of lemmas for each token of the input for supported languages.</p>
@@ -627,7 +628,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_lemmas-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 148</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_lemmas</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -659,24 +660,20 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
         <div class="method-description">
           
-          <p>Extracts parts-of-speech, lemmas (dictionary form), compound components,
-and Han-readings for each token in the input.</p>
+          <p>Extracts parts-of-speech, lemmas (dictionary form), compound components, and Han-readings for each token in the input.</p>
 
 <h4 id="method-i-get_morphology_complete-label-Attributes">Attributes<span><a href="#method-i-get_morphology_complete-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
-<p>Returns the lemmas, compound components, Han-readings, and parts-of-speech
-tags of the input for supported languages.</p>
+<p>Returns the lemmas, compound components, Han-readings, and parts-of-speech tags of the input for supported languages.</p>
           
           
 
           
           <div class="method-source-code" id="get_morphology_complete-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 98</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_morphology_complete</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -712,10 +709,7 @@ tags of the input for supported languages.</p>
 
 <h4 id="method-i-get_name_deduplication-label-Attributes">Attributes<span><a href="#method-i-get_name_deduplication-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="NameDeduplicationParameters.html">NameDeduplicationParameters</a>
-helps to build the request body in <a
-href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="NameDeduplicationParameters.html"><code>NameDeduplicationParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns the list of deduplicated names.</p>
@@ -724,7 +718,7 @@ href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_name_deduplication-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 246</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 250</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_name_deduplication</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameDeduplicationParameters type as an argument&#39;</span>, <span class="ruby-constant">NameDeduplicationParameters</span>
 
@@ -756,14 +750,11 @@ href="RequestBuilder.html">RequestBuilder</a>.</p>
 
         <div class="method-description">
           
-          <p>Compares two entity names (person, location, or organization) and returns a
-match score from 0 to 1.</p>
+          <p>Compares two entity names (person, location, or organization) and returns a match score from 0 to 1.</p>
 
 <h4 id="method-i-get_name_similarity-label-Attributes">Attributes<span><a href="#method-i-get_name_similarity-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="NameSimilarityParameters.html">NameSimilarityParameters</a> helps to
-build the request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="NameSimilarityParameters.html"><code>NameSimilarityParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns the confidence score of matching 2 names.</p>
@@ -772,7 +763,7 @@ build the request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_name_similarity-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 279</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 283</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_name_similarity</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameSimilarityParameters type as an argument&#39;</span>, <span class="ruby-constant">NameSimilarityParameters</span>
 
@@ -808,10 +799,7 @@ build the request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_name_translation-label-Attributes">Attributes<span><a href="#method-i-get_name_translation-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="NameTranslationParameters.html">NameTranslationParameters</a> helps
-to build the request body in <a
-href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="NameTranslationParameters.html"><code>NameTranslationParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns the translation of a name.</p>
@@ -820,7 +808,7 @@ href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_name_translation-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 262</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 266</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_name_translation</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a NameTranslationParameters type as an argument&#39;</span>, <span class="ruby-constant">NameTranslationParameters</span>
 
@@ -856,19 +844,16 @@ href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_parts_of_speech-label-Attributes">Attributes<span><a href="#method-i-get_parts_of_speech-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
-<p>Returns list of part-of-speech (POS) tags for each of the words of the
-input, depending on the context of how it is used.</p>
+<p>Returns list of part-of-speech (POS) tags for each of the words of the input, depending on the context of how it is used.</p>
           
           
 
           
           <div class="method-source-code" id="get_parts_of_speech-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 165</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 169</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_parts_of_speech</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -904,9 +889,7 @@ input, depending on the context of how it is used.</p>
 
 <h4 id="method-i-get_relationships-label-Attributes">Attributes<span><a href="#method-i-get_relationships-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns each relationship extracted from the input.</p>
@@ -915,13 +898,56 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_relationships-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 214</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 218</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_relationships</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RELATIONSHIPS_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
+                .<span class="ruby-identifier">send_post_request</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_semantic_vectors" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_semantic_vectors</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the vectors associated with the text</p>
+
+<h4 id="method-i-get_semantic_vectors-label-Attributes">Attributes<span><a href="#method-i-get_semantic_vectors-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
+</li></ul>
+
+<p>Returns the text embedding representation of the input.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_semantic_vectors-source">
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 351</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_semantic_vectors</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SEMANTIC_VECTORS</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -951,9 +977,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_sentences-label-Attributes">Attributes<span><a href="#method-i-get_sentences-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns list of linguistic sentences of the input.</p>
@@ -962,7 +986,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentences-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 311</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 315</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_sentences</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -998,9 +1022,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_sentiment-label-Attributes">Attributes<span><a href="#method-i-get_sentiment-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns sentiment analysis results.</p>
@@ -1009,13 +1031,58 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_sentiment-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 230</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 234</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_sentiment</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
   <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
 
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SENTIMENT_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
+                .<span class="ruby-identifier">send_post_request</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_similar_terms" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_similar_terms</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the terms similar to the input</p>
+
+<h4 id="method-i-get_similar_terms-label-Attributes">Attributes<span><a href="#method-i-get_similar_terms-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
+</li></ul>
+
+<p>Returns a mapping of languageCode to similar terms</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_similar_terms-source">
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 415</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_similar_terms</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
+
+  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">load_params</span>
+
+  <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">SIMILAR_TERMS_ENDPOINT</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">params</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_post_request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -1041,13 +1108,11 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
         <div class="method-description">
           
-          <p>Returns the vectors associated with the text</p>
+          <p>Returns the syntactic structure of the text</p>
 
 <h4 id="method-i-get_syntax_dependencies-label-Attributes">Attributes<span><a href="#method-i-get_syntax_dependencies-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns list of linguistic sentences of the input.</p>
@@ -1056,7 +1121,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_syntax_dependencies-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 345</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 366</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_syntax_dependencies</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -1090,20 +1155,20 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
           
           <p>Returns the vectors associated with the text</p>
 
+<p>Deprecated.  Please use `get_semantic_vectors` instead</p>
+
 <h4 id="method-i-get_text_embedding-label-Attributes">Attributes<span><a href="#method-i-get_text_embedding-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
-<p>Returns list of linguistic sentences of the input.</p>
+<p>Returns the text embedding representation of the input.</p>
           
           
 
           
           <div class="method-source-code" id="get_text_embedding-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 328</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 334</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_text_embedding</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -1139,9 +1204,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_tokens-label-Attributes">Attributes<span><a href="#method-i-get_tokens-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns list of tokens of the input.</p>
@@ -1150,7 +1213,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_tokens-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 295</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 299</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_tokens</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -1186,9 +1249,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_topics-label-Attributes">Attributes<span><a href="#method-i-get_topics-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns list of topics of the input.</p>
@@ -1197,7 +1258,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_topics-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 378</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 399</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_topics</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>
 
@@ -1233,9 +1294,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
 <h4 id="method-i-get_transliteration-label-Attributes">Attributes<span><a href="#method-i-get_transliteration-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
 <ul><li>
-<p><code>params</code> - <a
-href="DocumentParameters.html">DocumentParameters</a> helps to build the
-request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
+<p><code>params</code> - <a href="DocumentParameters.html"><code>DocumentParameters</code></a> helps to build the request body in <a href="RequestBuilder.html"><code>RequestBuilder</code></a>.</p>
 </li></ul>
 
 <p>Returns the transliteration of the input.</p>
@@ -1244,7 +1303,7 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
           
           <div class="method-source-code" id="get_transliteration-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 362</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 383</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_transliteration</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">check_params</span> <span class="ruby-identifier">params</span>, <span class="ruby-string">&#39;Expects a DocumentParameters type as an argument&#39;</span>, <span class="ruby-constant">DocumentParameters</span>
 
@@ -1276,14 +1335,13 @@ request body in <a href="RequestBuilder.html">RequestBuilder</a>.</p>
 
         <div class="method-description">
           
-          <p>Gets information about the Rosette API, returns name, build number and
-build time.</p>
+          <p>Gets information about the Rosette API, returns name, build number and build time.</p>
           
           
 
           
           <div class="method-source-code" id="info-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 389</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 426</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">info</span>
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">INFO</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_get_request</span>
@@ -1311,14 +1369,13 @@ build time.</p>
 
         <div class="method-description">
           
-          <p>Pings the Rosette API for a response indicting that the service is
-available.</p>
+          <p>Pings the Rosette API for a response indicting that the service is available.</p>
           
           
 
           
           <div class="method-source-code" id="ping-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 396</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 433</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ping</span>
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">PING</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>)
                 .<span class="ruby-identifier">send_get_request</span>
@@ -1352,7 +1409,7 @@ available.</p>
 
           
           <div class="method-source-code" id="user_agent-source">
-            <pre><span class="ruby-comment"># File rosette_api.rb, line 402</span>
+            <pre><span class="ruby-comment"># File rosette_api.rb, line 439</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">user_agent</span>
   <span class="ruby-constant">RequestBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@user_key</span>, <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-constant">PING</span>, <span class="ruby-ivar">@http_client</span>, <span class="ruby-ivar">@url_parameters</span>, <span class="ruby-constant">BINDING_VERSION</span>).<span class="ruby-identifier">user_agent</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1369,12 +1426,13 @@ available.</p>
     </section>
   
   </section>
+
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.0.0.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

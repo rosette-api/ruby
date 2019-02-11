@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=develop)](https://travis-ci.org/rosette-api/ruby)
+[![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=develop)](https://travis-ci.org/rosette-api/ruby) [![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
 
 # Ruby client binding for Rosette API #
 See the wiki for more information.

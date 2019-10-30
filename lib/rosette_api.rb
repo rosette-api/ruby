@@ -3,6 +3,7 @@ require_relative 'document_parameters'
 require_relative 'name_deduplication_parameters'
 require_relative 'name_translation_parameters'
 require_relative 'name_similarity_parameters'
+require_relative 'address_similarity_parameters'
 require_relative 'rosette_api_error'
 require_relative 'bad_request_error'
 require_relative 'bad_request_format_error'
@@ -10,7 +11,7 @@ require_relative 'bad_request_format_error'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.12.1'
+  BINDING_VERSION = '1.14.3'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'.freeze
   # Rosette API morphology endpoint
@@ -29,6 +30,8 @@ class RosetteAPI
   NAME_TRANSLATION_ENDPOINT = '/name-translation'.freeze
   # Rosette API name-similarity endpoint
   NAME_SIMILARITY_ENDPOINT = '/name-similarity'.freeze
+  # Rosette API address-similarity endpoint
+  ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'.freeze
   # Rosette API tokens endpoint
   TOKENS_ENDPOINT = '/tokens'.freeze
   # Rosette API sentences endpoint
@@ -286,6 +289,22 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+                  .send_post_request
+  end
+
+  # Compares two addresses and returns a match score from 0 to 1.
+  #
+  # ==== Attributes
+  #
+  # * +params+ - AddressSimilarityParameters helps to build the request body in RequestBuilder.
+  #
+  # Returns the confidence score of matching 2 addresses.
+  def get_address_similarity(params)
+    check_params params, 'Expects a AddressSimilarityParameters type as an argument', AddressSimilarityParameters
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + ADDRESS_SIMILARITY_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 

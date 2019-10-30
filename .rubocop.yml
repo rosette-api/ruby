@@ -143,6 +143,7 @@ Style/FrozenStringLiteralComment:
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
   Exclude:
+    - 'lib/address_similarity_parameters.rb'
     - 'lib/name_similarity_parameters.rb'
     - 'lib/name_translation_parameters.rb'
     - 'lib/request_builder.rb'
@@ -230,6 +231,8 @@ Style/RaiseArgs:
 # Cop supports --auto-correct.
 Style/RedundantSelf:
   Exclude:
+    - 'lib/address_parameter.rb'
+    - 'lib/address_similarity_parameters.rb'
     - 'lib/document_parameters.rb'
     - 'lib/name_parameter.rb'
     - 'lib/name_similarity_parameters.rb'
@@ -239,6 +242,7 @@ Style/RedundantSelf:
 # Cop supports --auto-correct.
 Style/SpaceAfterColon:
   Exclude:
+    - 'examples/address_similarity.rb'
     - 'examples/name_similarity.rb'
 
 # Offense count: 2
@@ -265,6 +269,7 @@ Style/SpaceInsideHashLiteralBraces:
 Style/StringLiterals:
   Exclude:
     - 'Gemfile'
+    - 'examples/address_similarity.rb'
     - 'examples/categories.rb'
     - 'examples/entities.rb'
     - 'examples/language.rb'
@@ -284,6 +289,7 @@ Style/StringLiterals:
 # SupportedStyles: final_newline, final_blank_line
 Style/TrailingBlankLines:
   Exclude:
+    - 'examples/address_similarity.rb'
     - 'examples/info.rb'
     - 'examples/language.rb'
     - 'examples/morphology_compound-components.rb'

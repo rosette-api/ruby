@@ -11,6 +11,9 @@
 /test/version_tmp/
 /tmp/
 
+# Jetbrains
+**/.idea/*
+
 ## Specific to RubyMotion:
 .dat*
 .repl_history

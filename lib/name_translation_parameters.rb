@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'rosette_api_error'
 
 # This class encapsulates parameters that are needed for name-translation in
@@ -52,10 +53,9 @@ class NameTranslationParameters
   # Validates the parameters by checking if rosette_options is an instance
   # of a Hash.
   def validate_params
+    msg = 'rosette_options can only be an instance of a Hash'
     if @rosette_options
-      raise BadRequestError.new(
-        'rosette_options can only be an instance of a Hash'
-          ) unless @rosette_options.is_a? Hash
+      raise BadRequestError.new(msg) unless @rosette_options.is_a? Hash
     end
   end
 
@@ -64,11 +64,10 @@ class NameTranslationParameters
   # Returns the new Hash.
   def load_params
     validate_params
-    to_hash.select { |_key, value| value }
-           .map { |key, value| [key.to_s.split('_')
-                                   .map(&:capitalize)
-                                   .join.sub!(/\D/, &:downcase), value] }
-           .to_h
+    to_hash
+      .select { |_key, value| value }
+      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+      .to_h
   end
 
   # Converts this class to Hash.

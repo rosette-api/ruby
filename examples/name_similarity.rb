@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rosette_api'
 
 api_key, url = ARGV
@@ -15,12 +16,13 @@ begin
   name1 = NameParameter.new(
     matched_name_data1,
     entity_type: 'PERSON',
-    language: 'eng')
+    language: 'eng'
+  )
   params = NameSimilarityParameters.new(name1, matched_name_data2)
   response = rosette_api.get_name_similarity(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
   printf('Rosette API Error (%s): %s',
-    rosette_api_error.status_code,
-    rosette_api_error.message)
+         rosette_api_error.status_code,
+         rosette_api_error.message)
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'tempfile'
 require 'rosette_api'
 
@@ -26,6 +27,6 @@ begin
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
   printf('Rosette API Error (%s): %s',
-    rosette_api_error.status_code,
-    rosette_api_error.message)
+         rosette_api_error.status_code,
+         rosette_api_error.message)
 end

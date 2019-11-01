@@ -6,6 +6,44 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+Metrics/BlockLength:
+  Exclude:
+    - 'tests/tests_spec.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'lib/request_builder.rb'
+    - 'lib/rosette_api.rb'
+
+Metrics/LineLength:
+  Exclude:
+    - 'examples/language_multilingual.rb'
+    - 'lib/document_parameters.rb'
+    - 'lib/name_deduplication_parameters.rb'
+    - 'lib/name_parameter.rb'
+    - 'lib/name_similarity_parameters.rb'
+    - 'lib/name_translation_parameters.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/document_parameters.rb'
+    - 'lib/name_deduplication_parameters.rb'
+    - 'lib/name_translation_parameters.rb'
+    - 'lib/request_builder.rb'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'lib/name_deduplication_parameters.rb'
+    - 'lib/name_similarity_parameters.rb'
+
+Style/GuardClause:
+  Exclude:
+    - 'lib/document_parameters.rb'
+    - 'lib/name_deduplication_parameters.rb'
+    - 'lib/name_similarity_parameters.rb'
+    - 'lib/name_translation_parameters.rb'
+
+
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: TreatCommentsAsGroupSeparators, Include.
@@ -113,22 +151,9 @@ Layout/TrailingBlankLines:
 Metrics/AbcSize:
   Max: 42
 
-Metrics/BlockLength:
-  Exclude:
-    - 'tests/tests_spec.rb'
-
-Metrics/ClassLength:
-  Exclude:
-    - 'lib/rosette_api.rb'
-
 # Offense count: 1
 Metrics/CyclomaticComplexity:
   Max: 8
-
-# Offense count: 6
-# Configuration parameters: CountComments, ExcludedMethods.
-Metrics/MethodLength:
-  Max: 43
 
 # Offense count: 1
 # Configuration parameters: CountKeywordArgs.
@@ -210,20 +235,6 @@ Style/FrozenStringLiteralComment:
     - 'Gemfile'
     - 'rosette_api.gemspec'
 
-# Offense count: 5
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'lib/name_deduplication_parameters.rb'
-    - 'lib/name_similarity_parameters.rb'
-    - 'lib/name_translation_parameters.rb'
-    - 'lib/request_builder.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/rosette_api.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -277,15 +288,6 @@ Style/StringLiterals:
 # Cop supports --auto-correct.
 # Configuration parameters: WordRegex.
 # SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: percent
-  MinSize: 4
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Metrics/LineLength:
-  Max: 80
-  Exclude:
-    - 'examples/language_multilingual.rb'
+#Style/WordArray:
+#  EnforcedStyle: percent
+#  MinSize: 4

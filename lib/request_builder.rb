@@ -1,5 +1,6 @@
 # encoding: UTF-8
 # frozen_string_literal: true
+
 require 'net/http'
 require 'net/https'
 require 'json'
@@ -46,8 +47,10 @@ class RequestBuilder
       uri = URI.parse @alternate_url
       request = Net::HTTP::Post.new uri.request_uri
     rescue
-      raise RosetteAPIError.new 'connectionError',
+      raise RosetteAPIError.new(
+        'connectionError',
         'Failed to establish connection with Rosette API server.'
+      )
     end
 
     custom_headers = params['customHeaders']
@@ -58,8 +61,10 @@ class RequestBuilder
         if key.to_s =~ /^X-RosetteAPI-/
           request[key] = custom_headers[key]
         else
-          raise RosetteAPIError.new 'invalidHeader',
+          raise RosetteAPIError.new(
+            'invalidHeader',
             'Custom header must begin with "X-RosetteAPI-"'
+          )
         end
       end
       params.delete 'customHeaders'
@@ -115,8 +120,10 @@ class RequestBuilder
       uri = URI.parse @alternate_url
       request = Net::HTTP::Post.new uri.request_uri
     rescue
-      raise RosetteAPIError.new 'connectionError',
+      raise RosetteAPIError.new(
+        'connectionError',
         'Failed to establish connection with Rosette API server.'
+      )
     end
 
     # add any custom headers from the user
@@ -126,8 +133,10 @@ class RequestBuilder
         if k.to_s =~ /^X-RosetteAPI-/
           request.add_field k, params['customHeaders'][k]
         else
-          raise RosetteAPIError.new 'invalidHeader',
+          raise RosetteAPIError.new(
+            'invalidHeader',
             'Custom header must begin with "X-RosetteAPI-"'
+          )
         end
       end
       params.delete 'customHeaders'
@@ -153,8 +162,10 @@ class RequestBuilder
 
       request = Net::HTTP::Get.new uri.request_uri
     rescue
-      raise RosetteAPIError.new 'connectionError',
+      raise RosetteAPIError.new(
+        'connectionError',
         'Failed to establish connection with Rosette API server.'
+      )
     end
     request['X-RosetteAPI-Key'] = @user_key
     request['User-Agent'] = @user_agent

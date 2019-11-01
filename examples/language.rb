@@ -16,5 +16,7 @@ begin
     response = rosette_api.get_language(params)
     puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
-    printf("Rosette API Error (%s): %s", rosette_api_error.status_code, rosette_api_error.message)
+    printf("Rosette API Error (%s): %s",
+      rosette_api_error.status_code,
+      rosette_api_error.message)
 end

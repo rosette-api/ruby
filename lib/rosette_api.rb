@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'request_builder'
 require_relative 'document_parameters'
 require_relative 'name_deduplication_parameters'
@@ -13,43 +14,43 @@ class RosetteAPI
   # Version of Ruby binding
   BINDING_VERSION = '1.12.1'
   # Rosette API language endpoint
-  LANGUAGE_ENDPOINT = '/language'.freeze
+  LANGUAGE_ENDPOINT = '/language'
   # Rosette API morphology endpoint
-  MORPHOLOGY_ENDPOINT = '/morphology'.freeze
+  MORPHOLOGY_ENDPOINT = '/morphology'
   # Rosette API entities endpoint
-  ENTITIES_ENDPOINT = '/entities'.freeze
+  ENTITIES_ENDPOINT = '/entities'
   # Rosette API categories endpoint
-  CATEGORIES_ENDPOINT = '/categories'.freeze
+  CATEGORIES_ENDPOINT = '/categories'
   # Rosette API relationships endpoint
-  RELATIONSHIPS_ENDPOINT = '/relationships'.freeze
+  RELATIONSHIPS_ENDPOINT = '/relationships'
   # Rosette API sentiment endpoint
-  SENTIMENT_ENDPOINT = '/sentiment'.freeze
+  SENTIMENT_ENDPOINT = '/sentiment'
   # Name Deduplication endpoint
-  NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'.freeze
+  NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'
   # Rosette API name-translation endpoint
-  NAME_TRANSLATION_ENDPOINT = '/name-translation'.freeze
+  NAME_TRANSLATION_ENDPOINT = '/name-translation'
   # Rosette API name-similarity endpoint
-  NAME_SIMILARITY_ENDPOINT = '/name-similarity'.freeze
+  NAME_SIMILARITY_ENDPOINT = '/name-similarity'
   # Rosette API tokens endpoint
-  TOKENS_ENDPOINT = '/tokens'.freeze
+  TOKENS_ENDPOINT = '/tokens'
   # Rosette API sentences endpoint
-  SENTENCES_ENDPOINT = '/sentences'.freeze
+  SENTENCES_ENDPOINT = '/sentences'
   # Rosette API info endpoint
-  INFO = '/info'.freeze
+  INFO = '/info'
   # Rosette API ping endpoint
-  PING = '/ping'.freeze
+  PING = '/ping'
   # Text Embedding endpoint (deprecated)
-  TEXT_EMBEDDING = '/text-embedding'.freeze
+  TEXT_EMBEDDING = '/text-embedding'
   # Semantic Vectors endpoint (replaces /text-embedding)
-  SEMANTIC_VECTORS = '/semantics/vector'.freeze
+  SEMANTIC_VECTORS = '/semantics/vector'
   # Similar Terms endpoint
-  SIMILAR_TERMS_ENDPOINT = '/semantics/similar'.freeze
+  SIMILAR_TERMS_ENDPOINT = '/semantics/similar'
   # Syntactic Dependencies endpoint
-  SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'.freeze
+  SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'
   # Transliteration endpoint
-  TRANSLITERATION_ENDPOINT = '/transliteration'.freeze
+  TRANSLITERATION_ENDPOINT = '/transliteration'
   # Topics endpoint
-  TOPICS_ENDPOINT = '/topics'.freeze
+  TOPICS_ENDPOINT = '/topics'
 
 
   # Rosette API key
@@ -79,7 +80,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of candidate languages in order of descending confidence.
   def get_language(params)
@@ -87,7 +89,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + LANGUAGE_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + LANGUAGE_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -96,7 +99,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the lemmas, compound components, Han-readings, and parts-of-speech
   # tags of the input for supported languages.
@@ -105,7 +109,9 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/complete', @http_client, params, @url_parameters, BINDING_VERSION)
+    endpoint = MORPHOLOGY_ENDPOINT + '/complete'
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
+                       params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -113,7 +119,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of components for each compound word of the input for supported
   # languages.
@@ -122,7 +129,9 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/compound-components', @http_client, params, @url_parameters, BINDING_VERSION)
+    endpoint = MORPHOLOGY_ENDPOINT + '/compound-components'
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
+                       params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -130,7 +139,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of Han-readings which provide pronunciation information for
   # Han script, in both Chinese and Japanese input text.
@@ -139,7 +149,9 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/han-readings', @http_client, params, @url_parameters, BINDING_VERSION)
+    endpoint = MORPHOLOGY_ENDPOINT + '/han-readings'
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
+                       params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -147,7 +159,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of lemmas for each token of the input for supported languages.
   def get_lemmas(params)
@@ -155,7 +168,9 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/lemmas', @http_client, params, @url_parameters, BINDING_VERSION)
+    endpoint = MORPHOLOGY_ENDPOINT + '/lemmas'
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
+                       params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -163,7 +178,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of part-of-speech (POS) tags for each of the words of the
   # input, depending on the context of how it is used.
@@ -172,7 +188,9 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + MORPHOLOGY_ENDPOINT + '/parts-of-speech', @http_client, params, @url_parameters, BINDING_VERSION)
+    endpoint = MORPHOLOGY_ENDPOINT + '/parts-of-speech'
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
+                       params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -180,7 +198,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns each entity extracted from the input.
   def get_entities(params)
@@ -189,7 +208,8 @@ class RosetteAPI
     params = params.load_params
 
     endpoint = ENTITIES_ENDPOINT
-    RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
+                       params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -197,7 +217,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the contextual categories identified in the input.
   def get_categories(params)
@@ -205,7 +226,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + CATEGORIES_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + CATEGORIES_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -213,7 +235,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns each relationship extracted from the input.
   def get_relationships(params)
@@ -221,7 +244,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + RELATIONSHIPS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + RELATIONSHIPS_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -229,7 +253,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns sentiment analysis results.
   def get_sentiment(params)
@@ -237,7 +262,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -245,15 +271,19 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - NameDeduplicationParameters helps to build the request body in RequestBuilder.
+  # * +params+ - NameDeduplicationParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the list of deduplicated names.
   def get_name_deduplication(params)
-    check_params params, 'Expects a NameDeduplicationParameters type as an argument', NameDeduplicationParameters
+    check_params params,
+                 'Expects a NameDeduplicationParameters type as an argument',
+                 NameDeduplicationParameters
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + NAME_DEDUPLICATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + NAME_DEDUPLICATION_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -261,15 +291,19 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - NameTranslationParameters helps to build the request body in RequestBuilder.
+  # * +params+ - NameTranslationParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the translation of a name.
   def get_name_translation(params)
-    check_params params, 'Expects a NameTranslationParameters type as an argument', NameTranslationParameters
+    check_params params,
+                 'Expects a NameTranslationParameters type as an argument',
+                 NameTranslationParameters
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + NAME_TRANSLATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + NAME_TRANSLATION_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -278,15 +312,19 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - NameSimilarityParameters helps to build the request body in RequestBuilder.
+  # * +params+ - NameSimilarityParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the confidence score of matching 2 names.
   def get_name_similarity(params)
-    check_params params, 'Expects a NameSimilarityParameters type as an argument', NameSimilarityParameters
+    check_params params,
+                 'Expects a NameSimilarityParameters type as an argument',
+                 NameSimilarityParameters
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -294,7 +332,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of tokens of the input.
   def get_tokens(params)
@@ -302,7 +341,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + TOKENS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + TOKENS_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -310,7 +350,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of linguistic sentences of the input.
   def get_sentences(params)
@@ -318,7 +359,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -329,7 +371,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the text embedding representation of the input.
   def get_text_embedding(params)
@@ -337,7 +380,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client,
+                       params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -346,13 +390,15 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the text embedding representation of the input.
   def get_semantic_vectors(params)
     check_params params
     params = params.load_params
-    RequestBuilder.new(@user_key, @alternate_url + SEMANTIC_VECTORS, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + SEMANTIC_VECTORS,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -361,7 +407,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of linguistic sentences of the input.
   def get_syntax_dependencies(params)
@@ -369,7 +416,9 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + SYNTACTIC_DEPENDENCIES_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key,
+                       @alternate_url + SYNTACTIC_DEPENDENCIES_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -378,15 +427,19 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the transliteration of the input.
   def get_transliteration(params)
-    check_params params, 'Expects a DocumentParameters type as an argument', DocumentParameters
+    check_params params,
+                 'Expects a DocumentParameters type as an argument',
+                 DocumentParameters
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + TRANSLITERATION_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + TRANSLITERATION_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -394,7 +447,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns list of topics of the input.
   def get_topics(params)
@@ -402,7 +456,8 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + TOPICS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + TOPICS_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
@@ -410,7 +465,8 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - DocumentParameters helps to build the request body in RequestBuilder.
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns a mapping of languageCode to similar terms
   def get_similar_terms(params)
@@ -418,33 +474,39 @@ class RosetteAPI
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + SIMILAR_TERMS_ENDPOINT, @http_client, params, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + SIMILAR_TERMS_ENDPOINT,
+                       @http_client, params, @url_parameters, BINDING_VERSION)
                   .send_post_request
   end
 
   # Gets information about the Rosette API, returns name, build number
   # and build time.
   def info
-    RequestBuilder.new(@user_key, @alternate_url + INFO, @http_client, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + INFO, @http_client,
+                       @url_parameters, BINDING_VERSION)
                   .send_get_request
   end
 
   # Pings the Rosette API for a response indicting that the service is
   # available.
   def ping
-    RequestBuilder.new(@user_key, @alternate_url + PING, @http_client, @url_parameters, BINDING_VERSION)
+    RequestBuilder.new(@user_key, @alternate_url + PING, @http_client,
+                       @url_parameters, BINDING_VERSION)
                   .send_get_request
   end
 
   # Gets the User-Agent string
   def user_agent
-    RequestBuilder.new(@user_key, @alternate_url + PING, @http_client, @url_parameters, BINDING_VERSION).user_agent
+    RequestBuilder.new(@user_key, @alternate_url + PING, @http_client,
+                       @url_parameters, BINDING_VERSION).user_agent
   end
 
   private
 
   # Checks that the right parameter type is being passed in.
-  def check_params(params, message = 'Expects a DocumentParameters type as an argument', type = DocumentParameters)
+  def check_params(params,
+                   message = 'Expects a DocumentParameters type as an argument',
+                   type = DocumentParameters)
     raise BadRequestError.new message unless params.is_a? type
   end
 end

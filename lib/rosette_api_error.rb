@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This class encapsulates all Rosette API server errors encountered during
 # requests.
 class RosetteAPIError < StandardError

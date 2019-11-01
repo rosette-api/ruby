@@ -27,7 +27,9 @@ class NameParameter
   # Returns the new Hash.
   def load_param
     to_hash.select { |_key, value| value }
-           .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+           .map { |key, value| [key.to_s.split('_')
+                                   .map(&:capitalize)
+                                   .join.sub!(/\D/, &:downcase), value] }
            .to_h
   end
 

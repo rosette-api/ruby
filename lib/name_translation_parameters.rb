@@ -12,7 +12,8 @@ class NameTranslationParameters
   attr_accessor :name
   # Rosette API options (optional, should be a hash)
   attr_accessor :rosette_options
-  # ISO 693-3 code of the name's native language the name originates in (optional)
+  # ISO 693-3 code of the name's native language the name originates in
+  # (optional)
   attr_accessor :source_language_of_origin
   # ISO 693-3 code of the name's language of use (optional)
   attr_accessor :source_language_of_use
@@ -48,10 +49,13 @@ class NameTranslationParameters
     @target_script = options[:target_script]
   end
 
-  # Validates the parameters by checking if rosette_options is an instance of a Hash.
+  # Validates the parameters by checking if rosette_options is an instance
+  # of a Hash.
   def validate_params
     if @rosette_options
-      raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
+      raise BadRequestError.new(
+        'rosette_options can only be an instance of a Hash'
+          ) unless @rosette_options.is_a? Hash
     end
   end
 
@@ -61,7 +65,9 @@ class NameTranslationParameters
   def load_params
     validate_params
     to_hash.select { |_key, value| value }
-           .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+           .map { |key, value| [key.to_s.split('_')
+                                   .map(&:capitalize)
+                                   .join.sub!(/\D/, &:downcase), value] }
            .to_h
   end
 

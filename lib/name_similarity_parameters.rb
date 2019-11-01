@@ -28,10 +28,16 @@ class NameSimilarityParameters
   # Validates the parameters by checking if name1 and name2 are instances of
   # a String or NameParameter.
   def validate_params
-    raise BadRequestError.new('name1 option can only be an instance of a String or NameParameter') if [String, NameParameter].none? { |clazz| @name1.is_a? clazz }
-    raise BadRequestError.new('name2 option can only be an instance of a String or NameParameter') if [String, NameParameter].none? { |clazz| @name2.is_a? clazz }
+    raise BadRequestError.new(
+      'name1 option can only be an instance of a String or NameParameter'
+        ) if [String, NameParameter].none? { |clazz| @name1.is_a? clazz }
+    raise BadRequestError.new(
+      'name2 option can only be an instance of a String or NameParameter'
+        ) if [String, NameParameter].none? { |clazz| @name2.is_a? clazz }
     if @rosette_options
-      raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
+      raise BadRequestError.new(
+        'rosette_options can only be an instance of a Hash'
+          ) unless @rosette_options.is_a? Hash
     end
   end
 
@@ -41,7 +47,9 @@ class NameSimilarityParameters
   def load_params
     validate_params
     to_hash.reject { |_key, value| value.nil? }
-           .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+           .map { |key, value| [key.to_s.split('_')
+                                   .map(&:capitalize)
+                                   .join.sub!(/\D/, &:downcase), value] }
            .to_h
   end
 

@@ -7,10 +7,11 @@ require 'json'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 describe RosetteAPI do
+  user_agent = 'Ruby/' + RosetteAPI::BINDING_VERSION + '/' + RUBY_VERSION
   RSpec.configure do |config|
     config.before(:example) { @content = 'Sample Content' }
     config.before(:example) { @json = {content: 'Sample Content'}.to_json }
-    config.before(:example) { @user_agent = 'Ruby/' + RosetteAPI::BINDING_VERSION + '/' + RUBY_VERSION }
+    config.before(:example) { @user_agent = user_agent }
   end
 
   describe '.user_agent' do
@@ -23,14 +24,18 @@ describe RosetteAPI do
   describe '.get_language' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/language')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test language' do
@@ -40,16 +45,18 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
 
-    it 'badRequestFormat: the format of the request is invalid: multiple content sources' do
+    it 'badRequestFormat: the format of the request is invalid: multiple..' do
       params = DocumentParameters.new
       params.content = 'Por favor Senorita, says the man.?'
       params.content_uri = 'Por favor Senorita, says the man.?'
-      expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error(BadRequestFormatError)
+      expect { RosetteAPI.new('0123456789').get_language(params) }
+        .to raise_error(BadRequestFormatError)
     end
 
-    it 'badRequestFormat: the format of the request is invalid: no content provided;' do
+    it 'badRequestFormat: the format of the request is invalid: no content..' do
       params = DocumentParameters.new
-      expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error(BadRequestFormatError)
+      expect { RosetteAPI.new('0123456789').get_language(params) }
+        .to raise_error(BadRequestFormatError)
     end
 
   end
@@ -57,15 +64,21 @@ describe RosetteAPI do
   describe '.get_morphology_complete' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/complete')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "morphology/complete"}', headers: {})
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "morphology/complete"}',
+                   headers: {})
     end
     it 'test morphology complete' do
       params = DocumentParameters.new
@@ -77,16 +90,23 @@ describe RosetteAPI do
 
   describe '.get_compound_components' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/compound-components')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "morphology/compound-components"}', headers: {})
+      url = 'https://api.rosette.com/rest/v1/morphology/compound-components'
+      stub_request(:post, url)
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "morphology/compound-components"}',
+                   headers: {})
     end
     it 'test morphology compound components' do
       params = DocumentParameters.new
@@ -98,16 +118,23 @@ describe RosetteAPI do
 
   describe '.get_han_readings' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/han-readings')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "morphology/han-readings"}', headers: {})
+      url = 'https://api.rosette.com/rest/v1/morphology/han-readings'
+      stub_request(:post, url)
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "morphology/han-readings"}',
+                   headers: {})
     end
     it 'test morphology han readings' do
       params = DocumentParameters.new
@@ -119,16 +146,23 @@ describe RosetteAPI do
 
   describe '.get_parts_of_speech' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/parts-of-speech')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "morphology/parts-of-speech"}', headers: {})
+      url = 'https://api.rosette.com/rest/v1/morphology/parts-of-speech'
+      stub_request(:post, url)
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "morphology/parts-of-speech"}',
+                   headers: {})
     end
     it 'test morphology parts of speech' do
       params = DocumentParameters.new
@@ -141,15 +175,21 @@ describe RosetteAPI do
   describe '.get_lemmas' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/lemmas')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "morphology/lemmas"}', headers: {})
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "morphology/lemmas"}',
+                   headers: {})
     end
     it 'test morphology lemmas' do
       params = DocumentParameters.new
@@ -162,14 +202,18 @@ describe RosetteAPI do
   describe '.get_entities' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/entities')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
     end
     it 'test entities' do
@@ -182,16 +226,21 @@ describe RosetteAPI do
 
   describe '.get_entities_no_qids' do
     before do
-      no_qids_json = { content: 'Sample Content', options: { linkEntities: false } }.to_json
+      no_qids_json = { content: 'Sample Content',
+                       options: { linkEntities: false } }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/entities')
-        .with(body: no_qids_json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: no_qids_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
     end
     it 'test entities without qids' do
@@ -204,10 +253,12 @@ describe RosetteAPI do
 
     it 'test rosette_options is not a Hash' do
       params = DocumentParameters.new
-      params.content = 'Last month director Paul Feig announced the movie will have an all-star female cast including' \
-                       ' Kristen Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
+      params.content = 'Last month director Paul Feig announced the movie ' \
+                       'will have an all-star female cast including Kristen ' \
+                       'Wiig, Melissa McCarthy, Leslie Jones and Kate McKinnon.'
       params.rosette_options = 1
-      expect { RosetteAPI.new('0123456789').get_entities(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_entities(params) }
+        .to raise_error(BadRequestError)
     end
   end
 
@@ -215,14 +266,18 @@ describe RosetteAPI do
     before do
       categories_json = { contentUri: 'http://google.com' }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/categories')
-        .with(body: categories_json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: categories_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "categories"}', headers: {})
     end
     it 'test categories' do
@@ -236,14 +291,18 @@ describe RosetteAPI do
   describe '.get_relationships' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/relationships')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "relationships"}', headers: {})
     end
     it 'test relationships' do
@@ -256,20 +315,29 @@ describe RosetteAPI do
 
   describe '.name_translation' do
     before do
-      name_translation_json = { name: 'معمر محمد أبو منيار القذاف', targetLanguage: 'eng', targetScript: 'Latn' }.to_json
+      name_translation_json = { name: 'معمر محمد أبو منيار القذاف',
+                                targetLanguage: 'eng',
+                                targetScript: 'Latn' }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-translation')
-        .with(body: name_translation_json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
-          .to_return(status: 200, body: '{"test": "name-translation"}', headers: {})
+        .with(
+          body: name_translation_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "name-translation"}',
+                   headers: {})
     end
     it 'test name translation' do
-      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
+      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'
+                                             .encode('UTF-8'), 'eng')
       params.target_script = 'Latn'
       response = RosetteAPI.new('0123456789').get_name_translation(params)
       expect(response).instance_of? Hash
@@ -277,23 +345,31 @@ describe RosetteAPI do
 
     it 'badRequest: Expects NameTranslationParameters type as an argument' do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
-      expect { RosetteAPI.new('0123456789').get_name_translation(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_translation(params) }
+        .to raise_error(BadRequestError)
     end
   end
 
   describe '.name_similarity' do
     before do
-      name_similarity_json = { name1: 'Michael Jackson', name2: '迈克尔·杰克逊' }.to_json
+      name_similarity_json = { name1: 'Michael Jackson',
+                               name2: '迈克尔·杰克逊' }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
-        .with(body: name_similarity_json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "name-similarity"}', headers: {})
+        .with(
+          body: name_similarity_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "name-similarity"}',
+                   headers: {})
     end
     it 'test name similarity' do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
@@ -301,50 +377,67 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
 
-    it 'badRequestFormat: name1 option can only be an instance of a String or NameParameter' do
+    it 'badRequestFormat: name1 option can only be an instance of a String..' do
       params = NameSimilarityParameters.new(123, 'Michael Jackson')
-      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }
+        .to raise_error(BadRequestError)
     end
 
-    it 'badRequestFormat: name2 option can only be an instance of a String or NameParameter' do
+    it 'badRequestFormat: name2 option can only be an instance of a String..' do
       params = NameSimilarityParameters.new('Michael Jackson', 123)
-      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }
+        .to raise_error(BadRequestError)
     end
 
     it 'badRequest: Expects NameSimilarityParameters type as an argument' do
-      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
-      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }.to raise_error(BadRequestError)
+      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'
+                                             .encode('UTF-8'), 'eng')
+      expect { RosetteAPI.new('0123456789').get_name_similarity(params) }
+        .to raise_error(BadRequestError)
     end
   end
 
   describe '.name_deduplication' do
-    names = ['John Smith', 'Johnathon Smith', 'Fred Jones'].map { |n| NameParameter.new(n) }
+    names = ['John Smith', 'Johnathon Smith', 'Fred Jones']
+             .map { |n| NameParameter.new(n) }
     before do
       names_json = { names: names.map(&:load_param), threshold: 0.75 }.to_json
 
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
-        .with(body: names_json,
-              headers: {'Accept' => 'application/json',
-                        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                        'Content-Type' => 'application/json',
-                        'User-Agent' => @user_agent,
-                        'X-Rosetteapi-Key' => '0123456789',
-                        'X-Rosetteapi-Binding' => 'ruby',
-                        'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "name-deduplication"}', headers: {})
+        .with(
+          body: names_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "name-deduplication"}',
+                   headers: {})
 
       nothresh_json = { names: names.map(&:load_param) }.to_json
 
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
-        .with(body: nothresh_json,
-              headers: {'Accept' => 'application/json',
-                        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                        'Content-Type' => 'application/json',
-                        'User-Agent' => @user_agent,
-                        'X-Rosetteapi-Key' => '0123456789',
-                        'X-Rosetteapi-Binding' => 'ruby',
-                        'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "name-deduplication"}', headers: {})
+        .with(
+          body: nothresh_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "name-deduplication"}',
+                   headers: {})
     end
     it 'test name deduplication' do
       params = NameDeduplicationParameters.new(names, 0.75)
@@ -360,23 +453,27 @@ describe RosetteAPI do
 
     it 'badRequestFormat: names must be an array of name_parameter' do
       params = NameDeduplicationParameters.new('Michael Jackson', 0.75)
-      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }
+        .to raise_error(BadRequestError)
     end
 
     it 'badRequestFormat: threshold must be a float' do
       params = NameDeduplicationParameters.new(names, 123)
-      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }
+        .to raise_error(BadRequestError)
     end
 
     it 'badRequest: threshold must be in the range of 0 to 1' do
       params = NameDeduplicationParameters.new(names, 1.5)
-      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }
+        .to raise_error(BadRequestError)
     end
 
     it 'badRequest: rosette_options can only be an instance of a Hash' do
       params = NameDeduplicationParameters.new(names, 0.5)
       params.rosette_options = 1
-      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_name_deduplication(params) }
+        .to raise_error(BadRequestError)
     end
   end
 
@@ -387,15 +484,21 @@ describe RosetteAPI do
       transliteration_json = { content: content }.to_json
 
       stub_request(:post, 'https://api.rosette.com/rest/v1/transliteration')
-        .with(body: transliteration_json,
-              headers: {'Accept' => 'application/json',
-                        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                        'Content-Type' => 'application/json',
-                        'User-Agent' => @user_agent,
-                        'X-Rosetteapi-Key' => '0123456789',
-                        'X-Rosetteapi-Binding' => 'ruby',
-                        'X-Rosetteapi-Binding-Version' => '1.12.1' })
-        .to_return(status: 200, body: '{"test": "transliteration"}', headers: {})
+        .with(
+          body: transliteration_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "transliteration"}',
+                   headers: {})
     end
     it 'test transliteration' do
       params = DocumentParameters.new
@@ -406,28 +509,34 @@ describe RosetteAPI do
 
     it 'badRequest: content must be provided' do
       params = DocumentParameters.new
-      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestFormatError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }
+        .to raise_error(BadRequestFormatError)
     end
 
     it 'badRequest: rosette_options can only be an instance of a Hash' do
       params = DocumentParameters.new
       params.content = content
       params.rosette_options = 1
-      expect { RosetteAPI.new('0123456789').get_transliteration(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_transliteration(params) }
+        .to raise_error(BadRequestError)
     end
   end
 
   describe '.get_tokens' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/tokens')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "tokens"}', headers: {})
     end
     it 'test tokens' do
@@ -441,14 +550,18 @@ describe RosetteAPI do
   describe '.get_topics' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/topics')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "topics"}', headers: {})
     end
     it 'test topics' do
@@ -462,14 +575,18 @@ describe RosetteAPI do
   describe '.get_sentences' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/sentences')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "sentences"}', headers: {})
     end
     it 'test sentences' do
@@ -483,10 +600,14 @@ describe RosetteAPI do
   describe '.info' do
     before do
       stub_request(:get, 'https://api.rosette.com/rest/v1/info')
-        .with(headers: { 'Accept' => '*/*',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789' })
+        .with(
+          headers: {
+            'Accept' => '*/*',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789'
+          }
+        )
         .to_return(status: 200, body: '{"test": "info"}', headers: {})
     end
     it 'test info' do
@@ -498,10 +619,14 @@ describe RosetteAPI do
   describe '.ping' do
     before do
       stub_request(:get, 'https://api.rosette.com/rest/v1/ping')
-        .with(headers: { 'Accept' => '*/*',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789' })
+        .with(
+          headers: {
+            'Accept' => '*/*',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789'
+          }
+        )
         .to_return(status: 200, body: '{"test": "ping"}', headers: {})
     end
     it 'test ping' do
@@ -513,15 +638,19 @@ describe RosetteAPI do
   describe '.get_language_custom_header' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/language')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1',
-                         'X-RosetteApi-App' => 'ruby-app' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1',
+            'X-RosetteApi-App' => 'ruby-app'
+          }
+        )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
 
@@ -529,39 +658,54 @@ describe RosetteAPI do
       params = DocumentParameters.new
       params.content = 'Por favor Senorita, says the man.?'
       params.custom_headers = {'test' => 'ruby-app'}
-      expect { RosetteAPI.new('0123456789').get_language(params) }.to raise_error(RosetteAPIError)
+      expect { RosetteAPI.new('0123456789').get_language(params) }
+        .to raise_error(RosetteAPIError)
     end
   end
 
   describe '.error_409_incompatible_client_version' do
     before do
       stub_request(:get, 'https://api.rosette.com/rest/v1/info')
-        .with(headers: { 'Accept' => '*/*',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789' })
-        .to_return(status: 409, body: '{"code": "incompatibleClientVersion"}', headers: {})
+        .with(
+          headers: {
+            'Accept' => '*/*',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789'
+          }
+        )
+        .to_return(status: 409,
+                   body: '{"code": "incompatibleClientVersion"}',
+                   headers: {})
     end
     it 'test error 409 properly handled' do
-      expect { RosetteAPI.new('0123456789').info }.to raise_error(RosetteAPIError)
+      expect { RosetteAPI.new('0123456789').info }
+        .to raise_error(RosetteAPIError)
     end
   end
 
   describe '.get_similar_terms' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/similar')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test similar_terms' do
-      params = DocumentParameters.new(content: @content, options: { "resultLanguages" => [ "spa", "deu", "jpn" ] })
+      params = DocumentParameters.new(
+        content: @content,
+        options: { "resultLanguages" => [ "spa", "deu", "jpn" ] }
+      )
       response = RosetteAPI.new('0123456789').get_similar_terms(params)
       expect(response).instance_of? Hash
     end
@@ -570,14 +714,18 @@ describe RosetteAPI do
   describe '.get_semantic_vectors' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/vector')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test semantic_vectors' do
@@ -591,14 +739,18 @@ describe RosetteAPI do
   describe '.get_syntax_dependencies' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/syntax/dependencies')
-        .with(body: @json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.12.1' })
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.12.1'
+          }
+        )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
     it 'test syntax_dependencies' do

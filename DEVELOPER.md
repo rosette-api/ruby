@@ -21,6 +21,44 @@ apt-get update
 apt-get install -y gcc make
 
 gem install rspec
+bundle install
 rspec tests
 
+```
+
+#### Run a single example
+
+```
+docker run -it -v $(pwd):/source --entrypoint bash ruby:2.6-slim-stretch
+
+bundle install
+cd examples
+
+ruby ping.rb ${API_KEY}
+
+```
+
+
+#### Run all examples
+
+```
+docker run -it -v $(pwd):/source --entrypoint bash ruby:2.6-slim-stretch
+
+bundle install
+cd examples
+
+for example in $(ls *.rb); do ruby ${example} ${API_KEY}; done
+
+```
+
+#### Build the gem
+
+```
+gem build rosette_api.gemspec
+```
+
+#### Install the gem
+
+```
+gem install rosette_api-1.12.1.gem
 ```

@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=develop)](https://travis-ci.org/rosette-api/ruby) [![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
+<a href="https://www.rosette.com"><img src="https://s3.amazonaws.com/styleguide.basistech.com/logos/rosette-logo.png" width="181" height="47" /></a>
 
-# Ruby client binding for Rosette API #
+---
+
+[![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=develop)](https://travis-ci.org/rosette-api/ruby) [![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
 
 ## Rosette API
 The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to
@@ -12,9 +14,9 @@ comparing the similarity of names, categorizing and adding linguistic tags to te
 - Rosette Cloud [Sign Up](https://developer.rosette.com/signup)
 - Rosette Enterprise [Evaluation](https://www.rosette.com/product-eval/)
 
-## Quick Start ##
+## Quick Start
 
-### Installation ###
+#### Installation
 
 `gem install rosette_api`
 

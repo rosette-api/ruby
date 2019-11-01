@@ -20,9 +20,6 @@ comparing the similarity of names, categorizing and adding linguistic tags to te
 
 `gem install rosette_api`
 
-To check your installed version:
-`gem list rosette_api`
-
 #### Examples
 View small example programs for each Rosette endpoint
 in the [examples](https://github.com/rosette-api/ruby/tree/develop/examples) directory.

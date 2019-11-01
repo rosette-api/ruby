@@ -1,4 +1,5 @@
 # encoding: UTF-8
+# frozen_string_literal: true
 require 'net/http'
 require 'net/https'
 require 'json'

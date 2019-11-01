@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'request_builder'
 require_relative 'document_parameters'
 require_relative 'name_deduplication_parameters'

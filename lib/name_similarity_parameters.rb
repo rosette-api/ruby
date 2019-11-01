@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'bad_request_error'
 require_relative 'name_parameter'
 

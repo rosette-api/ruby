@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This class represents an entity name in Rosette API.
 class NameParameter
   # Name's entity type (PERSON, LOCATION, ORGANIZATION) (optional)

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative 'bad_request_format_error'
 
 # This class encapsulates parameters that will be used by most of the endpoints

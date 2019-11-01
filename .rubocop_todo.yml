@@ -206,12 +206,6 @@ Style/Encoding:
     - 'lib/request_builder.rb'
     - 'tests/tests_spec.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/ExpandPathArguments:
-  Exclude:
-    - 'rosette_api.gemspec'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: .
@@ -249,13 +243,6 @@ Style/OptionalArguments:
   Exclude:
     - 'lib/request_builder.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'rosette_api.gemspec'
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: .
@@ -276,18 +263,3 @@ Style/RedundantPercentQ:
 Style/RescueStandardError:
   Exclude:
     - 'lib/request_builder.rb'
-
-# Offense count: 35
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: WordRegex.
-# SupportedStyles: percent, brackets
-#Style/WordArray:
-#  EnforcedStyle: percent
-#  MinSize: 4

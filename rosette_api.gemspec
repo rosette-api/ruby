@@ -1,4 +1,4 @@
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
@@ -19,9 +19,9 @@ Gem::Specification.new do |s|
     'tags to text and more.'
 
   s.authors = ['Basis Technology Corp']
-  s.email = %q{support@rosette.com}
-  s.homepage = %q{https://developer.rosette.com/}
-  s.date = %q{2019-02-08}
+  s.email = %q(support@rosette.com)
+  s.homepage = %q(https://developer.rosette.com/)
+  s.date = %q(2019-02-08)
 
   s.files = Dir['LICENSE', 'README.md', 'lib/**/*', 'examples/**/*']
   s.require_paths = ['lib']

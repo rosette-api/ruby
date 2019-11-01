@@ -10,7 +10,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-semantic_vectors_data = "Cambridge, Massachusetts"
+semantic_vectors_data = 'Cambridge, Massachusetts'
 begin
   params = DocumentParameters.new(content: semantic_vectors_data)
   response = rosette_api.get_semantic_vectors(params)

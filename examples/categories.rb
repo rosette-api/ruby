@@ -11,8 +11,8 @@ else
 end
 
 categories_url_data =
-  "https://onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-" \
-  "begins-filming-in-boston-in-june/"
+  'https://onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-' \
+  'begins-filming-in-boston-in-june/'
 begin
   params = DocumentParameters.new(content_uri: categories_url_data)
   response = rosette_api.get_categories(params)

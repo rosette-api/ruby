@@ -704,7 +704,7 @@ describe RosetteAPI do
     it 'test similar_terms' do
       params = DocumentParameters.new(
         content: @content,
-        options: { "resultLanguages" => [ "spa", "deu", "jpn" ] }
+        options: { 'resultLanguages' => %w[spa deu jpn] }
       )
       response = RosetteAPI.new('0123456789').get_similar_terms(params)
       expect(response).instance_of? Hash

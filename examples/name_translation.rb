@@ -10,7 +10,7 @@ else
   rosette_api = RosetteAPI.new(api_key, url)
 end
 
-translated_name_data = "معمر محمد أبو منيار القذاف"
+translated_name_data = 'معمر محمد أبو منيار القذاف'
 begin
   params = NameTranslationParameters.new(
     translated_name_data,

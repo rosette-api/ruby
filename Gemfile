@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'rubysl-securerandom', '2.0.0'
 gem 'rdoc', '4.2.2'

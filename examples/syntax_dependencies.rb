@@ -11,8 +11,8 @@ else
 end
 
 syntax_dependencies_data =
-  "Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize " \
-  "in Physiology or Medicine on Monday."
+  'Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize ' \
+  'in Physiology or Medicine on Monday.'
 
 begin
   params = DocumentParameters.new(content: syntax_dependencies_data)

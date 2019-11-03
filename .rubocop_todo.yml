@@ -219,25 +219,6 @@ Style/For:
 Style/FormatStringToken:
   EnforcedStyle: unannotated
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, never
-Style/FrozenStringLiteralComment:
-  Enabled: true
-  Exclude:
-    - 'Gemfile'
-    - 'rosette_api.gemspec'
-
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'lib/rosette_api.rb'
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: .

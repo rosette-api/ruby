@@ -198,14 +198,6 @@ Style/CommentedKeyword:
 Style/ConditionalAssignment:
   Enabled: false
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/Encoding:
-  Exclude:
-    - 'examples/entities.rb'
-    - 'lib/request_builder.rb'
-    - 'tests/tests_spec.rb'
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: .

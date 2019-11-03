@@ -6,6 +6,10 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/request_builder.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'tests/tests_spec.rb'
@@ -147,10 +151,6 @@ Layout/TrailingBlankLines:
   Exclude:
     - 'lib/rosette_api_error.rb'
 
-# Offense count: 3
-Metrics/AbcSize:
-  Max: 42
-
 # Offense count: 1
 Metrics/CyclomaticComplexity:
   Max: 8
@@ -254,6 +254,6 @@ Style/RaiseArgs:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: implicit, explicit
-Style/RescueStandardError:
-  Exclude:
-    - 'lib/request_builder.rb'
+#Style/RescueStandardError:
+#  Exclude:
+#    - 'lib/request_builder.rb'

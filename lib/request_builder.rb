@@ -46,10 +46,12 @@ class RequestBuilder
     begin
       uri = URI.parse @alternate_url
       request = Net::HTTP::Post.new uri.request_uri
-    rescue
+    rescue StandardError
+      # Not ideal.  Consider switching to a different library.
+      # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
         'connectionError',
-        'Failed to establish connection with Rosette API server.'
+        'Failed to establish connection with Rosette server.'
       )
     end
 
@@ -92,8 +94,8 @@ class RequestBuilder
     begin
       file = File.open params['filePath'], 'r'
       text = file.read
-    rescue => err
-      raise err
+    rescue StandardError => e
+      raise RosetteAPIError.new('readMultipartError', e)
     end
 
     boundary = SecureRandom.hex
@@ -119,7 +121,9 @@ class RequestBuilder
     begin
       uri = URI.parse @alternate_url
       request = Net::HTTP::Post.new uri.request_uri
-    rescue
+    rescue StandardError
+      # Not ideal.  Consider switching to a different library.
+      # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
         'connectionError',
         'Failed to establish connection with Rosette API server.'
@@ -159,9 +163,10 @@ class RequestBuilder
   def send_get_request
     begin
       uri = URI.parse @alternate_url
-
       request = Net::HTTP::Get.new uri.request_uri
-    rescue
+    rescue StandardError
+      # Not ideal.  Consider switching to a different library.
+      # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
         'connectionError',
         'Failed to establish connection with Rosette API server.'

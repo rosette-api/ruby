@@ -31,8 +31,10 @@ class NameSimilarityParameters
   def validate_params
     n1_msg = 'name1 option can only be an instance of a String or NameParameter'
     raise BadRequestError.new(n1_msg) if [String, NameParameter].none? { |clazz| @name1.is_a? clazz }
+
     n2_msg = 'name2 option can only be an instance of a String or NameParameter'
     raise BadRequestError.new(n2_msg) if [String, NameParameter].none? { |clazz| @name2.is_a? clazz }
+
     opt_msg = 'rosette_options can only be an instance of a Hash'
     if @rosette_options
       raise BadRequestError.new(opt_msg) unless @rosette_options.is_a? Hash

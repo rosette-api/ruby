@@ -27,6 +27,7 @@ class NameDeduplicationParameters
   def validate_params
     param_msg = 'names must be an array of name_parameter'
     raise BadRequestError.new(param_msg) unless @names.instance_of? Array
+
     float_msg = 'threshold must be a float'
     thresh_msg = 'threshold must be in the range of 0 to 1'
     if @threshold

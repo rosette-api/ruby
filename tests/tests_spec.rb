@@ -58,7 +58,6 @@ describe RosetteAPI do
       expect { RosetteAPI.new('0123456789').get_language(params) }
         .to raise_error(BadRequestFormatError)
     end
-
   end
 
   describe '.get_morphology_complete' do
@@ -399,7 +398,7 @@ describe RosetteAPI do
 
   describe '.name_deduplication' do
     names = ['John Smith', 'Johnathon Smith', 'Fred Jones']
-             .map { |n| NameParameter.new(n) }
+            .map { |n| NameParameter.new(n) }
     before do
       names_json = { names: names.map(&:load_param), threshold: 0.75 }.to_json
 
@@ -760,5 +759,4 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
   end
-
 end

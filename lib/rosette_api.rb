@@ -52,7 +52,6 @@ class RosetteAPI
   # Topics endpoint
   TOPICS_ENDPOINT = '/topics'
 
-
   # Rosette API key
   attr_accessor :user_key
   # Alternate Rosette API URL

@@ -31,6 +31,7 @@ class RequestBuilder
     @user_agent = 'Ruby/' + binding_version + '/' + RUBY_VERSION
 
     return unless url_parameters
+
     @alternate_url = @alternate_url + '?' + URI.encode_www_form(url_parameters)
   end
 

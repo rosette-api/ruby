@@ -25,8 +25,8 @@ begin
   params = DocumentParameters.new(file_path: file.path, language: 'eng')
   response = rosette_api.get_sentiment(params)
   puts JSON.pretty_generate(response)
-rescue RosetteAPIError => rosette_api_error
+rescue RosetteAPIError => e
   printf('Rosette API Error (%<status_code>s): %<message>s',
-         status_code: rosette_api_error.status_code,
-         message: rosette_api_error.message)
+         status_code: e.status_code,
+         message: e.message)
 end

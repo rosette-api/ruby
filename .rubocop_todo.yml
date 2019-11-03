@@ -47,6 +47,22 @@ Style/GuardClause:
     - 'lib/name_similarity_parameters.rb'
     - 'lib/name_translation_parameters.rb'
 
+# Offense count: 8
+# Competes with RDoc directives.
+# https://docs.ruby-lang.org/en/2.1.0/RDoc/Markup.html
+# Might be addressed in a new version of rubocop.
+Style/CommentedKeyword:
+  Exclude:
+    - 'lib/bad_request_error.rb'
+    - 'lib/bad_request_format_error.rb'
+    - 'lib/document_parameters.rb'
+    - 'lib/name_deduplication_parameters.rb'
+    - 'lib/name_parameter.rb'
+    - 'lib/name_similarity_parameters.rb'
+    - 'lib/name_translation_parameters.rb'
+    - 'lib/rosette_api_error.rb'
+
+
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -172,24 +188,6 @@ Naming/FileName:
     - 'examples/morphology_compound-components.rb'
     - 'examples/morphology_han-readings.rb'
     - 'examples/morphology_parts-of-speech.rb'
-
-# Offense count: 24
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredName.
-Naming/RescuedExceptionsVariableName:
-  Enabled: false
-
-# Offense count: 8
-Style/CommentedKeyword:
-  Exclude:
-    - 'lib/bad_request_error.rb'
-    - 'lib/bad_request_format_error.rb'
-    - 'lib/document_parameters.rb'
-    - 'lib/name_deduplication_parameters.rb'
-    - 'lib/name_parameter.rb'
-    - 'lib/name_similarity_parameters.rb'
-    - 'lib/name_translation_parameters.rb'
-    - 'lib/rosette_api_error.rb'
 
 # Offense count: 12
 # Cop supports --auto-correct.

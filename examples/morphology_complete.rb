@@ -4,11 +4,11 @@ require 'rosette_api'
 
 api_key, url = ARGV
 
-if !url
-  rosette_api = RosetteAPI.new(api_key)
-else
-  rosette_api = RosetteAPI.new(api_key, url)
-end
+rosette_api = if url
+                RosetteAPI.new(api_key, url)
+              else
+                RosetteAPI.new(api_key)
+              end
 
 morphology_complete_data = 'The quick brown fox jumped over the lazy ' \
   'dog. 👍🏾 Yes he did. B)'

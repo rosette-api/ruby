@@ -4,11 +4,11 @@ require 'rosette_api'
 
 api_key, url = ARGV
 
-if !url
-  rosette_api = RosetteAPI.new(api_key)
-else
-  rosette_api = RosetteAPI.new(api_key, url)
-end
+rosette_api = if url
+                RosetteAPI.new(api_key, url)
+              else
+                RosetteAPI.new(api_key)
+              end
 
 language_multilingual_data = 'On Thursday, as protesters gathered in ' \
   'Washington D.C., the United States Federal Communications Commission ' \

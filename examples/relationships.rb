@@ -4,11 +4,11 @@ require 'rosette_api'
 
 api_key, url = ARGV
 
-if !url
-  rosette_api = RosetteAPI.new(api_key)
-else
-  rosette_api = RosetteAPI.new(api_key, url)
-end
+rosette_api = if url
+                RosetteAPI.new(api_key, url)
+              else
+                RosetteAPI.new(api_key)
+              end
 
 relationships_text_data = 'FLIR Systems is headquartered in Oregon and ' \
   'produces thermal imaging, night vision, and infrared cameras and sensor ' \

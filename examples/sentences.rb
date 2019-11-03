@@ -4,11 +4,11 @@ require 'rosette_api'
 
 api_key, url = ARGV
 
-if !url
-  rosette_api = RosetteAPI.new(api_key)
-else
-  rosette_api = RosetteAPI.new(api_key, url)
-end
+rosette_api = if url
+                RosetteAPI.new(api_key, url)
+              else
+                RosetteAPI.new(api_key)
+              end
 
 sentences_data = 'This land is your land. This land is my land, from ' \
   'California to the New York island; from the red wood forest to the Gulf ' \

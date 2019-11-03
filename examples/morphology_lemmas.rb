@@ -18,7 +18,7 @@ begin
     response = rosette_api.get_lemmas(params)
     puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
-    printf('Rosette API Error (%s): %s',
-           rosette_api_error.status_code,
-           rosette_api_error.message)
+  printf('Rosette API Error (%<status_code>s): %<message>s',
+         status_code: rosette_api_error.status_code,
+         message: rosette_api_error.message)
 end

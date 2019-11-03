@@ -12,12 +12,12 @@ end
 
 language_data = 'Por favor Señorita, says the man.'
 begin
-    params = DocumentParameters.new(content: language_data)
-    params.custom_headers = { 'X-RosetteAPI-App'=> 'ruby-app'}
-    response = rosette_api.get_language(params)
-    puts JSON.pretty_generate(response)
+  params = DocumentParameters.new(content: language_data)
+  params.custom_headers = { 'X-RosetteAPI-App'=> 'ruby-app'}
+  response = rosette_api.get_language(params)
+  puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
-    printf('Rosette API Error (%s): %s',
-           rosette_api_error.status_code,
-           rosette_api_error.message)
+  printf('Rosette API Error (%<status_code>s): %<message>s',
+         status_code: rosette_api_error.status_code,
+         message: rosette_api_error.message)
 end

@@ -21,12 +21,12 @@ entities_text_data = 'The Securities and Exchange Commission today ' \
   'D.C. headquarters as well as coordinating with litigators in the SEC\'s ' \
   '11 regional offices around the country.'
 begin
-    params = DocumentParameters.new(content: entities_text_data,
-                                    genre: 'social-media')
-    response = rosette_api.get_entities(params)
-    puts JSON.pretty_generate(response)
+  params = DocumentParameters.new(content: entities_text_data,
+                                  genre: 'social-media')
+  response = rosette_api.get_entities(params)
+  puts JSON.pretty_generate(response)
 rescue RosetteAPIError => rosette_api_error
-    printf('Rosette API Error (%s): %s',\
-           rosette_api_error.status_code,
-           rosette_api_error.message)
+  printf('Rosette API Error (%<status_code>s): %<message>s',
+         status_code: rosette_api_error.status_code,
+         message: rosette_api_error.message)
 end

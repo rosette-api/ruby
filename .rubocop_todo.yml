@@ -213,12 +213,6 @@ Style/Encoding:
 Style/For:
   EnforcedStyle: for
 
-# Offense count: 46
-# Configuration parameters: .
-# SupportedStyles: annotated, template, unannotated
-Style/FormatStringToken:
-  EnforcedStyle: unannotated
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: .

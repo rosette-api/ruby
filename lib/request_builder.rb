@@ -59,7 +59,7 @@ class RequestBuilder
 
     if custom_headers
       keys_array = custom_headers.keys
-      for key in keys_array
+      keys_array.each do |key|
         if key.to_s =~ /^X-RosetteAPI-/
           request[key] = custom_headers[key]
         else
@@ -133,7 +133,7 @@ class RequestBuilder
     # add any custom headers from the user
     unless params['customHeaders'].nil?
       keys_array = params['customHeaders'].keys
-      for k in keys_array
+      keys_array.each do |k|
         if k.to_s =~ /^X-RosetteAPI-/
           request.add_field k, params['customHeaders'][k]
         else

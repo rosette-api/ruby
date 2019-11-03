@@ -206,13 +206,6 @@ Style/Encoding:
     - 'lib/request_builder.rb'
     - 'tests/tests_spec.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: .
-# SupportedStyles: each, for
-Style/For:
-  EnforcedStyle: for
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: .

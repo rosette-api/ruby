@@ -19,9 +19,9 @@ Gem::Specification.new do |s|
     'tags to text and more.'
 
   s.authors = ['Basis Technology Corp']
-  s.email = %q(support@rosette.com)
-  s.homepage = %q(https://developer.rosette.com/)
-  s.date = %q(2019-02-08)
+  s.email = 'support@rosette.com'
+  s.homepage = 'https://developer.rosette.com/'
+  s.date = '2019-02-08'
 
   s.files = Dir['LICENSE', 'README.md', 'lib/**/*', 'examples/**/*']
   s.require_paths = ['lib']

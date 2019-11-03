@@ -10,7 +10,7 @@ describe RosetteAPI do
   user_agent = 'Ruby/' + RosetteAPI::BINDING_VERSION + '/' + RUBY_VERSION
   RSpec.configure do |config|
     config.before(:example) { @content = 'Sample Content' }
-    config.before(:example) { @json = {content: 'Sample Content'}.to_json }
+    config.before(:example) { @json = { content: 'Sample Content' }.to_json }
     config.before(:example) { @user_agent = user_agent }
   end
 
@@ -246,7 +246,7 @@ describe RosetteAPI do
     it 'test entities without qids' do
       params = DocumentParameters.new
       params.content = @content
-      params.rosette_options = { linkEntities: false}
+      params.rosette_options = { linkEntities: false }
       response = RosetteAPI.new('0123456789').get_entities(params)
       expect(response).instance_of? Hash
     end
@@ -657,7 +657,7 @@ describe RosetteAPI do
     it 'test custom_headers is invalid' do
       params = DocumentParameters.new
       params.content = 'Por favor Senorita, says the man.?'
-      params.custom_headers = {'test' => 'ruby-app'}
+      params.custom_headers = { 'test' => 'ruby-app' }
       expect { RosetteAPI.new('0123456789').get_language(params) }
         .to raise_error(RosetteAPIError)
     end

@@ -19,6 +19,9 @@ Metrics/ClassLength:
     - 'lib/request_builder.rb'
     - 'lib/rosette_api.rb'
 
+Metrics/CyclomaticComplexity:
+  Max: 8
+
 Metrics/LineLength:
   Exclude:
     - 'examples/language_multilingual.rb'
@@ -35,10 +38,11 @@ Metrics/MethodLength:
     - 'lib/name_translation_parameters.rb'
     - 'lib/request_builder.rb'
 
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/name_deduplication_parameters.rb'
-    - 'lib/name_similarity_parameters.rb'
+Metrics/ParameterLists:
+  Max: 6
+
+Metrics/PerceivedComplexity:
+  Max: 8
 
 Style/GuardClause:
   Exclude:
@@ -46,6 +50,12 @@ Style/GuardClause:
     - 'lib/name_deduplication_parameters.rb'
     - 'lib/name_similarity_parameters.rb'
     - 'lib/name_translation_parameters.rb'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'lib/name_deduplication_parameters.rb'
+    - 'lib/name_similarity_parameters.rb'
+
 
 # Offense count: 8
 # Competes with RDoc directives.
@@ -148,37 +158,6 @@ Layout/SpaceAroundOperators:
 Layout/SpaceInsideArrayLiteralBrackets:
   Exclude:
     - 'tests/tests_spec.rb'
-
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'examples/language.rb'
-    - 'tests/tests_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: final_newline, final_blank_line
-Layout/TrailingBlankLines:
-  Exclude:
-    - 'lib/rosette_api_error.rb'
-
-# Offense count: 1
-Metrics/CyclomaticComplexity:
-  Max: 8
-
-# Offense count: 1
-# Configuration parameters: CountKeywordArgs.
-Metrics/ParameterLists:
-  Max: 6
-
-# Offense count: 1
-Metrics/PerceivedComplexity:
-  Max: 8
 
 # Offense count: 12
 # Cop supports --auto-correct.

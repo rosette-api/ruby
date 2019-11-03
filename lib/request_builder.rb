@@ -105,7 +105,7 @@ class RequestBuilder
 
     # Add the content data
     post_body << "--#{boundary}\r\n"
-    post_body << 'Content-Disposition: form-data; name=\"content\"; ' \
+    post_body << 'Content-Disposition: form-data; name="content"; ' \
                  "filename=\"#{File.basename(file)}\"\r\n"
     post_body << "Content-Type: text/plain\r\n\r\n"
     post_body << text

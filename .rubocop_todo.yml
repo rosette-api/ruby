@@ -238,22 +238,9 @@ Style/MutableConstant:
   Exclude:
     - 'lib/rosette_api.rb'
 
-# Offense count: 2
-Style/OptionalArguments:
-  Exclude:
-    - 'lib/request_builder.rb'
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: .
 # SupportedStyles: compact, exploded
 Style/RaiseArgs:
   EnforcedStyle: compact
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: implicit, explicit
-#Style/RescueStandardError:
-#  Exclude:
-#    - 'lib/request_builder.rb'

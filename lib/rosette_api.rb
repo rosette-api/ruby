@@ -90,7 +90,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + LANGUAGE_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -111,7 +111,7 @@ class RosetteAPI
 
     endpoint = MORPHOLOGY_ENDPOINT + '/complete'
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
-                       params, @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -131,7 +131,7 @@ class RosetteAPI
 
     endpoint = MORPHOLOGY_ENDPOINT + '/compound-components'
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
-                       params, @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -151,7 +151,7 @@ class RosetteAPI
 
     endpoint = MORPHOLOGY_ENDPOINT + '/han-readings'
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
-                       params, @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -170,7 +170,7 @@ class RosetteAPI
 
     endpoint = MORPHOLOGY_ENDPOINT + '/lemmas'
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
-                       params, @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -190,7 +190,7 @@ class RosetteAPI
 
     endpoint = MORPHOLOGY_ENDPOINT + '/parts-of-speech'
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
-                       params, @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -209,7 +209,7 @@ class RosetteAPI
 
     endpoint = ENTITIES_ENDPOINT
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
-                       params, @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -227,7 +227,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + CATEGORIES_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -245,7 +245,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + RELATIONSHIPS_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -263,7 +263,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SENTIMENT_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -283,7 +283,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + NAME_DEDUPLICATION_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -303,7 +303,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + NAME_TRANSLATION_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -324,7 +324,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + NAME_SIMILARITY_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -342,7 +342,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TOKENS_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -360,7 +360,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SENTENCES_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -381,7 +381,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client,
-                       params, @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -398,7 +398,7 @@ class RosetteAPI
     check_params params
     params = params.load_params
     RequestBuilder.new(@user_key, @alternate_url + SEMANTIC_VECTORS,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -418,7 +418,7 @@ class RosetteAPI
 
     RequestBuilder.new(@user_key,
                        @alternate_url + SYNTACTIC_DEPENDENCIES_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -439,7 +439,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TRANSLITERATION_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -457,7 +457,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + TOPICS_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -475,7 +475,7 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SIMILAR_TERMS_ENDPOINT,
-                       @http_client, params, @url_parameters, BINDING_VERSION)
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 
@@ -483,7 +483,7 @@ class RosetteAPI
   # and build time.
   def info
     RequestBuilder.new(@user_key, @alternate_url + INFO, @http_client,
-                       @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, @url_parameters)
                   .send_get_request
   end
 
@@ -491,14 +491,14 @@ class RosetteAPI
   # available.
   def ping
     RequestBuilder.new(@user_key, @alternate_url + PING, @http_client,
-                       @url_parameters, BINDING_VERSION)
+                       BINDING_VERSION, @url_parameters)
                   .send_get_request
   end
 
   # Gets the User-Agent string
   def user_agent
     RequestBuilder.new(@user_key, @alternate_url + PING, @http_client,
-                       @url_parameters, BINDING_VERSION).user_agent
+                       BINDING_VERSION, @url_parameters).user_agent
   end
 
   private

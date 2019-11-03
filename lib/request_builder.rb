@@ -22,13 +22,13 @@ class RequestBuilder
   # User-Agent string
   attr_reader :user_agent
 
-  def initialize(user_key, alternate_url, http_client, params = {},
-                 url_parameters = nil, binding_version)
+  def initialize(user_key, alternate_url, http_client, binding_version,
+                 params = {}, url_parameters = nil)
     @user_key = user_key
     @alternate_url = alternate_url
     @http_client = http_client
-    @params = params
     @binding_version = binding_version
+    @params = params
     @user_agent = 'Ruby/' + binding_version + '/' + RUBY_VERSION
 
     return unless url_parameters

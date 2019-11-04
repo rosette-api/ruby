@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.3.0'
 
   s.name = 'rosette_api'
-  s.version = '1.12.1'
+  s.version = '1.14.3'
   s.license = 'Apache-2.0'
 
   s.summary = 'A Ruby interface for Rosette Text Analytics Platform.'

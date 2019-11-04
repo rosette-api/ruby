@@ -60,5 +60,5 @@ gem build rosette_api.gemspec
 #### Install the gem
 
 ```
-gem install rosette_api-1.12.1.gem
+gem install rosette_api-*.gem
 ```

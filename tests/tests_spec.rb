@@ -763,27 +763,43 @@ describe RosetteAPI do
   describe '.address_similarity' do
     before do
       address_similarity_json = {
-        address1: {'road': 'Pennsylvania Ave NW', 'city': 'Washington', 'state': 'DC'},
-        address2: {'road': 'Pennsilvana Avenue', 'city': 'Washington', 'state': 'D.C.'}
+        address1: {
+          'houseNumber': '1600',
+          'road': 'Pennsylvania Ave NW',
+          'city': 'Washington',
+          'state': 'DC'
+        },
+        address2: {
+          'houseNumber': '1600',
+          'road': 'Pennsilvana Avenue',
+          'city': 'Washington',
+          'state': 'D.C.'
+        }
       }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')
         .with(body: address_similarity_json,
-              headers: { 'Accept' => 'application/json',
-                         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                         'Content-Type' => 'application/json',
-                         'User-Agent' => @user_agent,
-                         'X-Rosetteapi-Key' => '0123456789',
-                         'X-Rosetteapi-Binding' => 'ruby',
-                         'X-Rosetteapi-Binding-Version' => '1.14.3' })
-        .to_return(status: 200, body: '{"test": "address-similarity"}', headers: {})
+              headers: {
+                'Accept' => 'application/json',
+                'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                'Content-Type' => 'application/json',
+                'User-Agent' => @user_agent,
+                'X-Rosetteapi-Key' => '0123456789',
+                'X-Rosetteapi-Binding' => 'ruby',
+                'X-Rosetteapi-Binding-Version' => '1.14.3'
+              })
+        .to_return(status: 200,
+                   body: '{"test": "address-similarity"}',
+                   headers: {})
     end
     it 'test address similarity' do
       address1 = AddressParameter.new(
+        'house_number': '1600',
         'road': 'Pennsylvania Ave NW',
         'city': 'Washington',
         'state': 'DC'
       )
       address2 = AddressParameter.new(
+        'house_number': '1600',
         'road': 'Pennsilvana Avenue',
         'city': 'Washington',
         'state': 'D.C.'
@@ -793,34 +809,37 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
 
-    it 'badRequestFormat: address1 option can only be an instance of an AddressParameter' do
+    it 'badRequestFormat: address1 option can only be an instance of an ...' do
       address2 = AddressParameter.new(
-         'houseNumber': '160',
-         'road': 'Pennsilvana Avenue',
-         'city': 'Washington',
-         'state': 'D.C.',
-         'postCode': '20500'
+        'house_number': '160',
+        'road': 'Pennsilvana Avenue',
+        'city': 'Washington',
+        'state': 'D.C.',
+        'post_code': '20500'
       )
       params = AddressSimilarityParameters.new(123, address2)
-      expect { RosetteAPI.new('0123456789').get_address_similarity(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_address_similarity(params) }
+        .to raise_error(BadRequestError)
     end
 
-    it 'badRequestFormat: address2 option can only be an instance of an AddressParameter' do
+    it 'badRequestFormat: address2 option can only be an instance of an ...' do
       address1 = AddressParameter.new(
-         'houseNumber': '160',
-         'road': 'Pennsilvana Avenue',
-         'city': 'Washington',
-         'state': 'D.C.',
-         'postCode': '20500'
+        'house_number': '160',
+        'road': 'Pennsilvana Avenue',
+        'city': 'Washington',
+        'state': 'D.C.',
+        'post_code': '20500'
       )
       params = AddressSimilarityParameters.new(address1, 123)
-      expect { RosetteAPI.new('0123456789').get_address_similarity(params) }.to raise_error(BadRequestError)
+      expect { RosetteAPI.new('0123456789').get_address_similarity(params) }
+        .to raise_error(BadRequestError)
     end
 
     it 'badRequest: Expects AddressSimilarityParameters type as an argument' do
-      params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
-      expect { RosetteAPI.new('0123456789').get_address_similarity(params) }.to raise_error(BadRequestError)
+      params = NameTranslationParameters
+               .new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
+      expect { RosetteAPI.new('0123456789').get_address_similarity(params) }
+        .to raise_error(BadRequestError)
     end
   end
-
 end

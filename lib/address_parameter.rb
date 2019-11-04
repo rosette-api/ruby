@@ -1,83 +1,85 @@
+# frozen_string_literal: true
+
 # This class represents an address in Rosette API.
 class AddressParameter
-	# house (optional)
-        attr_accessor :house
-	# houseNumber (optional)
-        attr_accessor :houseNumber
-	# road (optional)
-        attr_accessor :road
-	# unit (optional)
-        attr_accessor :unit
-	# level (optional)
-        attr_accessor :level
-	# staircase (optional)
-        attr_accessor :staircase
-	# entrance (optional)
-        attr_accessor :entrance
-	# suburb (optional)
-        attr_accessor :suburb
-	# cityDistrict (optional)
-        attr_accessor :cityDistrict
-	# city (optional)
-        attr_accessor :city
-	# island (optional)
-        attr_accessor :island
-	# stateDistrict (optional)
-        attr_accessor :stateDistrict
-	# state (optional)
-        attr_accessor :state
-	# countryRegion (optional)
-        attr_accessor :countryRegion
-	# country (optional)
-        attr_accessor :country
-	# worldRegion (optional)
-        attr_accessor :worldRegion
-	# postCode (optional)
-        attr_accessor :postCode
-	# poBox (optional)
-        attr_accessor :poBox
+  # house (optional)
+  attr_accessor :house
+  # house_number (optional)
+  attr_accessor :house_number
+  # road (optional)
+  attr_accessor :road
+  # unit (optional)
+  attr_accessor :unit
+  # level (optional)
+  attr_accessor :level
+  # staircase (optional)
+  attr_accessor :staircase
+  # entrance (optional)
+  attr_accessor :entrance
+  # suburb (optional)
+  attr_accessor :suburb
+  # city_district (optional)
+  attr_accessor :city_district
+  # city (optional)
+  attr_accessor :city
+  # island (optional)
+  attr_accessor :island
+  # state_district (optional)
+  attr_accessor :state_district
+  # state (optional)
+  attr_accessor :state
+  # country_region (optional)
+  attr_accessor :country_region
+  # country (optional)
+  attr_accessor :country
+  # world_region (optional)
+  attr_accessor :world_region
+  # post_code (optional)
+  attr_accessor :post_code
+  # po_box (optional)
+  attr_accessor :po_box
 
   def initialize(options = {}) #:notnew:
     options = {
-        house: nil,
-        houseNumber: nil,
-        road: nil,
-        unit: nil,
-        level: nil,
-        staircase: nil,
-        entrance: nil,
-        suburb: nil,
-        cityDistrict: nil,
-        city: nil,
-        island: nil,
-        stateDistrict: nil,
-        state: nil,
-        countryRegion: nil,
-        country: nil,
-        worldRegion: nil,
-        postCode: nil,
-        poBox: nil
+      house: nil,
+      house_number: nil,
+      road: nil,
+      unit: nil,
+      level: nil,
+      staircase: nil,
+      entrance: nil,
+      suburb: nil,
+      city_district: nil,
+      city: nil,
+      island: nil,
+      state_district: nil,
+      state: nil,
+      country_region: nil,
+      country: nil,
+      world_region: nil,
+      post_code: nil,
+      po_box: nil
     }.update options
     @house = options[:house]
-    @houseNumber = options[:houseNumber]
+    @house_number = options[:house_number]
     @road = options[:road]
     @unit = options[:unit]
     @level = options[:level]
     @staircase = options[:staircase]
     @entrance = options[:entrance]
     @suburb = options[:suburb]
-    @cityDistrict = options[:cityDistrict]
+    @city_district = options[:city_district]
     @city = options[:city]
     @island = options[:island]
-    @stateDistrict = options[:stateDistrict]
+    @state_district = options[:state_district]
     @state = options[:state]
-    @countryRegion = options[:countryRegion]
+    @country_region = options[:country_region]
     @country = options[:country]
-    @worldRegion = options[:worldRegion]
-    @postCode = options[:postCode]
-    @poBox = options[:poBox]
+    @world_region = options[:world_region]
+    @post_code = options[:post_code]
+    @po_box = options[:po_box]
   end
-  
+
   # Converts this class to Hash with its keys in lower CamelCase.
   #
   # Returns the new Hash.
@@ -92,24 +94,24 @@ class AddressParameter
   # Returns the new Hash.
   def to_hash
     {
-        house: @house,
-        houseNumber: @houseNumber,
-        road: @road,
-        unit: @unit,
-        level: @level,
-        staircase: @staircase,
-        entrance: @entrance,
-        suburb: @suburb,
-        cityDistrict: @cityDistrict,
-        city: @city,
-        island: @island,
-        stateDistrict: @stateDistrict,
-        state: @state,
-        countryRegion: @countryRegion,
-        country: @country,
-        worldRegion: @worldRegion,
-        postCode: @postCode,
-        poBox: @poBox
+      house: @house,
+      house_number: @house_number,
+      road: @road,
+      unit: @unit,
+      level: @level,
+      staircase: @staircase,
+      entrance: @entrance,
+      suburb: @suburb,
+      city_district: @city_district,
+      city: @city,
+      island: @island,
+      state_district: @state_district,
+      state: @state,
+      country_region: @country_region,
+      country: @country,
+      world_region: @world_region,
+      post_code: @post_code,
+      po_box: @po_box
     }
   end
 end

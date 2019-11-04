@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'bad_request_error'
 require_relative 'address_parameter'
 
@@ -14,10 +16,14 @@ class AddressSimilarityParameters
     @address2 = address2
   end
 
-  # Validates the parameters by checking if address1 and address2 are instances of AddressParameter.
+  # Validates the parameters by checking if address1 and address2 are instances
+  # of AddressParameter.
   def validate_params
-    raise BadRequestError.new('address1 option can only be an instance of an AddressParameter') if [AddressParameter].none? { |clazz| @address1.is_a? clazz }
-    raise BadRequestError.new('address2 option can only be an instance of an AddressParameter') if [AddressParameter].none? { |clazz| @address2.is_a? clazz }
+    a1_msg = 'address1 option can only be an instance of an AddressParameter'
+    raise BadRequestError.new(a1_msg) if [AddressParameter].none? { |clazz| @address1.is_a? clazz }
+
+    a2_msg = 'address2 option can only be an instance of an AddressParameter'
+    raise BadRequestError.new(a2_msg) if [AddressParameter].none? { |clazz| @address2.is_a? clazz }
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -25,9 +31,10 @@ class AddressSimilarityParameters
   # Returns the new Hash.
   def load_params
     validate_params
-    to_hash.reject { |_key, value| value.nil? }
-           .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-           .to_h
+    to_hash
+      .reject { |_key, value| value.nil? }
+      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+      .to_h
   end
 
   # Converts this class to Hash.

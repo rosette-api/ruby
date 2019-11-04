@@ -33,7 +33,7 @@ class RosetteAPI
   # Rosette API name-similarity endpoint
   NAME_SIMILARITY_ENDPOINT = '/name-similarity'
   # Rosette API address-similarity endpoint
-  ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'.freeze
+  ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'
   # Rosette API tokens endpoint
   TOKENS_ENDPOINT = '/tokens'
   # Rosette API sentences endpoint
@@ -334,15 +334,19 @@ class RosetteAPI
   #
   # ==== Attributes
   #
-  # * +params+ - AddressSimilarityParameters helps to build the request body in RequestBuilder.
+  # * +params+ - AddressSimilarityParameters helps to build the request body in
+  #   RequestBuilder.
   #
   # Returns the confidence score of matching 2 addresses.
   def get_address_similarity(params)
-    check_params params, 'Expects a AddressSimilarityParameters type as an argument', AddressSimilarityParameters
+    check_params params,
+                 'Expects a AddressSimilarityParameters type as an argument',
+                 AddressSimilarityParameters
 
     params = params.load_params
 
-    RequestBuilder.new(@user_key, @alternate_url + ADDRESS_SIMILARITY_ENDPOINT, @http_client, BINDING_VERSION, params, @url_parameters)
+    RequestBuilder.new(@user_key, @alternate_url + ADDRESS_SIMILARITY_ENDPOINT,
+                       @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end
 

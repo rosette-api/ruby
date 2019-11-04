@@ -793,16 +793,16 @@ describe RosetteAPI do
     end
     it 'test address similarity' do
       address1 = AddressParameter.new(
-        'house_number': '1600',
-        'road': 'Pennsylvania Ave NW',
-        'city': 'Washington',
-        'state': 'DC'
+        house_number: '1600',
+        road: 'Pennsylvania Ave NW',
+        city: 'Washington',
+        state: 'DC'
       )
       address2 = AddressParameter.new(
-        'house_number': '1600',
-        'road': 'Pennsilvana Avenue',
-        'city': 'Washington',
-        'state': 'D.C.'
+        house_number: '1600',
+        road: 'Pennsilvana Avenue',
+        city: 'Washington',
+        state: 'D.C.'
       )
       params = AddressSimilarityParameters.new(address1, address2)
       response = RosetteAPI.new('0123456789').get_address_similarity(params)
@@ -811,11 +811,11 @@ describe RosetteAPI do
 
     it 'badRequestFormat: address1 option can only be an instance of an ...' do
       address2 = AddressParameter.new(
-        'house_number': '160',
-        'road': 'Pennsilvana Avenue',
-        'city': 'Washington',
-        'state': 'D.C.',
-        'post_code': '20500'
+        house_number: '160',
+        road: 'Pennsilvana Avenue',
+        city: 'Washington',
+        state: 'D.C.',
+        post_code: '20500'
       )
       params = AddressSimilarityParameters.new(123, address2)
       expect { RosetteAPI.new('0123456789').get_address_similarity(params) }
@@ -824,11 +824,11 @@ describe RosetteAPI do
 
     it 'badRequestFormat: address2 option can only be an instance of an ...' do
       address1 = AddressParameter.new(
-        'house_number': '160',
-        'road': 'Pennsilvana Avenue',
-        'city': 'Washington',
-        'state': 'D.C.',
-        'post_code': '20500'
+        house_number: '160',
+        road: 'Pennsilvana Avenue',
+        city: 'Washington',
+        state: 'D.C.',
+        post_code: '20500'
       )
       params = AddressSimilarityParameters.new(address1, 123)
       expect { RosetteAPI.new('0123456789').get_address_similarity(params) }

@@ -12,18 +12,18 @@ rosette_api = if url
 
 begin
   address1 = AddressParameter.new(
-    'house_number': '1600',
-    'road': 'Pennsylvania Ave NW',
-    'city': 'Washington',
-    'state': 'DC',
-    'post_code': '20500'
+    house_number: '1600',
+    road: 'Pennsylvania Ave NW',
+    city: 'Washington',
+    state: 'DC',
+    post_code: '20500'
   )
   address2 = AddressParameter.new(
-    'house_number': '160',
-    'road': 'Pennsilvana Avenue',
-    'city': 'Washington',
-    'state': 'D.C.',
-    'post_code': '20500'
+    house_number: '160',
+    road: 'Pennsilvana Avenue',
+    city: 'Washington',
+    state: 'D.C.',
+    post_code: '20500'
   )
   params = AddressSimilarityParameters.new(address1, address2)
   response = rosette_api.get_address_similarity(params)

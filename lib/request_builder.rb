@@ -1,4 +1,5 @@
-# encoding: UTF-8
+# frozen_string_literal: true
+
 require 'net/http'
 require 'net/https'
 require 'json'
@@ -20,15 +21,17 @@ class RequestBuilder
   # User-Agent string
   attr_reader :user_agent
 
-  def initialize(user_key, alternate_url, http_client, params = {}, url_parameters = nil, binding_version)
+  def initialize(user_key, alternate_url, http_client, binding_version,
+                 params = {}, url_parameters = nil)
     @user_key = user_key
     @alternate_url = alternate_url
     @http_client = http_client
-    @params = params
     @binding_version = binding_version
+    @params = params
     @user_agent = 'Ruby/' + binding_version + '/' + RUBY_VERSION
 
     return unless url_parameters
+
     @alternate_url = @alternate_url + '?' + URI.encode_www_form(url_parameters)
   end
 
@@ -43,19 +46,27 @@ class RequestBuilder
     begin
       uri = URI.parse @alternate_url
       request = Net::HTTP::Post.new uri.request_uri
-    rescue
-      raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
+    rescue StandardError
+      # Not ideal.  Consider switching to a different library.
+      # https://stackoverflow.com/a/11802674
+      raise RosetteAPIError.new(
+        'connectionError',
+        'Failed to establish connection with Rosette server.'
+      )
     end
 
     custom_headers = params['customHeaders']
 
     if custom_headers
       keys_array = custom_headers.keys
-      for key in keys_array
+      keys_array.each do |key|
         if key.to_s =~ /^X-RosetteAPI-/
           request[key] = custom_headers[key]
         else
-          raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
+          raise RosetteAPIError.new(
+            'invalidHeader',
+            'Custom header must begin with "X-RosetteAPI-"'
+          )
         end
       end
       params.delete 'customHeaders'
@@ -83,8 +94,8 @@ class RequestBuilder
     begin
       file = File.open params['filePath'], 'r'
       text = file.read
-    rescue => err
-      raise err
+    rescue StandardError => e
+      raise RosetteAPIError.new('readMultipartError', e)
     end
 
     boundary = SecureRandom.hex
@@ -94,7 +105,8 @@ class RequestBuilder
 
     # Add the content data
     post_body << "--#{boundary}\r\n"
-    post_body << "Content-Disposition: form-data; name=\"content\"; filename=\"#{File.basename(file)}\"\r\n"
+    post_body << 'Content-Disposition: form-data; name="content"; ' \
+                 "filename=\"#{File.basename(file)}\"\r\n"
     post_body << "Content-Type: text/plain\r\n\r\n"
     post_body << text
 
@@ -109,24 +121,33 @@ class RequestBuilder
     begin
       uri = URI.parse @alternate_url
       request = Net::HTTP::Post.new uri.request_uri
-    rescue
-      raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
+    rescue StandardError
+      # Not ideal.  Consider switching to a different library.
+      # https://stackoverflow.com/a/11802674
+      raise RosetteAPIError.new(
+        'connectionError',
+        'Failed to establish connection with Rosette API server.'
+      )
     end
 
     # add any custom headers from the user
     unless params['customHeaders'].nil?
       keys_array = params['customHeaders'].keys
-      for k in keys_array
+      keys_array.each do |k|
         if k.to_s =~ /^X-RosetteAPI-/
           request.add_field k, params['customHeaders'][k]
         else
-          raise RosetteAPIError.new 'invalidHeader', 'Custom header must begin with "X-RosetteAPI-"'
+          raise RosetteAPIError.new(
+            'invalidHeader',
+            'Custom header must begin with "X-RosetteAPI-"'
+          )
         end
       end
       params.delete 'customHeaders'
     end
 
-    request.add_field 'Content-Type', "multipart/form-data; boundary=#{boundary}"
+    request.add_field 'Content-Type',
+                      "multipart/form-data; boundary=#{boundary}"
     request.add_field 'User-Agent', @user_agent
     request.add_field 'X-RosetteAPI-Key', @user_key
     request.add_field 'X-RosetteAPI-Binding', 'ruby'
@@ -142,10 +163,14 @@ class RequestBuilder
   def send_get_request
     begin
       uri = URI.parse @alternate_url
-
       request = Net::HTTP::Get.new uri.request_uri
-    rescue
-      raise RosetteAPIError.new 'connectionError', 'Failed to establish connection with Rosette API server.'
+    rescue StandardError
+      # Not ideal.  Consider switching to a different library.
+      # https://stackoverflow.com/a/11802674
+      raise RosetteAPIError.new(
+        'connectionError',
+        'Failed to establish connection with Rosette API server.'
+      )
     end
     request['X-RosetteAPI-Key'] = @user_key
     request['User-Agent'] = @user_agent

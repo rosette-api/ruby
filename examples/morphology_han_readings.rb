@@ -10,13 +10,10 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-transliteration_content_data =
-  'Kareem Abdul Jabbar holds the records for most points in the NBA'
-
+morphology_han_readings_data = '北京大学生物系主任办公室内部会议'
 begin
-  params = DocumentParameters.new
-  params.content = transliteration_content_data
-  response = rosette_api.get_transliteration(params)
+  params = DocumentParameters.new(content: morphology_han_readings_data)
+  response = rosette_api.get_han_readings(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => e
   printf('Rosette API Error (%<status_code>s): %<message>s',

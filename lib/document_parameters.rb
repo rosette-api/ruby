@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'bad_request_format_error'
 
 # This class encapsulates parameters that will be used by most of the endpoints
@@ -5,9 +7,11 @@ require_relative 'bad_request_format_error'
 class DocumentParameters
   # Content to be analyzed (required if no content_uri and file_path)
   attr_accessor :content
-  # URL to retrieve content from and analyze (required if no content and file_path)
+  # URL to retrieve content from and analyze (required if no content and
+  # file_path)
   attr_accessor :content_uri
-  # File path of the file to be analyzed (required if no content and content_uri)
+  # File path of the file to be analyzed (required if no content and
+  # content_uri)
   attr_accessor :file_path
   # genre to categorize the input data
   attr_accessor :genre
@@ -40,15 +44,19 @@ class DocumentParameters
   # Validates the parameters by checking if there are multiple content sources
   # set or no content provided at all.
   def validate_params
+    content_msg = 'The format of the request is invalid: multiple content ' \
+      'sources; must be one of an attachment, an inline "content" field, or ' \
+      'an external "contentUri"'
+    no_content_msg = 'The format of the request is invalid: no content ' \
+      'provided; must be one of an attachment, an inline "content" field, or ' \
+      'an external "contentUri"'
+    opt_msg = 'rosette_options can only be an instance of a Hash'
     if [@content, @content_uri, @file_path].compact.length > 1
-      raise BadRequestFormatError.new 'The format of the request is invalid: multiple content sources;' \
-                                      ' must be one of an attachment, an inline "content" field, or an external' \
-                                      '"contentUri"'
+      raise BadRequestFormatError.new(content_msg)
     elsif [@content, @content_uri, @file_path].all?(&:nil?)
-      raise BadRequestFormatError.new 'The format of the request is invalid: no content provided; must' \
-                                      ' be one of an attachment, an inline "content" field, or an external "contentUri"'
+      raise BadRequestFormatError.new(no_content_msg)
     elsif @rosette_options
-      raise BadRequestError.new('rosette_options can only be an instance of a Hash') unless @rosette_options.is_a? Hash
+      raise BadRequestError.new(opt_msg) unless @rosette_options.is_a? Hash
     end
   end
 
@@ -57,9 +65,10 @@ class DocumentParameters
   # Returns the new Hash.
   def load_params
     validate_params
-    to_hash.select { |_key, value| value }
-           .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-           .to_h
+    to_hash
+      .select { |_key, value| value }
+      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+      .to_h
   end
 
   # Converts this class to Hash.

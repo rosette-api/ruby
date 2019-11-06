@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This class represents an entity name in Rosette API.
 class NameParameter
   # Name's entity type (PERSON, LOCATION, ORGANIZATION) (optional)
@@ -25,9 +27,10 @@ class NameParameter
   #
   # Returns the new Hash.
   def load_param
-    to_hash.select { |_key, value| value }
-           .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-           .to_h
+    to_hash
+      .select { |_key, value| value }
+      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
+      .to_h
   end
 
   # Converts this class to Hash.

@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.authors = ['Basis Technology Corp']
   s.email = 'support@rosette.com'
   s.homepage = 'https://developer.rosette.com/'
-  s.date = '2019-02-08'
+  s.date = '2019-11-06'
 
   s.files = Dir['LICENSE', 'README.md', 'lib/**/*', 'examples/**/*']
   s.require_paths = ['lib']

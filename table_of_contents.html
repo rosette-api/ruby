@@ -11,8 +11,11 @@
   var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
@@ -29,6 +32,16 @@
 
 <h2 id="classes">Classes and Modules</h2>
 <ul>
+
+  <li class="class">
+    <a href="AddressParameter.html">AddressParameter</a>
+
+  </li>
+
+  <li class="class">
+    <a href="AddressSimilarityParameters.html">AddressSimilarityParameters</a>
+
+  </li>
 
   <li class="class">
     <a href="BadRequestError.html">BadRequestError</a>
@@ -94,6 +107,11 @@
     <a href="RequestBuilder.html#method-c-new">::new</a>
     &mdash;
     <span class="container">RequestBuilder</span>
+
+  <li class="method">
+    <a href="RosetteAPI.html#method-i-get_address_similarity">#get_address_similarity</a>
+    &mdash;
+    <span class="container">RosetteAPI</span>
 
   <li class="method">
     <a href="RosetteAPI.html#method-i-get_categories">#get_categories</a>
@@ -211,39 +229,9 @@
     <span class="container">RosetteAPI</span>
 
   <li class="method">
-    <a href="BadRequestError.html#method-i-initialize">#initialize</a>
-    &mdash;
-    <span class="container">BadRequestError</span>
-
-  <li class="method">
-    <a href="RosetteAPIError.html#method-i-initialize">#initialize</a>
-    &mdash;
-    <span class="container">RosetteAPIError</span>
-
-  <li class="method">
-    <a href="BadRequestFormatError.html#method-i-initialize">#initialize</a>
-    &mdash;
-    <span class="container">BadRequestFormatError</span>
-
-  <li class="method">
-    <a href="DocumentParameters.html#method-i-initialize">#initialize</a>
-    &mdash;
-    <span class="container">DocumentParameters</span>
-
-  <li class="method">
-    <a href="NameDeduplicationParameters.html#method-i-initialize">#initialize</a>
-    &mdash;
-    <span class="container">NameDeduplicationParameters</span>
-
-  <li class="method">
     <a href="NameParameter.html#method-i-initialize">#initialize</a>
     &mdash;
     <span class="container">NameParameter</span>
-
-  <li class="method">
-    <a href="NameTranslationParameters.html#method-i-initialize">#initialize</a>
-    &mdash;
-    <span class="container">NameTranslationParameters</span>
 
   <li class="method">
     <a href="NameSimilarityParameters.html#method-i-initialize">#initialize</a>
@@ -251,9 +239,64 @@
     <span class="container">NameSimilarityParameters</span>
 
   <li class="method">
+    <a href="NameTranslationParameters.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">NameTranslationParameters</span>
+
+  <li class="method">
+    <a href="NameDeduplicationParameters.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">NameDeduplicationParameters</span>
+
+  <li class="method">
+    <a href="DocumentParameters.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">DocumentParameters</span>
+
+  <li class="method">
+    <a href="BadRequestFormatError.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">BadRequestFormatError</span>
+
+  <li class="method">
+    <a href="BadRequestError.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">BadRequestError</span>
+
+  <li class="method">
+    <a href="AddressSimilarityParameters.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">AddressSimilarityParameters</span>
+
+  <li class="method">
+    <a href="AddressParameter.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">AddressParameter</span>
+
+  <li class="method">
+    <a href="RosetteAPIError.html#method-i-initialize">#initialize</a>
+    &mdash;
+    <span class="container">RosetteAPIError</span>
+
+  <li class="method">
     <a href="NameParameter.html#method-i-load_param">#load_param</a>
     &mdash;
     <span class="container">NameParameter</span>
+
+  <li class="method">
+    <a href="AddressParameter.html#method-i-load_param">#load_param</a>
+    &mdash;
+    <span class="container">AddressParameter</span>
+
+  <li class="method">
+    <a href="NameTranslationParameters.html#method-i-load_params">#load_params</a>
+    &mdash;
+    <span class="container">NameTranslationParameters</span>
+
+  <li class="method">
+    <a href="NameDeduplicationParameters.html#method-i-load_params">#load_params</a>
+    &mdash;
+    <span class="container">NameDeduplicationParameters</span>
 
   <li class="method">
     <a href="DocumentParameters.html#method-i-load_params">#load_params</a>
@@ -266,14 +309,9 @@
     <span class="container">NameSimilarityParameters</span>
 
   <li class="method">
-    <a href="NameDeduplicationParameters.html#method-i-load_params">#load_params</a>
+    <a href="AddressSimilarityParameters.html#method-i-load_params">#load_params</a>
     &mdash;
-    <span class="container">NameDeduplicationParameters</span>
-
-  <li class="method">
-    <a href="NameTranslationParameters.html#method-i-load_params">#load_params</a>
-    &mdash;
-    <span class="container">NameTranslationParameters</span>
+    <span class="container">AddressSimilarityParameters</span>
 
   <li class="method">
     <a href="RosetteAPI.html#method-i-ping">#ping</a>
@@ -301,14 +339,14 @@
     <span class="container">RequestBuilder</span>
 
   <li class="method">
-    <a href="NameDeduplicationParameters.html#method-i-to_hash">#to_hash</a>
-    &mdash;
-    <span class="container">NameDeduplicationParameters</span>
-
-  <li class="method">
     <a href="NameParameter.html#method-i-to_hash">#to_hash</a>
     &mdash;
     <span class="container">NameParameter</span>
+
+  <li class="method">
+    <a href="NameDeduplicationParameters.html#method-i-to_hash">#to_hash</a>
+    &mdash;
+    <span class="container">NameDeduplicationParameters</span>
 
   <li class="method">
     <a href="DocumentParameters.html#method-i-to_hash">#to_hash</a>
@@ -319,6 +357,16 @@
     <a href="NameTranslationParameters.html#method-i-to_hash">#to_hash</a>
     &mdash;
     <span class="container">NameTranslationParameters</span>
+
+  <li class="method">
+    <a href="AddressParameter.html#method-i-to_hash">#to_hash</a>
+    &mdash;
+    <span class="container">AddressParameter</span>
+
+  <li class="method">
+    <a href="AddressSimilarityParameters.html#method-i-to_hash">#to_hash</a>
+    &mdash;
+    <span class="container">AddressSimilarityParameters</span>
 
   <li class="method">
     <a href="NameSimilarityParameters.html#method-i-to_hash">#to_hash</a>
@@ -346,6 +394,11 @@
     <span class="container">DocumentParameters</span>
 
   <li class="method">
+    <a href="AddressSimilarityParameters.html#method-i-validate_params">#validate_params</a>
+    &mdash;
+    <span class="container">AddressSimilarityParameters</span>
+
+  <li class="method">
     <a href="NameDeduplicationParameters.html#method-i-validate_params">#validate_params</a>
     &mdash;
     <span class="container">NameDeduplicationParameters</span>
@@ -356,7 +409,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

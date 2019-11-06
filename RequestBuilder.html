@@ -11,8 +11,11 @@
   var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
@@ -208,7 +211,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(user_key, alternate_url, http_client, params = {}, url_parameters = nil, binding_version)</span>
+            class="method-args">(user_key, alternate_url, http_client, binding_version, params = {}, url_parameters = nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -223,16 +226,18 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">url_parameters</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">binding_version</span>)
+            <pre><span class="ruby-comment"># File request_builder.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">binding_version</span>,
+               <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">url_parameters</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-identifier">alternate_url</span>
   <span class="ruby-ivar">@http_client</span> = <span class="ruby-identifier">http_client</span>
-  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
   <span class="ruby-ivar">@binding_version</span> = <span class="ruby-identifier">binding_version</span>
+  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
   <span class="ruby-ivar">@user_agent</span> = <span class="ruby-string">&#39;Ruby/&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">binding_version</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RUBY_VERSION</span>
 
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url_parameters</span>
+
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;?&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">encode_www_form</span>(<span class="ruby-identifier">url_parameters</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -281,7 +286,7 @@
 
           
           <div class="method-source-code" id="get_response-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 178</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 203</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_response</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">request</span>
 
@@ -333,13 +338,13 @@
 
           
           <div class="method-source-code" id="prepare_multipart_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 82</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_multipart_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>], <span class="ruby-string">&#39;r&#39;</span>
     <span class="ruby-identifier">text</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">read</span>
-  <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">err</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-identifier">err</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;readMultipartError&#39;</span>, <span class="ruby-identifier">e</span>)
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">boundary</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">hex</span>
@@ -349,7 +354,8 @@
 
   <span class="ruby-comment"># Add the content data</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;--#{boundary}\r\n&quot;</span>
-  <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;Content-Disposition: form-data; name=\&quot;content\&quot;; filename=\&quot;#{File.basename(file)}\&quot;\r\n&quot;</span>
+  <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;Content-Disposition: form-data; name=&quot;content&quot;; &#39;</span> \
+               <span class="ruby-node">&quot;filename=\&quot;#{File.basename(file)}\&quot;\r\n&quot;</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Content-Type: text/plain\r\n\r\n&quot;</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text</span>
 
@@ -364,24 +370,33 @@
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
     <span class="ruby-identifier">request</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Post</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
-  <span class="ruby-keyword">rescue</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;connectionError&#39;</span>, <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span>
+    <span class="ruby-comment"># Not ideal.  Consider switching to a different library.</span>
+    <span class="ruby-comment"># https://stackoverflow.com/a/11802674</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
+      <span class="ruby-string">&#39;connectionError&#39;</span>,
+      <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+    )
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-comment"># add any custom headers from the user</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">keys</span>
-    <span class="ruby-keyword">for</span> <span class="ruby-identifier">k</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">keys_array</span>
+    <span class="ruby-identifier">keys_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-identifier">k</span>, <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>][<span class="ruby-identifier">k</span>]
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;invalidHeader&#39;</span>, <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
+          <span class="ruby-string">&#39;invalidHeader&#39;</span>,
+          <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+        )
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;customHeaders&#39;</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;Content-Type&#39;</span>, <span class="ruby-node">&quot;multipart/form-data; boundary=#{boundary}&quot;</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;Content-Type&#39;</span>,
+                    <span class="ruby-node">&quot;multipart/form-data; boundary=#{boundary}&quot;</span>
   <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;User-Agent&#39;</span>, <span class="ruby-ivar">@user_agent</span>
   <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;X-RosetteAPI-Key&#39;</span>, <span class="ruby-ivar">@user_key</span>
   <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;X-RosetteAPI-Binding&#39;</span>, <span class="ruby-string">&#39;ruby&#39;</span>
@@ -426,24 +441,32 @@
 
           
           <div class="method-source-code" id="prepare_plain_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 42</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
     <span class="ruby-identifier">request</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Post</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
-  <span class="ruby-keyword">rescue</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;connectionError&#39;</span>, <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span>
+    <span class="ruby-comment"># Not ideal.  Consider switching to a different library.</span>
+    <span class="ruby-comment"># https://stackoverflow.com/a/11802674</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
+      <span class="ruby-string">&#39;connectionError&#39;</span>,
+      <span class="ruby-string">&#39;Failed to establish connection with Rosette server.&#39;</span>
+    )
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">custom_headers</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>]
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">custom_headers</span>
     <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">custom_headers</span>.<span class="ruby-identifier">keys</span>
-    <span class="ruby-keyword">for</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">keys_array</span>
+    <span class="ruby-identifier">keys_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
         <span class="ruby-identifier">request</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">custom_headers</span>[<span class="ruby-identifier">key</span>]
       <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;invalidHeader&#39;</span>, <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
+          <span class="ruby-string">&#39;invalidHeader&#39;</span>,
+          <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+        )
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;customHeaders&#39;</span>
@@ -490,14 +513,18 @@
 
           
           <div class="method-source-code" id="send_get_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 142</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_get_request</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
-
     <span class="ruby-identifier">request</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Get</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>
-  <span class="ruby-keyword">rescue</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;connectionError&#39;</span>, <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span>
+    <span class="ruby-comment"># Not ideal.  Consider switching to a different library.</span>
+    <span class="ruby-comment"># https://stackoverflow.com/a/11802674</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
+      <span class="ruby-string">&#39;connectionError&#39;</span>,
+      <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+    )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;X-RosetteAPI-Key&#39;</span>] = <span class="ruby-ivar">@user_key</span>
   <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;User-Agent&#39;</span>] = <span class="ruby-ivar">@user_agent</span>
@@ -535,7 +562,7 @@
 
           
           <div class="method-source-code" id="send_post_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 159</span>
+            <pre><span class="ruby-comment"># File request_builder.rb, line 184</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_post_request</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>]
     <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-identifier">prepare_multipart_request</span> <span class="ruby-identifier">params</span>
@@ -564,7 +591,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

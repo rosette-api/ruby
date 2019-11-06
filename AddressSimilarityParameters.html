@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class NameParameter - RDoc Documentation</title>
+<title>class AddressSimilarityParameters - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -77,9 +77,11 @@
     
     <li ><a href="#method-i-initialize">#initialize</a>
     
-    <li ><a href="#method-i-load_param">#load_param</a>
+    <li ><a href="#method-i-load_params">#load_params</a>
     
     <li ><a href="#method-i-to_hash">#to_hash</a>
+    
+    <li ><a href="#method-i-validate_params">#validate_params</a>
     
   </ul>
 </div>
@@ -87,14 +89,14 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-NameParameter">
-  <h1 id="class-NameParameter" class="class">
-    class NameParameter
+<main role="main" aria-labelledby="class-AddressSimilarityParameters">
+  <h1 id="class-AddressSimilarityParameters" class="class">
+    class AddressSimilarityParameters
   </h1>
 
   <section class="description">
     
-<p>This class represents an entity name in Rosette API.</p>
+<p>This class encapsulates parameters that are needed for address-similarity in Rosette API.</p>
 
   </section>
 
@@ -113,54 +115,28 @@
       </header>
 
       
-      <div id="attribute-i-entity_type" class="method-detail">
+      <div id="attribute-i-address1" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">entity_type</span><span
+          <span class="method-name">address1</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
         <div class="method-description">
         
-        <p>Name&#39;s entity type (PERSON, LOCATION, ORGANIZATION) (optional)</p>
+        <p>Address to be compared to address2</p>
         
         </div>
       </div>
       
-      <div id="attribute-i-language" class="method-detail">
+      <div id="attribute-i-address2" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">language</span><span
+          <span class="method-name">address2</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
         <div class="method-description">
         
-        <p>ISO 639-3 code of the name&#39;s language (optional)</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-script" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">script</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>ISO 15924 code of the name&#39;s script (optional)</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-text" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">text</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>Name to be analyzed</p>
+        <p>Address to be compared to address1</p>
         
         </div>
       </div>
@@ -175,10 +151,10 @@
        </header>
 
     
-      <div id="method-i-load_param" class="method-detail ">
+      <div id="method-i-load_params" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">load_param</span><span
+          <span class="method-name">load_params</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -195,11 +171,12 @@
           
 
           
-          <div class="method-source-code" id="load_param-source">
-            <pre><span class="ruby-comment"># File name_parameter.rb, line 29</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_param</span>
+          <div class="method-source-code" id="load_params-source">
+            <pre><span class="ruby-comment"># File address_similarity_parameters.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_params</span>
+  <span class="ruby-identifier">validate_params</span>
   <span class="ruby-identifier">to_hash</span>
-    .<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span> }
+    .<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
     .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
     .<span class="ruby-identifier">to_h</span>
 <span class="ruby-keyword">end</span></pre>
@@ -234,14 +211,49 @@
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_parameter.rb, line 39</span>
+            <pre><span class="ruby-comment"># File address_similarity_parameters.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_hash</span>
   {
-    <span class="ruby-value">entity_type:</span> <span class="ruby-ivar">@entity_type</span>,
-    <span class="ruby-value">language:</span> <span class="ruby-ivar">@language</span>,
-    <span class="ruby-value">script:</span> <span class="ruby-ivar">@script</span>,
-    <span class="ruby-value">text:</span> <span class="ruby-ivar">@text</span>
+    <span class="ruby-value">address1:</span> <span class="ruby-ivar">@address1</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">AddressParameter</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@address1</span>.<span class="ruby-identifier">load_param</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@address1</span>,
+    <span class="ruby-value">address2:</span> <span class="ruby-ivar">@address2</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">AddressParameter</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@address2</span>.<span class="ruby-identifier">load_param</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@address2</span>
   }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-validate_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Validates the parameters by checking if address1 and address2 are instances of <a href="AddressParameter.html"><code>AddressParameter</code></a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="validate_params-source">
+            <pre><span class="ruby-comment"># File address_similarity_parameters.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_params</span>
+  <span class="ruby-identifier">a1_msg</span> = <span class="ruby-string">&#39;address1 option can only be an instance of an AddressParameter&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">a1_msg</span>) <span class="ruby-keyword">if</span> [<span class="ruby-constant">AddressParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@address1</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
+
+  <span class="ruby-identifier">a2_msg</span> = <span class="ruby-string">&#39;address2 option can only be an instance of an AddressParameter&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">a2_msg</span>) <span class="ruby-keyword">if</span> [<span class="ruby-constant">AddressParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@address2</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -265,7 +277,7 @@
         
         <div class="method-heading">
           <span class="method-name">initialize</span><span
-            class="method-args">(text, options = {})</span>
+            class="method-args">(address1, address2)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -280,17 +292,10 @@
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_parameter.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
-  <span class="ruby-identifier">options</span> = {
-    <span class="ruby-value">entity_type:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-value">language:</span> <span class="ruby-keyword">nil</span>,
-    <span class="ruby-value">script:</span> <span class="ruby-keyword">nil</span>
-  }.<span class="ruby-identifier">update</span> <span class="ruby-identifier">options</span>
-  <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">text</span>
-  <span class="ruby-ivar">@entity_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:entity_type</span>]
-  <span class="ruby-ivar">@language</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:language</span>]
-  <span class="ruby-ivar">@script</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:script</span>]
+            <pre><span class="ruby-comment"># File address_similarity_parameters.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">address1</span>, <span class="ruby-identifier">address2</span>) <span class="ruby-comment">#:notnew:</span>
+  <span class="ruby-ivar">@address1</span> = <span class="ruby-identifier">address1</span>
+  <span class="ruby-ivar">@address2</span> = <span class="ruby-identifier">address2</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

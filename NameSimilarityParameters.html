@@ -11,8 +11,11 @@
   var index_rel_prefix = "./";
 </script>
 
-<script src="./js/jquery.js"></script>
-<script src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
@@ -195,12 +198,13 @@
 
           
           <div class="method-source-code" id="load_params-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 40</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_params</span>
   <span class="ruby-identifier">validate_params</span>
-  <span class="ruby-identifier">to_hash</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
-         .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
-         .<span class="ruby-identifier">to_h</span>
+  <span class="ruby-identifier">to_hash</span>
+    .<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
+    .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
+    .<span class="ruby-identifier">to_h</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -233,7 +237,7 @@
 
           
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 50</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_hash</span>
   {
     <span class="ruby-value">genre:</span> <span class="ruby-ivar">@genre</span>,
@@ -271,12 +275,17 @@
 
           
           <div class="method-source-code" id="validate_params-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 29</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_params</span>
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;name1 option can only be an instance of a String or NameParameter&#39;</span>) <span class="ruby-keyword">if</span> [<span class="ruby-constant">String</span>, <span class="ruby-constant">NameParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@name1</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;name2 option can only be an instance of a String or NameParameter&#39;</span>) <span class="ruby-keyword">if</span> [<span class="ruby-constant">String</span>, <span class="ruby-constant">NameParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@name2</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
+  <span class="ruby-identifier">n1_msg</span> = <span class="ruby-string">&#39;name1 option can only be an instance of a String or NameParameter&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">n1_msg</span>) <span class="ruby-keyword">if</span> [<span class="ruby-constant">String</span>, <span class="ruby-constant">NameParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@name1</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
+
+  <span class="ruby-identifier">n2_msg</span> = <span class="ruby-string">&#39;name2 option can only be an instance of a String or NameParameter&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">n2_msg</span>) <span class="ruby-keyword">if</span> [<span class="ruby-constant">String</span>, <span class="ruby-constant">NameParameter</span>].<span class="ruby-identifier">none?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">clazz</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@name2</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-identifier">clazz</span> }
+
+  <span class="ruby-identifier">opt_msg</span> = <span class="ruby-string">&#39;rosette_options can only be an instance of a Hash&#39;</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@rosette_options</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;rosette_options can only be an instance of a Hash&#39;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@rosette_options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">opt_msg</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@rosette_options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -316,7 +325,7 @@
 
           
           <div class="method-source-code" id="initialize-source">
-            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 16</span>
+            <pre><span class="ruby-comment"># File name_similarity_parameters.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">name1</span>, <span class="ruby-identifier">name2</span>, <span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
   <span class="ruby-identifier">options</span> = {
     <span class="ruby-value">genre:</span> <span class="ruby-keyword">nil</span>,
@@ -346,7 +355,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.0.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

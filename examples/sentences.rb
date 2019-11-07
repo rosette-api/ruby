@@ -10,11 +10,7 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-sentences_data = 'This land is your land. This land is my land, from ' \
-  'California to the New York island; from the red wood forest to the Gulf ' \
-  'Stream waters. This land was made for you and Me. As I was walking that ' \
-  'ribbon of highway, I saw above me that endless skyway: I saw below me ' \
-  'that golden valley: This land was made for you and me.'
+sentences_data = 'This land is your land. This land is my land, from California to the New York island; from the red wood forest to the Gulf Stream waters. This land was made for you and Me. As I was walking that ribbon of highway, I saw above me that endless skyway: I saw below me that golden valley: This land was made for you and me.'
 
 begin
   params = DocumentParameters.new

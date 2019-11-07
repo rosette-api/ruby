@@ -10,8 +10,7 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-transliteration_content_data =
-  'Kareem Abdul Jabbar holds the records for most points in the NBA'
+transliteration_content_data = 'ana r2ye7 el gam3a el sa3a 3 el 3asr'
 
 begin
   params = DocumentParameters.new

@@ -17,13 +17,13 @@ class AddressSimilarityParameters
   end
 
   # Validates the parameters by checking if address1 and address2 are instances
-  # of AddressParameter.
+  # of AddressParameters or Strings.
   def validate_params
-    a1_msg = 'address1 option can only be an instance of an AddressParameter'
-    raise BadRequestError.new(a1_msg) if [AddressParameter].none? { |clazz| @address1.is_a? clazz }
+    a1_msg = 'address1 option can only be an instance of an AddressParameter or a String'
+    raise BadRequestError.new(a1_msg) if [String, AddressParameter].none? { |clazz| @address1.is_a? clazz }
 
-    a2_msg = 'address2 option can only be an instance of an AddressParameter'
-    raise BadRequestError.new(a2_msg) if [AddressParameter].none? { |clazz| @address2.is_a? clazz }
+    a2_msg = 'address2 option can only be an instance of an AddressParameter or a String'
+    raise BadRequestError.new(a2_msg) if [String, AddressParameter].none? { |clazz| @address2.is_a? clazz }
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.

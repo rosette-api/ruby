@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.3.0'
 
   s.name = 'rosette_api'
-  s.version = '1.14.3'
+  s.version = '1.14.4'
   s.license = 'Apache-2.0'
 
   s.summary = 'A Ruby interface for Rosette Text Analytics Platform.'
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.authors = ['Basis Technology Corp']
   s.email = 'support@rosette.com'
   s.homepage = 'https://developer.rosette.com/'
-  s.date = '2019-11-06'
+  s.date = '2020-06-16'
 
   s.files = Dir['LICENSE', 'README.md', 'lib/**/*', 'examples/**/*']
   s.require_paths = ['lib']

@@ -10,9 +10,7 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-categories_url_data =
-  'https://onlocationvacations.com/2015/03/05/the-new-ghostbusters-movie-' \
-  'begins-filming-in-boston-in-june/'
+categories_url_data = 'https://onlocationvacations.com/2018/02/06/downton-abbey-exhibition-extended-april-2-nyc/'
 begin
   params = DocumentParameters.new(content_uri: categories_url_data)
   response = rosette_api.get_categories(params)

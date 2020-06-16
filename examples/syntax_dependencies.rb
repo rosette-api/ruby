@@ -10,9 +10,7 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-syntax_dependencies_data =
-  'Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize ' \
-  'in Physiology or Medicine on Monday.'
+syntax_dependencies_data = 'Yoshinori Ohsumi, a Japanese cell biologist, was awarded the Nobel Prize in Physiology or Medicine on Monday.'
 
 begin
   params = DocumentParameters.new(content: syntax_dependencies_data)

@@ -10,8 +10,7 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-morphology_complete_data = 'The quick brown fox jumped over the lazy ' \
-  'dog. 👍🏾 Yes he did. B)'
+morphology_complete_data = 'The quick brown fox jumped over the lazy dog. 👍🏾 Yes he did. B)'
 begin
   params = DocumentParameters.new(content: morphology_complete_data)
   response = rosette_api.get_morphology_complete(params)

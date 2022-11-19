@@ -9,6 +9,9 @@ require_relative 'address_similarity_parameters'
 require_relative 'rosette_api_error'
 require_relative 'bad_request_error'
 require_relative 'bad_request_format_error'
+require 'logger'
+
+
 
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
@@ -65,6 +68,7 @@ class RosetteAPI
   attr_accessor :url_parameters
 
   def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1')
+    @log = Logger.new(STDOUT)
     @user_key = user_key
     @alternate_url = alternate_url
     @url_parameters = nil
@@ -530,5 +534,8 @@ class RosetteAPI
                    message = 'Expects a DocumentParameters type as an argument',
                    type = DocumentParameters)
     raise BadRequestError.new message unless params.is_a? type
+    if defined?(params.genre) && !params.genre.nil?
+      @log.warn("The genre parameter is deprecated and will be removed in a future release.")
+    end
   end
 end

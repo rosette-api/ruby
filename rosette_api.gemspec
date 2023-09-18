@@ -27,6 +27,4 @@ Gem::Specification.new do |s|
 
   s.files = Dir['LICENSE', 'README.md', 'lib/**/*', 'examples/**/*']
   s.require_paths = ['lib']
-
-  s.add_runtime_dependency('rubysl-securerandom', '~> 2.0')
 end

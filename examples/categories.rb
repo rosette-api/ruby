@@ -10,7 +10,7 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-categories_url_data = 'https://www.rosette.com/about/'
+categories_url_data = 'https://www.babelstreet.com/rosette/'
 begin
   params = DocumentParameters.new(content_uri: categories_url_data)
   response = rosette_api.get_categories(params)

@@ -10,9 +10,9 @@ rosette_api = if url
                 RosetteAPI.new(api_key)
               end
 
-categories_url_data = 'https://www.rosette.com/about/'
+categories_text_data = 'If you are a fan of the British television series Downton Abbey and you are planning to be in New York anytime before April 2nd, there is a perfect stop for you while in town.'
 begin
-  params = DocumentParameters.new(content_uri: categories_url_data)
+  params = DocumentParameters.new(content: categories_text_data)
   response = rosette_api.get_categories(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => e

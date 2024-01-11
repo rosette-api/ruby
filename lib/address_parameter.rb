@@ -39,7 +39,7 @@ class AddressParameter
   # po_box (optional)
   attr_accessor :po_box
 
-  def initialize(options = {}) #:notnew:
+  def initialize(options = {}) # :notnew:
     options = {
       house: nil,
       house_number: nil,

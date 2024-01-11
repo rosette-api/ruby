@@ -27,7 +27,7 @@ class NameTranslationParameters
   # ISO 15924 code of name's script (optional)
   attr_accessor :target_script
 
-  def initialize(name, target_language, options = {}) #:notnew:
+  def initialize(name, target_language, options = {}) # :notnew:
     options = {
       entity_type: nil,
       genre: nil,

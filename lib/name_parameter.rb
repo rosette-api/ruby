@@ -11,7 +11,7 @@ class NameParameter
   # Name to be analyzed
   attr_accessor :text
 
-  def initialize(text, options = {}) #:notnew:
+  def initialize(text, options = {}) # :notnew:
     options = {
       entity_type: nil,
       language: nil,

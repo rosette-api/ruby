@@ -13,7 +13,7 @@ class NameDeduplicationParameters
   # Threshold for determining cluster size
   attr_accessor :threshold
 
-  def initialize(names, threshold, options = {}) #:notnew:
+  def initialize(names, threshold, options = {}) # :notnew:
     options = {
       rosette_options: nil
     }.update options

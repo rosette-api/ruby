@@ -13,7 +13,7 @@ A note on prerequisites. Rosette API only suports TLS 1.2 so ensure your toolcha
 ```
 git clone git@github.com:rosette-api/ruby.git
 cd ruby
-docker run -it -v $(pwd):/source --entrypoint bash ruby:2.6-slim-stretch
+docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
 
 gem install rosette_api
 
@@ -25,7 +25,7 @@ ruby ping.rb $API_KEY
 ```
 git clone git@github.com:rosette-api/ruby.git
 cd ruby
-docker run -it -v $(pwd):/source --entrypoint bash ruby:2.6-slim-stretch
+docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
 
 cd /source
 gem build rosette_api.gemspec

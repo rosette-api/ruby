@@ -15,7 +15,7 @@ class NameSimilarityParameters
   # Name to be compared to name1
   attr_accessor :name2
 
-  def initialize(name1, name2, options = {}) #:notnew:
+  def initialize(name1, name2, options = {}) # :notnew:
     options = {
       genre: nil,
       rosette_options: nil

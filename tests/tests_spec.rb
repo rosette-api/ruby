@@ -7,7 +7,7 @@ require 'json'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 describe RosetteAPI do
-  user_agent = 'Ruby/' + RosetteAPI::BINDING_VERSION + '/' + RUBY_VERSION
+  user_agent = "Ruby/#{RosetteAPI::BINDING_VERSION}/#{RUBY_VERSION}"
   RSpec.configure do |config|
     config.before(:example) { @content = 'Sample Content' }
     config.before(:example) { @json = { content: 'Sample Content' }.to_json }

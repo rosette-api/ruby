@@ -28,11 +28,11 @@ class RequestBuilder
     @http_client = http_client
     @binding_version = binding_version
     @params = params
-    @user_agent = 'Ruby/' + binding_version + '/' + RUBY_VERSION
+    @user_agent = "Ruby/#{binding_version}/#{RUBY_VERSION}"
 
     return unless url_parameters
 
-    @alternate_url = @alternate_url + '?' + URI.encode_www_form(url_parameters)
+    @alternate_url = "#{@alternate_url}?#{URI.encode_www_form(url_parameters)}"
   end
 
   # Prepares a plain POST request for Rosette API.

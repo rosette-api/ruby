@@ -8,7 +8,7 @@ class RosetteAPIError < StandardError
   # Rosette API error's message
   attr_accessor :message
 
-  def initialize(status_code, message) #:notnew:
+  def initialize(status_code, message) # :notnew:
     @status_code = status_code
     @message = message
   end

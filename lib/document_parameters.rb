@@ -22,7 +22,7 @@ class DocumentParameters
   # custom Rosette API headers
   attr_accessor :custom_headers
 
-  def initialize(options = {}) #:notnew:
+  def initialize(options = {}) # :notnew:
     options = {
       content: nil,
       content_uri: nil,

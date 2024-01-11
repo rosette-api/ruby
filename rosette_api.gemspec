@@ -4,7 +4,7 @@ lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
-  s.required_ruby_version = '>= 2.3.0'
+  s.required_ruby_version = '>= 3.0.0'
 
   s.name = 'rosette_api'
   s.version = '1.14.4'

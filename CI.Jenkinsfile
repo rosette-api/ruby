@@ -29,9 +29,9 @@ def runSonnarForPythonVersion(sourceDir, ver){
             --pull always \
             --rm --volume ${sourceDir}:/source \
             ruby:${ver}-slim \
-            bash -c \"apt-get update > /dev/null && \
-            apt-get install -y gcc make wget unzip > /dev/null && \
-            gem install rspec rubocop > /dev/null && \
+            bash -c \"apt-get update -qq && \
+            apt-get install -qq -y gcc make wget unzip && \
+            gem install --quiet --silent rspec rubocop && \
             cd /source && \
             rubocop --format json --out rubocop-out.json && \
             bundle install && \

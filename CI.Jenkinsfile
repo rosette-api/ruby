@@ -29,17 +29,18 @@ def runSonnarForPythonVersion(sourceDir, ver){
             --pull always \
             --rm --volume ${sourceDir}:/source \
             ruby:${ver}-slim \
-            bash -c \"apt-get update && \
-            apt-get install -y gcc make wget unzip && \
-            gem install rspec rubocop && \
+            bash -c \"apt-get update > /dev/null && \
+            apt-get install -y gcc make wget unzip > /dev/null && \
+            gem install rspec rubocop > /dev/null && \
             cd /source && \
             rubocop --format json --out rubocop-out.json && \
             bundle install && \
             rspec tests && \
+            ls -l coverage && \
             gem build rosette_api.gemspec && \
             gem install rosette_api-*.gem && \
             cd examples && \
-            for example in \$(ls *.rb); do ruby \${example} ${env.ROSETTE_API_KEY}; done && \
+            for example in \$(ls \"*.rb\"); do ruby \${example} ${env.ROSETTE_API_KEY}; done && \
             ${sonarExec}\""
 }
 

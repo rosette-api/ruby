@@ -531,8 +531,8 @@ class RosetteAPI
                    type = DocumentParameters)
     raise BadRequestError.new message unless params.is_a? type
 
-    if defined?(params.genre) && !params.genre.nil?
-      @log.warn('The genre parameter is deprecated and will be removed in a future release.')
-    end
+    return unless defined?(params.genre) && !params.genre.nil?
+
+    @log.warn('The genre parameter is deprecated and will be removed in a future release.')
   end
 end

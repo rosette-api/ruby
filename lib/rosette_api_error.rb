@@ -11,5 +11,6 @@ class RosetteAPIError < StandardError
   def initialize(status_code, message) # :notnew:
     @status_code = status_code
     @message = message
+    super(message)
   end
 end

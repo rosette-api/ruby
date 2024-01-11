@@ -39,8 +39,6 @@ def runSonnarForPythonVersion(sourceDir, ver){
             ls -l coverage && \
             gem build rosette_api.gemspec && \
             gem install rosette_api-*.gem && \
-            #cd examples && \
-            #for example in \$(ls \"*.rb\"); do ruby \${example} ${env.ROSETTE_API_KEY}; done && \
             ${sonarExec}\""
 }
 

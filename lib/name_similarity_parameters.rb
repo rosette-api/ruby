@@ -46,8 +46,7 @@ class NameSimilarityParameters
     validate_params
     to_hash
       .reject { |_key, value| value.nil? }
-      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-      .to_h
+      .transform_keys { |key| key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase) }
   end
 
   # Converts this class to Hash.

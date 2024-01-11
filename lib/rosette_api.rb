@@ -71,9 +71,7 @@ class RosetteAPI
     @alternate_url = alternate_url
     @url_parameters = nil
 
-    if @alternate_url.to_s.end_with?('/')
-      @alternate_url = alternate_url.to_s.slice(0..-2)
-    end
+    @alternate_url = alternate_url.to_s.slice(0..-2) if @alternate_url.to_s.end_with?('/')
 
     uri = URI.parse alternate_url
     @http_client = Net::HTTP.new uri.host, uri.port

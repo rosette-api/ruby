@@ -36,9 +36,7 @@ class NameSimilarityParameters
     raise BadRequestError.new(n2_msg) if [String, NameParameter].none? { |clazz| @name2.is_a? clazz }
 
     opt_msg = 'rosette_options can only be an instance of a Hash'
-    if @rosette_options
-      raise BadRequestError.new(opt_msg) unless @rosette_options.is_a? Hash
-    end
+    raise BadRequestError.new(opt_msg) if @rosette_options && !(@rosette_options.is_a? Hash)
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.

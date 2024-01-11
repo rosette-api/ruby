@@ -54,9 +54,7 @@ class NameTranslationParameters
   # of a Hash.
   def validate_params
     msg = 'rosette_options can only be an instance of a Hash'
-    if @rosette_options
-      raise BadRequestError.new(msg) unless @rosette_options.is_a? Hash
-    end
+    raise BadRequestError.new(msg) if @rosette_options && !(@rosette_options.is_a? Hash)
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.

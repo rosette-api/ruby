@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+require 'simplecov_json_formatter'
+require 'simplecov'
+SimpleCov.start do
+  formatter SimpleCov::Formatter::JSONFormatter
+  enable_coverage :branch
+end
+
 require 'rosette_api'
 require 'rspec'
 require 'webmock/rspec'

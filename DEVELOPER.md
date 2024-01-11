@@ -35,6 +35,8 @@ docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
 
 cd /source
 bundle install
+gem build rosette_api.gemspec
+gem install rosette_api-*.gem
 cd examples
 
 ruby ping.rb ${API_KEY}
@@ -49,6 +51,8 @@ docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
 
 cd /source
 bundle install
+gem build rosette_api.gemspec
+gem install rosette_api-*.gem
 cd examples
 
 for example in $(ls *.rb); do ruby ${example} ${API_KEY}; done

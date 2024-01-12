@@ -30,26 +30,32 @@ def runSonnarForPythonVersion(sourceDir, ver){
             --rm --volume ${sourceDir}:/source \
             ruby:${ver}-slim \
             bash -c \"echo && \
-            echo && \
-            echo Testing with `ruby -v` && \
-            echo && \
+            echo [INFO] Testing with Ruby ${ver} && \
             echo && \
             apt-get update -qq && \
+            echo && \
             echo [INFO] Installing required OS packages. && \
             apt-get -qq install -y gcc make wget unzip > /dev/null && \
+            echo && \
             echo [INFO] Installing gems needed for CI. && \
             gem install --silent --quiet rspec rubocop && \
             cd /source && \
+            echo && \
             echo [INFO] Running rubocop. && \
             rubocop && \
+            echo && \
             echo [INFO] Running bundle install. && \
             bundle install --quiet && \
+            echo && \
             echo [INFO] Running unit tests. && \
             rspec tests && \
+            echo && \
             echo [INFO] Building gem. && \
             gem build rosette_api.gemspec && \
+            echo && \
             echo [INFO] Installing gem. && \
             gem install rosette_api-*.gem && \
+            echo && \
             echo [INFO] Executing Sonar if required. && \
             ${sonarExec}\""
 }

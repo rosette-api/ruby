@@ -203,16 +203,16 @@ class RequestBuilder
   def get_response(http, request)
     response = http.request request
 
-    if response.code != '200'
-      message = JSON.parse(response.body)['message']
-      code = JSON.parse(response.body)['code']
-      raise RosetteAPIError.new code, message
-    else
+    if response.code == '200'
       response_headers = {}
       response.header.each_header { |key, value| response_headers[key] = value }
       response_headers = { responseHeaders: response_headers }
 
       JSON.parse(response.body).merge(response_headers)
+    else
+      message = JSON.parse(response.body)['message']
+      code = JSON.parse(response.body)['code']
+      raise RosetteAPIError.new code, message
     end
   end
 end

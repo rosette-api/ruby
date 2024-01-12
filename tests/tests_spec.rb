@@ -771,16 +771,16 @@ describe RosetteAPI do
     before do
       address_similarity_json = {
         address1: {
-          'houseNumber': '1600',
-          'road': 'Pennsylvania Ave NW',
-          'city': 'Washington',
-          'state': 'DC'
+          houseNumber: '1600',
+          road: 'Pennsylvania Ave NW',
+          city: 'Washington',
+          state: 'DC'
         },
         address2: {
-          'houseNumber': '1600',
-          'road': 'Pennsilvana Avenue',
-          'city': 'Washington',
-          'state': 'D.C.'
+          houseNumber: '1600',
+          road: 'Pennsilvana Avenue',
+          city: 'Washington',
+          state: 'D.C.'
         }
       }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')

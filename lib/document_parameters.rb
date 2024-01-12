@@ -45,11 +45,11 @@ class DocumentParameters
   # set or no content provided at all.
   def validate_params
     content_msg = 'The format of the request is invalid: multiple content ' \
-      'sources; must be one of an attachment, an inline "content" field, or ' \
-      'an external "contentUri"'
+                  'sources; must be one of an attachment, an inline "content" field, or ' \
+                  'an external "contentUri"'
     no_content_msg = 'The format of the request is invalid: no content ' \
-      'provided; must be one of an attachment, an inline "content" field, or ' \
-      'an external "contentUri"'
+                     'provided; must be one of an attachment, an inline "content" field, or ' \
+                     'an external "contentUri"'
     opt_msg = 'rosette_options can only be an instance of a Hash'
     if [@content, @content_uri, @file_path].compact.length > 1
       raise BadRequestFormatError.new(content_msg)

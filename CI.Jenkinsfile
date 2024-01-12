@@ -42,7 +42,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             echo [INFO] Running unit tests. && \
             rspec tests && \
             echo [INFO] Confirming coverage output for Sonar. && \
-            ls -l coverage && \
+            ls -lA coverage && \
             echo [INFO] Building gem. && \
             gem build rosette_api.gemspec && \
             echo [INFO] Installing gem. && \

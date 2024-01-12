@@ -25,6 +25,13 @@ def runSonnarForPythonVersion(sourceDir, ver){
         sonarExec="echo Skipping Sonar for this version."
     }
 
+    //
+    //
+    // NOTE:  The test coverage data is not making it into Sonar.
+    //        I don't think it is worth spending more time on until
+    //        Sonar is upgraded.
+    //
+    //
     sh "docker run \
             --pull always \
             --rm --volume ${sourceDir}:/source \

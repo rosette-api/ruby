@@ -14,7 +14,7 @@ require 'logger'
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.14.4'
+  BINDING_VERSION = '1.27.1'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'
   # Rosette API morphology endpoint

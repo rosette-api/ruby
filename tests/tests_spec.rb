@@ -40,7 +40,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -79,7 +79,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -107,7 +107,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -135,7 +135,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -163,7 +163,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -190,7 +190,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -217,7 +217,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -244,7 +244,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -281,7 +281,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "categories"}', headers: {})
@@ -306,7 +306,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "relationships"}', headers: {})
@@ -334,7 +334,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -370,7 +370,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -419,7 +419,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -438,7 +438,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -499,7 +499,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200,
@@ -540,7 +540,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "tokens"}', headers: {})
@@ -565,7 +565,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "topics"}', headers: {})
@@ -590,7 +590,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "sentences"}', headers: {})
@@ -653,7 +653,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4',
+            'X-Rosetteapi-Binding-Version' => '1.27.1',
             'X-RosetteApi-App' => 'ruby-app'
           }
         )
@@ -702,7 +702,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -729,7 +729,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -754,7 +754,7 @@ describe RosetteAPI do
             'User-Agent' => @user_agent,
             'X-Rosetteapi-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.14.4'
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -792,7 +792,7 @@ describe RosetteAPI do
                 'User-Agent' => @user_agent,
                 'X-Rosetteapi-Key' => '0123456789',
                 'X-Rosetteapi-Binding' => 'ruby',
-                'X-Rosetteapi-Binding-Version' => '1.14.4'
+                'X-Rosetteapi-Binding-Version' => '1.27.1'
               })
         .to_return(status: 200,
                    body: '{"test": "address-similarity"}',

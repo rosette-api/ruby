@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   }
 
   spec.name = 'rosette_api'
-  spec.version = '1.14.4'
+  spec.version = '1.27.1'
   spec.license = 'Apache-2.0'
 
   spec.summary = 'A Ruby interface for Rosette Text Analytics Platform.'

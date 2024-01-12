@@ -2,7 +2,7 @@
 
 ---
 
-[![Build Status](https://travis-ci.org/rosette-api/ruby.svg?branch=develop)](https://travis-ci.org/rosette-api/ruby) [![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
+[![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
 
 ## Rosette API
 The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to

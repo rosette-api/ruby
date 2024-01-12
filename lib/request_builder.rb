@@ -28,11 +28,11 @@ class RequestBuilder
     @http_client = http_client
     @binding_version = binding_version
     @params = params
-    @user_agent = 'Ruby/' + binding_version + '/' + RUBY_VERSION
+    @user_agent = "Ruby/#{binding_version}/#{RUBY_VERSION}"
 
     return unless url_parameters
 
-    @alternate_url = @alternate_url + '?' + URI.encode_www_form(url_parameters)
+    @alternate_url = "#{@alternate_url}?#{URI.encode_www_form(url_parameters)}"
   end
 
   # Prepares a plain POST request for Rosette API.
@@ -203,16 +203,16 @@ class RequestBuilder
   def get_response(http, request)
     response = http.request request
 
-    if response.code != '200'
-      message = JSON.parse(response.body)['message']
-      code = JSON.parse(response.body)['code']
-      raise RosetteAPIError.new code, message
-    else
+    if response.code == '200'
       response_headers = {}
       response.header.each_header { |key, value| response_headers[key] = value }
       response_headers = { responseHeaders: response_headers }
 
       JSON.parse(response.body).merge(response_headers)
+    else
+      message = JSON.parse(response.body)['message']
+      code = JSON.parse(response.body)['code']
+      raise RosetteAPIError.new code, message
     end
   end
 end

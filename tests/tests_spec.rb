@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+require 'simplecov_json_formatter'
+require 'simplecov'
+SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+SimpleCov.start do
+  enable_coverage :branch
+end
+
 require 'rosette_api'
 require 'rspec'
 require 'webmock/rspec'
@@ -7,7 +14,7 @@ require 'json'
 WebMock.disable_net_connect!(allow_localhost: true)
 
 describe RosetteAPI do
-  user_agent = 'Ruby/' + RosetteAPI::BINDING_VERSION + '/' + RUBY_VERSION
+  user_agent = "Ruby/#{RosetteAPI::BINDING_VERSION}/#{RUBY_VERSION}"
   RSpec.configure do |config|
     config.before(:example) { @content = 'Sample Content' }
     config.before(:example) { @json = { content: 'Sample Content' }.to_json }
@@ -764,16 +771,16 @@ describe RosetteAPI do
     before do
       address_similarity_json = {
         address1: {
-          'houseNumber': '1600',
-          'road': 'Pennsylvania Ave NW',
-          'city': 'Washington',
-          'state': 'DC'
+          houseNumber: '1600',
+          road: 'Pennsylvania Ave NW',
+          city: 'Washington',
+          state: 'DC'
         },
         address2: {
-          'houseNumber': '1600',
-          'road': 'Pennsilvana Avenue',
-          'city': 'Washington',
-          'state': 'D.C.'
+          houseNumber: '1600',
+          road: 'Pennsilvana Avenue',
+          city: 'Washington',
+          state: 'D.C.'
         }
       }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')

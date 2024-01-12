@@ -27,7 +27,7 @@ class NameTranslationParameters
   # ISO 15924 code of name's script (optional)
   attr_accessor :target_script
 
-  def initialize(name, target_language, options = {}) #:notnew:
+  def initialize(name, target_language, options = {}) # :notnew:
     options = {
       entity_type: nil,
       genre: nil,
@@ -54,9 +54,7 @@ class NameTranslationParameters
   # of a Hash.
   def validate_params
     msg = 'rosette_options can only be an instance of a Hash'
-    if @rosette_options
-      raise BadRequestError.new(msg) unless @rosette_options.is_a? Hash
-    end
+    raise BadRequestError.new(msg) if @rosette_options && !(@rosette_options.is_a? Hash)
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -66,8 +64,7 @@ class NameTranslationParameters
     validate_params
     to_hash
       .select { |_key, value| value }
-      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-      .to_h
+      .transform_keys { |key| key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase) }
   end
 
   # Converts this class to Hash.

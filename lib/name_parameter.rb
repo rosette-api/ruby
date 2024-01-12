@@ -11,7 +11,7 @@ class NameParameter
   # Name to be analyzed
   attr_accessor :text
 
-  def initialize(text, options = {}) #:notnew:
+  def initialize(text, options = {}) # :notnew:
     options = {
       entity_type: nil,
       language: nil,
@@ -29,8 +29,7 @@ class NameParameter
   def load_param
     to_hash
       .select { |_key, value| value }
-      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-      .to_h
+      .transform_keys { |key| key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase) }
   end
 
   # Converts this class to Hash.

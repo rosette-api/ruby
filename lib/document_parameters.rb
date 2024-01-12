@@ -22,7 +22,7 @@ class DocumentParameters
   # custom Rosette API headers
   attr_accessor :custom_headers
 
-  def initialize(options = {}) #:notnew:
+  def initialize(options = {}) # :notnew:
     options = {
       content: nil,
       content_uri: nil,
@@ -45,11 +45,11 @@ class DocumentParameters
   # set or no content provided at all.
   def validate_params
     content_msg = 'The format of the request is invalid: multiple content ' \
-      'sources; must be one of an attachment, an inline "content" field, or ' \
-      'an external "contentUri"'
+                  'sources; must be one of an attachment, an inline "content" field, or ' \
+                  'an external "contentUri"'
     no_content_msg = 'The format of the request is invalid: no content ' \
-      'provided; must be one of an attachment, an inline "content" field, or ' \
-      'an external "contentUri"'
+                     'provided; must be one of an attachment, an inline "content" field, or ' \
+                     'an external "contentUri"'
     opt_msg = 'rosette_options can only be an instance of a Hash'
     if [@content, @content_uri, @file_path].compact.length > 1
       raise BadRequestFormatError.new(content_msg)
@@ -67,8 +67,7 @@ class DocumentParameters
     validate_params
     to_hash
       .select { |_key, value| value }
-      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-      .to_h
+      .transform_keys { |key| key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase) }
   end
 
   # Converts this class to Hash.

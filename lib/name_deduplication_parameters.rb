@@ -13,7 +13,7 @@ class NameDeduplicationParameters
   # Threshold for determining cluster size
   attr_accessor :threshold
 
-  def initialize(names, threshold, options = {}) #:notnew:
+  def initialize(names, threshold, options = {}) # :notnew:
     options = {
       rosette_options: nil
     }.update options
@@ -35,9 +35,7 @@ class NameDeduplicationParameters
       raise BadRequestError.new(thresh_msg) if @threshold.negative? || @threshold > 1
     end
     opt_msg = 'rosette_options can only be an instance of a Hash'
-    if @rosette_options
-      raise BadRequestError.new(opt_msg) unless @rosette_options.is_a? Hash
-    end
+    raise BadRequestError.new(opt_msg) if @rosette_options && !(@rosette_options.is_a? Hash)
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -47,8 +45,7 @@ class NameDeduplicationParameters
     validate_params
     to_hash
       .select { |_key, value| value }
-      .map { |key, value| [key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase), value] }
-      .to_h
+      .transform_keys { |key| key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase) }
   end
 
   # Converts this class to Hash.

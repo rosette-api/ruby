@@ -3,15 +3,18 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-Gem::Specification.new do |s|
-  s.required_ruby_version = '>= 2.3.0'
+Gem::Specification.new do |spec|
+  spec.required_ruby_version = '>= 3.0.0'
+  spec.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
 
-  s.name = 'rosette_api'
-  s.version = '1.14.4'
-  s.license = 'Apache-2.0'
+  spec.name = 'rosette_api'
+  spec.version = '1.27.1'
+  spec.license = 'Apache-2.0'
 
-  s.summary = 'A Ruby interface for Rosette Text Analytics Platform.'
-  s.description =
+  spec.summary = 'A Ruby interface for Rosette Text Analytics Platform.'
+  spec.description =
     'The Rosette Text Analytics Platform uses natural language processing, ' \
     'statistical modeling, and machine learning to analyze unstructured and ' \
     'semi-structured text across 364 language-encoding-script combinations, ' \
@@ -20,13 +23,12 @@ Gem::Specification.new do |s|
     'comparing the similarity of names, categorizing and adding linguistic ' \
     'tags to text and more.'
 
-  s.authors = ['Basis Technology Corp']
-  s.email = 'support@rosette.com'
-  s.homepage = 'https://developer.rosette.com/'
-  s.date = '2020-06-16'
+  spec.authors = ['Basis Technology Corp']
+  spec.email = 'support@rosette.com'
+  spec.homepage = 'https://developer.rosette.com/'
 
-  s.files = Dir['LICENSE', 'README.md', 'lib/**/*', 'examples/**/*']
-  s.require_paths = ['lib']
+  spec.files = Dir['LICENSE', 'README.md', 'lib/**/*', 'examples/**/*']
+  spec.require_paths = ['lib']
 
-  s.add_runtime_dependency('rubysl-securerandom', '~> 2.0')
+  spec.add_runtime_dependency('rubysl-securerandom', '~> 2.0')
 end

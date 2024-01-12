@@ -9,11 +9,12 @@ require_relative 'address_similarity_parameters'
 require_relative 'rosette_api_error'
 require_relative 'bad_request_error'
 require_relative 'bad_request_format_error'
+require 'logger'
 
 # This class allows you to access all Rosette API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.14.4'
+  BINDING_VERSION = '1.27.1'
   # Rosette API language endpoint
   LANGUAGE_ENDPOINT = '/language'
   # Rosette API morphology endpoint
@@ -65,13 +66,12 @@ class RosetteAPI
   attr_accessor :url_parameters
 
   def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1')
+    @log = Logger.new($stdout)
     @user_key = user_key
     @alternate_url = alternate_url
     @url_parameters = nil
 
-    if @alternate_url.to_s.end_with?('/')
-      @alternate_url = alternate_url.to_s.slice(0..-2)
-    end
+    @alternate_url = alternate_url.to_s.slice(0..-2) if @alternate_url.to_s.end_with?('/')
 
     uri = URI.parse alternate_url
     @http_client = Net::HTTP.new uri.host, uri.port
@@ -111,7 +111,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    endpoint = MORPHOLOGY_ENDPOINT + '/complete'
+    endpoint = "#{MORPHOLOGY_ENDPOINT}/complete"
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
                        BINDING_VERSION, params, @url_parameters)
                   .send_post_request
@@ -131,7 +131,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    endpoint = MORPHOLOGY_ENDPOINT + '/compound-components'
+    endpoint = "#{MORPHOLOGY_ENDPOINT}/compound-components"
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
                        BINDING_VERSION, params, @url_parameters)
                   .send_post_request
@@ -151,7 +151,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    endpoint = MORPHOLOGY_ENDPOINT + '/han-readings'
+    endpoint = "#{MORPHOLOGY_ENDPOINT}/han-readings"
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
                        BINDING_VERSION, params, @url_parameters)
                   .send_post_request
@@ -170,7 +170,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    endpoint = MORPHOLOGY_ENDPOINT + '/lemmas'
+    endpoint = "#{MORPHOLOGY_ENDPOINT}/lemmas"
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
                        BINDING_VERSION, params, @url_parameters)
                   .send_post_request
@@ -190,7 +190,7 @@ class RosetteAPI
 
     params = params.load_params
 
-    endpoint = MORPHOLOGY_ENDPOINT + '/parts-of-speech'
+    endpoint = "#{MORPHOLOGY_ENDPOINT}/parts-of-speech"
     RequestBuilder.new(@user_key, @alternate_url + endpoint, @http_client,
                        BINDING_VERSION, params, @url_parameters)
                   .send_post_request
@@ -530,5 +530,9 @@ class RosetteAPI
                    message = 'Expects a DocumentParameters type as an argument',
                    type = DocumentParameters)
     raise BadRequestError.new message unless params.is_a? type
+
+    return unless defined?(params.genre) && !params.genre.nil?
+
+    @log.warn('The genre parameter is deprecated and will be removed in a future release.')
   end
 end

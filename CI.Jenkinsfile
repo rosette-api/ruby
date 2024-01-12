@@ -87,8 +87,18 @@ node ("docker-light") {
                 }
             }
         }
+        postToTeams(true)
     } catch (e) {
         currentBuild.result = "FAILED"
+        postToTeams(false)
         throw e
     }
+}
+
+def postToTeams(boolean success) {
+    def webhookUrl = "${env.TEAMS_PNC_JENKINS_WEBHOOK_URL}"
+    def color = success ? "#00FF00" : "#FF0000"
+    def status = success ? "SUCCESSFUL" : "FAILED"
+    def message = "*" + status + ":* '${env.JOB_NAME}' - [${env.BUILD_NUMBER}] - ${env.BUILD_URL}"
+    office365ConnectorSend(webhookUrl: webhookUrl, color: color, message: message, status: status)
 }

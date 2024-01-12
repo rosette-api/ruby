@@ -38,7 +38,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             apt-get -qq install -y gcc make wget unzip > /dev/null && \
             echo && \
             echo [INFO] Installing gems needed for CI. && \
-            gem install --silent --quiet rspec rubocop && \
+            gem install --silent --quiet bundler rspec rubocop && \
             cd /source && \
             echo && \
             echo [INFO] Running rubocop. && \

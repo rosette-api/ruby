@@ -31,7 +31,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             ruby:${ver}-slim \
             bash -c \"apt-get update -qq && \
             echo [INFO] Installing required OS packages. && \
-            apt-get -qq install -y gcc make wget unzip && \
+            apt-get -qq install -y gcc make wget unzip > /dev/null && \
             echo [INFO] Installing gems needed for CI. && \
             gem install --silent --quiet rspec rubocop && \
             cd /source && \
@@ -41,8 +41,6 @@ def runSonnarForPythonVersion(sourceDir, ver){
             bundle install --quiet && \
             echo [INFO] Running unit tests. && \
             rspec tests && \
-            echo [INFO] Confirming coverage output for Sonar. && \
-            ls -lA coverage && \
             echo [INFO] Building gem. && \
             gem build rosette_api.gemspec && \
             echo [INFO] Installing gem. && \

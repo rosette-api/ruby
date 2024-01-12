@@ -32,7 +32,7 @@ class AddressSimilarityParameters
   def load_params
     validate_params
     to_hash
-      .reject { |_key, value| value.nil? }
+      .compact
       .transform_keys { |key| key.to_s.split('_').map(&:capitalize).join.sub!(/\D/, &:downcase) }
   end
 

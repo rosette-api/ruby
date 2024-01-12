@@ -38,7 +38,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             echo [INFO] Running rubocop. && \
             rubocop && \
             echo [INFO] Running bundle install. && \
-            bundle install && \
+            bundle install --quiet && \
             echo [INFO] Running unit tests. && \
             rspec tests && \
             echo [INFO] Confirming coverage output for Sonar. && \

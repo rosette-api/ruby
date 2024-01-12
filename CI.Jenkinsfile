@@ -32,6 +32,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             bash -c \"echo && \
             echo [INFO] Testing with Ruby ${ver} && \
             echo && \
+            echo [INFO] Updating package manager database. && \
             apt-get update -qq && \
             echo && \
             echo [INFO] Installing required OS packages. && \

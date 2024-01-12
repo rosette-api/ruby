@@ -20,6 +20,8 @@ def runSonnarForPythonVersion(sourceDir, ver){
                    wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.1.3023-linux.zip && \
                    unzip -q sonar-scanner-cli-4.8.1.3023-linux.zip && \
                    cd /source && \
+                   echo [INFO] Running rubocop. && \
+                   rubocop --format json --out rubocop-out.json && \
                    /root/sonar-scanner-4.8.1.3023-linux/bin/sonar-scanner ${mySonarOpts}"
     } else {
         sonarExec="echo Skipping Sonar for this version."
@@ -30,15 +32,22 @@ def runSonnarForPythonVersion(sourceDir, ver){
             --rm --volume ${sourceDir}:/source \
             ruby:${ver}-slim \
             bash -c \"apt-get update -qq && \
+            echo [INFO] Installing required OS packages. && \
             apt-get install -qq -y gcc make wget unzip && \
-            gem install --quiet --silent rspec rubocop && \
+            echo [INFO] Installing gems needed for CI. && \
+            gem install --silent --quiet rspec rubocop && \
             cd /source && \
-            rubocop --format json --out rubocop-out.json && \
+            echo [INFO] Running bundle install. && \
             bundle install && \
+            echo [INFO] Running unit tests. && \
             rspec tests && \
+            echo [INFO] Confirming coverage output for Sonar. && \
             ls -l coverage && \
+            echo [INFO] Building gem. && \
             gem build rosette_api.gemspec && \
+            echo [INFO] Installing gem. && \
             gem install rosette_api-*.gem && \
+            echo [INFO] Executing Sonar if required. && \
             ${sonarExec}\""
 }
 

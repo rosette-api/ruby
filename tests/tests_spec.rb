@@ -4,7 +4,9 @@ require 'simplecov_json_formatter'
 require 'simplecov'
 SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
 SimpleCov.start do
-  enable_coverage :branch
+  # Going to try disabling this until we upgrade Sonar.
+  # https://sonarsource.atlassian.net/browse/SONARSLANG-477
+  # enable_coverage :branch
 end
 
 require 'rosette_api'

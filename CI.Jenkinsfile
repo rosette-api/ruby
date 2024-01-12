@@ -29,7 +29,12 @@ def runSonnarForPythonVersion(sourceDir, ver){
             --pull always \
             --rm --volume ${sourceDir}:/source \
             ruby:${ver}-slim \
-            bash -c \"apt-get update -qq && \
+            bash -c \"echo && \
+            echo && \
+            echo Testing with `ruby -v` && \
+            echo && \
+            echo && \
+            apt-get update -qq && \
             echo [INFO] Installing required OS packages. && \
             apt-get -qq install -y gcc make wget unzip > /dev/null && \
             echo [INFO] Installing gems needed for CI. && \

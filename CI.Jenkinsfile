@@ -20,8 +20,6 @@ def runSonnarForPythonVersion(sourceDir, ver){
                    wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.1.3023-linux.zip && \
                    unzip -q sonar-scanner-cli-4.8.1.3023-linux.zip && \
                    cd /source && \
-                   echo [INFO] Running rubocop. && \
-                   rubocop --format json --out rubocop-out.json && \
                    /root/sonar-scanner-4.8.1.3023-linux/bin/sonar-scanner ${mySonarOpts}"
     } else {
         sonarExec="echo Skipping Sonar for this version."
@@ -37,6 +35,8 @@ def runSonnarForPythonVersion(sourceDir, ver){
             echo [INFO] Installing gems needed for CI. && \
             gem install --silent --quiet rspec rubocop && \
             cd /source && \
+            echo [INFO] Running rubocop. && \
+            rubocop && \
             echo [INFO] Running bundle install. && \
             bundle install && \
             echo [INFO] Running unit tests. && \

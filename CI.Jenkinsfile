@@ -48,6 +48,8 @@ def runSonnarForPythonVersion(sourceDir, ver){
             echo [INFO] Running bundle install. && \
             bundle install --quiet && \
             echo && \
+            echo [INFO] Removing any coverage data from prior executions. && \
+            rm -rf coverage && \
             echo [INFO] Running unit tests. && \
             rspec tests && \
             echo && \

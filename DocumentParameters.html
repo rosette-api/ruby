@@ -21,8 +21,6 @@
 <link href="./css/rdoc.css" rel="stylesheet">
 
 
-
-
 <body id="top" role="document" class="class">
 <nav role="navigation">
   <div id="project-navigation">
@@ -43,7 +41,7 @@
     <div id="search-field-wrapper">
       <input id="search-field" role="combobox" aria-label="Search"
              aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
@@ -59,30 +57,25 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
+    
+<div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  
   <p class="link">Object
-  
 </div>
 
     
     
-    <!-- Method Quickref -->
+    
+<!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    
     <li ><a href="#method-i-initialize">#initialize</a>
-    
     <li ><a href="#method-i-load_params">#load_params</a>
-    
     <li ><a href="#method-i-to_hash">#to_hash</a>
-    
     <li ><a href="#method-i-validate_params">#validate_params</a>
-    
   </ul>
 </div>
 
@@ -100,21 +93,15 @@
 
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
 
-    
     <section class="attribute-method-details" class="method-section">
       <header>
         <h3>Attributes</h3>
       </header>
 
-      
       <div id="attribute-i-content" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">content</span><span
@@ -122,12 +109,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>Content to be analyzed (required if no <a href="DocumentParameters.html#attribute-i-content_uri"><code>content_uri</code></a> and <a href="DocumentParameters.html#attribute-i-file_path"><code>file_path</code></a>)</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-content_uri" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">content_uri</span><span
@@ -135,12 +119,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>URL to retrieve content from and analyze (required if no content and <a href="DocumentParameters.html#attribute-i-file_path"><code>file_path</code></a>)</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-custom_headers" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">custom_headers</span><span
@@ -148,12 +129,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>custom Rosette API headers</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-file_path" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">file_path</span><span
@@ -161,12 +139,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>File path of the file to be analyzed (required if no content and <a href="DocumentParameters.html#attribute-i-content_uri"><code>content_uri</code></a>)</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-genre" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">genre</span><span
@@ -174,12 +149,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>genre to categorize the input data</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-language" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">language</span><span
@@ -187,12 +159,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>ISO 639-3 language code of the provided content (optional)</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-rosette_options" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">rosette_options</span><span
@@ -200,83 +169,61 @@
         </div>
 
         <div class="method-description">
-        
         <p>Rosette API options (optional, should be a hash)</p>
-        
         </div>
       </div>
-      
     </section>
-    
 
-    
+
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-    
       <div id="method-i-load_params" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">load_params</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">load_params</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Converts this class to Hash with its keys in lower CamelCase.</p>
 
 <p>Returns the new Hash.</p>
-          
-          
 
-          
           <div class="method-source-code" id="load_params-source">
             <pre><span class="ruby-comment"># File document_parameters.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_params</span>
   <span class="ruby-identifier">validate_params</span>
   <span class="ruby-identifier">to_hash</span>
     .<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span> }
-    .<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>), <span class="ruby-identifier">value</span>] }
-    .<span class="ruby-identifier">to_h</span>
+    .<span class="ruby-identifier">transform_keys</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-to_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_hash</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">to_hash</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Converts this class to Hash.</p>
 
 <p>Returns the new Hash.</p>
-          
-          
 
-          
           <div class="method-source-code" id="to_hash-source">
-            <pre><span class="ruby-comment"># File document_parameters.rb, line 77</span>
+            <pre><span class="ruby-comment"># File document_parameters.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_hash</span>
   {
     <span class="ruby-value">content:</span> <span class="ruby-ivar">@content</span>,
@@ -289,42 +236,32 @@
   }
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-validate_params" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">validate_params</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">validate_params</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Validates the parameters by checking if there are multiple content sources set or no content provided at all.</p>
-          
-          
 
-          
           <div class="method-source-code" id="validate_params-source">
             <pre><span class="ruby-comment"># File document_parameters.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_params</span>
   <span class="ruby-identifier">content_msg</span> = <span class="ruby-string">&#39;The format of the request is invalid: multiple content &#39;</span> \
-    <span class="ruby-string">&#39;sources; must be one of an attachment, an inline &quot;content&quot; field, or &#39;</span> \
-    <span class="ruby-string">&#39;an external &quot;contentUri&quot;&#39;</span>
+                <span class="ruby-string">&#39;sources; must be one of an attachment, an inline &quot;content&quot; field, or &#39;</span> \
+                <span class="ruby-string">&#39;an external &quot;contentUri&quot;&#39;</span>
   <span class="ruby-identifier">no_content_msg</span> = <span class="ruby-string">&#39;The format of the request is invalid: no content &#39;</span> \
-    <span class="ruby-string">&#39;provided; must be one of an attachment, an inline &quot;content&quot; field, or &#39;</span> \
-    <span class="ruby-string">&#39;an external &quot;contentUri&quot;&#39;</span>
+                   <span class="ruby-string">&#39;provided; must be one of an attachment, an inline &quot;content&quot; field, or &#39;</span> \
+                   <span class="ruby-string">&#39;an external &quot;contentUri&quot;&#39;</span>
   <span class="ruby-identifier">opt_msg</span> = <span class="ruby-string">&#39;rosette_options can only be an instance of a Hash&#39;</span>
   <span class="ruby-keyword">if</span> [<span class="ruby-ivar">@content</span>, <span class="ruby-ivar">@content_uri</span>, <span class="ruby-ivar">@file_path</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestFormatError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">content_msg</span>)
@@ -335,44 +272,33 @@
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
+
      <section id="protected-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Protected Instance Methods</h3>
        </header>
 
-    
       <div id="method-i-initialize" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">initialize</span><span
-            class="method-args">(options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">initialize</span><span
+              class="method-args">(options = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
           
-          
-          
-          
 
-          
           <div class="method-source-code" id="initialize-source">
             <pre><span class="ruby-comment"># File document_parameters.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {}) <span class="ruby-comment">#:notnew:</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {}) <span class="ruby-comment"># :notnew:</span>
   <span class="ruby-identifier">options</span> = {
     <span class="ruby-value">content:</span> <span class="ruby-keyword">nil</span>,
     <span class="ruby-value">content_uri:</span> <span class="ruby-keyword">nil</span>,
@@ -391,25 +317,20 @@
   <span class="ruby-ivar">@custom_headers</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:custom_headers</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
-  </section>
 
+  </section>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.2.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

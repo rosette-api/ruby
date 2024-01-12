@@ -21,8 +21,6 @@
 <link href="./css/rdoc.css" rel="stylesheet">
 
 
-
-
 <body id="top" role="document" class="class">
 <nav role="navigation">
   <div id="project-navigation">
@@ -43,7 +41,7 @@
     <div id="search-field-wrapper">
       <input id="search-field" role="combobox" aria-label="Search"
              aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
+             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
@@ -59,34 +57,27 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
+    
+<div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  
   <p class="link">Object
-  
 </div>
 
     
     
-    <!-- Method Quickref -->
+    
+<!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    
     <li ><a href="#method-c-new">::new</a>
-    
     <li ><a href="#method-i-get_response">#get_response</a>
-    
     <li ><a href="#method-i-prepare_multipart_request">#prepare_multipart_request</a>
-    
     <li ><a href="#method-i-prepare_plain_request">#prepare_plain_request</a>
-    
     <li ><a href="#method-i-send_get_request">#send_get_request</a>
-    
     <li ><a href="#method-i-send_post_request">#send_post_request</a>
-    
   </ul>
 </div>
 
@@ -104,21 +95,15 @@
 
   </section>
 
-  
   <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
 
-    
 
-    
     <section class="attribute-method-details" class="method-section">
       <header>
         <h3>Attributes</h3>
       </header>
 
-      
       <div id="attribute-i-alternate_url" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">alternate_url</span><span
@@ -126,12 +111,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>Alternate Rosette API URL</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-binding_version" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">binding_version</span><span
@@ -139,12 +121,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>Rosette API binding version</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-http_client" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">http_client</span><span
@@ -152,12 +131,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>Rosette API HTTP client</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-params" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">params</span><span
@@ -165,12 +141,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>Parameters to build the body of the request from</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-user_agent" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">user_agent</span><span
@@ -178,12 +151,9 @@
         </div>
 
         <div class="method-description">
-        
         <p>User-Agent string</p>
-        
         </div>
       </div>
-      
       <div id="attribute-i-user_key" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">user_key</span><span
@@ -191,40 +161,29 @@
         </div>
 
         <div class="method-description">
-        
         <p>Rosette API key</p>
-        
         </div>
       </div>
-      
     </section>
-    
 
-    
+
      <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Class Methods</h3>
        </header>
 
-    
       <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(user_key, alternate_url, http_client, binding_version, params = {}, url_parameters = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(user_key, alternate_url, http_client, binding_version, params = {}, url_parameters = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
           
-          
-          
-          
 
-          
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File request_builder.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">binding_version</span>,
@@ -234,43 +193,35 @@
   <span class="ruby-ivar">@http_client</span> = <span class="ruby-identifier">http_client</span>
   <span class="ruby-ivar">@binding_version</span> = <span class="ruby-identifier">binding_version</span>
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
-  <span class="ruby-ivar">@user_agent</span> = <span class="ruby-string">&#39;Ruby/&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">binding_version</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;/&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RUBY_VERSION</span>
+  <span class="ruby-ivar">@user_agent</span> = <span class="ruby-node">&quot;Ruby/#{binding_version}/#{RUBY_VERSION}&quot;</span>
 
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">url_parameters</span>
 
-  <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-ivar">@alternate_url</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;?&#39;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">encode_www_form</span>(<span class="ruby-identifier">url_parameters</span>)
+  <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-node">&quot;#{@alternate_url}?#{URI.encode_www_form(url_parameters)}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
+
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-    
       <div id="method-i-get_response" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_response</span><span
-            class="method-args">(http, request)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">get_response</span><span
+              class="method-args">(http, request)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Gets response from HTTP connection.</p>
 
 <h4 id="method-i-get_response-label-Attributes">Attributes<span><a href="#method-i-get_response-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
@@ -281,50 +232,40 @@
 </li></ul>
 
 <p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
-          
-          
 
-          
           <div class="method-source-code" id="get_response-source">
             <pre><span class="ruby-comment"># File request_builder.rb, line 203</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_response</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">request</span>
 
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&#39;200&#39;</span>
-    <span class="ruby-identifier">message</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;message&#39;</span>]
-    <span class="ruby-identifier">code</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;code&#39;</span>]
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">code</span>, <span class="ruby-identifier">message</span>
-  <span class="ruby-keyword">else</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;200&#39;</span>
     <span class="ruby-identifier">response_headers</span> = {}
     <span class="ruby-identifier">response</span>.<span class="ruby-identifier">header</span>.<span class="ruby-identifier">each_header</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">response_headers</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span> }
     <span class="ruby-identifier">response_headers</span> = { <span class="ruby-value">responseHeaders:</span> <span class="ruby-identifier">response_headers</span> }
 
     <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">response_headers</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">message</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;message&#39;</span>]
+    <span class="ruby-identifier">code</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;code&#39;</span>]
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">code</span>, <span class="ruby-identifier">message</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-prepare_multipart_request" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">prepare_multipart_request</span><span
-            class="method-args">(params)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">prepare_multipart_request</span><span
+              class="method-args">(params)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Prepares a multipart/form-data POST request for Rosette API.</p>
 
 <h4 id="method-i-prepare_multipart_request-label-Attributes">Attributes<span><a href="#method-i-prepare_multipart_request-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
@@ -333,10 +274,7 @@
 </li></ul>
 
 <p>Returns a HTTP connection and the built POST request.</p>
-          
-          
 
-          
           <div class="method-source-code" id="prepare_multipart_request-source">
             <pre><span class="ruby-comment"># File request_builder.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_multipart_request</span>(<span class="ruby-identifier">params</span>)
@@ -406,28 +344,21 @@
   [<span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-prepare_plain_request" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">prepare_plain_request</span><span
-            class="method-args">(params)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">prepare_plain_request</span><span
+              class="method-args">(params)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Prepares a plain POST request for Rosette API.</p>
 
 <h4 id="method-i-prepare_plain_request-label-Attributes">Attributes<span><a href="#method-i-prepare_plain_request-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
@@ -436,10 +367,7 @@
 </li></ul>
 
 <p>Returns a HTTP connection and the built POST request.</p>
-          
-          
 
-          
           <div class="method-source-code" id="prepare_plain_request-source">
             <pre><span class="ruby-comment"># File request_builder.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
@@ -483,35 +411,25 @@
   [<span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-send_get_request" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">send_get_request</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">send_get_request</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Sends a GET request to Rosette API.</p>
 
 <p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
-          
-          
 
-          
           <div class="method-source-code" id="send_get_request-source">
             <pre><span class="ruby-comment"># File request_builder.rb, line 163</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_get_request</span>
@@ -532,35 +450,25 @@
   <span class="ruby-identifier">get_response</span> <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
       <div id="method-i-send_post_request" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">send_post_request</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">send_post_request</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
         </div>
-        
 
         <div class="method-description">
-          
           <p>Sends a POST request to Rosette API.</p>
 
 <p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
-          
-          
 
-          
           <div class="method-source-code" id="send_post_request-source">
             <pre><span class="ruby-comment"># File request_builder.rb, line 184</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_post_request</span>
@@ -573,25 +481,20 @@
   <span class="ruby-identifier">get_response</span> <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
         </div>
 
-        
 
-        
       </div>
 
-    
     </section>
-  
-  </section>
 
+  </section>
 </main>
 
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.2.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

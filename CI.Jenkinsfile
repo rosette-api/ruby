@@ -67,7 +67,10 @@ def runSonnarForPythonVersion(sourceDir, ver){
             gem install rosette_api-*.gem && \
             echo && \
             echo [INFO] Executing Sonar if required. && \
-            ${sonarExec}\""
+            ${sonarExec} && \
+            echo && \
+            echo [INFO] Re-permission files for cleanup. && \
+            chown -R jenkins:jenkins /source\""
 }
 
 node ("docker-light") {

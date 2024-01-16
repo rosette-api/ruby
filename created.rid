@@ -1,13 +1,13 @@
-Fri, 12 Jan 2024 18:01:45 +0000
-/ruby/lib/address_parameter.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/address_similarity_parameters.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/bad_request_error.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/bad_request_format_error.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/document_parameters.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/name_deduplication_parameters.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/name_parameter.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/name_similarity_parameters.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/name_translation_parameters.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/request_builder.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/rosette_api.rb	Fri, 12 Jan 2024 18:01:44 +0000
-/ruby/lib/rosette_api_error.rb	Fri, 12 Jan 2024 18:01:44 +0000
+Tue, 16 Jan 2024 20:24:00 +0000
+/ruby/lib/address_parameter.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/address_similarity_parameters.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/bad_request_error.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/bad_request_format_error.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/document_parameters.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/name_deduplication_parameters.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/name_parameter.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/name_similarity_parameters.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/name_translation_parameters.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/request_builder.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/rosette_api.rb	Tue, 16 Jan 2024 20:23:59 +0000
+/ruby/lib/rosette_api_error.rb	Tue, 16 Jan 2024 20:23:59 +0000

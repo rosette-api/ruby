@@ -2,8 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rdoc', '6.2.0'
-gem 'rubysl-securerandom', '2.0.0'
+gem 'rdoc', '~> 6.7'
 
-gem 'rspec', '3.9.0', group: [:test]
-gem 'webmock', '3.7.6', group: [:test]
+gem 'rspec', '~> 3.13', group: [:test]
+gem 'webmock', '~> 3.24', group: [:test]

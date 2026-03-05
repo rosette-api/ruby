@@ -1,6 +1,6 @@
 
 
-def versions = [3.0, 3.1, 3.2, 3.3]
+def versions = [3.2, 3.3, 3.4, 4.0]
 
 def runSonnarForPythonVersion(sourceDir, ver){
     mySonarOpts="-Dsonar.sources=/source -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_AUTH_TOKEN}"

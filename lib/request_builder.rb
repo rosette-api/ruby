@@ -91,26 +91,22 @@ class RequestBuilder
   #
   # Returns a HTTP connection and the built POST request.
   def prepare_multipart_request(params)
-    begin
-      file = File.open params['filePath'], 'r'
-      text = file.read
-    rescue StandardError => e
-      raise RosetteAPIError.new('readMultipartError', e)
-    end
+    text = read_multipart_file params['filePath']
 
     boundary = SecureRandom.hex
     post_body = []
-    params.delete 'filePath'
-    request_file = params.to_json
 
     # Add the content data
     post_body << "--#{boundary}\r\n"
     post_body << 'Content-Disposition: form-data; name="content"; ' \
-                 "filename=\"#{File.basename(file)}\"\r\n"
+                 "filename=\"#{File.basename(params['filePath'])}\"\r\n"
     post_body << "Content-Type: text/plain\r\n\r\n"
     post_body << text
 
     # Add the request data
+    params.delete 'filePath'
+    request_file = params.to_json
+
     post_body << "\r\n\r\n--#{boundary}\r\n"
     post_body << "Content-Disposition: form-data; name=\"request\"\r\n"
     post_body << "Content-Type: application/json\r\n\r\n"
@@ -155,6 +151,17 @@ class RequestBuilder
     request.body = post_body.join
 
     [@http_client, request]
+  end
+
+  # Reads the content of a file given its path.
+  #
+  # Returns the content of the file or raises error if encountered.
+  def read_multipart_file(file_path)
+    File.open(file_path, 'r') do |f|
+      return f.read
+    end
+  rescue StandardError => e
+    raise RosetteAPIError.new('readMultipartError', e)
   end
 
   # Sends a GET request to Rosette API.

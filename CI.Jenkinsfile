@@ -15,12 +15,13 @@ def runSonnarForPythonVersion(sourceDir, ver){
 
     // Only run Sonar once.
     // Check for new versions at https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/
+    sonarScannerVersion = "6.2.1.4610-linux-x64"
     if(ver == 3.3) {
         sonarExec="cd /root/ && \
-                   wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.1.3023-linux.zip && \
-                   unzip -q sonar-scanner-cli-4.8.1.3023-linux.zip && \
+                   wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${sonarScannerVersion}.zip && \
+                   unzip -q sonar-scanner-cli-${sonarScannerVersion}.zip && \
                    cd /source && \
-                   /root/sonar-scanner-4.8.1.3023-linux/bin/sonar-scanner ${mySonarOpts}"
+                   /root/sonar-scanner-${sonarScannerVersion}/bin/sonar-scanner ${mySonarOpts}"
     } else {
         sonarExec="echo Skipping Sonar for this version."
     }

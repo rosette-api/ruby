@@ -43,7 +43,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             apt-get update -qq && \
             echo && \
             echo [INFO] Installing required OS packages. && \
-            apt-get -qq install -y gcc make wget unzip > /dev/null && \
+            apt-get -qq install -y gcc make wget unzip libyaml-dev > /dev/null && \
             echo && \
             echo [INFO] Installing gems needed for CI. && \
             gem install --silent --quiet bundler rspec rubocop && \

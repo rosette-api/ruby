@@ -1019,4 +1019,16 @@ describe RosetteAPI do
         .to raise_error(BadRequestError)
     end
   end
+
+  describe 'NameParameter gender' do
+    it 'serializes gender when valid' do
+      name = NameParameter.new('Alex Smith', gender: 'nonbinary')
+      expect(name.load_param).to include('gender' => 'nonbinary')
+    end
+
+    it 'raises when gender is invalid' do
+      expect { NameParameter.new('Alex Smith', gender: 'unknown') }
+        .to raise_error(ArgumentError)
+    end
+  end
 end

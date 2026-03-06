@@ -848,7 +848,7 @@ describe RosetteAPI do
 
     it 'sends custom header with X-RosetteAPI- prefix' do
       params = DocumentParameters.new
-      params.content = 'Por favor Senorita, says the man.?'
+      params.content = @content
       params.custom_headers = { 'X-RosetteAPI-App' => 'ruby-app' }
 
       response = RosetteAPI.new('0123456789').get_language(params)
@@ -875,7 +875,7 @@ describe RosetteAPI do
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
 
       params = DocumentParameters.new
-      params.content = 'Por favor Senorita, says the man.?'
+      params.content = @content
       params.custom_headers = { 'X-BabelStreetAPI-App' => 'ruby-app' }
 
       response = RosetteAPI.new('0123456789').get_language(params)
@@ -903,7 +903,7 @@ describe RosetteAPI do
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
 
       params = DocumentParameters.new
-      params.content = 'Por favor Senorita, says the man.?'
+      params.content = @content
       params.custom_headers = {
         'X-RosetteAPI-App' => 'ruby-app',
         'X-BabelStreetAPI-App' => 'ruby-app'
@@ -915,7 +915,7 @@ describe RosetteAPI do
 
     it 'test custom_headers is invalid' do
       params = DocumentParameters.new
-      params.content = 'Por favor Senorita, says the man.?'
+      params.content = @content
       params.custom_headers = { 'test' => 'ruby-app' }
       expect { RosetteAPI.new('0123456789').get_language(params) }
         .to raise_error(RosetteAPIError)

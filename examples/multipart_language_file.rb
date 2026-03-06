@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rosette_api'
+require 'fileutils'
 
 api_key, url = ARGV
 
@@ -22,4 +23,6 @@ rescue RosetteAPIError => e
   printf('Rosette API Error (%<status_code>s): %<message>s',
          status_code: e.status_code,
          message: e.message)
+ensure
+  FileUtils.rm_f(file_path)
 end

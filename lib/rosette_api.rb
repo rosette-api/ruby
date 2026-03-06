@@ -15,48 +15,48 @@ require 'logger'
 class RosetteAPI
   # Version of Ruby binding
   BINDING_VERSION = '1.37.0'
-  # API language endpoint
-  LANGUAGE_ENDPOINT = '/language'
-  # API morphology endpoint
-  MORPHOLOGY_ENDPOINT = '/morphology'
+  # API address-similarity endpoint
+  ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'
+  # API categories endpoint
+  CATEGORIES_ENDPOINT = '/categories'
   # API entities endpoint
   ENTITIES_ENDPOINT = '/entities'
   # API events endpoint
   EVENTS_ENDPOINT = '/events'
-  # API categories endpoint
-  CATEGORIES_ENDPOINT = '/categories'
-  # API relationships endpoint
-  RELATIONSHIPS_ENDPOINT = '/relationships'
-  # API sentiment endpoint
-  SENTIMENT_ENDPOINT = '/sentiment'
-  # Name Deduplication endpoint
-  NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'
-  # API name-translation endpoint
-  NAME_TRANSLATION_ENDPOINT = '/name-translation'
-  # API name-similarity endpoint
-  NAME_SIMILARITY_ENDPOINT = '/name-similarity'
-  # API address-similarity endpoint
-  ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'
-  # API tokens endpoint
-  TOKENS_ENDPOINT = '/tokens'
-  # API sentences endpoint
-  SENTENCES_ENDPOINT = '/sentences'
   # API info endpoint
   INFO = '/info'
+  # API language endpoint
+  LANGUAGE_ENDPOINT = '/language'
+  # API morphology endpoint
+  MORPHOLOGY_ENDPOINT = '/morphology'
+  # Name Deduplication endpoint
+  NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'
+  # API name-similarity endpoint
+  NAME_SIMILARITY_ENDPOINT = '/name-similarity'
+  # API name-translation endpoint
+  NAME_TRANSLATION_ENDPOINT = '/name-translation'
   # API ping endpoint
   PING = '/ping'
-  # Text Embedding endpoint (deprecated)
-  TEXT_EMBEDDING = '/text-embedding'
+  # API relationships endpoint
+  RELATIONSHIPS_ENDPOINT = '/relationships'
   # Semantic Vectors endpoint (replaces /text-embedding)
   SEMANTIC_VECTORS = '/semantics/vector'
+  # API sentences endpoint
+  SENTENCES_ENDPOINT = '/sentences'
+  # API sentiment endpoint
+  SENTIMENT_ENDPOINT = '/sentiment'
   # Similar Terms endpoint
   SIMILAR_TERMS_ENDPOINT = '/semantics/similar'
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'
-  # Transliteration endpoint
-  TRANSLITERATION_ENDPOINT = '/transliteration'
+  # Text Embedding endpoint (deprecated)
+  TEXT_EMBEDDING = '/text-embedding'
+  # API tokens endpoint
+  TOKENS_ENDPOINT = '/tokens'
   # Topics endpoint
   TOPICS_ENDPOINT = '/topics'
+  # Transliteration endpoint
+  TRANSLITERATION_ENDPOINT = '/transliteration'
 
   # API key
   attr_accessor :user_key

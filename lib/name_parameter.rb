@@ -33,7 +33,9 @@ class NameParameter
 
   def validate_gender
     return if @gender.nil?
-    return if VALID_GENDERS.include?(@gender)
+
+    normalized = @gender.to_s.downcase
+    return if VALID_GENDERS.include?(normalized)
 
     raise ArgumentError.new("gender must be one of: #{VALID_GENDERS.join(', ')}")
   end

@@ -421,13 +421,56 @@ describe RosetteAPI do
         .to_return(status: 200,
                    body: '{"test": "name-translation"}',
                    headers: {})
+
+      name_translation_max_results_json = { name: 'معمر محمد أبو منيار القذاف',
+                                            targetLanguage: 'eng',
+                                            targetScript: 'Latn',
+                                            maximumResults: 5 }.to_json
+      stub_request(:post, 'https://api.rosette.com/rest/v1/name-translation')
+        .with(
+          body: name_translation_max_results_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "name-translation"}',
+                   headers: {})
     end
+
     it 'test name translation' do
       params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'
                                              .encode('UTF-8'), 'eng')
       params.target_script = 'Latn'
       response = RosetteAPI.new('0123456789').get_name_translation(params)
       expect(response).instance_of? Hash
+    end
+
+    it 'test name translation with maximumResults' do
+      params = NameTranslationParameters.new(
+        'معمر محمد أبو منيار القذاف'.encode('UTF-8'),
+        'eng',
+        maximum_results: 5
+      )
+      params.target_script = 'Latn'
+      response = RosetteAPI.new('0123456789').get_name_translation(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'badRequest: maximum_results must be greater than or equal to 0' do
+      params = NameTranslationParameters.new(
+        'معمر محمد أبو منيار القذاف'.encode('UTF-8'),
+        'eng',
+        maximum_results: -1
+      )
+      expect { RosetteAPI.new('0123456789').get_name_translation(params) }
+        .to raise_error(BadRequestError)
     end
 
     it 'badRequest: Expects NameTranslationParameters type as an argument' do

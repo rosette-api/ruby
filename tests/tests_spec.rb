@@ -1152,4 +1152,120 @@ describe RosetteAPI do
         .to raise_error(ArgumentError)
     end
   end
+
+  describe '.get_record_similarity' do
+    before do
+      body = {
+        fields: { 'primaryName' => { type: 'rni_name', weight: 0.5 } },
+        records: { left: [{ 'primaryName' => { text: 'Ethan R' } }], right: [{ 'primaryName' => { text: 'Seth R' } }] },
+        properties: { threshold: 0.7 }
+      }.to_json
+
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/record-similarity')
+        .with(
+          body: body,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
+    end
+
+    it 'test record similarity (minimal request with properties)' do
+      fields = { 'primaryName' => { type: 'rni_name', weight: 0.5 } }
+      records = {
+        left: [{ 'primaryName' => { text: 'Ethan R' } }],
+        right: [{ 'primaryName' => { text: 'Seth R' } }]
+      }
+      properties = { threshold: 0.7 }
+
+      params = RecordSimilarityParameters.new(fields, records, properties)
+      response = RosetteAPI.new('0123456789').get_record_similarity(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'test record similarity without properties' do
+      body = {
+        fields: { 'primaryName' => { type: 'rni_name', weight: 0.5 } },
+        records: { left: [{ 'primaryName' => { text: 'Ethan R' } }], right: [{ 'primaryName' => { text: 'Seth R' } }] }
+      }.to_json
+
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/record-similarity')
+        .with(
+          body: body,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
+
+      fields = { 'primaryName' => { type: 'rni_name', weight: 0.5 } }
+      records = {
+        left: [{ 'primaryName' => { text: 'Ethan R' } }],
+        right: [{ 'primaryName' => { text: 'Seth R' } }]
+      }
+
+      params = RecordSimilarityParameters.new(fields, records)
+      response = RosetteAPI.new('0123456789').get_record_similarity(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'badRequest: fields is required' do
+      params = RecordSimilarityParameters.new(nil, { left: [{}], right: [{}] }, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: fields must be a Hash' do
+      params = RecordSimilarityParameters.new(['not-a-hash'], { left: [{}], right: [{}] }, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: fields must not be empty' do
+      params = RecordSimilarityParameters.new({}, { left: [{}], right: [{}] }, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: records is required' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, nil, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: records must be a Hash' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, ['not-a-hash'], { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: records must not be empty' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, {}, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: properties must be a Hash when provided' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, { left: [{}], right: [{}] }, 'nope')
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+  end
 end

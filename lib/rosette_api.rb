@@ -5,6 +5,7 @@ require_relative 'document_parameters'
 require_relative 'name_deduplication_parameters'
 require_relative 'name_translation_parameters'
 require_relative 'name_similarity_parameters'
+require_relative 'record_similarity_parameters'
 require_relative 'address_similarity_parameters'
 require_relative 'rosette_api_error'
 require_relative 'bad_request_error'
@@ -37,6 +38,8 @@ class RosetteAPI
   NAME_TRANSLATION_ENDPOINT = '/name-translation'
   # API ping endpoint
   PING = '/ping'
+  # Record Similarity endpoint
+  RECORD_SIMILARITY_ENDPOINT = '/record-similarity'
   # API relationships endpoint
   RELATIONSHIPS_ENDPOINT = '/relationships'
   # Semantic Vectors endpoint (replaces /text-embedding)
@@ -348,6 +351,26 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + ADDRESS_SIMILARITY_ENDPOINT,
+                       @http_client, BINDING_VERSION, params, @url_parameters)
+                  .send_post_request
+  end
+
+  # Compares records and returns similarity information.
+  #
+  # ==== Attributes
+  #
+  # * +params+ - RecordSimilarityParameters helps to build the request body in
+  #   RequestBuilder.
+  #
+  # Returns record similarity results.
+  def get_record_similarity(params)
+    check_params params,
+                 'Expects a RecordSimilarityParameters type as an argument',
+                 RecordSimilarityParameters
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + RECORD_SIMILARITY_ENDPOINT,
                        @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end

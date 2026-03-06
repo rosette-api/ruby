@@ -23,12 +23,16 @@ Metrics/BlockLength:
 # Offense count: 2
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ClassLength:
-  Max: 239
+  Max: 250
 
 # Offense count: 1
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
-  Max: 8
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
 
 # Offense count: 10
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
@@ -64,6 +68,7 @@ Style/CommentedKeyword:
     - 'lib/name_parameter.rb'
     - 'lib/name_similarity_parameters.rb'
     - 'lib/name_translation_parameters.rb'
+    - 'lib/record_similarity_parameters.rb'
     - 'lib/rosette_api_error.rb'
 
 # Offense count: 14

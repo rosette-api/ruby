@@ -59,9 +59,7 @@ begin
           format: 'MMddyyyy'
         },
         addr_field => '123 Roadlane Ave',
-        str_field => {
-          data: 'software engineer'
-        }
+        str_field => 'software engineer'
       },
       {
         primary_name_field => {
@@ -70,12 +68,8 @@ begin
         dob_field => {
           date: dob_hyphen
         },
-        number_field => {
-          data: 47
-        },
-        bool_field => {
-          data: false
-        }
+        number_field => 47,
+        bool_field => false
       }
     ],
     right: [
@@ -87,12 +81,8 @@ begin
         dob_field => {
           date: dob_hyphen
         },
-        str_field => {
-          data: 'manager'
-        },
-        bool_field => {
-          data: true
-        }
+        str_field => 'manager',
+        bool_field => true
       },
       {
         primary_name_field => 'Ivan R',
@@ -107,12 +97,8 @@ begin
           road: 'Roadlane Ave',
           cityDistrict: 'Alpha'
         },
-        number_field => {
-          data: 72
-        },
-        bool_field => {
-          data: true
-        }
+        number_field => 72,
+        bool_field => true
       }
     ]
   }

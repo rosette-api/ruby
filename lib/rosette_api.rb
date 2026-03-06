@@ -11,37 +11,39 @@ require_relative 'bad_request_error'
 require_relative 'bad_request_format_error'
 require 'logger'
 
-# This class allows you to access all Rosette API endpoints.
+# This class allows you to access all Analytics API endpoints.
 class RosetteAPI
   # Version of Ruby binding
   BINDING_VERSION = '1.27.1'
-  # Rosette API language endpoint
+  # API language endpoint
   LANGUAGE_ENDPOINT = '/language'
-  # Rosette API morphology endpoint
+  # API morphology endpoint
   MORPHOLOGY_ENDPOINT = '/morphology'
-  # Rosette API entities endpoint
+  # API entities endpoint
   ENTITIES_ENDPOINT = '/entities'
-  # Rosette API categories endpoint
+  # API events endpoint
+  EVENTS_ENDPOINT = '/events'
+  # API categories endpoint
   CATEGORIES_ENDPOINT = '/categories'
-  # Rosette API relationships endpoint
+  # API relationships endpoint
   RELATIONSHIPS_ENDPOINT = '/relationships'
-  # Rosette API sentiment endpoint
+  # API sentiment endpoint
   SENTIMENT_ENDPOINT = '/sentiment'
   # Name Deduplication endpoint
   NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'
-  # Rosette API name-translation endpoint
+  # API name-translation endpoint
   NAME_TRANSLATION_ENDPOINT = '/name-translation'
-  # Rosette API name-similarity endpoint
+  # API name-similarity endpoint
   NAME_SIMILARITY_ENDPOINT = '/name-similarity'
-  # Rosette API address-similarity endpoint
+  # API address-similarity endpoint
   ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'
-  # Rosette API tokens endpoint
+  # API tokens endpoint
   TOKENS_ENDPOINT = '/tokens'
-  # Rosette API sentences endpoint
+  # API sentences endpoint
   SENTENCES_ENDPOINT = '/sentences'
-  # Rosette API info endpoint
+  # API info endpoint
   INFO = '/info'
-  # Rosette API ping endpoint
+  # API ping endpoint
   PING = '/ping'
   # Text Embedding endpoint (deprecated)
   TEXT_EMBEDDING = '/text-embedding'
@@ -497,6 +499,24 @@ class RosetteAPI
     params = params.load_params
 
     RequestBuilder.new(@user_key, @alternate_url + SIMILAR_TERMS_ENDPOINT,
+                       @http_client, BINDING_VERSION, params, @url_parameters)
+                  .send_post_request
+  end
+
+  # Returns the events of the input
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
+  #
+  # Returns the events of the input
+  def get_events(params)
+    check_params params
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + EVENTS_ENDPOINT,
                        @http_client, BINDING_VERSION, params, @url_parameters)
                   .send_post_request
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This class represents an entity name in Rosette API.
+# This class represents an entity name in Analytics API.
 class NameParameter
   # Name's entity type (PERSON, LOCATION, ORGANIZATION) (optional)
   attr_accessor :entity_type

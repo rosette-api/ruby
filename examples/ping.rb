@@ -4,14 +4,14 @@ require 'rosette_api'
 
 api_key, url = ARGV
 
-rosette_api = if url
-                RosetteAPI.new(api_key, url)
-              else
-                RosetteAPI.new(api_key)
-              end
+analytics_api = if url
+                  RosetteAPI.new(api_key, url)
+                else
+                  RosetteAPI.new(api_key)
+                end
 
 begin
-  response = rosette_api.ping
+  response = analytics_api.ping
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => e
   printf('Rosette API Error (%<status_code>s): %<message>s',

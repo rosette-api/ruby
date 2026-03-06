@@ -30,7 +30,7 @@ describe RosetteAPI do
 
   describe '.get_language' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/language')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
         .with(
           body: @json,
           headers: {
@@ -38,9 +38,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -69,7 +71,7 @@ describe RosetteAPI do
 
   describe '.get_morphology_complete' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/complete')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/morphology/complete')
         .with(
           body: @json,
           headers: {
@@ -77,9 +79,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -96,7 +100,7 @@ describe RosetteAPI do
 
   describe '.get_compound_components' do
     before do
-      url = 'https://api.rosette.com/rest/v1/morphology/compound-components'
+      url = 'https://analytics.babelstreet.com/rest/v1/morphology/compound-components'
       stub_request(:post, url)
         .with(
           body: @json,
@@ -105,9 +109,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -124,7 +130,7 @@ describe RosetteAPI do
 
   describe '.get_han_readings' do
     before do
-      url = 'https://api.rosette.com/rest/v1/morphology/han-readings'
+      url = 'https://analytics.babelstreet.com/rest/v1/morphology/han-readings'
       stub_request(:post, url)
         .with(
           body: @json,
@@ -133,9 +139,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -152,7 +160,7 @@ describe RosetteAPI do
 
   describe '.get_parts_of_speech' do
     before do
-      url = 'https://api.rosette.com/rest/v1/morphology/parts-of-speech'
+      url = 'https://analytics.babelstreet.com/rest/v1/morphology/parts-of-speech'
       stub_request(:post, url)
         .with(
           body: @json,
@@ -161,9 +169,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -180,7 +190,7 @@ describe RosetteAPI do
 
   describe '.get_lemmas' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/lemmas')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/morphology/lemmas')
         .with(
           body: @json,
           headers: {
@@ -188,9 +198,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -207,7 +219,7 @@ describe RosetteAPI do
 
   describe '.get_entities' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/entities')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/entities')
         .with(
           body: @json,
           headers: {
@@ -215,9 +227,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -234,7 +248,7 @@ describe RosetteAPI do
     before do
       no_qids_json = { content: 'Sample Content',
                        options: { linkEntities: false } }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/entities')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/entities')
         .with(
           body: no_qids_json,
           headers: {
@@ -242,9 +256,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -271,7 +287,7 @@ describe RosetteAPI do
   describe '.get_categories' do
     before do
       categories_json = { contentUri: 'http://google.com' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/categories')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/categories')
         .with(
           body: categories_json,
           headers: {
@@ -279,9 +295,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "categories"}', headers: {})
@@ -297,7 +315,7 @@ describe RosetteAPI do
   describe '.get_events' do
     before do
       events_json = { contentUri: 'http://google.com' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/events')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/events')
         .with(
           body: events_json,
           headers: {
@@ -305,9 +323,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "events"}', headers: {})
@@ -324,7 +344,7 @@ describe RosetteAPI do
   describe '.get_sentiment' do
     before do
       sentiment_json = { contentUri: 'http://google.com' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/sentiment')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/sentiment')
         .with(
           body: sentiment_json,
           headers: {
@@ -332,9 +352,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "sentiment"}', headers: {})
@@ -351,7 +373,7 @@ describe RosetteAPI do
   describe '.get_text_embedding' do
     before do
       text_embedding_json = { contentUri: 'http://google.com' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/text-embedding')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/text-embedding')
         .with(
           body: text_embedding_json,
           headers: {
@@ -359,9 +381,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "text-embedding"}', headers: {})
@@ -377,7 +401,7 @@ describe RosetteAPI do
 
   describe '.get_relationships' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/relationships')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/relationships')
         .with(
           body: @json,
           headers: {
@@ -385,9 +409,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "relationships"}', headers: {})
@@ -405,7 +431,7 @@ describe RosetteAPI do
       name_translation_json = { name: 'معمر محمد أبو منيار القذاف',
                                 targetLanguage: 'eng',
                                 targetScript: 'Latn' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-translation')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-translation')
         .with(
           body: name_translation_json,
           headers: {
@@ -413,9 +439,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -426,7 +454,7 @@ describe RosetteAPI do
                                             targetLanguage: 'eng',
                                             targetScript: 'Latn',
                                             maximumResults: 5 }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-translation')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-translation')
         .with(
           body: name_translation_max_results_json,
           headers: {
@@ -434,9 +462,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -482,7 +512,7 @@ describe RosetteAPI do
 
   describe '.name_similarity' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-similarity')
         .with(
           body: hash_including(
             name1: 'Michael Jackson',
@@ -493,9 +523,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -518,7 +550,7 @@ describe RosetteAPI do
       RosetteAPI.new('0123456789').get_name_similarity(params)
 
       expect(
-        a_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
+        a_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-similarity')
           .with(body: hash_including(parameters: { finalBias: '0.0003' }))
       ).to have_been_made.once
     end
@@ -549,7 +581,7 @@ describe RosetteAPI do
     before do
       names_json = { names: names.map(&:load_param), threshold: 0.75 }.to_json
 
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-deduplication')
         .with(
           body: names_json,
           headers: {
@@ -557,9 +589,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -568,7 +602,7 @@ describe RosetteAPI do
 
       nothresh_json = { names: names.map(&:load_param) }.to_json
 
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-deduplication')
         .with(
           body: nothresh_json,
           headers: {
@@ -576,9 +610,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -629,7 +665,7 @@ describe RosetteAPI do
     before do
       transliteration_json = { content: content }.to_json
 
-      stub_request(:post, 'https://api.rosette.com/rest/v1/transliteration')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/transliteration')
         .with(
           body: transliteration_json,
           headers: {
@@ -637,9 +673,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -670,7 +708,7 @@ describe RosetteAPI do
 
   describe '.get_tokens' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/tokens')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/tokens')
         .with(
           body: @json,
           headers: {
@@ -678,9 +716,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "tokens"}', headers: {})
@@ -695,7 +735,7 @@ describe RosetteAPI do
 
   describe '.get_topics' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/topics')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/topics')
         .with(
           body: @json,
           headers: {
@@ -703,9 +743,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "topics"}', headers: {})
@@ -720,7 +762,7 @@ describe RosetteAPI do
 
   describe '.get_sentences' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/sentences')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/sentences')
         .with(
           body: @json,
           headers: {
@@ -728,9 +770,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "sentences"}', headers: {})
@@ -745,13 +789,13 @@ describe RosetteAPI do
 
   describe '.info' do
     before do
-      stub_request(:get, 'https://api.rosette.com/rest/v1/info')
+      stub_request(:get, 'https://analytics.babelstreet.com/rest/v1/info')
         .with(
           headers: {
             'Accept' => '*/*',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789'
+            'X-BabelStreetAPI-Key' => '0123456789'
           }
         )
         .to_return(status: 200, body: '{"test": "info"}', headers: {})
@@ -764,13 +808,13 @@ describe RosetteAPI do
 
   describe '.ping' do
     before do
-      stub_request(:get, 'https://api.rosette.com/rest/v1/ping')
+      stub_request(:get, 'https://analytics.babelstreet.com/rest/v1/ping')
         .with(
           headers: {
             'Accept' => '*/*',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789'
+            'X-BabelStreetAPI-Key' => '0123456789'
           }
         )
         .to_return(status: 200, body: '{"test": "ping"}', headers: {})
@@ -783,7 +827,7 @@ describe RosetteAPI do
 
   describe '.get_language_custom_header' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/language')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
         .with(
           body: @json,
           headers: {
@@ -791,9 +835,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
             'X-RosetteApi-App' => 'ruby-app'
           }
         )
@@ -811,13 +857,13 @@ describe RosetteAPI do
 
   describe '.error_409_incompatible_client_version' do
     before do
-      stub_request(:get, 'https://api.rosette.com/rest/v1/info')
+      stub_request(:get, 'https://analytics.babelstreet.com/rest/v1/info')
         .with(
           headers: {
             'Accept' => '*/*',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789'
+            'X-BabelStreetAPI-Key' => '0123456789'
           }
         )
         .to_return(status: 409,
@@ -832,7 +878,7 @@ describe RosetteAPI do
 
   describe '.get_similar_terms' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/similar')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/semantics/similar')
         .with(
           body: @json,
           headers: {
@@ -840,9 +886,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -859,7 +907,7 @@ describe RosetteAPI do
 
   describe '.get_semantic_vectors' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/vector')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/semantics/vector')
         .with(
           body: @json,
           headers: {
@@ -867,9 +915,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -884,7 +934,7 @@ describe RosetteAPI do
 
   describe '.get_syntax_dependencies' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/syntax/dependencies')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/syntax/dependencies')
         .with(
           body: @json,
           headers: {
@@ -892,9 +942,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -909,7 +961,7 @@ describe RosetteAPI do
 
   describe '.address_similarity' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/address-similarity')
         .with(
           body: hash_including(
             address1: {
@@ -930,9 +982,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -963,7 +1017,7 @@ describe RosetteAPI do
       RosetteAPI.new('0123456789').get_address_similarity(params)
 
       expect(
-        a_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')
+        a_request(:post, 'https://analytics.babelstreet.com/rest/v1/address-similarity')
           .with(body: hash_including(parameters: { someOption: true }))
       ).to have_been_made.once
     end

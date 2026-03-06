@@ -4,9 +4,9 @@ require_relative 'bad_request_error'
 require_relative 'name_parameter'
 
 # This class encapsulates parameters that are needed for name-deduplication in
-# Rosette API.
+# Analytics API.
 class NameDeduplicationParameters
-  # Rosette API options (optional, should be a hash)
+  # API options (optional, should be a hash)
   attr_accessor :rosette_options
   # List of Name objects to be de-duplicated
   attr_accessor :names

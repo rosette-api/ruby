@@ -4,7 +4,7 @@ require_relative 'bad_request_error'
 require_relative 'name_parameter'
 
 # This class encapsulates parameters that are needed for name-similarity in
-# Rosette API.
+# Analytics API.
 class NameSimilarityParameters
   # genre to categorize the input data
   attr_accessor :genre

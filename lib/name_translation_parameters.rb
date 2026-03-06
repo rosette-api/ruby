@@ -3,7 +3,7 @@
 require_relative 'rosette_api_error'
 
 # This class encapsulates parameters that are needed for name-translation in
-# Rosette API.
+# Analytics API.
 class NameTranslationParameters
   # Name's entity type (PERSON, LOCATION, ORGANIZATION) (optional)
   attr_accessor :entity_type
@@ -11,7 +11,7 @@ class NameTranslationParameters
   attr_accessor :genre
   # Name to translate
   attr_accessor :name
-  # Rosette API options (optional, should be a hash)
+  # API options (optional, should be a hash)
   attr_accessor :rosette_options
   # ISO 693-3 code of the name's native language the name originates in
   # (optional)

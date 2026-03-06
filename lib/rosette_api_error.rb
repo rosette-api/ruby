@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-# This class encapsulates all Rosette API server errors encountered during
+# This class encapsulates all API server errors encountered during
 # requests.
 class RosetteAPIError < StandardError
-  # Rosette API error's status code
+  # API error's status code
   attr_accessor :status_code
-  # Rosette API error's message
+  # API error's message
   attr_accessor :message
 
   def initialize(status_code, message) # :notnew:

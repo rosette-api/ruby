@@ -4,11 +4,11 @@ require 'rosette_api'
 
 api_key, url = ARGV
 
-rosette_api = if url
-                RosetteAPI.new(api_key, url)
-              else
-                RosetteAPI.new(api_key)
-              end
+analytics_api = if url
+                  RosetteAPI.new(api_key, url)
+                else
+                  RosetteAPI.new(api_key)
+                end
 
 matched_name_data1 = 'Michael Jackson'
 matched_name_data2 = '迈克尔·杰克逊'
@@ -19,7 +19,7 @@ begin
     language: 'eng'
   )
   params = NameSimilarityParameters.new(name1, matched_name_data2)
-  response = rosette_api.get_name_similarity(params)
+  response = analytics_api.get_name_similarity(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => e
   printf('Rosette API Error (%<status_code>s): %<message>s',

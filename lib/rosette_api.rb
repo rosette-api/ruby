@@ -14,7 +14,7 @@ require 'logger'
 # This class allows you to access all Analytics API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.27.1'
+  BINDING_VERSION = '1.37.0'
   # API language endpoint
   LANGUAGE_ENDPOINT = '/language'
   # API morphology endpoint
@@ -58,16 +58,16 @@ class RosetteAPI
   # Topics endpoint
   TOPICS_ENDPOINT = '/topics'
 
-  # Rosette API key
+  # API key
   attr_accessor :user_key
-  # Alternate Rosette API URL
+  # Alternate API URL
   attr_accessor :alternate_url
-  # custom Rosette API headers
+  # custom API headers
   attr_accessor :custom_headers
   # URL query parameter(s)
   attr_accessor :url_parameters
 
-  def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1')
+  def initialize(user_key, alternate_url = 'https://analytics.babelstreet.com/rest/v1')
     @log = Logger.new($stdout)
     @user_key = user_key
     @alternate_url = alternate_url
@@ -521,7 +521,7 @@ class RosetteAPI
                   .send_post_request
   end
 
-  # Gets information about the Rosette API, returns name, build number
+  # Gets information about the API, returns name, build number
   # and build time.
   def info
     RequestBuilder.new(@user_key, @alternate_url + INFO, @http_client,
@@ -529,7 +529,7 @@ class RosetteAPI
                   .send_get_request
   end
 
-  # Pings the Rosette API for a response indicting that the service is
+  # Pings the API for a response indicting that the service is
   # available.
   def ping
     RequestBuilder.new(@user_key, @alternate_url + PING, @http_client,

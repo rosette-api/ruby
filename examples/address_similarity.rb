@@ -4,11 +4,11 @@ require 'rosette_api'
 
 api_key, url = ARGV
 
-rosette_api = if url
-                RosetteAPI.new(api_key, url)
-              else
-                RosetteAPI.new(api_key)
-              end
+analytics_api = if url
+                  RosetteAPI.new(api_key, url)
+                else
+                  RosetteAPI.new(api_key)
+                end
 
 begin
   address1 = AddressParameter.new(
@@ -20,7 +20,7 @@ begin
   )
   address2 = '160 Pennsilvana Avenue, Washington, D.C., 20500'
   params = AddressSimilarityParameters.new(address1, address2)
-  response = rosette_api.get_address_similarity(params)
+  response = analytics_api.get_address_similarity(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => e
   printf('Rosette API Error (%<status_code>s): %<message>s',

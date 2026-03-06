@@ -4,7 +4,7 @@ require_relative 'bad_request_error'
 require_relative 'address_parameter'
 
 # This class encapsulates parameters that are needed for address-similarity in
-# Rosette API.
+# Analytics API.
 class AddressSimilarityParameters
   # Address to be compared to address2
   attr_accessor :address1

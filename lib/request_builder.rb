@@ -6,17 +6,17 @@ require 'json'
 require 'securerandom'
 require_relative 'rosette_api_error'
 
-# This class handles all Rosette API requests.
+# This class handles all Analytics API requests.
 class RequestBuilder
-  # Alternate Rosette API URL
+  # Alternate API URL
   attr_reader :alternate_url
-  # Rosette API HTTP client
+  # API HTTP client
   attr_reader :http_client
   # Parameters to build the body of the request from
   attr_accessor :params
-  # Rosette API key
+  # API key
   attr_accessor :user_key
-  # Rosette API binding version
+  # API binding version
   attr_accessor :binding_version
   # User-Agent string
   attr_reader :user_agent
@@ -35,7 +35,7 @@ class RequestBuilder
     @alternate_url = "#{@alternate_url}?#{URI.encode_www_form(url_parameters)}"
   end
 
-  # Prepares a plain POST request for Rosette API.
+  # Prepares a plain POST request for Analytics API.
   #
   # ==== Attributes
   #
@@ -51,7 +51,7 @@ class RequestBuilder
       # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
         'connectionError',
-        'Failed to establish connection with Rosette server.'
+        'Failed to establish connection with Analytics server.'
       )
     end
 
@@ -60,30 +60,32 @@ class RequestBuilder
     if custom_headers
       keys_array = custom_headers.keys
       keys_array.each do |key|
-        if key.to_s =~ /^X-RosetteAPI-/
+        if key.to_s =~ /^X-RosetteAPI-/ || key.to_s =~ /^X-BabelStreetAPI-/
           request[key] = custom_headers[key]
         else
           raise RosetteAPIError.new(
             'invalidHeader',
-            'Custom header must begin with "X-RosetteAPI-"'
+            'Custom header must begin with "X-RosetteAPI-" or "X-BabelStreetAPI-"'
           )
         end
       end
       params.delete 'customHeaders'
     end
 
-    request['X-RosetteAPI-Key'] = @user_key
+    request['X-BabelStreetAPI-Key'] = @user_key
     request['Content-Type'] = 'application/json'
     request['Accept'] = 'application/json'
     request['User-Agent'] = @user_agent
     request['X-RosetteAPI-Binding'] = 'ruby'
+    request['X-BabelStreetAPI-Binding'] = 'ruby'
     request['X-RosetteAPI-Binding-Version'] = @binding_version
+    request['X-BabelStreetAPI-Binding-Version'] = @binding_version
     request.body = params.to_json
 
     [@http_client, request]
   end
 
-  # Prepares a multipart/form-data POST request for Rosette API.
+  # Prepares a multipart/form-data POST request for Anaytyics API.
   #
   # ==== Attributes
   #
@@ -122,7 +124,7 @@ class RequestBuilder
       # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
         'connectionError',
-        'Failed to establish connection with Rosette API server.'
+        'Failed to establish connection with Analytics server.'
       )
     end
 
@@ -130,12 +132,12 @@ class RequestBuilder
     unless params['customHeaders'].nil?
       keys_array = params['customHeaders'].keys
       keys_array.each do |k|
-        if k.to_s =~ /^X-RosetteAPI-/
+        if k.to_s =~ /^X-RosetteAPI-/ || key.to_s =~ /^X-BabelStreetAPI-/
           request.add_field k, params['customHeaders'][k]
         else
           raise RosetteAPIError.new(
             'invalidHeader',
-            'Custom header must begin with "X-RosetteAPI-"'
+            'Custom header must begin with "X-RosetteAPI-" or "X-BabelStreetAPI-"'
           )
         end
       end
@@ -145,9 +147,11 @@ class RequestBuilder
     request.add_field 'Content-Type',
                       "multipart/form-data; boundary=#{boundary}"
     request.add_field 'User-Agent', @user_agent
-    request.add_field 'X-RosetteAPI-Key', @user_key
+    request.add_field 'X-BabelStreetAPI-Key', @user_key
     request.add_field 'X-RosetteAPI-Binding', 'ruby'
+    request.add_field 'X-BabelStreetAPI-Binding', 'ruby'
     request.add_field 'X-RosetteAPI-Binding-Version', @binding_version
+    request.add_field 'X-BabelStreetAPI-Binding-Version', @binding_version
     request.body = post_body.join
 
     [@http_client, request]
@@ -164,7 +168,7 @@ class RequestBuilder
     raise RosetteAPIError.new('readMultipartError', e)
   end
 
-  # Sends a GET request to Rosette API.
+  # Sends a GET request to Analytics API.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_get_request
@@ -176,16 +180,16 @@ class RequestBuilder
       # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
         'connectionError',
-        'Failed to establish connection with Rosette API server.'
+        'Failed to establish connection with Analytics server.'
       )
     end
-    request['X-RosetteAPI-Key'] = @user_key
+    request['X-BabelStreetAPI-Key'] = @user_key
     request['User-Agent'] = @user_agent
 
     get_response @http_client, request
   end
 
-  # Sends a POST request to Rosette API.
+  # Sends a POST request to Analytics API.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_post_request
@@ -204,7 +208,7 @@ class RequestBuilder
   #
   # * +http+ - HTTP connection.
   #
-  # * +request+ - Prepared Rosette API request.
+  # * +request+ - Prepared API request.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def get_response(http, request)

@@ -16,6 +16,9 @@ Metrics/AbcSize:
 # AllowedMethods: refine
 Metrics/BlockLength:
   Max: 786
+  #TODO check rubocop-rspec extension
+  Exclude:
+    - 'tests/tests_spec.rb'
 
 # Offense count: 2
 # Configuration parameters: CountComments, CountAsOne.

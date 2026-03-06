@@ -11,9 +11,13 @@ class AddressSimilarityParameters
   # Address to be compared to address1
   attr_accessor :address2
 
-  def initialize(address1, address2) # :notnew:
+  # Parameters map sent to the API (optional, should be a hash)
+  attr_accessor :parameters
+
+  def initialize(address1, address2, address_parameters = nil) # :notnew:
     @address1 = address1
     @address2 = address2
+    @parameters = address_parameters
   end
 
   # Validates the parameters by checking if address1 and address2 are instances
@@ -24,6 +28,9 @@ class AddressSimilarityParameters
 
     a2_msg = 'address2 option can only be an instance of an AddressParameter or a String'
     raise BadRequestError.new(a2_msg) if [String, AddressParameter].none? { |clazz| @address2.is_a? clazz }
+
+    opt_msg = 'parameters can only be an instance of a Hash'
+    raise BadRequestError.new(opt_msg) if @parameters && !(@parameters.is_a? Hash)
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -42,7 +49,8 @@ class AddressSimilarityParameters
   def to_hash
     {
       address1: @address1.is_a?(AddressParameter) ? @address1.load_param : @address1,
-      address2: @address2.is_a?(AddressParameter) ? @address2.load_param : @address2
+      address2: @address2.is_a?(AddressParameter) ? @address2.load_param : @address2,
+      parameters: @parameters
     }
   end
 end

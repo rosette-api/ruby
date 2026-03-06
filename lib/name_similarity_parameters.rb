@@ -8,22 +8,25 @@ require_relative 'name_parameter'
 class NameSimilarityParameters
   # genre to categorize the input data
   attr_accessor :genre
-  # Rosette API options (optional, should be a hash)
-  attr_accessor :rosette_options
+
+  # Parameters map sent to the API (optional, should be a hash)
+  attr_accessor :parameters
+
   # Name to be compared to name2
   attr_accessor :name1
   # Name to be compared to name1
   attr_accessor :name2
 
-  def initialize(name1, name2, options = {}) # :notnew:
+  def initialize(name1, name2, match_parameters = nil, options = {}) # :notnew:
     options = {
-      genre: nil,
-      rosette_options: nil
+      genre: nil
     }.update options
     @genre = options[:genre]
+
     @name1 = name1
     @name2 = name2
-    @rosette_options = options[:rosette_options]
+
+    @parameters = match_parameters
   end
 
   # Validates the parameters by checking if name1 and name2 are instances of
@@ -35,8 +38,8 @@ class NameSimilarityParameters
     n2_msg = 'name2 option can only be an instance of a String or NameParameter'
     raise BadRequestError.new(n2_msg) if [String, NameParameter].none? { |clazz| @name2.is_a? clazz }
 
-    opt_msg = 'rosette_options can only be an instance of a Hash'
-    raise BadRequestError.new(opt_msg) if @rosette_options && !(@rosette_options.is_a? Hash)
+    opt_msg = 'parameters can only be an instance of a Hash'
+    raise BadRequestError.new(opt_msg) if @parameters && !(@parameters.is_a? Hash)
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -57,7 +60,7 @@ class NameSimilarityParameters
       genre: @genre,
       name1: @name1.is_a?(NameParameter) ? @name1.load_param : @name1,
       name2: @name2.is_a?(NameParameter) ? @name2.load_param : @name2,
-      options: @rosette_options
+      parameters: @parameters
     }
   end
 end

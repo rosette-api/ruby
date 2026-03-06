@@ -358,11 +358,12 @@ describe RosetteAPI do
 
   describe '.name_similarity' do
     before do
-      name_similarity_json = { name1: 'Michael Jackson',
-                               name2: '迈克尔·杰克逊' }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
         .with(
-          body: name_similarity_json,
+          body: hash_including(
+            name1: 'Michael Jackson',
+            name2: '迈克尔·杰克逊'
+          ),
           headers: {
             'Accept' => 'application/json',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -381,6 +382,21 @@ describe RosetteAPI do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
       response = RosetteAPI.new('0123456789').get_name_similarity(params)
       expect(response).instance_of? Hash
+    end
+
+    it 'sends parameters in the request body when provided' do
+      params = NameSimilarityParameters.new(
+        'Michael Jackson',
+        '迈克尔·杰克逊',
+        { finalBias: '0.0003' }
+      )
+
+      RosetteAPI.new('0123456789').get_name_similarity(params)
+
+      expect(
+        a_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
+          .with(body: hash_including(parameters: { finalBias: '0.0003' }))
+      ).to have_been_made.once
     end
 
     it 'badRequestFormat: name1 option can only be an instance of a String..' do
@@ -769,35 +785,65 @@ describe RosetteAPI do
 
   describe '.address_similarity' do
     before do
-      address_similarity_json = {
-        address1: {
-          houseNumber: '1600',
-          road: 'Pennsylvania Ave NW',
-          city: 'Washington',
-          state: 'DC'
-        },
-        address2: {
-          houseNumber: '1600',
-          road: 'Pennsilvana Avenue',
-          city: 'Washington',
-          state: 'D.C.'
-        }
-      }.to_json
       stub_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')
-        .with(body: address_similarity_json,
-              headers: {
-                'Accept' => 'application/json',
-                'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                'Content-Type' => 'application/json',
-                'User-Agent' => @user_agent,
-                'X-Rosetteapi-Key' => '0123456789',
-                'X-Rosetteapi-Binding' => 'ruby',
-                'X-Rosetteapi-Binding-Version' => '1.27.1'
-              })
+        .with(
+          body: hash_including(
+            address1: {
+              houseNumber: '1600',
+              road: 'Pennsylvania Ave NW',
+              city: 'Washington',
+              state: 'DC'
+            },
+            address2: {
+              houseNumber: '1600',
+              road: 'Pennsilvana Avenue',
+              city: 'Washington',
+              state: 'D.C.'
+            }
+          ),
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
+          }
+        )
         .to_return(status: 200,
                    body: '{"test": "address-similarity"}',
                    headers: {})
     end
+
+    it 'sends parameters in the request body when provided' do
+      address1 = AddressParameter.new(
+        house_number: '1600',
+        road: 'Pennsylvania Ave NW',
+        city: 'Washington',
+        state: 'DC'
+      )
+      address2 = AddressParameter.new(
+        house_number: '1600',
+        road: 'Pennsilvana Avenue',
+        city: 'Washington',
+        state: 'D.C.'
+      )
+
+      params = AddressSimilarityParameters.new(
+        address1,
+        address2,
+        { someOption: true }
+      )
+
+      RosetteAPI.new('0123456789').get_address_similarity(params)
+
+      expect(
+        a_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')
+          .with(body: hash_including(parameters: { someOption: true }))
+      ).to have_been_made.once
+    end
+
     it 'test address similarity' do
       address1 = AddressParameter.new(
         house_number: '1600',

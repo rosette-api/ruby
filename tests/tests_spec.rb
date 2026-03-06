@@ -840,10 +840,77 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.37.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0',
-            'X-RosetteApi-App' => 'ruby-app'
+            'X-RosetteAPI-App' => 'ruby-app'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
+    end
+
+    it 'sends custom header with X-RosetteAPI- prefix' do
+      params = DocumentParameters.new
+      params.content = 'Por favor Senorita, says the man.?'
+      params.custom_headers = { 'X-RosetteAPI-App' => 'ruby-app' }
+
+      response = RosetteAPI.new('0123456789').get_language(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'sends custom header with X-BabelStreetAPI- prefix' do
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-App' => 'ruby-app'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
+
+      params = DocumentParameters.new
+      params.content = 'Por favor Senorita, says the man.?'
+      params.custom_headers = { 'X-BabelStreetAPI-App' => 'ruby-app' }
+
+      response = RosetteAPI.new('0123456789').get_language(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'sends custom headers with both prefixes together' do
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-RosetteAPI-App' => 'ruby-app',
+            'X-BabelStreetAPI-App' => 'ruby-app'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
+
+      params = DocumentParameters.new
+      params.content = 'Por favor Senorita, says the man.?'
+      params.custom_headers = {
+        'X-RosetteAPI-App' => 'ruby-app',
+        'X-BabelStreetAPI-App' => 'ruby-app'
+      }
+
+      response = RosetteAPI.new('0123456789').get_language(params)
+      expect(response).instance_of? Hash
     end
 
     it 'test custom_headers is invalid' do

@@ -57,7 +57,6 @@ class NameSimilarityParameters
   # Returns the new Hash.
   def to_hash
     {
-      genre: @genre,
       name1: @name1.is_a?(NameParameter) ? @name1.load_param : @name1,
       name2: @name2.is_a?(NameParameter) ? @name2.load_param : @name2,
       parameters: @parameters

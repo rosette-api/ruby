@@ -78,7 +78,6 @@ class DocumentParameters
       content: @content,
       content_uri: @content_uri,
       file_path: @file_path,
-      genre: @genre,
       language: @language,
       options: @rosette_options,
       custom_headers: @custom_headers

@@ -73,7 +73,6 @@ class NameTranslationParameters
   def to_hash
     {
       entity_type: @entity_type,
-      genre: @genre,
       name: @name,
       options: @rosette_options,
       source_language_of_origin: @source_language_of_origin,

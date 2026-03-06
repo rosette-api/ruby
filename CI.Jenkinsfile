@@ -3,7 +3,7 @@
 def versions = [3.2, 3.3, 3.4, 4.0]
 
 def runSonnarForPythonVersion(sourceDir, ver){
-    mySonarOpts="-Dsonar.sources=/source -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_AUTH_TOKEN}"
+    mySonarOpts="-Dsonar.sources=/source -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.ruby.coverage.reportPaths=coverage/coverage.json"
     if("${env.CHANGE_ID}" != "null"){
         mySonarOpts = "$mySonarOpts -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.branch=${env.BRANCH_NAME}"
     } else {

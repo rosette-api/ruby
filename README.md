@@ -2,9 +2,9 @@
     <img src="https://charts.babelstreet.com/icon.png" width="48" height="48" alt="Babel Street Logo"/>
 </a>
 
-[![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
-
 # Analytics by Babel Street
+
+[![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
 
 Our product is a full text processing pipeline from data preparation to extracting the most relevant information and
 analysis utilizing precise, focused AI that has built-in human understanding. Text Analytics provides foundational

@@ -320,6 +320,61 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
   end
+
+  describe '.get_sentiment' do
+    before do
+      sentiment_json = { contentUri: 'http://google.com' }.to_json
+      stub_request(:post, 'https://api.rosette.com/rest/v1/sentiment')
+        .with(
+          body: sentiment_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "sentiment"}', headers: {})
+    end
+
+    it 'test sentiment' do
+      params = DocumentParameters.new
+      params.content_uri = 'http://google.com'
+      response = RosetteAPI.new('0123456789').get_sentiment(params)
+      expect(response).instance_of? Hash
+    end
+  end
+
+  describe '.get_text_embedding' do
+    before do
+      text_embedding_json = { contentUri: 'http://google.com' }.to_json
+      stub_request(:post, 'https://api.rosette.com/rest/v1/text-embedding')
+        .with(
+          body: text_embedding_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-Rosetteapi-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.27.1'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "text-embedding"}', headers: {})
+    end
+
+    it 'test text embedding' do
+      params = DocumentParameters.new
+      params.content_uri = 'http://google.com'
+      response = RosetteAPI.new('0123456789').get_text_embedding(params)
+      expect(response).instance_of? Hash
+    end
+  end
+
   describe '.get_relationships' do
     before do
       stub_request(:post, 'https://api.rosette.com/rest/v1/relationships')

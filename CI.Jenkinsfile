@@ -50,7 +50,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             cd /source && \
             echo && \
             echo [INFO] Running rubocop. && \
-            echo "[WARN] Temp skip rubocop for Sonar population. && \
+            echo [WARN] Temp skip rubocop for Sonar population. && \
             rubocop || true && \
             echo && \
             echo [INFO] Running bundle install. && \

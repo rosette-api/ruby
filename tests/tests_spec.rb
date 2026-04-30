@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require 'simplecov_json_formatter'
 require 'simplecov'
-SimpleCov.start
+SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+SimpleCov.start do
+  enable_coverage :branch
+end
 
 require 'rosette_api'
 require 'rspec'

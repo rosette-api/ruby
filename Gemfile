@@ -2,9 +2,9 @@
 
 source 'https://rubygems.org'
 
-gem 'rdoc'
-
-gem 'rspec', group: [:test]
-gem 'simplecov', require: false, group: :test
-gem 'simplecov_json_formatter', require: false, group: :test
-gem 'webmock', group: [:test]
+group :test do
+  gem 'rspec'
+  gem 'webmock'
+  gem 'simplecov', require: false
+  gem 'simplecov_json_formatter', require: false
+end

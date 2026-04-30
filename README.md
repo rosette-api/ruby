@@ -1,4 +1,4 @@
-<a href="https://www.babelstreet.com/rosette">
+<a href="https://www.babelstreet.com/modules">
     <img src="https://charts.babelstreet.com/icon.png" width="48" height="48" alt="Babel Street Logo"/>
 </a>
 

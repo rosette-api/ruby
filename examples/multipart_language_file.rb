@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require 'rosette_api'
 require 'fileutils'
+require 'json'
+require 'rosette_api'
 
 api_key, url = ARGV
 

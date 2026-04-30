@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require 'tempfile'
+require 'json'
 require 'rosette_api'
+require 'tempfile'
 
 api_key, url = ARGV
 

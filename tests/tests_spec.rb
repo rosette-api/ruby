@@ -373,7 +373,7 @@ describe RosetteAPI do
   describe '.get_text_embedding' do
     before do
       text_embedding_json = { contentUri: 'http://google.com' }.to_json
-      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/text-embedding')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/semantics/vector')
         .with(
           body: text_embedding_json,
           headers: {

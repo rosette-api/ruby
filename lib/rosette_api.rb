@@ -42,7 +42,7 @@ class RosetteAPI
   RECORD_SIMILARITY_ENDPOINT = '/record-similarity'
   # API relationships endpoint
   RELATIONSHIPS_ENDPOINT = '/relationships'
-  # Semantic Vectors endpoint (replaces /text-embedding)
+  # Semantic Vectors endpoint (replaces deprecated /text-embedding)
   SEMANTIC_VECTORS = '/semantics/vector'
   # API sentences endpoint
   SENTENCES_ENDPOINT = '/sentences'
@@ -52,8 +52,6 @@ class RosetteAPI
   SIMILAR_TERMS_ENDPOINT = '/semantics/similar'
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'
-  # Text Embedding endpoint (deprecated)
-  TEXT_EMBEDDING = '/text-embedding'
   # API tokens endpoint
   TOKENS_ENDPOINT = '/tokens'
   # Topics endpoint
@@ -423,13 +421,8 @@ class RosetteAPI
   #
   # Returns the text embedding representation of the input.
   def get_text_embedding(params)
-    check_params params
-
-    params = params.load_params
-
-    RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client,
-                       BINDING_VERSION, params, @url_parameters)
-                  .send_post_request
+    @log.warn('get_text_embedding is deprecated. Please use get_semantic_vectors instead.')
+    get_semantic_vectors(params)
   end
 
   #

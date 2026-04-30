@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'json'
 require 'rosette_api'
 
 api_key, url = ARGV

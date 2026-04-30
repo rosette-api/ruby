@@ -249,8 +249,9 @@ class RequestBuilder
 
       JSON.parse(response.body).merge(response_headers)
     else
-      message = JSON.parse(response.body)['message']
-      code = JSON.parse(response.body)['code']
+      parsed_body = JSON.parse(response.body)
+      message = parsed_body['message']
+      code = parsed_body['code']
       raise RosetteAPIError.new code, message
     end
   end

@@ -19,7 +19,8 @@ begin
     entity_type: 'PERSON',
     language: 'eng'
   )
-  params = NameSimilarityParameters.new(name1, matched_name_data2)
+  match_parameters = { conflictScore: '0.35' }
+  params = NameSimilarityParameters.new(name1, matched_name_data2, match_parameters)
   response = analytics_api.get_name_similarity(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => e

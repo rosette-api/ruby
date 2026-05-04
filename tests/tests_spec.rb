@@ -540,18 +540,41 @@ describe RosetteAPI do
       expect(response).instance_of? Hash
     end
 
-    it 'sends parameters in the request body when provided' do
+    it 'sends match parameters in the request body when passed as 3rd argument (new signature)' do
       params = NameSimilarityParameters.new(
         'Michael Jackson',
         '迈克尔·杰克逊',
-        { finalBias: '0.0003' }
+        { conflictScore: '0.35' }
       )
 
       RosetteAPI.new('0123456789').get_name_similarity(params)
 
       expect(
         a_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-similarity')
-          .with(body: hash_including(parameters: { finalBias: '0.0003' }))
+          .with(body: hash_including(parameters: { conflictScore: '0.35' }))
+      ).to have_been_made.once
+    end
+
+    it 'warns and handles options passed as the 3rd argument (backward compatibility)' do
+      expect do
+        NameSimilarityParameters.new(
+          'Michael Jackson',
+          '迈克尔·杰克逊',
+          { rosette_options: { some_option: 'value' } }
+        )
+      end.to output(/DEPRECATION WARNING/).to_stderr
+
+      params = NameSimilarityParameters.new(
+        'Michael Jackson',
+        '迈克尔·杰克逊',
+        { rosette_options: { some_option: 'value' } }
+      )
+
+      RosetteAPI.new('0123456789').get_name_similarity(params)
+
+      expect(
+        a_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-similarity')
+          .with(body: hash_including(options: { some_option: 'value' }))
       ).to have_been_made.once
     end
 

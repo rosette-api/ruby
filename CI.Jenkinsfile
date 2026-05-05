@@ -1,39 +1,33 @@
+def versions = [3.3, 3.4, 4.0]
 
-
-def versions = [3.0, 3.1, 3.2, 3.3]
-
-def runSonnarForPythonVersion(sourceDir, ver){
-    mySonarOpts="-Dsonar.sources=/source -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_AUTH_TOKEN}"
-    if("${env.CHANGE_ID}" != "null"){
-        mySonarOpts = "$mySonarOpts -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.branch=${env.BRANCH_NAME}"
-    } else {
-        mySonarOpts = "$mySonarOpts -Dsonar.branch.name=${env.BRANCH_NAME}"
-    } 
-    if ("${env.CHANGE_BRANCH}" != "null") {
-        mySonarOpts="$mySonarOpts -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}"
-    }
-
+def runSonarIfVersion(sourceDir, ver){
     // Only run Sonar once.
     // Check for new versions at https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/
-    if(ver == 3.3) {
+    def sonarScannerVersion = "8.1.0.6389-linux-x64"
+    def sonarExec = ""
+
+    if(ver == 4.0) {
+        def mySonarOpts= "-Dsonar.sources=/source -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.token=${env.SONAR_AUTH_TOKEN} -Dsonar.ruby.coverage.reportPaths=coverage/coverage.json"
+        if("${env.CHANGE_ID}" != "null"){
+            mySonarOpts = "$mySonarOpts -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.branch=${env.BRANCH_NAME}"
+        } else {
+            mySonarOpts = "$mySonarOpts -Dsonar.branch.name=${env.BRANCH_NAME}"
+        }
+        if ("${env.CHANGE_BRANCH}" != "null") {
+            mySonarOpts="$mySonarOpts -Dsonar.pullrequest.base=${env.CHANGE_TARGET} -Dsonar.pullrequest.branch=${env.CHANGE_BRANCH}"
+        }
         sonarExec="cd /root/ && \
-                   wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.1.3023-linux.zip && \
-                   unzip -q sonar-scanner-cli-4.8.1.3023-linux.zip && \
+                   wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${sonarScannerVersion}.zip && \
+                   unzip -q sonar-scanner-cli-${sonarScannerVersion}.zip && \
                    cd /source && \
-                   /root/sonar-scanner-4.8.1.3023-linux/bin/sonar-scanner ${mySonarOpts}"
+                   /root/sonar-scanner-${sonarScannerVersion}/bin/sonar-scanner ${mySonarOpts}"
     } else {
         sonarExec="echo Skipping Sonar for this version."
     }
 
-    //
-    //
-    // NOTE:  The test coverage data is not making it into Sonar.
-    //        I don't think it is worth spending more time on until
-    //        Sonar is upgraded.
-    //
-    //
     sh "docker run \
             --pull always \
+            --env DEBIAN_FRONTEND=noninteractive \
             --rm --volume ${sourceDir}:/source \
             ruby:${ver}-slim \
             bash -c \"echo && \
@@ -43,7 +37,10 @@ def runSonnarForPythonVersion(sourceDir, ver){
             apt-get update -qq && \
             echo && \
             echo [INFO] Installing required OS packages. && \
-            apt-get -qq install -y gcc make wget unzip > /dev/null && \
+            apt-get -qq install -y gcc make wget unzip libyaml-dev > /dev/null && \
+            echo && \
+            echo [INFO] Removing any artifacts from prior executions. && \
+            rm -rf coverage .bundle Gemfile.lock *.gem && \
             echo && \
             echo [INFO] Installing gems needed for CI. && \
             gem install --silent --quiet bundler rspec rubocop && \
@@ -55,8 +52,6 @@ def runSonnarForPythonVersion(sourceDir, ver){
             echo [INFO] Running bundle install. && \
             bundle install --quiet && \
             echo && \
-            echo [INFO] Removing any coverage data from prior executions. && \
-            rm -rf coverage && \
             echo [INFO] Running unit tests. && \
             rspec tests && \
             echo && \
@@ -70,7 +65,7 @@ def runSonnarForPythonVersion(sourceDir, ver){
             ${sonarExec} && \
             echo && \
             echo [INFO] Re-permission files for cleanup. && \
-            chown -R jenkins:jenkins /source\""
+            chown -R 9960:9960 /source\""
 }
 
 node ("docker-light") {
@@ -84,9 +79,8 @@ node ("docker-light") {
         }
         stage("Build & Test") {
             withSonarQubeEnv {
-                
                 versions.each { ver ->
-                    runSonnarForPythonVersion(sourceDir, ver)
+                    runSonarIfVersion(sourceDir, ver)
                 }
             }
         }

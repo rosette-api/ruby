@@ -1,17 +1,26 @@
-<a href="https://www.babelstreet.com/rosette"><img src="https://s3.amazonaws.com/styleguide.basistech.com/logos/rosette-logo.png" width="181" height="47" /></a>
+<a href="https://www.babelstreet.com/modules">
+    <img src="https://charts.babelstreet.com/icon.png" width="48" height="48" alt="Babel Street Logo"/>
+</a>
 
----
+# Analytics by Babel Street
 
 [![Gem Version](https://badge.fury.io/rb/rosette_api.svg)](https://badge.fury.io/rb/rosette_api)
 
-## Rosette API
-The Rosette Text Analytics Platform uses natural language processing, statistical modeling, and machine learning to
-analyze unstructured and semi-structured text across 364 language-encoding-script combinations, revealing valuable
-information and actionable data. Rosette provides endpoints for extracting entities and relationships, translating and
-comparing the similarity of names, categorizing and adding linguistic tags to text and more.
+Our product is a full text processing pipeline from data preparation to extracting the most relevant information and
+analysis utilizing precise, focused AI that has built-in human understanding. Text Analytics provides foundational
+linguistic analysis for identifying languages and relating words. The result is enriched and normalized text for
+high-speed search and processing without translation.
 
-## Rosette API Access
-- Rosette Cloud [Sign Up](https://developer.rosette.com/signup)
+Text Analytics extracts events and entities — people, organizations, and places — from unstructured text and adds the
+structure of associating those entities into events that deliver only the necessary information for near real-time
+decision making. Accompanying tools shorten the process of training AI models to recognize domain-specific events.
+
+The product delivers a multitude of ways to sharpen and expand search results. Semantic similarity expands search
+beyond keywords to words with the same meaning, even in other languages. Sentiment analysis and topic extraction help
+filter results to what’s relevant.
+
+## Analytics API Access
+- Analytics Cloud [Sign Up](https://developer.babelstreet.com/signup)
 
 ## Quick Start
 
@@ -20,16 +29,15 @@ comparing the similarity of names, categorizing and adding linguistic tags to te
 `gem install rosette_api`
 
 #### Examples
-View small example programs for each Rosette endpoint
+View small example programs for each Analytics endpoint
 in the [examples](https://github.com/rosette-api/ruby/tree/develop/examples) directory.
 
 #### Documentation & Support
 - [Binding API](https://rosette-api.github.io/ruby/)
-- [Rosette Platform API](https://developer.rosette.com/features-and-functions)
+- [Analytics Platform API](https://documentation.babelstreet.com/analytics)
 - [Binding Release Notes](https://github.com/rosette-api/ruby/wiki/Release-Notes)
-- [Rosette Platform Release Notes](https://support.rosette.com/hc/en-us/articles/360018354971-Release-Notes)
-- [Binding/Rosette Platform Compatibility](https://developer.rosette.com/features-and-functions?ruby#)
-- [Support](https://support.rosette.com)
+- [Analytics Platform Release Notes](https://docs.babelstreet.com/r/Hosted-Services-Release-Notes)
+- [Support](https://babelstreet.my.site.com/support/s/contactsupport)
 - [Binding License: Apache 2.0](https://github.com/rosette-api/ruby/blob/develop/LICENSE)
 
 ## Binding Developer Information

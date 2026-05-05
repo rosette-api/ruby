@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This class represents an address in Rosette API.
+# This class represents an address in Analytics API.
 class AddressParameter
   # house (optional)
   attr_accessor :house

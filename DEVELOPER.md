@@ -4,7 +4,7 @@ Modify `.rubocop_todo.yml` as you fix issues.
 Generate a new config file with `rubocop --auto-gen-config` as needed.
 
 ```
-docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
+docker run -it -v $(pwd):/source --entrypoint bash ruby:3.4-slim
 apt-get update
 apt-get install -y gcc make
 
@@ -14,12 +14,32 @@ rubocop
 
 ```
 
+#### Check dependencies for CVEs
+
+This uses `bundler-audit`, which checks your `Gemfile.lock` against the RubySec advisory DB.
+
+```
+docker run -it -v $(pwd):/source --entrypoint bash ruby:3.4-slim
+apt-get update
+apt-get install -y gcc make git ca-certificates libyaml-dev
+
+cd /source
+bundle install
+
+gem install bundler-audit
+bundle audit update
+bundle audit check --verbose
+
+```
+
+
+
 #### Run tests locally
 
 ```
-docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
+docker run -it -v $(pwd):/source --entrypoint bash ruby:3.4-slim
 apt-get update
-apt-get install -y gcc make
+apt-get install -y gcc make libyaml-dev
 
 gem install rspec
 cd /source
@@ -31,7 +51,9 @@ rspec tests
 #### Run a single example
 
 ```
-docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
+docker run -it -v $(pwd):/source --entrypoint bash ruby:3.4-slim
+apt-get update
+apt-get install -y gcc make libyaml-dev
 
 cd /source
 bundle install
@@ -47,7 +69,9 @@ ruby ping.rb ${API_KEY}
 #### Run all examples
 
 ```
-docker run -it -v $(pwd):/source --entrypoint bash ruby:3.3-slim
+docker run -it -v $(pwd):/source --entrypoint bash ruby:3.4-slim
+apt-get update
+apt-get install -y gcc make libyaml-dev
 
 cd /source
 bundle install

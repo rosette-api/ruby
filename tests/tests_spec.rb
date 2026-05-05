@@ -30,7 +30,7 @@ describe RosetteAPI do
 
   describe '.get_language' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/language')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
         .with(
           body: @json,
           headers: {
@@ -38,9 +38,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -69,7 +71,7 @@ describe RosetteAPI do
 
   describe '.get_morphology_complete' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/complete')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/morphology/complete')
         .with(
           body: @json,
           headers: {
@@ -77,9 +79,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -96,7 +100,7 @@ describe RosetteAPI do
 
   describe '.get_compound_components' do
     before do
-      url = 'https://api.rosette.com/rest/v1/morphology/compound-components'
+      url = 'https://analytics.babelstreet.com/rest/v1/morphology/compound-components'
       stub_request(:post, url)
         .with(
           body: @json,
@@ -105,9 +109,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -124,7 +130,7 @@ describe RosetteAPI do
 
   describe '.get_han_readings' do
     before do
-      url = 'https://api.rosette.com/rest/v1/morphology/han-readings'
+      url = 'https://analytics.babelstreet.com/rest/v1/morphology/han-readings'
       stub_request(:post, url)
         .with(
           body: @json,
@@ -133,9 +139,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -152,7 +160,7 @@ describe RosetteAPI do
 
   describe '.get_parts_of_speech' do
     before do
-      url = 'https://api.rosette.com/rest/v1/morphology/parts-of-speech'
+      url = 'https://analytics.babelstreet.com/rest/v1/morphology/parts-of-speech'
       stub_request(:post, url)
         .with(
           body: @json,
@@ -161,9 +169,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -180,7 +190,7 @@ describe RosetteAPI do
 
   describe '.get_lemmas' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/morphology/lemmas')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/morphology/lemmas')
         .with(
           body: @json,
           headers: {
@@ -188,9 +198,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -207,7 +219,7 @@ describe RosetteAPI do
 
   describe '.get_entities' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/entities')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/entities')
         .with(
           body: @json,
           headers: {
@@ -215,9 +227,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -234,7 +248,7 @@ describe RosetteAPI do
     before do
       no_qids_json = { content: 'Sample Content',
                        options: { linkEntities: false } }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/entities')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/entities')
         .with(
           body: no_qids_json,
           headers: {
@@ -242,9 +256,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -271,7 +287,7 @@ describe RosetteAPI do
   describe '.get_categories' do
     before do
       categories_json = { contentUri: 'http://google.com' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/categories')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/categories')
         .with(
           body: categories_json,
           headers: {
@@ -279,9 +295,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "categories"}', headers: {})
@@ -294,9 +312,96 @@ describe RosetteAPI do
     end
   end
 
+  describe '.get_events' do
+    before do
+      events_json = { contentUri: 'http://google.com' }.to_json
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/events')
+        .with(
+          body: events_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "events"}', headers: {})
+    end
+
+    it 'test events' do
+      params = DocumentParameters.new
+      params.content_uri = 'http://google.com'
+      response = RosetteAPI.new('0123456789').get_events(params)
+      expect(response).instance_of? Hash
+    end
+  end
+
+  describe '.get_sentiment' do
+    before do
+      sentiment_json = { contentUri: 'http://google.com' }.to_json
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/sentiment')
+        .with(
+          body: sentiment_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "sentiment"}', headers: {})
+    end
+
+    it 'test sentiment' do
+      params = DocumentParameters.new
+      params.content_uri = 'http://google.com'
+      response = RosetteAPI.new('0123456789').get_sentiment(params)
+      expect(response).instance_of? Hash
+    end
+  end
+
+  describe '.get_text_embedding' do
+    before do
+      text_embedding_json = { contentUri: 'http://google.com' }.to_json
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/semantics/vector')
+        .with(
+          body: text_embedding_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "text-embedding"}', headers: {})
+    end
+
+    it 'test text embedding' do
+      params = DocumentParameters.new
+      params.content_uri = 'http://google.com'
+      response = RosetteAPI.new('0123456789').get_text_embedding(params)
+      expect(response).instance_of? Hash
+    end
+  end
+
   describe '.get_relationships' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/relationships')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/relationships')
         .with(
           body: @json,
           headers: {
@@ -304,9 +409,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "relationships"}', headers: {})
@@ -324,7 +431,7 @@ describe RosetteAPI do
       name_translation_json = { name: 'معمر محمد أبو منيار القذاف',
                                 targetLanguage: 'eng',
                                 targetScript: 'Latn' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-translation')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-translation')
         .with(
           body: name_translation_json,
           headers: {
@@ -332,21 +439,68 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200,
+                   body: '{"test": "name-translation"}',
+                   headers: {})
+
+      name_translation_max_results_json = { name: 'معمر محمد أبو منيار القذاف',
+                                            targetLanguage: 'eng',
+                                            targetScript: 'Latn',
+                                            maximumResults: 5 }.to_json
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-translation')
+        .with(
+          body: name_translation_max_results_json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
                    body: '{"test": "name-translation"}',
                    headers: {})
     end
+
     it 'test name translation' do
       params = NameTranslationParameters.new('معمر محمد أبو منيار القذاف'
                                              .encode('UTF-8'), 'eng')
       params.target_script = 'Latn'
       response = RosetteAPI.new('0123456789').get_name_translation(params)
       expect(response).instance_of? Hash
+    end
+
+    it 'test name translation with maximumResults' do
+      params = NameTranslationParameters.new(
+        'معمر محمد أبو منيار القذاف'.encode('UTF-8'),
+        'eng',
+        maximum_results: 5
+      )
+      params.target_script = 'Latn'
+      response = RosetteAPI.new('0123456789').get_name_translation(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'badRequest: maximum_results must be greater than or equal to 0' do
+      params = NameTranslationParameters.new(
+        'معمر محمد أبو منيار القذاف'.encode('UTF-8'),
+        'eng',
+        maximum_results: -1
+      )
+      expect { RosetteAPI.new('0123456789').get_name_translation(params) }
+        .to raise_error(BadRequestError)
     end
 
     it 'badRequest: Expects NameTranslationParameters type as an argument' do
@@ -358,19 +512,22 @@ describe RosetteAPI do
 
   describe '.name_similarity' do
     before do
-      name_similarity_json = { name1: 'Michael Jackson',
-                               name2: '迈克尔·杰克逊' }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-similarity')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-similarity')
         .with(
-          body: name_similarity_json,
+          body: hash_including(
+            name1: 'Michael Jackson',
+            name2: '迈克尔·杰克逊'
+          ),
           headers: {
             'Accept' => 'application/json',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -381,6 +538,44 @@ describe RosetteAPI do
       params = NameSimilarityParameters.new('Michael Jackson', '迈克尔·杰克逊')
       response = RosetteAPI.new('0123456789').get_name_similarity(params)
       expect(response).instance_of? Hash
+    end
+
+    it 'sends match parameters in the request body when passed as 3rd argument (new signature)' do
+      params = NameSimilarityParameters.new(
+        'Michael Jackson',
+        '迈克尔·杰克逊',
+        { conflictScore: '0.35' }
+      )
+
+      RosetteAPI.new('0123456789').get_name_similarity(params)
+
+      expect(
+        a_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-similarity')
+          .with(body: hash_including(parameters: { conflictScore: '0.35' }))
+      ).to have_been_made.once
+    end
+
+    it 'warns and handles options passed as the 3rd argument (backward compatibility)' do
+      expect do
+        NameSimilarityParameters.new(
+          'Michael Jackson',
+          '迈克尔·杰克逊',
+          { rosette_options: { some_option: 'value' } }
+        )
+      end.to output(/DEPRECATION WARNING/).to_stderr
+
+      params = NameSimilarityParameters.new(
+        'Michael Jackson',
+        '迈克尔·杰克逊',
+        { rosette_options: { some_option: 'value' } }
+      )
+
+      RosetteAPI.new('0123456789').get_name_similarity(params)
+
+      expect(
+        a_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-similarity')
+          .with(body: hash_including(options: { some_option: 'value' }))
+      ).to have_been_made.once
     end
 
     it 'badRequestFormat: name1 option can only be an instance of a String..' do
@@ -409,7 +604,7 @@ describe RosetteAPI do
     before do
       names_json = { names: names.map(&:load_param), threshold: 0.75 }.to_json
 
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-deduplication')
         .with(
           body: names_json,
           headers: {
@@ -417,9 +612,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -428,7 +625,7 @@ describe RosetteAPI do
 
       nothresh_json = { names: names.map(&:load_param) }.to_json
 
-      stub_request(:post, 'https://api.rosette.com/rest/v1/name-deduplication')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/name-deduplication')
         .with(
           body: nothresh_json,
           headers: {
@@ -436,9 +633,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -489,7 +688,7 @@ describe RosetteAPI do
     before do
       transliteration_json = { content: content }.to_json
 
-      stub_request(:post, 'https://api.rosette.com/rest/v1/transliteration')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/transliteration')
         .with(
           body: transliteration_json,
           headers: {
@@ -497,9 +696,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200,
@@ -530,7 +731,7 @@ describe RosetteAPI do
 
   describe '.get_tokens' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/tokens')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/tokens')
         .with(
           body: @json,
           headers: {
@@ -538,9 +739,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "tokens"}', headers: {})
@@ -555,7 +758,7 @@ describe RosetteAPI do
 
   describe '.get_topics' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/topics')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/topics')
         .with(
           body: @json,
           headers: {
@@ -563,9 +766,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "topics"}', headers: {})
@@ -580,7 +785,7 @@ describe RosetteAPI do
 
   describe '.get_sentences' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/sentences')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/sentences')
         .with(
           body: @json,
           headers: {
@@ -588,9 +793,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "sentences"}', headers: {})
@@ -605,13 +812,13 @@ describe RosetteAPI do
 
   describe '.info' do
     before do
-      stub_request(:get, 'https://api.rosette.com/rest/v1/info')
+      stub_request(:get, 'https://analytics.babelstreet.com/rest/v1/info')
         .with(
           headers: {
             'Accept' => '*/*',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789'
+            'X-BabelStreetAPI-Key' => '0123456789'
           }
         )
         .to_return(status: 200, body: '{"test": "info"}', headers: {})
@@ -624,13 +831,13 @@ describe RosetteAPI do
 
   describe '.ping' do
     before do
-      stub_request(:get, 'https://api.rosette.com/rest/v1/ping')
+      stub_request(:get, 'https://analytics.babelstreet.com/rest/v1/ping')
         .with(
           headers: {
             'Accept' => '*/*',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789'
+            'X-BabelStreetAPI-Key' => '0123456789'
           }
         )
         .to_return(status: 200, body: '{"test": "ping"}', headers: {})
@@ -643,7 +850,7 @@ describe RosetteAPI do
 
   describe '.get_language_custom_header' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/language')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
         .with(
           body: @json,
           headers: {
@@ -651,18 +858,87 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1',
-            'X-RosetteApi-App' => 'ruby-app'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-RosetteAPI-App' => 'ruby-app'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
     end
 
+    it 'sends custom header with X-RosetteAPI- prefix' do
+      params = DocumentParameters.new
+      params.content = @content
+      params.custom_headers = { 'X-RosetteAPI-App' => 'ruby-app' }
+
+      response = RosetteAPI.new('0123456789').get_language(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'sends custom header with X-BabelStreetAPI- prefix' do
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-App' => 'ruby-app'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
+
+      params = DocumentParameters.new
+      params.content = @content
+      params.custom_headers = { 'X-BabelStreetAPI-App' => 'ruby-app' }
+
+      response = RosetteAPI.new('0123456789').get_language(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'sends custom headers with both prefixes together' do
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/language')
+        .with(
+          body: @json,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-RosetteAPI-App' => 'ruby-app',
+            'X-BabelStreetAPI-App' => 'ruby-app'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "language"}', headers: {})
+
+      params = DocumentParameters.new
+      params.content = @content
+      params.custom_headers = {
+        'X-RosetteAPI-App' => 'ruby-app',
+        'X-BabelStreetAPI-App' => 'ruby-app'
+      }
+
+      response = RosetteAPI.new('0123456789').get_language(params)
+      expect(response).instance_of? Hash
+    end
+
     it 'test custom_headers is invalid' do
       params = DocumentParameters.new
-      params.content = 'Por favor Senorita, says the man.?'
+      params.content = @content
       params.custom_headers = { 'test' => 'ruby-app' }
       expect { RosetteAPI.new('0123456789').get_language(params) }
         .to raise_error(RosetteAPIError)
@@ -671,13 +947,13 @@ describe RosetteAPI do
 
   describe '.error_409_incompatible_client_version' do
     before do
-      stub_request(:get, 'https://api.rosette.com/rest/v1/info')
+      stub_request(:get, 'https://analytics.babelstreet.com/rest/v1/info')
         .with(
           headers: {
             'Accept' => '*/*',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789'
+            'X-BabelStreetAPI-Key' => '0123456789'
           }
         )
         .to_return(status: 409,
@@ -692,7 +968,7 @@ describe RosetteAPI do
 
   describe '.get_similar_terms' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/similar')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/semantics/similar')
         .with(
           body: @json,
           headers: {
@@ -700,9 +976,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -719,7 +997,7 @@ describe RosetteAPI do
 
   describe '.get_semantic_vectors' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/semantics/vector')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/semantics/vector')
         .with(
           body: @json,
           headers: {
@@ -727,9 +1005,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -744,7 +1024,7 @@ describe RosetteAPI do
 
   describe '.get_syntax_dependencies' do
     before do
-      stub_request(:post, 'https://api.rosette.com/rest/v1/syntax/dependencies')
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/syntax/dependencies')
         .with(
           body: @json,
           headers: {
@@ -752,9 +1032,11 @@ describe RosetteAPI do
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Content-Type' => 'application/json',
             'User-Agent' => @user_agent,
-            'X-Rosetteapi-Key' => '0123456789',
+            'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.27.1'
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -769,35 +1051,67 @@ describe RosetteAPI do
 
   describe '.address_similarity' do
     before do
-      address_similarity_json = {
-        address1: {
-          houseNumber: '1600',
-          road: 'Pennsylvania Ave NW',
-          city: 'Washington',
-          state: 'DC'
-        },
-        address2: {
-          houseNumber: '1600',
-          road: 'Pennsilvana Avenue',
-          city: 'Washington',
-          state: 'D.C.'
-        }
-      }.to_json
-      stub_request(:post, 'https://api.rosette.com/rest/v1/address-similarity')
-        .with(body: address_similarity_json,
-              headers: {
-                'Accept' => 'application/json',
-                'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                'Content-Type' => 'application/json',
-                'User-Agent' => @user_agent,
-                'X-Rosetteapi-Key' => '0123456789',
-                'X-Rosetteapi-Binding' => 'ruby',
-                'X-Rosetteapi-Binding-Version' => '1.27.1'
-              })
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/address-similarity')
+        .with(
+          body: hash_including(
+            address1: {
+              houseNumber: '1600',
+              road: 'Pennsylvania Ave NW',
+              city: 'Washington',
+              state: 'DC'
+            },
+            address2: {
+              houseNumber: '1600',
+              road: 'Pennsilvana Avenue',
+              city: 'Washington',
+              state: 'D.C.'
+            }
+          ),
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
         .to_return(status: 200,
                    body: '{"test": "address-similarity"}',
                    headers: {})
     end
+
+    it 'sends parameters in the request body when provided' do
+      address1 = AddressParameter.new(
+        house_number: '1600',
+        road: 'Pennsylvania Ave NW',
+        city: 'Washington',
+        state: 'DC'
+      )
+      address2 = AddressParameter.new(
+        house_number: '1600',
+        road: 'Pennsilvana Avenue',
+        city: 'Washington',
+        state: 'D.C.'
+      )
+
+      params = AddressSimilarityParameters.new(
+        address1,
+        address2,
+        { someOption: true }
+      )
+
+      RosetteAPI.new('0123456789').get_address_similarity(params)
+
+      expect(
+        a_request(:post, 'https://analytics.babelstreet.com/rest/v1/address-similarity')
+          .with(body: hash_including(parameters: { someOption: true }))
+      ).to have_been_made.once
+    end
+
     it 'test address similarity' do
       address1 = AddressParameter.new(
         house_number: '1600',
@@ -846,6 +1160,134 @@ describe RosetteAPI do
       params = NameTranslationParameters
                .new('معمر محمد أبو منيار القذاف'.encode('UTF-8'), 'eng')
       expect { RosetteAPI.new('0123456789').get_address_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+  end
+
+  describe 'NameParameter gender' do
+    it 'serializes gender when valid' do
+      name = NameParameter.new('Alex Smith', gender: 'nonbinary')
+      expect(name.load_param).to include('gender' => 'nonbinary')
+    end
+
+    it 'raises when gender is invalid' do
+      expect { NameParameter.new('Alex Smith', gender: 'unknown') }
+        .to raise_error(ArgumentError)
+    end
+  end
+
+  describe '.get_record_similarity' do
+    before do
+      body = {
+        fields: { 'primaryName' => { type: 'rni_name', weight: 0.5 } },
+        records: { left: [{ 'primaryName' => { text: 'Ethan R' } }], right: [{ 'primaryName' => { text: 'Seth R' } }] },
+        properties: { threshold: 0.7 }
+      }.to_json
+
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/record-similarity')
+        .with(
+          body: body,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
+    end
+
+    it 'test record similarity (minimal request with properties)' do
+      fields = { 'primaryName' => { type: 'rni_name', weight: 0.5 } }
+      records = {
+        left: [{ 'primaryName' => { text: 'Ethan R' } }],
+        right: [{ 'primaryName' => { text: 'Seth R' } }]
+      }
+      properties = { threshold: 0.7 }
+
+      params = RecordSimilarityParameters.new(fields, records, properties)
+      response = RosetteAPI.new('0123456789').get_record_similarity(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'test record similarity without properties' do
+      body = {
+        fields: { 'primaryName' => { type: 'rni_name', weight: 0.5 } },
+        records: { left: [{ 'primaryName' => { text: 'Ethan R' } }], right: [{ 'primaryName' => { text: 'Seth R' } }] }
+      }.to_json
+
+      stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/record-similarity')
+        .with(
+          body: body,
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Content-Type' => 'application/json',
+            'User-Agent' => @user_agent,
+            'X-BabelStreetAPI-Key' => '0123456789',
+            'X-Rosetteapi-Binding' => 'ruby',
+            'X-BabelStreetAPI-Binding' => 'ruby',
+            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+          }
+        )
+        .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
+
+      fields = { 'primaryName' => { type: 'rni_name', weight: 0.5 } }
+      records = {
+        left: [{ 'primaryName' => { text: 'Ethan R' } }],
+        right: [{ 'primaryName' => { text: 'Seth R' } }]
+      }
+
+      params = RecordSimilarityParameters.new(fields, records)
+      response = RosetteAPI.new('0123456789').get_record_similarity(params)
+      expect(response).instance_of? Hash
+    end
+
+    it 'badRequest: fields is required' do
+      params = RecordSimilarityParameters.new(nil, { left: [{}], right: [{}] }, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: fields must be a Hash' do
+      params = RecordSimilarityParameters.new(['not-a-hash'], { left: [{}], right: [{}] }, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: fields must not be empty' do
+      params = RecordSimilarityParameters.new({}, { left: [{}], right: [{}] }, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: records is required' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, nil, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: records must be a Hash' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, ['not-a-hash'], { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: records must not be empty' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, {}, { threshold: 0.7 })
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
+        .to raise_error(BadRequestError)
+    end
+
+    it 'badRequest: properties must be a Hash when provided' do
+      params = RecordSimilarityParameters.new({ 'primaryName' => {} }, { left: [{}], right: [{}] }, 'nope')
+      expect { RosetteAPI.new('0123456789').get_record_similarity(params) }
         .to raise_error(BadRequestError)
     end
   end

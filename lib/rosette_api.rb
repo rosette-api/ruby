@@ -5,67 +5,70 @@ require_relative 'document_parameters'
 require_relative 'name_deduplication_parameters'
 require_relative 'name_translation_parameters'
 require_relative 'name_similarity_parameters'
+require_relative 'record_similarity_parameters'
 require_relative 'address_similarity_parameters'
 require_relative 'rosette_api_error'
 require_relative 'bad_request_error'
 require_relative 'bad_request_format_error'
 require 'logger'
 
-# This class allows you to access all Rosette API endpoints.
+# This class allows you to access all Analytics API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.27.1'
-  # Rosette API language endpoint
-  LANGUAGE_ENDPOINT = '/language'
-  # Rosette API morphology endpoint
-  MORPHOLOGY_ENDPOINT = '/morphology'
-  # Rosette API entities endpoint
-  ENTITIES_ENDPOINT = '/entities'
-  # Rosette API categories endpoint
+  BINDING_VERSION = '1.37.0'
+  # API address-similarity endpoint
+  ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'
+  # API categories endpoint
   CATEGORIES_ENDPOINT = '/categories'
-  # Rosette API relationships endpoint
-  RELATIONSHIPS_ENDPOINT = '/relationships'
-  # Rosette API sentiment endpoint
-  SENTIMENT_ENDPOINT = '/sentiment'
+  # API entities endpoint
+  ENTITIES_ENDPOINT = '/entities'
+  # API events endpoint
+  EVENTS_ENDPOINT = '/events'
+  # API info endpoint
+  INFO = '/info'
+  # API language endpoint
+  LANGUAGE_ENDPOINT = '/language'
+  # API morphology endpoint
+  MORPHOLOGY_ENDPOINT = '/morphology'
   # Name Deduplication endpoint
   NAME_DEDUPLICATION_ENDPOINT = '/name-deduplication'
-  # Rosette API name-translation endpoint
-  NAME_TRANSLATION_ENDPOINT = '/name-translation'
-  # Rosette API name-similarity endpoint
+  # API name-similarity endpoint
   NAME_SIMILARITY_ENDPOINT = '/name-similarity'
-  # Rosette API address-similarity endpoint
-  ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'
-  # Rosette API tokens endpoint
-  TOKENS_ENDPOINT = '/tokens'
-  # Rosette API sentences endpoint
-  SENTENCES_ENDPOINT = '/sentences'
-  # Rosette API info endpoint
-  INFO = '/info'
-  # Rosette API ping endpoint
+  # API name-translation endpoint
+  NAME_TRANSLATION_ENDPOINT = '/name-translation'
+  # API ping endpoint
   PING = '/ping'
-  # Text Embedding endpoint (deprecated)
-  TEXT_EMBEDDING = '/text-embedding'
-  # Semantic Vectors endpoint (replaces /text-embedding)
+  # Record Similarity endpoint
+  RECORD_SIMILARITY_ENDPOINT = '/record-similarity'
+  # API relationships endpoint
+  RELATIONSHIPS_ENDPOINT = '/relationships'
+  # Semantic Vectors endpoint (replaces deprecated /text-embedding)
   SEMANTIC_VECTORS = '/semantics/vector'
+  # API sentences endpoint
+  SENTENCES_ENDPOINT = '/sentences'
+  # API sentiment endpoint
+  SENTIMENT_ENDPOINT = '/sentiment'
   # Similar Terms endpoint
   SIMILAR_TERMS_ENDPOINT = '/semantics/similar'
   # Syntactic Dependencies endpoint
   SYNTACTIC_DEPENDENCIES_ENDPOINT = '/syntax/dependencies'
-  # Transliteration endpoint
-  TRANSLITERATION_ENDPOINT = '/transliteration'
+  # API tokens endpoint
+  TOKENS_ENDPOINT = '/tokens'
   # Topics endpoint
   TOPICS_ENDPOINT = '/topics'
+  # Transliteration endpoint
+  TRANSLITERATION_ENDPOINT = '/transliteration'
 
-  # Rosette API key
+  # API key
   attr_accessor :user_key
-  # Alternate Rosette API URL
+  # Alternate API URL
   attr_accessor :alternate_url
-  # custom Rosette API headers
+  # custom API headers
   attr_accessor :custom_headers
   # URL query parameter(s)
   attr_accessor :url_parameters
 
-  def initialize(user_key, alternate_url = 'https://api.rosette.com/rest/v1')
+  def initialize(user_key, alternate_url = 'https://analytics.babelstreet.com/rest/v1')
     @log = Logger.new($stdout)
     @user_key = user_key
     @alternate_url = alternate_url
@@ -350,6 +353,26 @@ class RosetteAPI
                   .send_post_request
   end
 
+  # Compares records and returns similarity information.
+  #
+  # ==== Attributes
+  #
+  # * +params+ - RecordSimilarityParameters helps to build the request body in
+  #   RequestBuilder.
+  #
+  # Returns record similarity results.
+  def get_record_similarity(params)
+    check_params params,
+                 'Expects a RecordSimilarityParameters type as an argument',
+                 RecordSimilarityParameters
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + RECORD_SIMILARITY_ENDPOINT,
+                       @http_client, BINDING_VERSION, params, @url_parameters)
+                  .send_post_request
+  end
+
   # Divides the input into tokens.
   #
   # ==== Attributes
@@ -398,13 +421,8 @@ class RosetteAPI
   #
   # Returns the text embedding representation of the input.
   def get_text_embedding(params)
-    check_params params
-
-    params = params.load_params
-
-    RequestBuilder.new(@user_key, @alternate_url + TEXT_EMBEDDING, @http_client,
-                       BINDING_VERSION, params, @url_parameters)
-                  .send_post_request
+    @log.warn('get_text_embedding is deprecated. Please use get_semantic_vectors instead.')
+    get_semantic_vectors(params)
   end
 
   #
@@ -501,7 +519,25 @@ class RosetteAPI
                   .send_post_request
   end
 
-  # Gets information about the Rosette API, returns name, build number
+  # Returns the events of the input
+  #
+  # ==== Attributes
+  #
+  # * +params+ - DocumentParameters helps to build the request body in
+  #   RequestBuilder.
+  #
+  # Returns the events of the input
+  def get_events(params)
+    check_params params
+
+    params = params.load_params
+
+    RequestBuilder.new(@user_key, @alternate_url + EVENTS_ENDPOINT,
+                       @http_client, BINDING_VERSION, params, @url_parameters)
+                  .send_post_request
+  end
+
+  # Gets information about the API, returns name, build number
   # and build time.
   def info
     RequestBuilder.new(@user_key, @alternate_url + INFO, @http_client,
@@ -509,7 +545,7 @@ class RosetteAPI
                   .send_get_request
   end
 
-  # Pings the Rosette API for a response indicting that the service is
+  # Pings the API for a response indicting that the service is
   # available.
   def ping
     RequestBuilder.new(@user_key, @alternate_url + PING, @http_client,

@@ -1,0 +1,12 @@
+{
+  "name": "Ruby SDK",
+  "image": "mcr.microsoft.com/devcontainers/ruby:3.3",
+  "postCreateCommand": "gem install bundler && bundle install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp"
+      ]
+    }
+  }
+}

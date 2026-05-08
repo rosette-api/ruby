@@ -5,17 +5,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>class RosetteAPIError - RDoc Documentation</title>
+<title>class RecordSimilarityParameters - RDoc Documentation</title>
 
 
   <meta
     name="keywords"
-    content="ruby,class,RosetteAPIError"
+    content="ruby,class,RecordSimilarityParameters"
   >
 
     <meta
       name="description"
-      content="class RosetteAPIError: This class encapsulates all API server errors encountered during requests."
+      content="class RecordSimilarityParameters: This class encapsulates parameters that are needed for record-similarity in Analytics API."
     >
 
 
@@ -24,11 +24,11 @@
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="class RosetteAPIError - RDoc Documentation">
+<meta property="og:title" content="class RecordSimilarityParameters - RDoc Documentation">
 
 
 
-    <meta property="og:description" content="This class encapsulates all API server errors encountered during requests.">
+    <meta property="og:description" content="This class encapsulates parameters that are needed for record-similarity in Analytics API.">
 
 
 
@@ -36,11 +36,11 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="class RosetteAPIError - RDoc Documentation">
+<meta name="twitter:title" content="class RecordSimilarityParameters - RDoc Documentation">
 
 
 
-    <meta name="twitter:description" content="This class encapsulates all API server errors encountered during requests.">
+    <meta name="twitter:description" content="This class encapsulates parameters that are needed for record-similarity in Analytics API.">
 
 
 
@@ -384,7 +384,7 @@
         <svg><use href="#icon-chevron"></use></svg>
       </span>
     </summary>
-    <ul><li>StandardError</li></ul>
+    <ul><li>Object</li></ul>
   </details>
 </div>
 
@@ -409,7 +409,13 @@
       </summary>
       <ul class="nav-list" role="directory">
 
-        <li class="calls-super" ><a href="#method-i-initialize">initialize</a></li>
+        <li ><a href="#method-i-initialize">initialize</a></li>
+
+        <li ><a href="#method-i-load_params">load_params</a></li>
+
+        <li ><a href="#method-i-to_hash">to_hash</a></li>
+
+        <li ><a href="#method-i-validate_params">validate_params</a></li>
 
       </ul>
     </details>
@@ -434,17 +440,17 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-RosetteAPIError">
+<main role="main" aria-labelledby="class-RecordSimilarityParameters">
   
   
 
-  <h1 id="class-RosetteAPIError" class="anchor-link class">
-    class RosetteAPIError
+  <h1 id="class-RecordSimilarityParameters" class="anchor-link class">
+    class RecordSimilarityParameters
   </h1>
 
   <section class="description">
     
-<p>This class encapsulates all API server errors encountered during requests.</p>
+<p>This class encapsulates parameters that are needed for record-similarity in Analytics API.</p>
 
   </section>
 
@@ -463,10 +469,10 @@
       </header>
 
 
-      <div id="attribute-i-message" class="method-detail anchor-link">
+      <div id="attribute-i-fields" class="method-detail anchor-link">
         <div class="method-heading attribute-method-heading">
-          <a href="#attribute-i-message" title="Link to this attribute">
-            <span class="method-name">message</span>
+          <a href="#attribute-i-fields" title="Link to this attribute">
+            <span class="method-name">fields</span>
             <span class="attribute-access-type">[RW]</span>
           </a>
         </div>
@@ -474,15 +480,15 @@
         <div class="method-description">
 
 
-        <p>API error’s message</p>
+        <p>Field names/definitions used for similarity scoring (required)</p>
 
         </div>
       </div>
 
-      <div id="attribute-i-status_code" class="method-detail anchor-link">
+      <div id="attribute-i-properties" class="method-detail anchor-link">
         <div class="method-heading attribute-method-heading">
-          <a href="#attribute-i-status_code" title="Link to this attribute">
-            <span class="method-name">status_code</span>
+          <a href="#attribute-i-properties" title="Link to this attribute">
+            <span class="method-name">properties</span>
             <span class="attribute-access-type">[RW]</span>
           </a>
         </div>
@@ -490,7 +496,23 @@
         <div class="method-description">
 
 
-        <p>API error’s status code</p>
+        <p>Optional properties map sent to the API (optional, should be a hash)</p>
+
+        </div>
+      </div>
+
+      <div id="attribute-i-records" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-records" title="Link to this attribute">
+            <span class="method-name">records</span>
+            <span class="attribute-access-type">[RW]</span>
+          </a>
+        </div>
+
+        <div class="method-description">
+
+
+        <p>Records to be compared (required)</p>
 
         </div>
       </div>
@@ -508,6 +530,170 @@
 
 
 
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
+       <header>
+         <h3 id="public-instance-methods"><a href="#public-instance-methods">Public Instance Methods</a></h3>
+       </header>
+
+
+      <div id="method-i-load_params" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-load_params" title="Link to this method">
+                <span class="method-name">load_params</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+          <div class="method-source-code" id="load_params-source">
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_params</span>
+  <span class="ruby-identifier">validate_params</span>
+  <span class="ruby-identifier">to_hash</span>
+    .<span class="ruby-identifier">compact</span>
+    .<span class="ruby-identifier">transform_keys</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp">/\D/</span>, <span class="ruby-operator">&amp;</span><span class="ruby-value">:downcase</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
+        <div class="method-description">
+
+
+          <p>Converts this class to Hash with its keys in lower CamelCase.</p>
+
+<p>Returns the new Hash.</p>
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div id="method-i-to_hash" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-to_hash" title="Link to this method">
+                <span class="method-name">to_hash</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+          <div class="method-source-code" id="to_hash-source">
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_hash</span>
+  {
+    <span class="ruby-value">fields:</span> <span class="ruby-ivar">@fields</span>,
+    <span class="ruby-value">records:</span> <span class="ruby-ivar">@records</span>,
+    <span class="ruby-value">properties:</span> <span class="ruby-ivar">@properties</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
+        <div class="method-description">
+
+
+          <p>Converts this class to Hash.</p>
+
+<p>Returns the new Hash.</p>
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div id="method-i-validate_params" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-validate_params" title="Link to this method">
+                <span class="method-name">validate_params</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+          <div class="method-source-code" id="validate_params-source">
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_params</span>
+  <span class="ruby-identifier">f_msg</span> = <span class="ruby-string">&#39;fields option is required&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f_msg</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">f_type_msg</span> = <span class="ruby-string">&#39;fields can only be an instance of a Hash&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f_type_msg</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+
+  <span class="ruby-identifier">f_empty_msg</span> = <span class="ruby-string">&#39;fields must not be empty&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f_empty_msg</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">r_msg</span> = <span class="ruby-string">&#39;records option is required&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">r_msg</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@records</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">r_type_msg</span> = <span class="ruby-string">&#39;records can only be an instance of a Hash&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">r_type_msg</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@records</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+
+  <span class="ruby-identifier">r_empty_msg</span> = <span class="ruby-string">&#39;records must not be empty&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">r_empty_msg</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@records</span>.<span class="ruby-identifier">empty?</span>
+
+  <span class="ruby-identifier">p_msg</span> = <span class="ruby-string">&#39;properties can only be an instance of a Hash&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">p_msg</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@properties</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-ivar">@properties</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
+        <div class="method-description">
+
+
+          <p>Validates the parameters by checking if required fields are present and optional properties is a Hash if provided.</p>
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+    </section>
+
 
      <section id="protected-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
        <header>
@@ -521,7 +707,7 @@
             <div class="method-heading">
               <a href="#method-i-initialize" title="Link to this method">
                 <span class="method-name">initialize</span>
-                <span class="method-args">(status_code, message)</span>
+                <span class="method-args">(fields, records, properties = nil)</span>
               </a>
             </div>
 
@@ -534,11 +720,11 @@
             </details>
           </div>
           <div class="method-source-code" id="initialize-source">
-            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File rosette_api_error.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">status_code</span>, <span class="ruby-identifier">message</span>) <span class="ruby-comment"># :notnew:</span>
-  <span class="ruby-ivar">@status_code</span> = <span class="ruby-identifier">status_code</span>
-  <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
-  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">message</span>)
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">fields</span>, <span class="ruby-identifier">records</span>, <span class="ruby-identifier">properties</span> = <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># :notnew:</span>
+  <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">fields</span>
+  <span class="ruby-ivar">@records</span> = <span class="ruby-identifier">records</span>
+  <span class="ruby-ivar">@properties</span> = <span class="ruby-identifier">properties</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
 
@@ -549,11 +735,6 @@
 
           
 
-
-            <div class="method-calls-super">
-              Calls superclass method
-              
-            </div>
 
         </div>
 

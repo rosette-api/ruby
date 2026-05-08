@@ -1,191 +1,795 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>class RequestBuilder - RDoc Documentation</title>
+
+
+  <meta
+    name="keywords"
+    content="ruby,class,RequestBuilder"
+  >
+
+    <meta
+      name="description"
+      content="class RequestBuilder: This class handles all Analytics API requests."
+    >
+
+
+
+
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="class RequestBuilder - RDoc Documentation">
+
+
+
+    <meta property="og:description" content="This class handles all Analytics API requests.">
+
+
+
+
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="class RequestBuilder - RDoc Documentation">
+
+
+
+    <meta name="twitter:description" content="This class handles all Analytics API requests.">
+
+
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
   var index_rel_prefix = "./";
 </script>
 
-<script src="./js/navigation.js" defer></script>
-<script src="./js/search.js" defer></script>
-<script src="./js/search_index.js" defer></script>
-<script src="./js/searcher.js" defer></script>
-<script src="./js/darkfish.js" defer></script>
+<script
+  src="./js/theme-toggle.js?v=7.0.3"
+></script>
 
-<link href="./css/fonts.css" rel="stylesheet">
-<link href="./css/rdoc.css" rel="stylesheet">
+<script
+  src="./js/search_navigation.js?v=7.0.3"
+  defer
+></script>
+
+<script
+  src="./js/search_data.js?v=7.0.3"
+  defer
+></script>
+
+<script
+  src="./js/search_ranker.js?v=7.0.3"
+  defer
+></script>
+
+<script
+  src="./js/search_controller.js?v=7.0.3"
+  defer
+></script>
+
+<script
+  src="./js/c_highlighter.js?v=7.0.3"
+  defer
+></script>
+
+<script
+  src="./js/aliki.js?v=7.0.3"
+  defer
+></script>
+
+<link
+  href="./css/rdoc.css?v=7.0.3"
+  rel="stylesheet"
+>
 
 
-<body id="top" role="document" class="class">
-<nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="./index.html" rel="home">Home</a>
-  </h2>
 
-  <div id="table-of-contents-navigation">
-    <a href="./table_of_contents.html#pages">Pages</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
 
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
+<body role="document" class="class has-toc">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <!-- Chevron (right arrow) - used for expand/collapse -->
+  <symbol
+    id="icon-chevron"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </symbol>
+
+  <!-- File/Document - Pages section -->
+  <symbol
+    id="icon-file"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path
+      d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+    ></path>
+
+    <polyline points="14 2 14 8 20 8"></polyline>
+  </symbol>
+
+  <!-- Layers/Stack - Classes and Modules section -->
+  <symbol
+    id="icon-layers"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+    <polyline points="2 17 12 22 22 17"></polyline>
+    <polyline points="2 12 12 17 22 12"></polyline>
+  </symbol>
+
+  <!-- Curly braces with C - Class Methods section -->
+  <symbol
+    id="icon-class-methods"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M6 3C3.5 3 2 4.5 2 7v3c0 1.5-1 2-1 2s1 .5 1 2v5c0 2.5 1.5 4 4 4"></path>
+    <path d="M18 3c2.5 0 4 1.5 4 4v3c0 1.5 1 2 1 2s-1 .5-1 2v5c0 2.5-1.5 4-4 4"></path>
+
+    <text
+      x="12"
+      y="17"
+      text-anchor="middle"
+      font-size="13"
+      font-weight="bold"
+      fill="currentColor"
+      stroke="none"
+    >
+      C
+    </text>
+  </symbol>
+
+  <!-- Curly braces with I - Instance Methods section -->
+  <symbol
+    id="icon-instance-methods"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M6 3C3.5 3 2 4.5 2 7v3c0 1.5-1 2-1 2s1 .5 1 2v5c0 2.5 1.5 4 4 4"></path>
+    <path d="M18 3c2.5 0 4 1.5 4 4v3c0 1.5 1 2 1 2s-1 .5-1 2v5c0 2.5-1.5 4-4 4"></path>
+
+    <text
+      x="12"
+      y="17"
+      text-anchor="middle"
+      font-size="13"
+      font-weight="bold"
+      fill="currentColor"
+      stroke="none"
+    >
+      I
+    </text>
+  </symbol>
+
+  <!-- Double chevrons up - Ancestors section -->
+  <symbol
+    id="icon-ancestors"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <polyline points="17 11 12 6 7 11"></polyline>
+    <polyline points="17 18 12 13 7 18"></polyline>
+  </symbol>
+
+  <!-- User with plus - Included Modules section -->
+  <symbol
+    id="icon-includes"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+    <circle cx="8.5" cy="7" r="4"></circle>
+
+    <line
+      x1="20"
+      y1="8"
+      x2="20"
+      y2="14"
+    ></line>
+
+    <line
+      x1="23"
+      y1="11"
+      x2="17"
+      y2="11"
+    ></line>
+  </symbol>
+
+  <!-- User with check - Extended Modules section -->
+  <symbol
+    id="icon-extends"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+    <circle cx="8.5" cy="7" r="4"></circle>
+    <polyline points="17 11 19 13 23 9"></polyline>
+  </symbol>
+
+  <!-- List - Sections section -->
+  <symbol
+    id="icon-list"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <line
+      x1="8"
+      y1="6"
+      x2="21"
+      y2="6"
+    ></line>
+
+    <line
+      x1="8"
+      y1="12"
+      x2="21"
+      y2="12"
+    ></line>
+
+    <line
+      x1="8"
+      y1="18"
+      x2="21"
+      y2="18"
+    ></line>
+
+    <line
+      x1="3"
+      y1="6"
+      x2="3.01"
+      y2="6"
+    ></line>
+
+    <line
+      x1="3"
+      y1="12"
+      x2="3.01"
+      y2="12"
+    ></line>
+
+    <line
+      x1="3"
+      y1="18"
+      x2="3.01"
+      y2="18"
+    ></line>
+  </symbol>
+</svg>
+
+<header class="top-navbar">
+  <a href="./index.html" class="navbar-brand">
+    RDoc Documentation
+  </a>
+
+  <!-- Desktop search bar -->
+  <div class="navbar-search navbar-search-desktop" role="search">
+    <form action="#" method="get" accept-charset="utf-8">
       <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
+             aria-autocomplete="list" aria-controls="search-results-desktop"
+             type="text" name="search" placeholder="Search (/) for a class, method..."
+             spellcheck="false" autocomplete="off"
              title="Type to search, Up and Down to navigate, Enter to load">
-    </div>
+      <ul id="search-results-desktop" aria-label="Search Results"
+          aria-busy="false" aria-expanded="false"
+          aria-atomic="false" class="initially-hidden search-results"></ul>
+    </form>
+  </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
+  <!-- Mobile search icon button -->
+  <button id="search-toggle" class="navbar-search-mobile" aria-label="Open search" type="button">
+    <span aria-hidden="true">🔍</span>
+  </button>
+
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" type="button">
+    <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+  </button>
+</header>
+
+<!-- Search Modal (Mobile) -->
+<div id="search-modal" class="search-modal" hidden aria-modal="true" role="dialog" aria-label="Search">
+  <div class="search-modal-backdrop"></div>
+  <div class="search-modal-content">
+    <div class="search-modal-header">
+      <form class="search-modal-form" action="#" method="get" accept-charset="utf-8">
+        <span class="search-modal-icon" aria-hidden="true">🔍</span>
+        <input id="search-field-mobile" role="combobox" aria-label="Search"
+               aria-autocomplete="list" aria-controls="search-results-mobile"
+               type="text" name="search" placeholder="Search documentation"
+               spellcheck="false" autocomplete="off">
+        <button type="button" class="search-modal-close" aria-label="Close search" id="search-modal-close">
+          <span aria-hidden="true">esc</span>
+        </button>
+      </form>
+    </div>
+    <div class="search-modal-body">
+      <ul id="search-results-mobile" aria-label="Search Results"
+          aria-busy="false" aria-expanded="false"
+          aria-atomic="false" class="search-results search-modal-results initially-hidden"></ul>
+      <div class="search-modal-empty">
+        <p>No recent searches</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-  </div>
+<div id="navigation-toggle" role="button" tabindex="0" aria-label="Toggle sidebar" aria-expanded="true" aria-controls="navigation">
+  <span aria-hidden="true">&#9776;</span>
+</div>
+
+
+<nav id="navigation" role="navigation" hidden>
+  
+
+
+
+
 
   
 
-  <div id="class-metadata">
-    
-    
+  
 <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
-
-  <p class="link">Object
+  <details class="nav-section-collapsible" open>
+    <summary class="nav-section-header">
+      <span class="nav-section-icon">
+        <svg><use href="#icon-ancestors"></use></svg>
+      </span>
+      <span class="nav-section-title">Ancestors</span>
+      <span class="nav-section-chevron">
+        <svg><use href="#icon-chevron"></use></svg>
+      </span>
+    </summary>
+    <ul><li>Object</li></ul>
+  </details>
 </div>
 
-    
-    
-    
-<!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
 
-  <ul class="link-list" role="directory">
-    <li ><a href="#method-c-new">::new</a>
-    <li ><a href="#method-i-get_response">#get_response</a>
-    <li ><a href="#method-i-prepare_multipart_request">#prepare_multipart_request</a>
-    <li ><a href="#method-i-prepare_plain_request">#prepare_plain_request</a>
-    <li ><a href="#method-i-send_get_request">#send_get_request</a>
-    <li ><a href="#method-i-send_post_request">#send_post_request</a>
-  </ul>
-</div>
+  
 
+  
+
+  
+  <div class="nav-section">
+    <details class="nav-section-collapsible" open>
+      <summary class="nav-section-header">
+        <span class="nav-section-icon">
+          <svg><use href="#icon-class-methods"></use></svg>
+        </span>
+        <span class="nav-section-title">Class Methods</span>
+        <span class="nav-section-chevron">
+          <svg><use href="#icon-chevron"></use></svg>
+        </span>
+      </summary>
+      <ul class="nav-list" role="directory">
+
+        <li ><a href="#method-c-new">new</a></li>
+
+      </ul>
+    </details>
   </div>
+
+
+
+  <div class="nav-section">
+    <details class="nav-section-collapsible" open>
+      <summary class="nav-section-header">
+        <span class="nav-section-icon">
+          <svg><use href="#icon-instance-methods"></use></svg>
+        </span>
+        <span class="nav-section-title">Instance Methods</span>
+        <span class="nav-section-chevron">
+          <svg><use href="#icon-chevron"></use></svg>
+        </span>
+      </summary>
+      <ul class="nav-list" role="directory">
+
+        <li ><a href="#method-i-get_response">get_response</a></li>
+
+        <li ><a href="#method-i-prepare_multipart_request">prepare_multipart_request</a></li>
+
+        <li ><a href="#method-i-prepare_plain_request">prepare_plain_request</a></li>
+
+        <li ><a href="#method-i-read_multipart_file">read_multipart_file</a></li>
+
+        <li ><a href="#method-i-send_get_request">send_get_request</a></li>
+
+        <li ><a href="#method-i-send_post_request">send_post_request</a></li>
+
+      </ul>
+    </details>
+  </div>
+
+
+  <div id="classindex-section" class="nav-section">
+  <details class="nav-section-collapsible" open>
+    <summary class="nav-section-header">
+      <span class="nav-section-icon">
+        <svg><use href="#icon-layers"></use></svg>
+      </span>
+      <span class="nav-section-title">Classes and Modules</span>
+      <span class="nav-section-chevron">
+        <svg><use href="#icon-chevron"></use></svg>
+      </span>
+    </summary>
+
+    <ul class="link-list nav-list"><li><code><a href="./AddressParameter.html">AddressParameter</a></code></li><li><code><a href="./AddressSimilarityParameters.html">AddressSimilarityParameters</a></code></li><li><code><a href="./BadRequestError.html">BadRequestError</a></code></li><li><code><a href="./BadRequestFormatError.html">BadRequestFormatError</a></code></li><li><code><a href="./DocumentParameters.html">DocumentParameters</a></code></li><li><code><a href="./NameDeduplicationParameters.html">NameDeduplicationParameters</a></code></li><li><code><a href="./NameParameter.html">NameParameter</a></code></li><li><code><a href="./NameSimilarityParameters.html">NameSimilarityParameters</a></code></li><li><code><a href="./NameTranslationParameters.html">NameTranslationParameters</a></code></li><li><code><a href="./RecordSimilarityParameters.html">RecordSimilarityParameters</a></code></li><li><code><a href="./RequestBuilder.html">RequestBuilder</a></code></li><li><code><a href="./RosetteAPI.html">RosetteAPI</a></code></li><li><code><a href="./RosetteAPIError.html">RosetteAPIError</a></code></li></ul>
+  </details>
+</div>
+
 </nav>
 
 <main role="main" aria-labelledby="class-RequestBuilder">
-  <h1 id="class-RequestBuilder" class="class">
+  
+  
+
+  <h1 id="class-RequestBuilder" class="anchor-link class">
     class RequestBuilder
   </h1>
 
   <section class="description">
     
-<p>This class handles all Rosette API requests.</p>
+<p>This class handles all Analytics API requests.</p>
 
   </section>
 
-  <section id="5Buntitled-5D" class="documentation-section">
+
+  <section id="5Buntitled-5D" class="documentation-section anchor-link">
 
 
 
-    <section class="attribute-method-details" class="method-section">
+
+
+    <section class="constants-list">
       <header>
-        <h3>Attributes</h3>
+        <h3 id="constants"><a href="#constants">Constants</a></h3>
       </header>
+      <dl>
 
-      <div id="attribute-i-alternate_url" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">alternate_url</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
+        <dt id="ACCEPT_JSON">ACCEPT_JSON</dt>
 
-        <div class="method-description">
-        <p>Alternate Rosette API URL</p>
-        </div>
-      </div>
-      <div id="attribute-i-binding_version" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">binding_version</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+        <dd>
 
-        <div class="method-description">
-        <p>Rosette API binding version</p>
-        </div>
-      </div>
-      <div id="attribute-i-http_client" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">http_client</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
+          
+        </dd>
 
-        <div class="method-description">
-        <p>Rosette API HTTP client</p>
-        </div>
-      </div>
-      <div id="attribute-i-params" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">params</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
 
-        <div class="method-description">
-        <p>Parameters to build the body of the request from</p>
-        </div>
-      </div>
-      <div id="attribute-i-user_agent" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">user_agent</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
+        <dt id="BINDING_NAME">BINDING_NAME</dt>
 
-        <div class="method-description">
-        <p>User-Agent string</p>
-        </div>
-      </div>
-      <div id="attribute-i-user_key" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">user_key</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
+        <dd>
 
-        <div class="method-description">
-        <p>Rosette API key</p>
-        </div>
-      </div>
+          
+        </dd>
+
+
+        <dt id="CONNECTION_ERROR_CODE">CONNECTION_ERROR_CODE</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="CONNECTION_ERROR_MESSAGE">CONNECTION_ERROR_MESSAGE</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="CONTENT_TYPE_JSON">CONTENT_TYPE_JSON</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="CONTENT_TYPE_TEXT_PLAIN">CONTENT_TYPE_TEXT_PLAIN</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="CUSTOM_HEADER_PREFIX_BABELSTREET">CUSTOM_HEADER_PREFIX_BABELSTREET</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="CUSTOM_HEADER_PREFIX_ROSETTE">CUSTOM_HEADER_PREFIX_ROSETTE</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_ACCEPT">HEADER_ACCEPT</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_API_KEY">HEADER_API_KEY</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_BINDING">HEADER_BINDING</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_BINDING_LEGACY">HEADER_BINDING_LEGACY</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_BINDING_VERSION">HEADER_BINDING_VERSION</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_BINDING_VERSION_LEGACY">HEADER_BINDING_VERSION_LEGACY</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_CONTENT_TYPE">HEADER_CONTENT_TYPE</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="HEADER_USER_AGENT">HEADER_USER_AGENT</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="INVALID_HEADER_CODE">INVALID_HEADER_CODE</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="INVALID_HEADER_MESSAGE">INVALID_HEADER_MESSAGE</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="MULTIPART_FORM_DATA">MULTIPART_FORM_DATA</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+        <dt id="READ_MULTIPART_ERROR_CODE">READ_MULTIPART_ERROR_CODE</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+      </dl>
     </section>
 
 
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
 
-      <div id="method-c-new" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">new</span><span
-              class="method-args">(user_key, alternate_url, http_client, binding_version, params = {}, url_parameters = nil)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+    <section class="attribute-method-details method-section">
+      <header>
+        <h3 id="attributes"><a href="#attributes">Attributes</a></h3>
+      </header>
+
+
+      <div id="attribute-i-alternate_url" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-alternate_url" title="Link to this attribute">
+            <span class="method-name">alternate_url</span>
+            <span class="attribute-access-type">[R]</span>
+          </a>
         </div>
 
         <div class="method-description">
-          
 
+
+        <p>Alternate API URL</p>
+
+        </div>
+      </div>
+
+      <div id="attribute-i-binding_version" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-binding_version" title="Link to this attribute">
+            <span class="method-name">binding_version</span>
+            <span class="attribute-access-type">[RW]</span>
+          </a>
+        </div>
+
+        <div class="method-description">
+
+
+        <p>API binding version</p>
+
+        </div>
+      </div>
+
+      <div id="attribute-i-http_client" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-http_client" title="Link to this attribute">
+            <span class="method-name">http_client</span>
+            <span class="attribute-access-type">[R]</span>
+          </a>
+        </div>
+
+        <div class="method-description">
+
+
+        <p>API HTTP client</p>
+
+        </div>
+      </div>
+
+      <div id="attribute-i-params" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-params" title="Link to this attribute">
+            <span class="method-name">params</span>
+            <span class="attribute-access-type">[RW]</span>
+          </a>
+        </div>
+
+        <div class="method-description">
+
+
+        <p>Parameters to build the body of the request from</p>
+
+        </div>
+      </div>
+
+      <div id="attribute-i-user_agent" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-user_agent" title="Link to this attribute">
+            <span class="method-name">user_agent</span>
+            <span class="attribute-access-type">[R]</span>
+          </a>
+        </div>
+
+        <div class="method-description">
+
+
+        <p>User-Agent string</p>
+
+        </div>
+      </div>
+
+      <div id="attribute-i-user_key" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-user_key" title="Link to this attribute">
+            <span class="method-name">user_key</span>
+            <span class="attribute-access-type">[RW]</span>
+          </a>
+        </div>
+
+        <div class="method-description">
+
+
+        <p>API key</p>
+
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section anchor-link">
+       <header>
+         <h3 id="public-class-methods"><a href="#public-class-methods">Public Class Methods</a></h3>
+       </header>
+
+
+      <div id="method-c-new" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-c-new" title="Link to this method">
+                <span class="method-name">new</span>
+                <span class="method-args">(user_key, alternate_url, http_client, binding_version, params = {}, url_parameters = nil)</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 24</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File request_builder.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">user_key</span>, <span class="ruby-identifier">alternate_url</span>, <span class="ruby-identifier">http_client</span>, <span class="ruby-identifier">binding_version</span>,
                <span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">url_parameters</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@user_key</span> = <span class="ruby-identifier">user_key</span>
@@ -200,41 +804,58 @@
   <span class="ruby-ivar">@alternate_url</span> = <span class="ruby-node">&quot;#{@alternate_url}?#{URI.encode_www_form(url_parameters)}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+
+
+
+        <div class="method-description">
+
+
+          
+
+
         </div>
+
+
+
 
 
       </div>
 
+
     </section>
 
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+
+
+
+
+
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
        <header>
-         <h3>Public Instance Methods</h3>
+         <h3 id="public-instance-methods"><a href="#public-instance-methods">Public Instance Methods</a></h3>
        </header>
 
-      <div id="method-i-get_response" class="method-detail ">
+
+      <div id="method-i-get_response" class="method-detail anchor-link ">
         <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">get_response</span><span
-              class="method-args">(http, request)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+
+            <div class="method-heading">
+              <a href="#method-i-get_response" title="Link to this method">
+                <span class="method-name">get_response</span>
+                <span class="method-args">(http, request)</span>
+              </a>
+            </div>
+
         </div>
 
-        <div class="method-description">
-          <p>Gets response from HTTP connection.</p>
 
-<h4 id="method-i-get_response-label-Attributes">Attributes<span><a href="#method-i-get_response-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
-<ul><li>
-<p><code>http</code> - HTTP connection.</p>
-</li><li>
-<p><code>request</code> - Prepared Rosette API request.</p>
-</li></ul>
-
-<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
-
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
           <div class="method-source-code" id="get_response-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 203</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File request_builder.rb, line 242</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_response</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">request</span> <span class="ruby-identifier">request</span>
 
@@ -245,62 +866,80 @@
 
     <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">response_headers</span>)
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">message</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;message&#39;</span>]
-    <span class="ruby-identifier">code</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)[<span class="ruby-string">&#39;code&#39;</span>]
+    <span class="ruby-identifier">parsed_body</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
+    <span class="ruby-identifier">message</span> = <span class="ruby-identifier">parsed_body</span>[<span class="ruby-string">&#39;message&#39;</span>]
+    <span class="ruby-identifier">code</span> = <span class="ruby-identifier">parsed_body</span>[<span class="ruby-string">&#39;code&#39;</span>]
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">code</span>, <span class="ruby-identifier">message</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+
+
+
+        <div class="method-description">
+
+
+          <p>Gets response from HTTP connection.</p>
+
+<h4 id="method-i-get_response-label-Attributes"><a href="#method-i-get_response-label-Attributes">Attributes</a></h4>
+<ul><li>
+<p><code>http</code> - HTTP connection.</p>
+</li><li>
+<p><code>request</code> - Prepared API request.</p>
+</li></ul>
+
+<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
+
+
         </div>
+
+
+
 
 
       </div>
 
-      <div id="method-i-prepare_multipart_request" class="method-detail ">
+
+      <div id="method-i-prepare_multipart_request" class="method-detail anchor-link ">
         <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">prepare_multipart_request</span><span
-              class="method-args">(params)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+
+            <div class="method-heading">
+              <a href="#method-i-prepare_multipart_request" title="Link to this method">
+                <span class="method-name">prepare_multipart_request</span>
+                <span class="method-args">(params)</span>
+              </a>
+            </div>
+
         </div>
 
-        <div class="method-description">
-          <p>Prepares a multipart/form-data POST request for Rosette API.</p>
 
-<h4 id="method-i-prepare_multipart_request-label-Attributes">Attributes<span><a href="#method-i-prepare_multipart_request-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
-<ul><li>
-<p><code>params</code> - Parameters to build the body of the request.</p>
-</li></ul>
-
-<p>Returns a HTTP connection and the built POST request.</p>
-
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
           <div class="method-source-code" id="prepare_multipart_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 93</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File request_builder.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_multipart_request</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-keyword">begin</span>
-    <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>], <span class="ruby-string">&#39;r&#39;</span>
-    <span class="ruby-identifier">text</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">read</span>
-  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;readMultipartError&#39;</span>, <span class="ruby-identifier">e</span>)
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">text</span> = <span class="ruby-identifier">read_multipart_file</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>]
 
   <span class="ruby-identifier">boundary</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">hex</span>
   <span class="ruby-identifier">post_body</span> = []
-  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;filePath&#39;</span>
-  <span class="ruby-identifier">request_file</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">to_json</span>
 
   <span class="ruby-comment"># Add the content data</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;--#{boundary}\r\n&quot;</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;Content-Disposition: form-data; name=&quot;content&quot;; &#39;</span> \
-               <span class="ruby-node">&quot;filename=\&quot;#{File.basename(file)}\&quot;\r\n&quot;</span>
-  <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Content-Type: text/plain\r\n\r\n&quot;</span>
+               <span class="ruby-node">&quot;filename=\&quot;#{File.basename(params[&#39;filePath&#39;])}\&quot;\r\n&quot;</span>
+  <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{HEADER_CONTENT_TYPE}: #{CONTENT_TYPE_TEXT_PLAIN}\r\n\r\n&quot;</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text</span>
 
   <span class="ruby-comment"># Add the request data</span>
+  <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;filePath&#39;</span>
+  <span class="ruby-identifier">request_file</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">to_json</span>
+
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\r\n\r\n--#{boundary}\r\n&quot;</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Content-Disposition: form-data; name=\&quot;request\&quot;\r\n&quot;</span>
-  <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;Content-Type: application/json\r\n\r\n&quot;</span>
+  <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{HEADER_CONTENT_TYPE}: #{CONTENT_TYPE_JSON}\r\n\r\n&quot;</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">request_file</span>
   <span class="ruby-identifier">post_body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\r\n\r\n--#{boundary}--\r\n&quot;</span>
 
@@ -312,8 +951,8 @@
     <span class="ruby-comment"># Not ideal.  Consider switching to a different library.</span>
     <span class="ruby-comment"># https://stackoverflow.com/a/11802674</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
-      <span class="ruby-string">&#39;connectionError&#39;</span>,
-      <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+      <span class="ruby-constant">CONNECTION_ERROR_CODE</span>,
+      <span class="ruby-constant">CONNECTION_ERROR_MESSAGE</span>
     )
   <span class="ruby-keyword">end</span>
 
@@ -321,55 +960,76 @@
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">nil?</span>
     <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>].<span class="ruby-identifier">keys</span>
     <span class="ruby-identifier">keys_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">CUSTOM_HEADER_PREFIX_ROSETTE</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">CUSTOM_HEADER_PREFIX_BABELSTREET</span>
         <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-identifier">k</span>, <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;customHeaders&#39;</span>][<span class="ruby-identifier">k</span>]
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
-          <span class="ruby-string">&#39;invalidHeader&#39;</span>,
-          <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+          <span class="ruby-constant">INVALID_HEADER_CODE</span>,
+          <span class="ruby-constant">INVALID_HEADER_MESSAGE</span>
         )
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;customHeaders&#39;</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;Content-Type&#39;</span>,
-                    <span class="ruby-node">&quot;multipart/form-data; boundary=#{boundary}&quot;</span>
-  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;User-Agent&#39;</span>, <span class="ruby-ivar">@user_agent</span>
-  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;X-RosetteAPI-Key&#39;</span>, <span class="ruby-ivar">@user_key</span>
-  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;X-RosetteAPI-Binding&#39;</span>, <span class="ruby-string">&#39;ruby&#39;</span>
-  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-string">&#39;X-RosetteAPI-Binding-Version&#39;</span>, <span class="ruby-ivar">@binding_version</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-constant">HEADER_CONTENT_TYPE</span>,
+                    <span class="ruby-node">&quot;#{MULTIPART_FORM_DATA}; boundary=#{boundary}&quot;</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-constant">HEADER_USER_AGENT</span>, <span class="ruby-ivar">@user_agent</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-constant">HEADER_API_KEY</span>, <span class="ruby-ivar">@user_key</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-constant">HEADER_BINDING_LEGACY</span>, <span class="ruby-constant">BINDING_NAME</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-constant">HEADER_BINDING</span>, <span class="ruby-constant">BINDING_NAME</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-constant">HEADER_BINDING_VERSION_LEGACY</span>, <span class="ruby-ivar">@binding_version</span>
+  <span class="ruby-identifier">request</span>.<span class="ruby-identifier">add_field</span> <span class="ruby-constant">HEADER_BINDING_VERSION</span>, <span class="ruby-ivar">@binding_version</span>
   <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">post_body</span>.<span class="ruby-identifier">join</span>
 
   [<span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
-        </div>
 
 
-      </div>
-
-      <div id="method-i-prepare_plain_request" class="method-detail ">
-        <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">prepare_plain_request</span><span
-              class="method-args">(params)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-        </div>
 
         <div class="method-description">
-          <p>Prepares a plain POST request for Rosette API.</p>
 
-<h4 id="method-i-prepare_plain_request-label-Attributes">Attributes<span><a href="#method-i-prepare_plain_request-label-Attributes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+          <p>Prepares a multipart/form-data POST request for Analytics API.</p>
+
+<h4 id="method-i-prepare_multipart_request-label-Attributes"><a href="#method-i-prepare_multipart_request-label-Attributes">Attributes</a></h4>
 <ul><li>
 <p><code>params</code> - Parameters to build the body of the request.</p>
 </li></ul>
 
 <p>Returns a HTTP connection and the built POST request.</p>
 
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div id="method-i-prepare_plain_request" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-prepare_plain_request" title="Link to this method">
+                <span class="method-name">prepare_plain_request</span>
+                <span class="method-args">(params)</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
           <div class="method-source-code" id="prepare_plain_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 45</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File request_builder.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">prepare_plain_request</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
@@ -378,8 +1038,8 @@
     <span class="ruby-comment"># Not ideal.  Consider switching to a different library.</span>
     <span class="ruby-comment"># https://stackoverflow.com/a/11802674</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
-      <span class="ruby-string">&#39;connectionError&#39;</span>,
-      <span class="ruby-string">&#39;Failed to establish connection with Rosette server.&#39;</span>
+      <span class="ruby-constant">CONNECTION_ERROR_CODE</span>,
+      <span class="ruby-constant">CONNECTION_ERROR_MESSAGE</span>
     )
   <span class="ruby-keyword">end</span>
 
@@ -388,50 +1048,124 @@
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">custom_headers</span>
     <span class="ruby-identifier">keys_array</span> = <span class="ruby-identifier">custom_headers</span>.<span class="ruby-identifier">keys</span>
     <span class="ruby-identifier">keys_array</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^X-RosetteAPI-/</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">CUSTOM_HEADER_PREFIX_ROSETTE</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">CUSTOM_HEADER_PREFIX_BABELSTREET</span>
         <span class="ruby-identifier">request</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">custom_headers</span>[<span class="ruby-identifier">key</span>]
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
-          <span class="ruby-string">&#39;invalidHeader&#39;</span>,
-          <span class="ruby-string">&#39;Custom header must begin with &quot;X-RosetteAPI-&quot;&#39;</span>
+          <span class="ruby-constant">INVALID_HEADER_CODE</span>,
+          <span class="ruby-constant">INVALID_HEADER_MESSAGE</span>
         )
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span> <span class="ruby-string">&#39;customHeaders&#39;</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;X-RosetteAPI-Key&#39;</span>] = <span class="ruby-ivar">@user_key</span>
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;Content-Type&#39;</span>] = <span class="ruby-string">&#39;application/json&#39;</span>
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;Accept&#39;</span>] = <span class="ruby-string">&#39;application/json&#39;</span>
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;User-Agent&#39;</span>] = <span class="ruby-ivar">@user_agent</span>
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;X-RosetteAPI-Binding&#39;</span>] = <span class="ruby-string">&#39;ruby&#39;</span>
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;X-RosetteAPI-Binding-Version&#39;</span>] = <span class="ruby-ivar">@binding_version</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_API_KEY</span>] = <span class="ruby-ivar">@user_key</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_CONTENT_TYPE</span>] = <span class="ruby-constant">CONTENT_TYPE_JSON</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_ACCEPT</span>] = <span class="ruby-constant">ACCEPT_JSON</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_USER_AGENT</span>] = <span class="ruby-ivar">@user_agent</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_BINDING_LEGACY</span>] = <span class="ruby-constant">BINDING_NAME</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_BINDING</span>] = <span class="ruby-constant">BINDING_NAME</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_BINDING_VERSION_LEGACY</span>] = <span class="ruby-ivar">@binding_version</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_BINDING_VERSION</span>] = <span class="ruby-ivar">@binding_version</span>
   <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">to_json</span>
 
   [<span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
+
+
+
+        <div class="method-description">
+
+
+          <p>Prepares a plain POST request for Analytics API.</p>
+
+<h4 id="method-i-prepare_plain_request-label-Attributes"><a href="#method-i-prepare_plain_request-label-Attributes">Attributes</a></h4>
+<ul><li>
+<p><code>params</code> - Parameters to build the body of the request.</p>
+</li></ul>
+
+<p>Returns a HTTP connection and the built POST request.</p>
+
+
         </div>
+
+
+
 
 
       </div>
 
-      <div id="method-i-send_get_request" class="method-detail ">
+
+      <div id="method-i-read_multipart_file" class="method-detail anchor-link ">
         <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">send_get_request</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+
+            <div class="method-heading">
+              <a href="#method-i-read_multipart_file" title="Link to this method">
+                <span class="method-name">read_multipart_file</span>
+                <span class="method-args">(file_path)</span>
+              </a>
+            </div>
+
         </div>
 
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+          <div class="method-source-code" id="read_multipart_file-source">
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File request_builder.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">read_multipart_file</span>(<span class="ruby-identifier">file_path</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_path</span>, <span class="ruby-string">&#39;r&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">READ_MULTIPART_ERROR_CODE</span>, <span class="ruby-identifier">e</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
         <div class="method-description">
-          <p>Sends a GET request to Rosette API.</p>
 
-<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
 
+          <p>Reads the content of a file given its path.</p>
+
+<p>Returns the content of the file or raises error if encountered.</p>
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div id="method-i-send_get_request" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-send_get_request" title="Link to this method">
+                <span class="method-name">send_get_request</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
           <div class="method-source-code" id="send_get_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 163</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File request_builder.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_get_request</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-ivar">@alternate_url</span>
@@ -440,37 +1174,56 @@
     <span class="ruby-comment"># Not ideal.  Consider switching to a different library.</span>
     <span class="ruby-comment"># https://stackoverflow.com/a/11802674</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-constant">RosetteAPIError</span>.<span class="ruby-identifier">new</span>(
-      <span class="ruby-string">&#39;connectionError&#39;</span>,
-      <span class="ruby-string">&#39;Failed to establish connection with Rosette API server.&#39;</span>
+      <span class="ruby-constant">CONNECTION_ERROR_CODE</span>,
+      <span class="ruby-constant">CONNECTION_ERROR_MESSAGE</span>
     )
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;X-RosetteAPI-Key&#39;</span>] = <span class="ruby-ivar">@user_key</span>
-  <span class="ruby-identifier">request</span>[<span class="ruby-string">&#39;User-Agent&#39;</span>] = <span class="ruby-ivar">@user_agent</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_API_KEY</span>] = <span class="ruby-ivar">@user_key</span>
+  <span class="ruby-identifier">request</span>[<span class="ruby-constant">HEADER_USER_AGENT</span>] = <span class="ruby-ivar">@user_agent</span>
 
   <span class="ruby-identifier">get_response</span> <span class="ruby-ivar">@http_client</span>, <span class="ruby-identifier">request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+
+
+
+        <div class="method-description">
+
+
+          <p>Sends a GET request to Analytics API.</p>
+
+<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
+
+
         </div>
+
+
+
 
 
       </div>
 
-      <div id="method-i-send_post_request" class="method-detail ">
+
+      <div id="method-i-send_post_request" class="method-detail anchor-link ">
         <div class="method-header">
-          <div class="method-heading">
-            <span class="method-name">send_post_request</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+
+            <div class="method-heading">
+              <a href="#method-i-send_post_request" title="Link to this method">
+                <span class="method-name">send_post_request</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+
         </div>
 
-        <div class="method-description">
-          <p>Sends a POST request to Rosette API.</p>
 
-<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
-
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
           <div class="method-source-code" id="send_post_request-source">
-            <pre><span class="ruby-comment"># File request_builder.rb, line 184</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File request_builder.rb, line 223</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">send_post_request</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-string">&#39;filePath&#39;</span>]
     <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span> = <span class="ruby-identifier">prepare_multipart_request</span> <span class="ruby-identifier">params</span>
@@ -481,20 +1234,55 @@
   <span class="ruby-identifier">get_response</span> <span class="ruby-identifier">http</span>, <span class="ruby-identifier">request</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
+
+
+
+        <div class="method-description">
+
+
+          <p>Sends a POST request to Analytics API.</p>
+
+<p>Returns JSON response or raises <a href="RosetteAPIError.html"><code>RosetteAPIError</code></a> if encountered.</p>
+
+
         </div>
+
+
+
 
 
       </div>
 
+
     </section>
 
+
+
+
   </section>
+
 </main>
 
+<aside class="table-of-contents" role="complementary" aria-label="Table of Contents">
+  <div class="toc-sticky">
+    <h3 class="toc-heading">On This Page</h3>
+    <nav class="toc-nav" id="toc-nav" aria-label="Page sections">
+      <!-- Generated by JavaScript based on page headings -->
+    </nav>
+  </div>
+</aside>
 
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.6.2.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+
+<footer class="site-footer">
+  
+
+  <div class="footer-bottom">
+    <p>
+      Generated by <a href="https://ruby.github.io/rdoc/">RDoc 7.0.3</a>
+      using the Aliki theme by <a href="http://st0012.dev">Stan Lo</a>
+    </p>
+  </div>
 </footer>
+
+</body>
 

@@ -50,41 +50,41 @@
 </script>
 
 <script
-  src="./js/theme-toggle.js?v=7.0.3"
+  src="./js/theme-toggle.js?v=7.0.4"
 ></script>
 
 <script
-  src="./js/search_navigation.js?v=7.0.3"
+  src="./js/search_navigation.js?v=7.0.4"
   defer
 ></script>
 
 <script
-  src="./js/search_data.js?v=7.0.3"
+  src="./js/search_data.js?v=7.0.4"
   defer
 ></script>
 
 <script
-  src="./js/search_ranker.js?v=7.0.3"
+  src="./js/search_ranker.js?v=7.0.4"
   defer
 ></script>
 
 <script
-  src="./js/search_controller.js?v=7.0.3"
+  src="./js/search_controller.js?v=7.0.4"
   defer
 ></script>
 
 <script
-  src="./js/c_highlighter.js?v=7.0.3"
+  src="./js/c_highlighter.js?v=7.0.4"
   defer
 ></script>
 
 <script
-  src="./js/aliki.js?v=7.0.3"
+  src="./js/aliki.js?v=7.0.4"
   defer
 ></script>
 
 <link
-  href="./css/rdoc.css?v=7.0.3"
+  href="./css/rdoc.css?v=7.0.4"
   rel="stylesheet"
 >
 
@@ -415,6 +415,8 @@
 
         <li ><a href="#method-i-to_hash">to_hash</a></li>
 
+        <li ><a href="#method-i-validate_comparison_method">validate_comparison_method</a></li>
+
         <li ><a href="#method-i-validate_params">validate_params</a></li>
 
       </ul>
@@ -461,6 +463,23 @@
 
 
 
+    <section class="constants-list">
+      <header>
+        <h3 id="constants"><a href="#constants">Constants</a></h3>
+      </header>
+      <dl>
+
+        <dt id="VALID_COMPARISON_METHODS">VALID_COMPARISON_METHODS</dt>
+
+        <dd>
+
+          
+        </dd>
+
+
+      </dl>
+    </section>
+
 
 
     <section class="attribute-method-details method-section">
@@ -468,6 +487,22 @@
         <h3 id="attributes"><a href="#attributes">Attributes</a></h3>
       </header>
 
+
+      <div id="attribute-i-comparison_method" class="method-detail anchor-link">
+        <div class="method-heading attribute-method-heading">
+          <a href="#attribute-i-comparison_method" title="Link to this attribute">
+            <span class="method-name">comparison_method</span>
+            <span class="attribute-access-type">[RW]</span>
+          </a>
+        </div>
+
+        <div class="method-description">
+
+
+        <p>Comparison method (one_to_one, one_to_n, n_to_m) (optional)</p>
+
+        </div>
+      </div>
 
       <div id="attribute-i-fields" class="method-detail anchor-link">
         <div class="method-heading attribute-method-heading">
@@ -555,7 +590,7 @@
             </details>
           </div>
           <div class="method-source-code" id="load_params-source">
-            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 51</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">load_params</span>
   <span class="ruby-identifier">validate_params</span>
   <span class="ruby-identifier">to_hash</span>
@@ -602,12 +637,13 @@
             </details>
           </div>
           <div class="method-source-code" id="to_hash-source">
-            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 61</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_hash</span>
   {
     <span class="ruby-value">fields:</span> <span class="ruby-ivar">@fields</span>,
     <span class="ruby-value">records:</span> <span class="ruby-ivar">@records</span>,
-    <span class="ruby-value">properties:</span> <span class="ruby-ivar">@properties</span>
+    <span class="ruby-value">properties:</span> <span class="ruby-ivar">@properties</span>,
+    <span class="ruby-value">comparison_method:</span> <span class="ruby-ivar">@comparison_method</span>&amp;.<span class="ruby-identifier">to_s</span>&amp;.<span class="ruby-identifier">downcase</span>
   }
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -620,6 +656,53 @@
           <p>Converts this class to Hash.</p>
 
 <p>Returns the new Hash.</p>
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div id="method-i-validate_comparison_method" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-validate_comparison_method" title="Link to this method">
+                <span class="method-name">validate_comparison_method</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+          <div class="method-source-code" id="validate_comparison_method-source">
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_comparison_method</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@comparison_method</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">normalized</span> = <span class="ruby-ivar">@comparison_method</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">VALID_COMPARISON_METHODS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">normalized</span>)
+
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;comparison_method must be one of: #{VALID_COMPARISON_METHODS.join(&#39;, &#39;)}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
+        <div class="method-description">
+
+
+          
 
 
         </div>
@@ -650,7 +733,7 @@
             </details>
           </div>
           <div class="method-source-code" id="validate_params-source">
-            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 25</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_params</span>
   <span class="ruby-identifier">f_msg</span> = <span class="ruby-string">&#39;fields option is required&#39;</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">f_msg</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@fields</span>.<span class="ruby-identifier">nil?</span>
@@ -672,6 +755,8 @@
 
   <span class="ruby-identifier">p_msg</span> = <span class="ruby-string">&#39;properties can only be an instance of a Hash&#39;</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">BadRequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">p_msg</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@properties</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>(<span class="ruby-ivar">@properties</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>)
+
+  <span class="ruby-identifier">validate_comparison_method</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
 
@@ -680,7 +765,7 @@
         <div class="method-description">
 
 
-          <p>Validates the parameters by checking if required fields are present and optional properties is a Hash if provided.</p>
+          <p>Validates the parameters by checking if required fields are present and optional properties is a Hash and comparison method is valid if provided.</p>
 
 
         </div>
@@ -707,7 +792,7 @@
             <div class="method-heading">
               <a href="#method-i-initialize" title="Link to this method">
                 <span class="method-name">initialize</span>
-                <span class="method-args">(fields, records, properties = nil)</span>
+                <span class="method-args">(fields, records, properties = nil, comparison_method: nil, **property_keywords)</span>
               </a>
             </div>
 
@@ -720,11 +805,18 @@
             </details>
           </div>
           <div class="method-source-code" id="initialize-source">
-            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">fields</span>, <span class="ruby-identifier">records</span>, <span class="ruby-identifier">properties</span> = <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># :notnew:</span>
+            <pre class="ruby" data-language="ruby"><span class="ruby-comment"># File record_similarity_parameters.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">fields</span>, <span class="ruby-identifier">records</span>, <span class="ruby-identifier">properties</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-value">comparison_method:</span> <span class="ruby-keyword">nil</span>, <span class="ruby-operator">**</span><span class="ruby-identifier">property_keywords</span>) <span class="ruby-comment"># :notnew:</span>
+  <span class="ruby-identifier">properties_msg</span> = <span class="ruby-string">&#39;properties must be passed either positionally or as keywords, not both&#39;</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">properties_msg</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">property_keywords</span>.<span class="ruby-identifier">empty?</span>
+
   <span class="ruby-ivar">@fields</span> = <span class="ruby-identifier">fields</span>
   <span class="ruby-ivar">@records</span> = <span class="ruby-identifier">records</span>
-  <span class="ruby-ivar">@properties</span> = <span class="ruby-identifier">properties</span>
+  <span class="ruby-comment"># Preserve legacy calls such as new(fields, records, threshold: 0.7).</span>
+  <span class="ruby-ivar">@properties</span> = <span class="ruby-identifier">property_keywords</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">properties</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">property_keywords</span>
+  <span class="ruby-ivar">@comparison_method</span> = <span class="ruby-identifier">comparison_method</span>
+
+  <span class="ruby-identifier">validate_comparison_method</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
 
@@ -768,7 +860,7 @@
 
   <div class="footer-bottom">
     <p>
-      Generated by <a href="https://ruby.github.io/rdoc/">RDoc 7.0.3</a>
+      Generated by <a href="https://ruby.github.io/rdoc/">RDoc 7.0.4</a>
       using the Aliki theme by <a href="http://st0012.dev">Stan Lo</a>
     </p>
   </div>

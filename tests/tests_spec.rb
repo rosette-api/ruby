@@ -1176,6 +1176,88 @@ describe RosetteAPI do
     end
   end
 
+  describe 'RecordSimilarityParameters properties compatibility' do
+    let(:fields) { { 'primaryName' => { type: 'rni_name' } } }
+    let(:records) { { left: [{}], right: [{}] } }
+    let(:properties) { { threshold: 0.7 } }
+
+    it 'accepts legacy bare-keyword properties' do
+      params = RecordSimilarityParameters.new(fields, records, threshold: 0.7)
+      expect(params.properties).to eq(properties)
+      expect(params.load_params).to include('properties' => properties)
+      expect(params.load_params).not_to have_key('comparisonMethod')
+    end
+
+    it 'accepts legacy properties expanded with a double splat' do
+      params = RecordSimilarityParameters.new(fields, records, **properties)
+      expect(params.load_params).to include('properties' => properties)
+    end
+
+    it 'separates comparison_method from keyword properties' do
+      params = RecordSimilarityParameters.new(fields, records, **properties, comparison_method: 'ONE_TO_N')
+      expect(params.load_params).to include('properties' => properties, 'comparisonMethod' => 'one_to_n')
+      expect(params.properties).not_to have_key(:comparison_method)
+    end
+
+    it 'omits properties when an empty keyword hash is expanded' do
+      params = RecordSimilarityParameters.new(fields, records, **{})
+      expect(params.load_params).not_to have_key('properties')
+    end
+
+    it 'rejects mixed positional and keyword properties instead of discarding values' do
+      expect { RecordSimilarityParameters.new(fields, records, properties, threshold: 0.8) }
+        .to raise_error(ArgumentError, 'properties must be passed either positionally or as keywords, not both')
+    end
+
+    it 'preserves comparison_method inside an explicit positional properties hash' do
+      params = RecordSimilarityParameters.new(fields, records, { comparison_method: 'custom' })
+      expect(params.load_params).to include('properties' => { comparison_method: 'custom' })
+      expect(params.load_params).not_to have_key('comparisonMethod')
+    end
+  end
+
+  describe 'RecordSimilarityParameters comparison_method' do
+    let(:fields) { { 'primaryName' => { type: 'rni_name' } } }
+    let(:records) { { left: [{}], right: [{}] } }
+
+    %w[one_to_one one_to_n n_to_m].each do |method|
+      it "serializes #{method} as comparisonMethod" do
+        params = RecordSimilarityParameters.new(fields, records, comparison_method: method)
+        expect(params.load_params).to include('comparisonMethod' => method)
+      end
+    end
+
+    it 'omits comparisonMethod when omitted or nil' do
+      params = RecordSimilarityParameters.new(fields, records)
+      expect(params.load_params).not_to have_key('comparisonMethod')
+      params = RecordSimilarityParameters.new(fields, records, comparison_method: nil)
+      expect(params.load_params).not_to have_key('comparisonMethod')
+    end
+
+    it 'serializes uppercase, mixed-case, and symbol comparison methods as lowercase strings' do
+      ['ONE_TO_ONE', 'One_To_N', 'N_TO_M', :one_to_n, :N_TO_M].each do |method|
+        params = RecordSimilarityParameters.new(fields, records, comparison_method: method)
+        expect(params.to_hash).to include(comparison_method: method.to_s.downcase)
+        expect(params.load_params).to include('comparisonMethod' => method.to_s.downcase)
+      end
+    end
+
+    it 'raises when comparison_method is invalid' do
+      ['unknown', '', false, 123].each do |method|
+        expect { RecordSimilarityParameters.new(fields, records, comparison_method: method) }
+          .to raise_error(ArgumentError, 'comparison_method must be one of: one_to_one, one_to_n, n_to_m')
+      end
+    end
+
+    it 'validates comparison_method assigned through the accessor' do
+      params = RecordSimilarityParameters.new(fields, records)
+      params.comparison_method = 'N_TO_M'
+      expect(params.load_params).to include('comparisonMethod' => 'n_to_m')
+      params.comparison_method = 'unknown'
+      expect { params.load_params }.to raise_error(ArgumentError)
+    end
+  end
+
   describe '.get_record_similarity' do
     before do
       body = {
@@ -1213,6 +1295,52 @@ describe RosetteAPI do
       params = RecordSimilarityParameters.new(fields, records, properties)
       response = RosetteAPI.new('0123456789').get_record_similarity(params)
       expect(response).instance_of? Hash
+    end
+
+    it 'sends legacy keyword properties in the request body' do
+      fields = { 'primaryName' => { type: 'rni_name', weight: 0.5 } }
+      records = {
+        left: [{ 'primaryName' => { text: 'Ethan R' } }],
+        right: [{ 'primaryName' => { text: 'Seth R' } }]
+      }
+      params = RecordSimilarityParameters.new(fields, records, threshold: 0.7)
+      response = RosetteAPI.new('0123456789').get_record_similarity(params)
+      expect(response).to include('test' => 'record-similarity')
+    end
+
+    it 'sends lowercase comparisonMethod alongside keyword properties' do
+      fields = { 'primaryName' => { type: 'rni_name', weight: 0.5 } }
+      records = {
+        left: [{ 'primaryName' => { text: 'Ethan R' } }],
+        right: [{ 'primaryName' => { text: 'Seth R' } }]
+      }
+      body = { fields: fields, records: records, properties: { threshold: 0.7 }, comparisonMethod: 'one_to_one' }.to_json
+
+      request = stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/record-similarity')
+                .with(body: body)
+                .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
+
+      params = RecordSimilarityParameters.new(fields, records, threshold: 0.7, comparison_method: 'ONE_TO_ONE')
+      RosetteAPI.new('0123456789').get_record_similarity(params)
+      expect(request).to have_been_requested.once
+    end
+
+    it 'sends lowercase comparisonMethod alongside properties' do
+      fields = { 'primaryName' => { type: 'rni_name', weight: 0.5 } }
+      records = {
+        left: [{ 'primaryName' => { text: 'Ethan R' } }],
+        right: [{ 'primaryName' => { text: 'Seth R' } }]
+      }
+      properties = { threshold: 0.7 }
+      body = { fields: fields, records: records, properties: properties, comparisonMethod: 'one_to_one' }.to_json
+
+      request = stub_request(:post, 'https://analytics.babelstreet.com/rest/v1/record-similarity')
+                .with(body: body)
+                .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
+
+      params = RecordSimilarityParameters.new(fields, records, properties, comparison_method: 'ONE_TO_ONE')
+      RosetteAPI.new('0123456789').get_record_similarity(params)
+      expect(request).to have_been_requested.once
     end
 
     it 'test record similarity without properties' do

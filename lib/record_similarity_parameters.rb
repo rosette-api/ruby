@@ -14,14 +14,35 @@ class RecordSimilarityParameters
   # Optional properties map sent to the API (optional, should be a hash)
   attr_accessor :properties
 
-  def initialize(fields, records, properties = nil) # :notnew:
+  # Comparison method (one_to_one, one_to_n, n_to_m) (optional)
+  attr_accessor :comparison_method
+
+  VALID_COMPARISON_METHODS = %w[one_to_one one_to_n n_to_m].freeze
+
+  def initialize(fields, records, properties = nil, comparison_method: nil, **property_keywords) # :notnew:
+    properties_msg = 'properties must be passed either positionally or as keywords, not both'
+    raise ArgumentError.new(properties_msg) unless properties.nil? || property_keywords.empty?
+
     @fields = fields
     @records = records
-    @properties = properties
+    # Preserve legacy calls such as new(fields, records, threshold: 0.7).
+    @properties = property_keywords.empty? ? properties : property_keywords
+    @comparison_method = comparison_method
+
+    validate_comparison_method
+  end
+
+  def validate_comparison_method
+    return if @comparison_method.nil?
+
+    normalized = @comparison_method.to_s.downcase
+    return if VALID_COMPARISON_METHODS.include?(normalized)
+
+    raise ArgumentError.new("comparison_method must be one of: #{VALID_COMPARISON_METHODS.join(', ')}")
   end
 
   # Validates the parameters by checking if required fields are present and
-  # optional properties is a Hash if provided.
+  # optional properties is a Hash and comparison method is valid if provided.
   def validate_params
     f_msg = 'fields option is required'
     raise BadRequestError.new(f_msg) if @fields.nil?
@@ -43,6 +64,8 @@ class RecordSimilarityParameters
 
     p_msg = 'properties can only be an instance of a Hash'
     raise BadRequestError.new(p_msg) if @properties && !(@properties.is_a? Hash)
+
+    validate_comparison_method
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -62,7 +85,8 @@ class RecordSimilarityParameters
     {
       fields: @fields,
       records: @records,
-      properties: @properties
+      properties: @properties,
+      comparison_method: @comparison_method&.to_s&.downcase
     }
   end
 end

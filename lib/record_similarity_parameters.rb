@@ -20,9 +20,8 @@ class RecordSimilarityParameters
   VALID_COMPARISON_METHODS = %w[one_to_one one_to_n n_to_m].freeze
 
   def initialize(fields, records, properties = nil, comparison_method: nil, **property_keywords) # :notnew:
-    unless properties.nil? || property_keywords.empty?
-      raise ArgumentError.new('properties must be passed either positionally or as keywords, not both')
-    end
+    properties_msg = 'properties must be passed either positionally or as keywords, not both'
+    raise ArgumentError.new(properties_msg) unless properties.nil? || property_keywords.empty?
 
     @fields = fields
     @records = records

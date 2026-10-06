@@ -6,17 +6,45 @@ require 'json'
 require 'securerandom'
 require_relative 'rosette_api_error'
 
-# This class handles all Rosette API requests.
+# This class handles all Analytics API requests.
 class RequestBuilder
-  # Alternate Rosette API URL
+  CONNECTION_ERROR_CODE = 'connectionError'
+  CONNECTION_ERROR_MESSAGE = 'Failed to establish connection with Analytics server.'
+
+  INVALID_HEADER_CODE = 'invalidHeader'
+  INVALID_HEADER_MESSAGE = 'Custom header must begin with "X-RosetteAPI-" or "X-BabelStreetAPI-"'
+
+  READ_MULTIPART_ERROR_CODE = 'readMultipartError'
+
+  HEADER_API_KEY = 'X-BabelStreetAPI-Key'
+  HEADER_CONTENT_TYPE = 'Content-Type'
+  HEADER_ACCEPT = 'Accept'
+  HEADER_USER_AGENT = 'User-Agent'
+  HEADER_BINDING_LEGACY = 'X-RosetteAPI-Binding'
+  HEADER_BINDING = 'X-BabelStreetAPI-Binding'
+  HEADER_BINDING_VERSION_LEGACY = 'X-RosetteAPI-Binding-Version'
+  HEADER_BINDING_VERSION = 'X-BabelStreetAPI-Binding-Version'
+
+  BINDING_NAME = 'ruby'
+
+  CONTENT_TYPE_JSON = 'application/json'
+  CONTENT_TYPE_TEXT_PLAIN = 'text/plain'
+  ACCEPT_JSON = 'application/json'
+
+  MULTIPART_FORM_DATA = 'multipart/form-data'
+
+  CUSTOM_HEADER_PREFIX_ROSETTE = /^X-RosetteAPI-/
+  CUSTOM_HEADER_PREFIX_BABELSTREET = /^X-BabelStreetAPI-/
+
+  # Alternate API URL
   attr_reader :alternate_url
-  # Rosette API HTTP client
+  # API HTTP client
   attr_reader :http_client
   # Parameters to build the body of the request from
   attr_accessor :params
-  # Rosette API key
+  # API key
   attr_accessor :user_key
-  # Rosette API binding version
+  # API binding version
   attr_accessor :binding_version
   # User-Agent string
   attr_reader :user_agent
@@ -35,7 +63,7 @@ class RequestBuilder
     @alternate_url = "#{@alternate_url}?#{URI.encode_www_form(url_parameters)}"
   end
 
-  # Prepares a plain POST request for Rosette API.
+  # Prepares a plain POST request for Analytics API.
   #
   # ==== Attributes
   #
@@ -50,8 +78,8 @@ class RequestBuilder
       # Not ideal.  Consider switching to a different library.
       # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
-        'connectionError',
-        'Failed to establish connection with Rosette server.'
+        CONNECTION_ERROR_CODE,
+        CONNECTION_ERROR_MESSAGE
       )
     end
 
@@ -60,30 +88,32 @@ class RequestBuilder
     if custom_headers
       keys_array = custom_headers.keys
       keys_array.each do |key|
-        if key.to_s =~ /^X-RosetteAPI-/
+        if key.to_s =~ CUSTOM_HEADER_PREFIX_ROSETTE || key.to_s =~ CUSTOM_HEADER_PREFIX_BABELSTREET
           request[key] = custom_headers[key]
         else
           raise RosetteAPIError.new(
-            'invalidHeader',
-            'Custom header must begin with "X-RosetteAPI-"'
+            INVALID_HEADER_CODE,
+            INVALID_HEADER_MESSAGE
           )
         end
       end
       params.delete 'customHeaders'
     end
 
-    request['X-RosetteAPI-Key'] = @user_key
-    request['Content-Type'] = 'application/json'
-    request['Accept'] = 'application/json'
-    request['User-Agent'] = @user_agent
-    request['X-RosetteAPI-Binding'] = 'ruby'
-    request['X-RosetteAPI-Binding-Version'] = @binding_version
+    request[HEADER_API_KEY] = @user_key
+    request[HEADER_CONTENT_TYPE] = CONTENT_TYPE_JSON
+    request[HEADER_ACCEPT] = ACCEPT_JSON
+    request[HEADER_USER_AGENT] = @user_agent
+    request[HEADER_BINDING_LEGACY] = BINDING_NAME
+    request[HEADER_BINDING] = BINDING_NAME
+    request[HEADER_BINDING_VERSION_LEGACY] = @binding_version
+    request[HEADER_BINDING_VERSION] = @binding_version
     request.body = params.to_json
 
     [@http_client, request]
   end
 
-  # Prepares a multipart/form-data POST request for Rosette API.
+  # Prepares a multipart/form-data POST request for Analytics API.
   #
   # ==== Attributes
   #
@@ -91,29 +121,25 @@ class RequestBuilder
   #
   # Returns a HTTP connection and the built POST request.
   def prepare_multipart_request(params)
-    begin
-      file = File.open params['filePath'], 'r'
-      text = file.read
-    rescue StandardError => e
-      raise RosetteAPIError.new('readMultipartError', e)
-    end
+    text = read_multipart_file params['filePath']
 
     boundary = SecureRandom.hex
     post_body = []
-    params.delete 'filePath'
-    request_file = params.to_json
 
     # Add the content data
     post_body << "--#{boundary}\r\n"
     post_body << 'Content-Disposition: form-data; name="content"; ' \
-                 "filename=\"#{File.basename(file)}\"\r\n"
-    post_body << "Content-Type: text/plain\r\n\r\n"
+                 "filename=\"#{File.basename(params['filePath'])}\"\r\n"
+    post_body << "#{HEADER_CONTENT_TYPE}: #{CONTENT_TYPE_TEXT_PLAIN}\r\n\r\n"
     post_body << text
 
     # Add the request data
+    params.delete 'filePath'
+    request_file = params.to_json
+
     post_body << "\r\n\r\n--#{boundary}\r\n"
     post_body << "Content-Disposition: form-data; name=\"request\"\r\n"
-    post_body << "Content-Type: application/json\r\n\r\n"
+    post_body << "#{HEADER_CONTENT_TYPE}: #{CONTENT_TYPE_JSON}\r\n\r\n"
     post_body << request_file
     post_body << "\r\n\r\n--#{boundary}--\r\n"
 
@@ -125,8 +151,8 @@ class RequestBuilder
       # Not ideal.  Consider switching to a different library.
       # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
-        'connectionError',
-        'Failed to establish connection with Rosette API server.'
+        CONNECTION_ERROR_CODE,
+        CONNECTION_ERROR_MESSAGE
       )
     end
 
@@ -134,30 +160,43 @@ class RequestBuilder
     unless params['customHeaders'].nil?
       keys_array = params['customHeaders'].keys
       keys_array.each do |k|
-        if k.to_s =~ /^X-RosetteAPI-/
+        if k.to_s =~ CUSTOM_HEADER_PREFIX_ROSETTE || k.to_s =~ CUSTOM_HEADER_PREFIX_BABELSTREET
           request.add_field k, params['customHeaders'][k]
         else
           raise RosetteAPIError.new(
-            'invalidHeader',
-            'Custom header must begin with "X-RosetteAPI-"'
+            INVALID_HEADER_CODE,
+            INVALID_HEADER_MESSAGE
           )
         end
       end
       params.delete 'customHeaders'
     end
 
-    request.add_field 'Content-Type',
-                      "multipart/form-data; boundary=#{boundary}"
-    request.add_field 'User-Agent', @user_agent
-    request.add_field 'X-RosetteAPI-Key', @user_key
-    request.add_field 'X-RosetteAPI-Binding', 'ruby'
-    request.add_field 'X-RosetteAPI-Binding-Version', @binding_version
+    request.add_field HEADER_CONTENT_TYPE,
+                      "#{MULTIPART_FORM_DATA}; boundary=#{boundary}"
+    request.add_field HEADER_USER_AGENT, @user_agent
+    request.add_field HEADER_API_KEY, @user_key
+    request.add_field HEADER_BINDING_LEGACY, BINDING_NAME
+    request.add_field HEADER_BINDING, BINDING_NAME
+    request.add_field HEADER_BINDING_VERSION_LEGACY, @binding_version
+    request.add_field HEADER_BINDING_VERSION, @binding_version
     request.body = post_body.join
 
     [@http_client, request]
   end
 
-  # Sends a GET request to Rosette API.
+  # Reads the content of a file given its path.
+  #
+  # Returns the content of the file or raises error if encountered.
+  def read_multipart_file(file_path)
+    File.open(file_path, 'r') do |f|
+      return f.read
+    end
+  rescue StandardError => e
+    raise RosetteAPIError.new(READ_MULTIPART_ERROR_CODE, e)
+  end
+
+  # Sends a GET request to Analytics API.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_get_request
@@ -168,17 +207,17 @@ class RequestBuilder
       # Not ideal.  Consider switching to a different library.
       # https://stackoverflow.com/a/11802674
       raise RosetteAPIError.new(
-        'connectionError',
-        'Failed to establish connection with Rosette API server.'
+        CONNECTION_ERROR_CODE,
+        CONNECTION_ERROR_MESSAGE
       )
     end
-    request['X-RosetteAPI-Key'] = @user_key
-    request['User-Agent'] = @user_agent
+    request[HEADER_API_KEY] = @user_key
+    request[HEADER_USER_AGENT] = @user_agent
 
     get_response @http_client, request
   end
 
-  # Sends a POST request to Rosette API.
+  # Sends a POST request to Analytics API.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def send_post_request
@@ -197,7 +236,7 @@ class RequestBuilder
   #
   # * +http+ - HTTP connection.
   #
-  # * +request+ - Prepared Rosette API request.
+  # * +request+ - Prepared API request.
   #
   # Returns JSON response or raises RosetteAPIError if encountered.
   def get_response(http, request)
@@ -210,8 +249,9 @@ class RequestBuilder
 
       JSON.parse(response.body).merge(response_headers)
     else
-      message = JSON.parse(response.body)['message']
-      code = JSON.parse(response.body)['code']
+      parsed_body = JSON.parse(response.body)
+      message = parsed_body['message']
+      code = parsed_body['code']
       raise RosetteAPIError.new code, message
     end
   end

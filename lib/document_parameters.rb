@@ -17,9 +17,9 @@ class DocumentParameters
   attr_accessor :genre
   # ISO 639-3 language code of the provided content (optional)
   attr_accessor :language
-  # Rosette API options (optional, should be a hash)
+  # API options (optional, should be a hash)
   attr_accessor :rosette_options
-  # custom Rosette API headers
+  # custom API headers
   attr_accessor :custom_headers
 
   def initialize(options = {}) # :notnew:
@@ -55,8 +55,8 @@ class DocumentParameters
       raise BadRequestFormatError.new(content_msg)
     elsif [@content, @content_uri, @file_path].all?(&:nil?)
       raise BadRequestFormatError.new(no_content_msg)
-    elsif @rosette_options
-      raise BadRequestError.new(opt_msg) unless @rosette_options.is_a? Hash
+    elsif @rosette_options && !@rosette_options.is_a?(Hash)
+      raise BadRequestError.new(opt_msg)
     end
   end
 
@@ -78,7 +78,6 @@ class DocumentParameters
       content: @content,
       content_uri: @content_uri,
       file_path: @file_path,
-      genre: @genre,
       language: @language,
       options: @rosette_options,
       custom_headers: @custom_headers

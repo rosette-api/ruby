@@ -3,7 +3,7 @@
 require_relative 'rosette_api_error'
 
 # This class encapsulates parameters that are needed for name-translation in
-# Rosette API.
+# Analytics API.
 class NameTranslationParameters
   # Name's entity type (PERSON, LOCATION, ORGANIZATION) (optional)
   attr_accessor :entity_type
@@ -11,7 +11,7 @@ class NameTranslationParameters
   attr_accessor :genre
   # Name to translate
   attr_accessor :name
-  # Rosette API options (optional, should be a hash)
+  # API options (optional, should be a hash)
   attr_accessor :rosette_options
   # ISO 693-3 code of the name's native language the name originates in
   # (optional)
@@ -26,11 +26,14 @@ class NameTranslationParameters
   attr_accessor :target_scheme
   # ISO 15924 code of name's script (optional)
   attr_accessor :target_script
+  # Maximum number of results to return (optional)
+  attr_accessor :maximum_results
 
   def initialize(name, target_language, options = {}) # :notnew:
     options = {
       entity_type: nil,
       genre: nil,
+      maximum_results: nil,
       rosette_options: nil,
       source_language_of_origin: nil,
       source_language_of_use: nil,
@@ -41,6 +44,7 @@ class NameTranslationParameters
     @name = name
     @entity_type = options[:entity_type]
     @genre = options[:genre]
+    @maximum_results = options[:maximum_results]
     @rosette_options = options[:rosette_options]
     @source_language_of_origin = options[:source_language_of_origin]
     @source_language_of_use = options[:source_language_of_use]
@@ -55,6 +59,12 @@ class NameTranslationParameters
   def validate_params
     msg = 'rosette_options can only be an instance of a Hash'
     raise BadRequestError.new(msg) if @rosette_options && !(@rosette_options.is_a? Hash)
+
+    max_msg = 'maximum_results can only be an instance of an Integer'
+    raise BadRequestError.new(max_msg) if @maximum_results && !(@maximum_results.is_a? Integer)
+
+    max_range_msg = 'maximum_results must be greater than or equal to 0'
+    raise BadRequestError.new(max_range_msg) if @maximum_results&.negative?
   end
 
   # Converts this class to Hash with its keys in lower CamelCase.
@@ -73,7 +83,6 @@ class NameTranslationParameters
   def to_hash
     {
       entity_type: @entity_type,
-      genre: @genre,
       name: @name,
       options: @rosette_options,
       source_language_of_origin: @source_language_of_origin,
@@ -81,7 +90,8 @@ class NameTranslationParameters
       source_script: @source_script,
       target_language: @target_language,
       target_scheme: @target_scheme,
-      target_script: @target_script
+      target_script: @target_script,
+      maximum_results: @maximum_results
     }
   end
 end

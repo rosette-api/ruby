@@ -11,10 +11,10 @@ analytics_api = if url
                   RosetteAPI.new(api_key)
                 end
 
-morphology_lemmas_data = 'The fact is that the geese just went back to get a rest and I\'m not banking on their return soon'
+events_text_data = 'Bill Gates went to the store.'
 begin
-  params = DocumentParameters.new(content: morphology_lemmas_data)
-  response = analytics_api.get_lemmas(params)
+  params = DocumentParameters.new(content: events_text_data)
+  response = analytics_api.get_events(params)
   puts JSON.pretty_generate(response)
 rescue RosetteAPIError => e
   printf('Rosette API Error (%<status_code>s): %<message>s',

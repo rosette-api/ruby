@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   }
 
   spec.name = 'rosette_api'
-  spec.version = '1.37.0'
+  spec.version = '1.39.0'
   spec.license = 'Apache-2.0'
 
   spec.summary = 'A Ruby interface for Babel Street Analytics Server and Hosted Services'

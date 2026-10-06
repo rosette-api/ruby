@@ -15,7 +15,7 @@ require 'logger'
 # This class allows you to access all Analytics API endpoints.
 class RosetteAPI
   # Version of Ruby binding
-  BINDING_VERSION = '1.37.0'
+  BINDING_VERSION = '1.39.0'
   # API address-similarity endpoint
   ADDRESS_SIMILARITY_ENDPOINT = '/address-similarity'
   # API categories endpoint

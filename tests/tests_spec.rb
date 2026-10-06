@@ -41,7 +41,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -82,7 +82,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -112,7 +112,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -142,7 +142,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -172,7 +172,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -201,7 +201,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -230,7 +230,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -259,7 +259,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -298,7 +298,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -326,7 +326,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -355,7 +355,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -384,7 +384,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -412,7 +412,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -442,7 +442,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -465,7 +465,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -526,7 +526,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -615,7 +615,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -636,7 +636,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -699,7 +699,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -742,7 +742,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -769,7 +769,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -796,7 +796,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -861,7 +861,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0',
             'X-RosetteAPI-App' => 'ruby-app'
           }
@@ -890,7 +890,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0',
             'X-BabelStreetAPI-App' => 'ruby-app'
           }
@@ -917,7 +917,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0',
             'X-RosetteAPI-App' => 'ruby-app',
             'X-BabelStreetAPI-App' => 'ruby-app'
@@ -979,7 +979,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -1008,7 +1008,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -1035,7 +1035,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -1075,7 +1075,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -1277,7 +1277,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )
@@ -1360,7 +1360,7 @@ describe RosetteAPI do
             'X-BabelStreetAPI-Key' => '0123456789',
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
-            'X-Rosetteapi-Binding-Version' => '1.37.0',
+            'X-Rosetteapi-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-Binding-Version' => '1.37.0'
           }
         )

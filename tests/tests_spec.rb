@@ -42,7 +42,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -83,7 +83,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -113,7 +113,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -143,7 +143,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -173,7 +173,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -202,7 +202,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -231,7 +231,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -260,7 +260,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "entities"}', headers: {})
@@ -299,7 +299,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "categories"}', headers: {})
@@ -327,7 +327,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "events"}', headers: {})
@@ -356,7 +356,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "sentiment"}', headers: {})
@@ -385,7 +385,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "text-embedding"}', headers: {})
@@ -413,7 +413,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "relationships"}', headers: {})
@@ -443,7 +443,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -466,7 +466,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -527,7 +527,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -616,7 +616,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -637,7 +637,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -700,7 +700,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -743,7 +743,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "tokens"}', headers: {})
@@ -770,7 +770,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "topics"}', headers: {})
@@ -797,7 +797,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "sentences"}', headers: {})
@@ -862,7 +862,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0',
             'X-RosetteAPI-App' => 'ruby-app'
           }
         )
@@ -891,7 +891,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0',
             'X-BabelStreetAPI-App' => 'ruby-app'
           }
         )
@@ -918,7 +918,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0',
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0',
             'X-RosetteAPI-App' => 'ruby-app',
             'X-BabelStreetAPI-App' => 'ruby-app'
           }
@@ -980,7 +980,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -1009,7 +1009,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -1036,7 +1036,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "language"}', headers: {})
@@ -1076,7 +1076,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200,
@@ -1278,7 +1278,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
@@ -1361,7 +1361,7 @@ describe RosetteAPI do
             'X-Rosetteapi-Binding' => 'ruby',
             'X-BabelStreetAPI-Binding' => 'ruby',
             'X-Rosetteapi-Binding-Version' => '1.39.0',
-            'X-BabelStreetAPI-Binding-Version' => '1.37.0'
+            'X-BabelStreetAPI-Binding-Version' => '1.39.0'
           }
         )
         .to_return(status: 200, body: '{"test": "record-similarity"}', headers: {})
